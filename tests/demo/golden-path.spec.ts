@@ -83,7 +83,12 @@ test('golden path', async ({ page }) => {
     await demoStep(page, '2. Start → all 25 dongs have 20/20 and visible demo notice', async () => {
       await page.getByRole('button', { name: '탐험 시작' }).click();
       await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toBeVisible();
+      // The demo notice floats over the UI; open it from its chip.
+      await page.getByRole('button', { name: '시연 안내' }).click();
       await expect(page.getByRole('complementary', { name: '시연 데이터 설정' })).toContainText('가상 후보 25곳');
+      await page.keyboard.press('Escape');
+      await page.mouse.move(0, 0);
+      await expect(page.getByRole('complementary', { name: '시연 데이터 설정' })).toBeHidden();
       await expect(page.locator('.ansan-region.recommended')).toHaveCount(25);
       // Scores stay off screen (data-score only); place picks say where and why, never a score.
       const picks = page.getByRole('list', { name: '장소 추천' }).getByRole('button');

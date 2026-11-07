@@ -25,7 +25,9 @@ test('twentieth visit, reload, mode switches and deletion keep the correct top 2
   await page.reload();
   await expect(list(page)).not.toContainText(target);
   await expect(list(page).locator(':scope > li')).toHaveCount(20);
+  await page.getByRole('button', { name: '시연 안내' }).click();
   await page.getByRole('button', { name: '추가 시연 장소 끄기' }).click();
+  await page.getByRole('button', { name: '시연 안내' }).click();
   await expect(page.getByRole('button', { name: '추가 시연 장소 켜기' })).toBeVisible();
   await expect(list(page).locator(':scope > li')).toHaveCount(5);
   await expect(list(page)).not.toContainText(target);
@@ -50,6 +52,7 @@ test('filters still apply; the visible preset restores 25 full dongs including D
   const jungang = page.getByRole('button', { name: /^지도 중앙동 ·/ });
   // Counts and scores stay off screen; the 20-place detail list is checked below.
   await expect(jungang).toHaveAccessibleName(/내가 좋아하는 동네/);
+  await page.getByRole('button', { name: '시연 안내' }).click();
   await page.getByRole('button', { name: '25개 동 시연 조건 적용' }).click();
   await expect(page.locator('.ansan-region.recommended')).toHaveCount(25);
   expect((await picks.allTextContents()).every(text => !text.includes('점수'))).toBe(true);
