@@ -76,7 +76,8 @@ async function thumbnail(file: File): Promise<Blob> {
     canvas.height = Math.max(1, Math.round(image.height * scale));
     const context = canvas.getContext('2d');
     if (!context) throw new Error('사진 미리보기를 만들 수 없어요.');
-    context.fillStyle = '#fffefa';
+    // A stable paper backing keeps transparent uploads identical across themes.
+    context.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--color-photo-paper').trim();
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
     return await new Promise<Blob>((resolve, reject) => canvas.toBlob(

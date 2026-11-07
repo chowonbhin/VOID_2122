@@ -1,11 +1,11 @@
-.splash { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom)); background: var(--bg); background-image: radial-gradient(#d9cfb8 1px, transparent 1.2px); background-size: 16px 16px; cursor: pointer; animation: splash-out .3s ease-in 1.2s forwards; }
+.splash { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom)); background: var(--color-bg); cursor: pointer; animation: splash-out .3s ease-in 1.2s forwards; }
 .splash-body { width: min(420px, 100%); animation: splash-in .5s ease-out both; }
-.splash-brand { margin: 0 0 28px; color: var(--accent); font-weight: 800; font-size: 20px; letter-spacing: -.02em; }
-.splash-eyebrow { margin: 0 0 10px; color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: .14em; }
-.splash-title { margin: 0; font-size: 32px; font-weight: 800; line-height: 1.35; letter-spacing: -.03em; color: var(--fg); }
-.splash-sub { margin: 14px 0 32px; color: var(--muted); font-size: 17px; }
-.splash-progress { height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
-.splash-progress i { display: block; height: 100%; width: 100%; background: var(--accent); transform-origin: left; animation: splash-bar linear forwards; }
+.splash-brand { margin: 0 0 28px; color: var(--color-link); font-weight: 800; font-size: 20px; letter-spacing: -.02em; }
+.splash-eyebrow { margin: 0 0 10px; color: var(--color-link); font-weight: 700; font-size: 13px; letter-spacing: .14em; }
+.splash-title { margin: 0; font-size: 32px; font-weight: 800; line-height: 1.35; letter-spacing: -.03em; color: var(--color-text); }
+.splash-sub { margin: 14px 0 32px; color: var(--color-text-secondary); font-size: 17px; }
+.splash-progress { height: 4px; border-radius: 4px; background: var(--color-border); overflow: hidden; }
+.splash-progress i { display: block; height: 100%; width: 100%; background: var(--color-accent); transform-origin: left; animation: splash-bar linear forwards; }
 @keyframes splash-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes splash-out { to { opacity: 0; } }
 @keyframes splash-bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }

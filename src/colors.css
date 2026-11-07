@@ -1,0 +1,74 @@
+/* Single source of UI colours: DESIGN_COLORS.md (Rose Terracotta × Paper & Ink).
+   Components use semantic roles; map colours still encode familiarity, not score. */
+:root {
+  color-scheme: light;
+  --color-bg: #FAF6EC;
+  --color-surface: #FFFDF7;
+  --color-surface-sunken: #F2EBDC;
+  --color-border: #E6DCC8;
+  --color-border-strong: #CFC2AA;
+  --color-text: #3B2A22;
+  --color-text-secondary: #6E5D50;
+  --color-text-placeholder: #9A8A78;
+  --color-primary: #B0524A;
+  --color-primary-pressed: #8F3F38;
+  --color-on-primary: #FFFFFF;
+  --color-link: #8F3F38;
+  --color-primary-subtle: #FBEFEC;
+  --color-highlight: #F8E2D3;
+  --color-on-highlight: #5A3524;
+  --color-accent: #EBB89A;
+  --color-success: #567553;
+  --color-success-bg: #E8EDDC;
+  --color-success-text: #2F4A2D;
+  --color-warning: #B07D22;
+  --color-warning-bg: #F7EACB;
+  --color-warning-text: #6E4A12;
+  --color-error: #9A1F32;
+  --color-error-bg: #F7DDDD;
+  --color-error-text: #6E1524;
+  --color-info: #4F6A7A;
+  --color-info-bg: #E3E8E8;
+  --color-info-text: #2C4250;
+
+  /* Map and illustration roles use only the document's paper/rose/peach palette. */
+  --color-map-bg: var(--color-bg);
+  --color-map-land: var(--color-surface-sunken);
+  --color-map-boundary: var(--color-text-placeholder);
+  --color-map-familiarity-0: var(--color-surface-sunken);
+  --color-map-familiarity-1: #F5D6CF;
+  --color-map-familiarity-2: #D9887A;
+  --color-map-hatch: var(--color-text);
+  --color-ink: #3B2A22;
+  --color-photo-paper: #FFFDF7;
+  --color-shadow: color-mix(in srgb, var(--color-ink) 8%, transparent);
+  --color-backdrop: color-mix(in srgb, var(--color-ink) 48%, transparent);
+  --shadow: 0 2px 8px var(--color-shadow);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-bg: #221C17;
+    --color-surface: #2C2520;
+    --color-surface-sunken: #352C25;
+    --color-border: #43382F;
+    --color-border-strong: #5A4A3E;
+    --color-text: #F2EADC;
+    --color-text-secondary: #C2B5A3;
+    --color-text-placeholder: #8A7C6C;
+    --color-primary: #E08A7B;
+    --color-primary-pressed: #EBA597;
+    --color-on-primary: #2A1513;
+    --color-link: #EBA597;
+    --color-primary-subtle: #3D2724;
+    --color-highlight: #3A2C22;
+    --color-on-highlight: #F3CDB4;
+    --color-success: #8FB08B;
+    --color-warning: #E0B05A;
+    --color-error: #E8828F;
+    --color-info: #8FAABB;
+    --color-map-familiarity-1: #4A1F1C;
+    --color-map-familiarity-2: #8F3F38;
+  }
+}

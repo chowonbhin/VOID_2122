@@ -1,3 +1,4 @@
+import { Icon } from '../../components/Icon';
 // Golden-path step 4 and M07. Owner: zT4ek.
 import { useId, useMemo, useState, type FormEvent } from 'react';
 import { useAppState } from '../../AppState';
@@ -117,8 +118,8 @@ export function VisitPanel({ placeId }: { placeId: string }) {
         <button type="submit" disabled={alreadyRecorded}>방문 기록</button>
       </form>
       {alreadyRecorded && <p id={`${formId}-hint`} className="visit-hint">이미 기록한 날짜예요.</p>}
-      {error && <p role="alert" className="visit-error">{error}</p>}
-      {message && <p role="status" className="visit-message">{message}</p>}
+      {error && <p role="alert" className="visit-error"><Icon name="alert" size={18} />{error}</p>}
+      {message && <p role="status" className="visit-message"><Icon name="check" size={18} />{message}</p>}
 
       {visits.length === 0 ? <p className="visit-empty">아직 남긴 방문 기록이 없어요.</p> : (
         <ul className="visit-records" aria-label={`${place.name} 방문 기록 목록`}>

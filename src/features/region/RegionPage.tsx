@@ -1,6 +1,7 @@
 // Region map/detail; score and visit state come from the shared engine.
 import { useEffect, useRef, useState } from 'react';
 import { useAppState } from '../../AppState';
+import { Icon } from '../../components/Icon';
 import { content, eventsOfPlace, placesOfRegion, regionById } from '../../data/content';
 import { CATEGORY_LABELS } from '../../domain/policy';
 import { distanceKm, eventState, placeStatus } from '../../domain/score';
@@ -147,7 +148,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
         <div className="memory-preview-actions">
           <button type="button" onClick={() => changePreview({ ...preview.value, enabled: !preview.value.enabled })}>{preview.value.enabled ? '예시 숨기기' : '예시 보기'}</button>
         </div>
-        {preview.error && <p role="alert" className="region-note">{preview.error}</p>}
+        {preview.error && <p role="alert" className="region-note"><Icon name="alert" size={18} />{preview.error}</p>}
       </>} />
       {places.length === 0 && <section className="region-recommend" aria-labelledby="nearby-title">
         <h2 id="nearby-title" className="region-list-heading">가까운 탐험 동네</h2>
@@ -183,9 +184,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
                   selectPlace(place.id, false);
                   requestAnimationFrame(() => revealMapLocation(mapRef.current));
                 }}>
-                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-                  <path d="M12 2.5a7 7 0 0 0-7 7c0 5 7 12 7 12s7-7 7-12a7 7 0 0 0-7-7zm0 9.6a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2z" fill="currentColor" />
-                </svg>
+                <Icon name="pin" />
               </button>
               </div>
             </div>

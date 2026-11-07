@@ -1,29 +1,29 @@
-.visit-panel { margin-top: 14px; border-top: 1px dashed var(--line-strong); padding-top: 12px; }
+.visit-panel { margin-top: 14px; border-top: 1px dashed var(--color-border-strong); padding-top: 12px; }
 .visit-progress { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-bottom: 10px; font-size: 14px; font-weight: 600; }
-.visit-progress-count { color: var(--muted); font-size: 12px; font-weight: 400; }
+.visit-progress-count { color: var(--color-text-secondary); font-size: 12px; font-weight: 400; }
 .visit-form { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
 .visit-form label, .visit-edit-form label { font-size: 14px; font-weight: 600; }
-.visit-panel input[type="date"] { min-width: 0; max-width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 9px 12px; background: var(--card); color: var(--fg); font: inherit; }
+.visit-panel input[type="date"] { min-width: 0; max-width: 100%; border: 1px solid var(--color-border-strong); border-radius: 12px; padding: 9px 12px; background: var(--color-surface); color: var(--color-text); font: inherit; }
 .visit-panel button { padding: 8px 14px; font-size: 14px; border-radius: 12px; }
-.visit-panel button:disabled { cursor: default; opacity: .55; }
-.visit-panel :is(button, input):focus-visible { outline: 3px solid var(--terracotta); outline-offset: 2px; }
-.visit-hint, .visit-empty { margin: 8px 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.visit-panel button:disabled { cursor: default; opacity: 1; }
+.visit-panel :is(button, input):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; }
+.visit-hint, .visit-empty { margin: 8px 0; color: var(--color-text-secondary); font-size: 13px; line-height: 1.5; }
 .visit-error, .visit-message { margin: 8px 0; font-size: 14px; line-height: 1.5; }
-.visit-error { color: #a12b26; }
-.visit-message { color: var(--accent); }
+.visit-error { color: var(--color-error-text); }
+.visit-message { color: var(--color-link); }
 .visit-records { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
-.visit-records > li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding: 10px 0; border-top: 1px solid var(--line); }
+.visit-records > li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding: 10px 0; border-top: 1px solid var(--color-border); }
 .visit-record-summary, .visit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .visit-record-summary time { font-variant-numeric: tabular-nums; }
-.visit-badge { padding: 3px 8px; border-radius: 100px; background: var(--accent-soft); color: var(--accent); font-size: 12px; }
+.visit-badge { padding: 3px 8px; border-radius: 100px; background: var(--color-primary-subtle); color: var(--color-link); font-size: 12px; }
 .visit-edit-form { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.visit-dialog { width: min(480px, calc(100vw - 28px)); max-height: calc(100dvh - 40px); padding: 0; border: 1px solid var(--line-strong); border-radius: 22px; background: var(--bg); color: var(--fg); box-shadow: 0 24px 80px #152a3a3d; overflow: auto; }
-.visit-dialog::backdrop { background: #23352e88; backdrop-filter: blur(3px); }
+.visit-dialog { width: min(480px, calc(100vw - 28px)); max-height: calc(100dvh - 40px); padding: 0; border: 1px solid var(--color-border-strong); border-radius: 22px; background: var(--color-bg); color: var(--color-text); box-shadow: var(--shadow); overflow: auto; }
+.visit-dialog::backdrop { background: var(--color-backdrop); backdrop-filter: blur(3px); }
 .visit-dialog-body { padding: 24px; }
 .visit-dialog-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
 .visit-dialog-heading h2 { font-size: 22px; margin: 4px 0 0; overflow-wrap: anywhere; }
-.visit-dialog-heading p { margin: 0; color: var(--muted); font-size: 12px; }
-.visit-dialog-close { flex: 0 0 44px; min-height: 44px; padding: 4px; border: 0; background: transparent; font-size: 27px; }
+.visit-dialog-heading p { margin: 0; color: var(--color-text-secondary); font-size: 12px; }
+.visit-dialog-close { flex: 0 0 44px; min-height: 44px; padding: 4px; border: 0; background: transparent; font-size: 27px;  display: grid;  place-items: center; }
 .visit-dialog .visit-panel { margin-top: 20px; padding-top: 20px; }
 @media (max-width: 480px) {
   .visit-dialog-body { padding: 18px; }

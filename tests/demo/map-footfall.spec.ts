@@ -57,7 +57,7 @@ test('the main map is familiarity-only with home hatching; the hidden score stil
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
   await expect(map.getByRole('list', { name: '지도 범례' })).toContainText('내가 좋아하는 동네');
   await expect(map.getByRole('button', { name: '점수 보기', exact: true })).toHaveCount(0);
-  await expect(mapScore(page)).toHaveAttribute('fill', '#E1EBDD');
+  await expect(mapScore(page)).toHaveAttribute('fill', 'var(--color-map-familiarity-0)');
   expect(Number(await mapScore(page).getAttribute('data-score'))).toBeGreaterThan(0);
   await expect(map.locator('.ansan-home-hatch')).toHaveCount(1);
   await expect(map.locator('text')).toHaveCount(0);

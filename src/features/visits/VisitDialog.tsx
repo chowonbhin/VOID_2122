@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Icon } from '../../components/Icon';
 import type { Place } from '../../domain/types';
 import { VisitPanel } from './VisitPanel';
 
@@ -21,7 +22,7 @@ export function VisitDialog({ place, onClose }: { place: Place; onClose: () => v
     onClick={event => { if (event.target === event.currentTarget) onClose(); }}>
     <div className="visit-dialog-body">
       <div className="visit-dialog-heading"><h2>{place.name}</h2>
-        <button type="button" className="visit-dialog-close" aria-label="방문 날짜 설정 닫기" onClick={onClose}>×</button></div>
+        <button type="button" className="visit-dialog-close" aria-label="방문 날짜 설정 닫기" onClick={onClose}><Icon name="close" /></button></div>
       <VisitPanel placeId={place.id} />
     </div>
   </dialog>;

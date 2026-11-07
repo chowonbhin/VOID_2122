@@ -1,4 +1,5 @@
 import { useId, type Ref } from 'react';
+import { Icon } from '../../components/Icon';
 import { dongs, fitBox, pathOfDong, project, type Dong } from './ansanGeo';
 import './map.css';
 
@@ -74,12 +75,8 @@ function layout(markers: MapMarker[], box: [number, number, number, number]) {
   return items;
 }
 
-const Heart = () => <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-  <path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.2 4.3 2.4.7-1.2 2.2-2.4 4.3-2.4 3.7 0 5.8 3.8 4.3 7.3C19.5 16.4 12 21 12 21z" fill="currentColor" />
-</svg>;
-export const HomeIcon = ({ size = 18 }: { size?: number }) => <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true">
-  <path d="M12 3 2.5 11h2.7v9h5.3v-6h3v6h5.3v-9h2.7z" fill="currentColor" />
-</svg>;
+const Heart = () => <Icon name="heart" size={18} />;
+export const HomeIcon = ({ size = 18 }: { size?: number }) => <Icon name="home" size={size} />;
 
 /** Single-동네 map in the same drawn style as the main map: real outline, neighbours for context. */
 export function DongMap({ target, markers, onSelect, ref }: {
@@ -95,7 +92,7 @@ export function DongMap({ target, markers, onSelect, ref }: {
     <svg viewBox={box.join(' ')} className="dong-map-svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
       <defs>
         <pattern id={`${uid}dots`} width={box[2] / 60} height={box[2] / 60} patternUnits="userSpaceOnUse">
-          <circle cx={box[2] / 240} cy={box[2] / 240} r={box[2] / 400} fill="#c9b99a" opacity=".6" />
+          <circle cx={box[2] / 240} cy={box[2] / 240} r={box[2] / 400} fill="var(--color-map-boundary)" opacity=".25" />
         </pattern>
       </defs>
       {dongs.filter(d => !codes.has(d.code)).map(d => <path key={d.code} d={pathOfDong(d)} fillRule="evenodd" className="dong-map-context" />)}

@@ -1,8 +1,17 @@
 # Handoff: zT4ek
 
-phase: harden; 장소 아이콘 → 상단 위치 → 네이버지도 연결 (2026-11-08 KST)
-branch: zT4ek/map-navigation; latest integrated origin/main eead364
+phase: harden; 로즈 테라코타·미색 컬러 / 공통 에셋 적용 (2026-11-08 KST)
+branch: zT4ek/rose-paper-theme (65e4a91 지도 이동 포함); latest integrated origin/main eead364
 authorization: 사용자 최신 지시로 바로 main에 올리지 않는다. 다른 곳에서 진행 중인 ‘지도 아이콘을 누른 장소만 표시’ 구현이 완료되면 통합·검증한 뒤 main에 올린다.
+
+## 최신: 컬러·에셋 통일
+
+- 사용자 DESIGN_COLORS.md를 기준으로 CSS/SVG 전 화면을 src/colors.css 역할 토큰으로 연결. 자동 다크 모드 포함. 점수/친밀도 의미와 실제 간판 사진은 보존.
+- Papier·DÔEN 공식 화면의 미색 바탕/사진 중심 여백 참고. 외부 에셋·폰트는 도입하지 않고 기존 사진/나침반 형태 유지. 공통 24px, 1.6px 선형 아이콘으로 메뉴·지도·사진·닫기·오류/성공 표시 통일.
+- 강한 그림자/그라데이션/반복 점무늬/사진 기울임 제거. primary는 주요 행동 위주, 나머지는 연한 선택 배경·테두리로 표현. 오류는 아이콘+문구+의미 색 함께 표시.
+- 기존 녹색 fill을 기대하던 브라우저 assertion만 새 역할 토큰으로 갱신; 친밀도 단계/추천 순위 검증 유지.
+- build PASS, browser52 PASS. rose-paper/에서 light/dark 각 PC1280·390·320px 주요 화면30개 검사: 화면에 보이는 일반 텍스트 대비4.5:1 미만0, 가로 넘침0, 저장 상태 변동0, 페이지 오류0. 전체 WCAG 감사는 아님. 수첩 PC/모바일·메인·날짜 오류창 실화면 확인.
+- 추가 원격 a8e705b의 지역 검색/메인 상위3개 핀/설명 축약을 이어서 통합할 예정. 이 커밋에는 상세의 ‘선택 장소만 표시’ 변경이 아직 없음.
 
 ## 최신: 장소 지도 이동 연결 (다른 지도 표시 변경 통합 대기)
 

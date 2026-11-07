@@ -1,7 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#1f6f5c"/>
-  <circle cx="256" cy="256" r="150" fill="none" stroke="#f7f6f2" stroke-width="20"/>
-  <path d="M256 128 L292 256 L256 384 L220 256 Z" fill="#f7f6f2"/>
-  <path d="M256 128 L292 256 L220 256 Z" fill="#f2b950"/>
-  <circle cx="256" cy="256" r="18" fill="#1f6f5c"/>
+  <style>
+    /* Standalone export of DESIGN_COLORS.md; the existing compass silhouette stays. */
+    svg { --color-surface: #FFFDF7; --color-primary: #B0524A; --color-accent: #EBB89A; }
+  </style>
+  <rect width="512" height="512" rx="112" fill="var(--color-surface)"/>
+  <circle cx="256" cy="256" r="150" fill="none" stroke="var(--color-primary)" stroke-width="20"/>
+  <path d="M256 128 L292 256 L256 384 L220 256 Z" fill="var(--color-primary)"/>
+  <path d="M256 128 L292 256 L220 256 Z" fill="var(--color-accent)"/>
+  <circle cx="256" cy="256" r="18" fill="var(--color-surface)"/>
 </svg>

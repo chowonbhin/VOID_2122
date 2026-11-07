@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { Icon } from '../../components/Icon';
 import { useAppState } from '../../AppState';
 import { content, regionById } from '../../data/content';
 import { MEMORY_PHOTOS, type MemoryPhoto } from '../../data/memoryPhotos';
@@ -36,14 +37,9 @@ function SavedImage({ photo, full = false }: { photo: NotebookPhoto; full?: bool
   }, [photo.id, full]);
   return <>{url && <img src={url} alt={dateLabel(photo.date) + '에 남긴 추억 사진'} loading={full ? 'eager' : 'lazy'}
     className={full ? 'notebook-lightbox-image' : undefined} width="576" height="432" />}
-    {error && <p role="alert">{error}</p>}</>;
+    {error && <p role="alert"><Icon name="alert" size={18} />{error}</p>}</>;
 }
 
-function Camera({ className = '' }: { className?: string }) {
-  return <svg className={className} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
-    <path d="M7 14h9l3-5h10l3 5h9v25H7z" /><circle cx="24" cy="26" r="8" /><path d="M35 19h2" />
-  </svg>;
-}
 
 function Sheet({ title, onClose, children, wide = false, busy = false }: { title: string; onClose: () => void; children: ReactNode; wide?: boolean; busy?: boolean }) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -62,7 +58,7 @@ function Sheet({ title, onClose, children, wide = false, busy = false }: { title
     onClick={event => { if (!busy && event.target === event.currentTarget) onClose(); }}>
     <div className="notebook-dialog-body">
       <div className="notebook-dialog-head"><h2>{title}</h2>
-        <button autoFocus aria-label="닫기" className="notebook-close" disabled={busy} onClick={onClose}>×</button>
+        <button autoFocus aria-label="닫기" className="notebook-close" disabled={busy} onClick={onClose}><Icon name="close" /></button>
       </div>
       {children}
     </div>
@@ -92,7 +88,7 @@ function PhotoEditor({ albums, initialPlaceId, onClose, onSaved }: {
     }}>
     <fieldset disabled={saving} className="notebook-form-fields">
     <label className={'notebook-upload' + (url ? ' has-photo' : '')}>
-      {url ? <img src={url} alt="선택한 사진 미리보기" onError={() => { setFile(undefined); setError('사진을 읽을 수 없어요. 다른 사진을 골라주세요.'); }} /> : <><Camera /><strong>사진 고르기</strong><span>JPG · PNG · WebP / 최대 10MB</span></>}
+      {url ? <img src={url} alt="선택한 사진 미리보기" onError={() => { setFile(undefined); setError('사진을 읽을 수 없어요. 다른 사진을 골라주세요.'); }} /> : <><Icon name="camera" /><strong>사진 고르기</strong><span>JPG · PNG · WebP / 최대 10MB</span></>}
       <input type="file" accept="image/jpeg,image/png,image/webp" aria-label="추억 사진 선택" onChange={event => {
         const next = event.target.files?.[0];
         if (!next) return;
@@ -104,7 +100,7 @@ function PhotoEditor({ albums, initialPlaceId, onClose, onSaved }: {
       }} />
       {url && <span className="notebook-replace">다른 사진 고르기</span>}
     </label>
-    {error && <p role="alert">{error}</p>}
+    {error && <p role="alert"><Icon name="alert" size={18} />{error}</p>}
     <label className="notebook-field">장소
       <select aria-label="장소" required value={placeId} onChange={event => setPlaceId(event.target.value)}>{albums.map(({ place }) => <option key={place.id} value={place.id}>{place.name} · {regionById(place.regionId)?.name}</option>)}</select>
     </label>
@@ -133,7 +129,7 @@ function AlbumDetail({ album, showSample, canAdd, onClose, onAdd, onDeleted }: {
   return <Sheet title={album.place.name} wide onClose={onClose} busy={deleting}>
     {active ? <SavedImage key={active.id} photo={active} full /> : sample
       ? <img className="notebook-lightbox-image" src={sample.src} alt={sample.alt} />
-      : <div className="notebook-no-photo"><Camera /><p>아직 남긴 사진이 없어요.</p></div>}
+      : <div className="notebook-no-photo"><Icon name="camera" /><p>아직 남긴 사진이 없어요.</p></div>}
     {album.saved.length + Number(!!album.photo) > 1 && <div className="notebook-photo-picker" role="group" aria-label="장소 사진 선택">
       {album.saved.map((photo, index) => <button key={photo.id} disabled={deleting} aria-label={'내 사진 ' + (index + 1)} aria-pressed={active?.id === photo.id}
         onClick={() => { setActiveId(photo.id); setConfirming(false); setError(''); }}><SavedImage photo={photo} /></button>)}
@@ -143,7 +139,7 @@ function AlbumDetail({ album, showSample, canAdd, onClose, onAdd, onDeleted }: {
     <p className="notebook-subtle">{album.place.address}</p>
     {album.dates.length > 0 && <p className="notebook-subtle">남긴 방문 기록 · {album.dates.map(dateLabel).join(' / ')}</p>}
     {sample && <div className="notebook-photo-source"><span>간판 사진 예시</span><a href={sample.sourceUrl} target="_blank" rel="noreferrer">{sample.sourceLabel} ↗</a></div>}
-    {error && <p role="alert">{error}</p>}
+    {error && <p role="alert"><Icon name="alert" size={18} />{error}</p>}
     {confirming && active ? <div className="notebook-delete-confirm">
       <p>이 사진과 메모를 삭제할까요? 방문 기록은 그대로 남아요.</p>
       <button disabled={deleting} onClick={() => setConfirming(false)}>취소</button>
@@ -196,10 +192,10 @@ export function NotebookPage() {
       : recentDate(b).localeCompare(recentDate(a)) || sampleIds.indexOf(a.place.id as typeof sampleIds[number]) - sampleIds.indexOf(b.place.id as typeof sampleIds[number]));
   const openEditor = (placeId?: string) => { setAddPlaceId(placeId); setSelectedId(undefined); setAdding(true); setNotice(''); };
   return <section className="notebook">
-    <a className="notebook-back" href="#/recommend"><span aria-hidden="true">←</span> 나의 안산 지도로</a>
+    <a className="notebook-back" href="#/recommend"><Icon name="arrowLeft" size={18} /> 나의 안산 지도로</a>
     <header className="notebook-heading">
       <h1>나의 동네수첩<span className="notebook-title-dot">.</span></h1>
-      <button className="notebook-add" disabled={loading || !!loadError} onClick={() => openEditor()}><span aria-hidden="true">＋</span> 사진 남기기</button>
+      <button className="notebook-add" disabled={loading || !!loadError} onClick={() => openEditor()}><Icon name="plus" /> 사진 남기기</button>
     </header>
     <div className="notebook-overview">
       <span><strong>{recordedCount}</strong> 기록한 장소</span><span><strong>{photos.length}</strong> 내 사진</span><span><strong>{MEMORY_PHOTOS.length}</strong> 사진 예시</span>
@@ -212,26 +208,26 @@ export function NotebookPage() {
       <select aria-label="추억 정렬" value={sort} onChange={event => setSort(event.target.value)}><option value="recent">최근 기록순</option><option value="name">가게 이름순</option></select>
     </div>
     {loading && <p role="status" className="notebook-subtle">저장한 사진을 펼치고 있어요…</p>}
-    {loadError && <div className="notebook-storage-error"><p role="alert">{loadError}</p><button onClick={() => setRevision(value => value + 1)}>다시 불러오기</button></div>}
-    {notice && <p role="status" className="notebook-subtle">{notice}</p>}
+    {loadError && <div className="notebook-storage-error"><p role="alert"><Icon name="alert" size={18} />{loadError}</p><button onClick={() => setRevision(value => value + 1)}>다시 불러오기</button></div>}
+    {notice && <p role="status" className="notebook-notice"><Icon name="check" size={18} />{notice}</p>}
     <p className="notebook-section-label">장소 <span>{shown.length}</span></p>
     {shown.length ? <ul className="notebook-grid" aria-label="동네수첩 사진">
       {shown.map(album => <li key={album.place.id} className="notebook-photo-card">
         <button className="notebook-photo-open" onClick={() => setSelectedId(album.place.id)} aria-label={album.place.name + ' 추억 보기'}>
           <div className="notebook-photo-wrap">
             {album.saved.length && filter !== 'sample' ? <SavedImage key={album.saved[0].id} photo={album.saved[0]} /> : album.photo ? <img src={album.photo.src} alt={album.photo.alt} loading="lazy" width="576" height="432" />
-              : <div className="notebook-no-photo"><Camera /><span>사진 없음</span></div>}
+              : <div className="notebook-no-photo"><Icon name="camera" /><span>사진 없음</span></div>}
             {album.saved.length && filter !== 'sample' ? <span className="notebook-photo-badge">내 사진 {album.saved.length}장</span>
               : album.photo && <span className="notebook-photo-badge">간판 사진 예시</span>}
-            <span className="notebook-expand" aria-hidden="true">↗</span>
+            <span className="notebook-expand"><Icon name="arrowUpRight" size={16} /></span>
           </div>
           <div className="notebook-photo-caption"><p>{regionById(album.place.regionId)?.name}{recentDate(album) && <span>{dateLabel(recentDate(album))}</span>}</p>
             <h2>{album.place.name}</h2>{filter !== 'sample' && album.saved[0]?.memo && <p className="notebook-photo-note">{album.saved[0].memo}</p>}
           </div>
         </button>
       </li>)}
-      <li className="notebook-next"><button disabled={loading || !!loadError} onClick={() => openEditor()}><span className="notebook-next-symbol" aria-hidden="true">＋</span><strong>사진 추가</strong></button></li>
-    </ul> : <div className="notebook-empty"><Camera /><h2>아직 남긴 발걸음이 없어요</h2><a href="#/recommend">동네 둘러보기 →</a></div>}
+      <li className="notebook-next"><button disabled={loading || !!loadError} onClick={() => openEditor()}><span className="notebook-next-symbol"><Icon name="plus" /></span><strong>사진 추가</strong></button></li>
+    </ul> : <div className="notebook-empty"><Icon name="camera" /><h2>아직 남긴 발걸음이 없어요</h2><a href="#/recommend">동네 둘러보기 →</a></div>}
     <div className="notebook-end">안산에서, 한 장씩.</div>
     {selected && <AlbumDetail key={selected.place.id} album={selected} showSample={filter === 'sample'} canAdd={!loading && !loadError} onClose={() => setSelectedId(undefined)}
       onAdd={() => openEditor(selected.place.id)} onDeleted={id => { setPhotos(current => current.filter(photo => photo.id !== id)); setNotice('사진을 삭제했어요.'); }} />}

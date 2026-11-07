@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Icon } from '../../components/Icon';
 import './menu.css';
 
 /** Disclosure navigation with native links, Tab, outside press and Escape. */
@@ -27,17 +28,17 @@ export function AppMenu() {
   }}>
     <button ref={trigger} className="app-menu-trigger" aria-label="메뉴" aria-expanded={open}
       aria-controls="app-menu-panel" onClick={() => setOpen(value => !value)}>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+      <Icon name="menu" />
       <span>메뉴</span>
     </button>
     <nav id="app-menu-panel" className="app-menu-panel" aria-label="내 탐험 메뉴" hidden={!open}>
       <a href="#/notebook" onClick={() => setOpen(false)}>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5zM9 3v18M3 7h4M3 12h4M3 17h4M12 8h4M12 12h4" /></svg>
-        <span><strong>나의 동네수첩</strong></span><span aria-hidden="true">↗</span>
+        <Icon name="notebook" />
+        <span><strong>나의 동네수첩</strong></span><Icon name="arrowUpRight" size={16} />
       </a>
       <a href="#/onboarding" onClick={() => setOpen(false)}>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16M9 4v6M15 14v6" /></svg>
-        <span><strong>다시 설정하기</strong></span><span aria-hidden="true">↗</span>
+        <Icon name="settings" />
+        <span><strong>다시 설정하기</strong></span><Icon name="arrowUpRight" size={16} />
       </a>
     </nav>
   </div>;

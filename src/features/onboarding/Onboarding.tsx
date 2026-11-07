@@ -1,3 +1,4 @@
+import { Icon } from '../../components/Icon';
 // Onboarding: Q1 거주 시기 → (초심자면 바로 관심 활동) → Q2 가본 동네 → Q3 지금 동네에서 가본 장소 → 관심 활동.
 // Finishing also saves the search, so the main map opens without a separate setup page.
 import { useState } from 'react';
@@ -151,7 +152,7 @@ export function Onboarding() {
           {CATEGORY_LABELS[category]}
         </label>)}
       </div>
-      {error && <p role="alert" className="onboarding-error">{error}</p>}
+      {error && <p role="alert" className="onboarding-error"><Icon name="alert" size={18} />{error}</p>}
       <div className="onboarding-actions">
         <button onClick={() => setStep(beginner ? 1 : 3)}>이전</button>
         <button className="primary" onClick={() => residence && finish(residence)}>탐험 시작</button>

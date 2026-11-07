@@ -1,58 +1,58 @@
-.region-detail { --surface-page: #FBF8F1; --surface-card: #FFFEFA; --action-primary: #356859; --text-primary: #293E39; --text-secondary: #64736C; color: var(--text-primary); background: var(--surface-page); border-radius: 24px; padding: 8px 0 24px; }
+.region-detail { color: var(--color-text); background: var(--color-bg); border-radius: 24px; padding: 8px 0 24px; }
 .region-detail h1 { overflow-wrap: anywhere; }
-.region-detail .place { background: var(--surface-card); border-radius: 18px; }
-.region-detail .place.selected-place { border-color: var(--action-primary); }
+.region-detail .place { background: var(--color-surface); border-radius: 18px; }
+.region-detail .place.selected-place { border-color: var(--color-primary); background: var(--color-primary-subtle); }
 .region-summary { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; }
-.region-summary span { background: #EEE6D6; border-radius: 20px; padding: 8px 12px; }
-.region-detail .region-back:focus-visible { outline: 3px solid #994B32; outline-offset: 3px; }
-.region-category, .region-note { color: var(--text-secondary); font-size: 13px; }
-.region-empty { padding: 24px; background: var(--surface-card); border: 1px dashed #B6CFB5; border-radius: 18px; text-align: center; margin-bottom: 16px; }
+.region-summary span { background: var(--color-surface-sunken); border-radius: 20px; padding: 8px 12px; }
+.region-detail .region-back:focus-visible { outline: 3px solid var(--color-link); outline-offset: 3px; }
+.region-category, .region-note { color: var(--color-text-secondary); font-size: 13px; }
+.region-empty { padding: 24px; background: var(--color-surface); border: 1px dashed var(--color-border-strong); border-radius: 18px; text-align: center; margin-bottom: 16px; }
 @media (max-width: 480px) { .region-detail { padding: 4px 0 12px; border-radius: 0; } .region-detail h1 { font-size: 25px; } }
 .region-detail { max-width: 880px; margin: 0 auto; }
 .region-design-layout { display: block; }
-.region-lead { color: #64736C; line-height: 1.7; }
+.region-lead { color: var(--color-text-secondary); line-height: 1.7; }
 .region-list-heading { margin: 28px 0 20px; font-size: 21px; }
-.region-detail .region-place-list > li { padding: 24px; background: #FFFEFA; border: 1.5px solid var(--line-strong); border-radius: 18px; box-shadow: var(--shadow); }
-.region-detail .region-place-meta { color: #64736C; overflow-wrap: anywhere; }
+.region-detail .region-place-list > li { padding: 24px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 18px; box-shadow: var(--shadow); }
+.region-detail .region-place-meta { color: var(--color-text-secondary); overflow-wrap: anywhere; }
 .region-detail .region-place-heading button { min-height: 44px; }
 @media (max-width: 480px) { .region-detail .region-place-list > li { padding: 16px; } }
 /* Memories linked to real-location markers, then a separate recommendation block. */
-.region-memories { margin-top: 20px; padding: 16px; background: #FFFEFA; border: 1.5px solid var(--line-strong); border-radius: 18px; }
+.region-memories { margin-top: 20px; padding: 16px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 18px; }
 .region-memories h2 { margin: 0 0 10px; font-size: 18px; }
 .region-memories ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity; }
 .region-memories li { flex: 0 0 auto; scroll-snap-align: start; }
-.region-memories button { display: grid; gap: 2px; text-align: left; border-color: #d9b8a6; background: #fbf1ec; }
-.region-memories button span { font-size: 13px; color: #994B32; }
+.region-memories button { display: grid; gap: 2px; text-align: left; border-color: var(--color-border-strong); background: var(--color-primary-subtle); }
+.region-memories button span { font-size: 13px; color: var(--color-link); }
 .region-memories .region-note { margin: 0; }
 .memory-preview-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
 .memory-preview-actions button { min-height: 44px; font-size: 13px; }
 .region-memories .memory-preview-note { margin: 0 0 10px; }
-.region-recommend { margin-top: 28px; padding-top: 24px; border-top: 2px dashed var(--line-strong); }
-.region-recommend-kicker { margin: 0; color: #994B32; font-weight: 800; font-size: 13px; letter-spacing: .08em; }
+.region-recommend { margin-top: 28px; padding-top: 24px; border-top: 2px dashed var(--color-border-strong); }
+.region-recommend-kicker { margin: 0; color: var(--color-link); font-weight: 800; font-size: 13px; letter-spacing: .08em; }
 .region-recommend .region-list-heading { margin: 4px 0 4px; }
 .region-recommend > .region-note { margin: 0 0 16px; }
 .region-design-layout > .dong-map { margin-top: 16px; }
-.region-memory-count { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; margin-left: 4px; border-radius: 12px; background: #b75d3e; color: #fff; font-size: 13px; vertical-align: 2px; }
-.region-memories button[aria-pressed="true"] { border: 1.5px solid #b75d3e; background: #f6e3da; }
-.region-memory-card { margin: 12px 0 8px; padding: 14px 16px; border-left: 4px solid #b75d3e; background: #fbf1ec; border-radius: 4px 14px 14px 4px; }
-.region-memory-card figcaption { font-size: 14px; color: #994B32; }
+.region-memory-count { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; margin-left: 4px; border-radius: 12px; background: var(--color-primary-subtle); color: var(--color-link); font-size: 13px; vertical-align: 2px; }
+.region-memories button[aria-pressed="true"] { border: 1.5px solid var(--color-primary); background: var(--color-primary-subtle); }
+.region-memory-card { margin: 12px 0 8px; padding: 14px 16px; border-left: 4px solid var(--color-primary); background: var(--color-primary-subtle); border-radius: 4px 14px 14px 4px; }
+.region-memory-card figcaption { font-size: 14px; color: var(--color-link); }
 .region-memory-card p { margin: 6px 0 0; line-height: 1.7; }
 .region-recommend .cards { margin: 0; }
-.region-nearby { background: #FFFEFA; border: 1.5px solid var(--line-strong); }
-.region-nearby-link { margin-top: 8px; color: var(--action-primary); font-weight: 800; }
+.region-nearby { background: var(--color-surface); border: 1px solid var(--color-border); }
+.region-nearby-link { margin-top: 8px; color: var(--color-link); font-weight: 800; }
 /* "지도에서 강조" as a fixed-size pin icon so it never moves with the place name's length. */
-.region-detail .region-map-focus { flex: 0 0 44px; width: 44px; height: 44px; min-height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; color: var(--action-primary); background: var(--surface-card); }
-.region-detail .region-map-focus[aria-pressed="true"] { background: var(--action-primary); border-color: var(--action-primary); color: #fff; }
+.region-detail .region-map-focus { flex: 0 0 44px; width: 44px; height: 44px; min-height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; color: var(--color-primary); background: var(--color-surface); }
+.region-detail .region-map-focus[aria-pressed="true"] { background: var(--color-primary-subtle); border-color: var(--color-primary); color: var(--color-link); }
 .region-place-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-.region-detail .region-visit-trigger { padding: 8px 10px; border-radius: 12px; font-size: 12px; white-space: nowrap; color: var(--accent); border-color: #bccdc2; background: var(--accent-soft); }
-.region-today-hours { padding: 12px 14px; margin: 12px 0; border-radius: 12px; background: #f4f3e9; font-size: 14px; }
+.region-detail .region-visit-trigger { padding: 8px 10px; border-radius: 12px; font-size: 12px; white-space: nowrap; color: var(--color-link); border-color: var(--color-border-strong); background: var(--color-primary-subtle); }
+.region-today-hours { padding: 12px 14px; margin: 12px 0; border-radius: 12px; background: var(--color-surface-sunken); font-size: 14px; }
 .region-today-hours p { margin: 0; }
-.region-today-hours p + p { margin-top: 6px; color: var(--muted); }
+.region-today-hours p + p { margin-top: 6px; color: var(--color-text-secondary); }
 .region-today-hours strong { font-size: 12px; font-weight: 600; }
-.region-today-hours time { margin-left: 6px; color: var(--muted); font-size: 12px; }
+.region-today-hours time { margin-left: 6px; color: var(--color-text-secondary); font-size: 12px; }
 .region-today-hours ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
 .region-today-hours li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
-.region-today-hours small { font-size: 12px; color: var(--muted); }
+.region-today-hours small { font-size: 12px; color: var(--color-text-secondary); }
 @media (max-width: 480px) {
   .region-detail .region-place-heading { gap: 8px; }
 }

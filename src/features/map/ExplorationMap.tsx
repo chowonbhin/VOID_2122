@@ -15,12 +15,12 @@ interface Props {
   onRegionSelect: (id: string) => void;
 }
 
-// The main map speaks familiarity only (user decision): fill = region Lv, terracotta outline =
+// The main map speaks familiarity only (user decision): fill = region Lv, rose outline =
 // today's recommendation, hatching = 내 동네. Scores stay off screen; data-score is a hidden test hook.
 export const FAMILIARITY = [
-  { label: '아직 낯선 동네', fill: '#E1EBDD' },
-  { label: '정이 드는 동네', fill: '#B6CFB5' },
-  { label: '내가 좋아하는 동네', fill: '#82AE98' },
+  { label: '아직 낯선 동네', fill: 'var(--color-map-familiarity-0)' },
+  { label: '정이 드는 동네', fill: 'var(--color-map-familiarity-1)' },
+  { label: '내가 좋아하는 동네', fill: 'var(--color-map-familiarity-2)' },
 ] as const;
 
 export function ExplorationMap({ regions, recommendations, levels, homeDongCode, onRegionSelect, searchConfigured, exclusions }: Props) {
@@ -82,7 +82,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
         aria-hidden={index !== active} inert={index !== active} key={area.id}>
         <svg viewBox={area.box.join(' ')} className="ansan-svg">
           <defs><pattern id={`home-hatch-${area.id}`} width={area.box[2] / 70} height={area.box[2] / 70} patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-            <rect width={area.box[2] / 200} height={area.box[2] / 70} fill="#293e39" opacity=".55" />
+            <rect width={area.box[2] / 200} height={area.box[2] / 70} fill="var(--color-map-hatch)" opacity=".55" />
           </pattern></defs>
           {shapes.filter(shape => area.dongs.some(d => d.code === shape.dong.code)).map(shape =>
             <g key={shape.region.id} role="button" tabIndex={0} aria-label={shape.label}
@@ -102,7 +102,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
     <ul className="ansan-legend" aria-label="지도 범례">
       {FAMILIARITY.map((item, level) => <li key={level}><i style={{ background: item.fill }} />{item.label}</li>)}
       <li className="legend-recommend"><i />오늘의 추천</li>
-      <li className="legend-home"><i />내 동네</li>
+      <li className="legend-home"><i><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M-3 5 5-3M-3 11 11-3M1 13 13 1M7 13 13 7" /></svg></i>내 동네</li>
     </ul>
   </section>;
 }
