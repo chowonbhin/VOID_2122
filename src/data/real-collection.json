@@ -1,0 +1,186 @@
+{
+  "provider": "naver_api_hub_local",
+  "checkedAt": "2026-11-08",
+  "queryCount": 1366,
+  "rawCandidateCount": 2329,
+  "duplicateCount": 0,
+  "importedCount": 1930,
+  "reviewCount": 300,
+  "counts": [
+    {
+      "regionId": "dong-4127353200",
+      "name": "중앙동",
+      "candidates": 119,
+      "discoverable": 72,
+      "reviewCounts": 26
+    },
+    {
+      "regionId": "dong-4127354500",
+      "name": "원곡동",
+      "candidates": 54,
+      "discoverable": 42,
+      "reviewCounts": 5
+    },
+    {
+      "regionId": "dong-4127351000",
+      "name": "와동",
+      "candidates": 56,
+      "discoverable": 31,
+      "reviewCounts": 1
+    },
+    {
+      "regionId": "dong-4127352500",
+      "name": "고잔동",
+      "candidates": 48,
+      "discoverable": 33,
+      "reviewCounts": 5
+    },
+    {
+      "regionId": "dong-4127353500",
+      "name": "호수동",
+      "candidates": 226,
+      "discoverable": 125,
+      "reviewCounts": 49
+    },
+    {
+      "regionId": "dong-4127355500",
+      "name": "백운동",
+      "candidates": 89,
+      "discoverable": 41,
+      "reviewCounts": 4
+    },
+    {
+      "regionId": "dong-4127356500",
+      "name": "신길동",
+      "candidates": 54,
+      "discoverable": 31,
+      "reviewCounts": 7
+    },
+    {
+      "regionId": "dong-4127357000",
+      "name": "초지동",
+      "candidates": 86,
+      "discoverable": 58,
+      "reviewCounts": 20
+    },
+    {
+      "regionId": "dong-4127358000",
+      "name": "선부1동",
+      "candidates": 52,
+      "discoverable": 22,
+      "reviewCounts": 2
+    },
+    {
+      "regionId": "dong-4127359000",
+      "name": "선부2동",
+      "candidates": 77,
+      "discoverable": 35,
+      "reviewCounts": 2
+    },
+    {
+      "regionId": "dong-4127360000",
+      "name": "선부3동",
+      "candidates": 118,
+      "discoverable": 66,
+      "reviewCounts": 6
+    },
+    {
+      "regionId": "dong-4127361000",
+      "name": "대부동",
+      "candidates": 125,
+      "discoverable": 106,
+      "reviewCounts": 75
+    },
+    {
+      "regionId": "dong-4127151000",
+      "name": "일동",
+      "candidates": 48,
+      "discoverable": 36,
+      "reviewCounts": 4
+    },
+    {
+      "regionId": "dong-4127151500",
+      "name": "이동",
+      "candidates": 126,
+      "discoverable": 91,
+      "reviewCounts": 13
+    },
+    {
+      "regionId": "dong-4127152500",
+      "name": "사동",
+      "candidates": 51,
+      "discoverable": 33,
+      "reviewCounts": 5
+    },
+    {
+      "regionId": "dong-4127153200",
+      "name": "사이동",
+      "candidates": 54,
+      "discoverable": 34,
+      "reviewCounts": 11
+    },
+    {
+      "regionId": "dong-4127153700",
+      "name": "해양동",
+      "candidates": 64,
+      "discoverable": 31,
+      "reviewCounts": 11
+    },
+    {
+      "regionId": "dong-4127154000",
+      "name": "본오1동",
+      "candidates": 58,
+      "discoverable": 35,
+      "reviewCounts": 13
+    },
+    {
+      "regionId": "dong-4127155000",
+      "name": "본오2동",
+      "candidates": 51,
+      "discoverable": 31,
+      "reviewCounts": 6
+    },
+    {
+      "regionId": "dong-4127156000",
+      "name": "본오3동",
+      "candidates": 65,
+      "discoverable": 35,
+      "reviewCounts": 8
+    },
+    {
+      "regionId": "dong-4127157000",
+      "name": "부곡동",
+      "candidates": 51,
+      "discoverable": 34,
+      "reviewCounts": 4
+    },
+    {
+      "regionId": "dong-4127158000",
+      "name": "월피동",
+      "candidates": 98,
+      "discoverable": 68,
+      "reviewCounts": 11
+    },
+    {
+      "regionId": "dong-4127159000",
+      "name": "성포동",
+      "candidates": 52,
+      "discoverable": 30,
+      "reviewCounts": 1
+    },
+    {
+      "regionId": "dong-4127160000",
+      "name": "반월동",
+      "candidates": 55,
+      "discoverable": 42,
+      "reviewCounts": 8
+    },
+    {
+      "regionId": "dong-4127161000",
+      "name": "안산동",
+      "candidates": 53,
+      "discoverable": 37,
+      "reviewCounts": 3
+    }
+  ]
+}

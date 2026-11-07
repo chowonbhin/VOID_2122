@@ -15,5 +15,13 @@ export function franchiseStatus(place: Place): Place['franchise']['status'] {
   return 'unknown';
 }
 
-/** Shared gate for scores, discovery lists, markers, events and visit-based progress. */
+/** Verified classification; pending real candidates must never be described as verified. */
 export const isNonFranchisePlace = (place: Place): boolean => franchiseStatus(place) === 'non_franchise';
+
+export const isRealSearchPlace = (place: Place): boolean =>
+  !place.isVirtual && Boolean(place.searchSource?.url && place.location);
+
+/** User's 20 displayed = 20 scored policy. Missing evidence stays labelled; known/suspected chains stay out. */
+export const isRecommendationCandidate = (place: Place): boolean =>
+  !place.discovery?.excludedReason && franchiseStatus(place) !== 'franchise'
+  && (isNonFranchisePlace(place) || isRealSearchPlace(place));

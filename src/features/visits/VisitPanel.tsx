@@ -4,6 +4,7 @@ import { useAppState } from '../../AppState';
 import { content } from '../../data/content';
 import { TIME_ZONE } from '../../domain/policy';
 import { isNonFranchisePlace } from '../../domain/placeEligibility';
+import { isDiscoverablePlace } from '../../domain/discovery';
 import type { Visit } from '../../domain/types';
 import {
   addVisitRecord,
@@ -49,7 +50,7 @@ export function VisitPanel({ placeId }: { placeId: string }) {
     [place, state.profile, state.visits],
   );
 
-  if (!place || !isNonFranchisePlace(place) || !progress) return null;
+  if (!place || !isDiscoverablePlace(place) || !progress) return null;
 
   function mutateVisits(operation: (previous: readonly Visit[]) => VisitRecordResult): boolean {
     let recordError: VisitRecordError | undefined;
@@ -102,9 +103,10 @@ export function VisitPanel({ placeId }: { placeId: string }) {
 
   return (
     <section className="visit-panel" aria-label={`${place.name} 방문 기록`} data-place={placeId}>
+      {!isNonFranchisePlace(place) && <p className="visit-hint">분류 검토 중인 실제 장소입니다. 자기 신고 기록은 추천 점수·Lv에 반영되며 현장 방문 인증은 아닙니다.</p>}
       <div className="visit-progress" aria-live="polite" aria-atomic="true">
         <span>지역 Lv.{progress.regionLevel}</span>
-        <span>장소 Lv.{progress.placeLevel}</span>
+        <span>{progress.placeLevel === null ? '장소 Lv 검토 대기' : `장소 Lv.${progress.placeLevel}`}</span>
         <span className="visit-progress-count">이 권역에서 기록한 장소 {progress.distinctPlaceCount}곳</span>
       </div>
       <form className="visit-form" aria-label={`${place.name} 방문 추가`} onSubmit={addRecord} noValidate>

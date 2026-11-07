@@ -1,7 +1,7 @@
 // Golden-path step 2 (조건 입력). Owner: chowonbhin.
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { useAppState } from '../../AppState';
-import { content, demoEnabled } from '../../data/content';
+import { content } from '../../data/content';
 import { CATEGORY_LABELS, DEFAULT_MAX_DISTANCE_KM, LEVEL_LABELS } from '../../domain/policy';
 import type { Category, Profile, SearchContext } from '../../domain/types';
 import { go } from '../../route';
@@ -66,7 +66,7 @@ export function SetupPage() {
     // Visits and experiencedEventIds are preserved; the shared score engine consumes this state.
     const search: SearchContext = {
       origin, when: state.search?.when ?? localDateTime(), interests,
-      maxDistanceKm: state.search?.maxDistanceKm ?? (demoEnabled ? 100 : DEFAULT_MAX_DISTANCE_KM),
+      maxDistanceKm: state.search?.maxDistanceKm ?? DEFAULT_MAX_DISTANCE_KM,
     };
     const saved = update((previous) => ({
       ...previous,

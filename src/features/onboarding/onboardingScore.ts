@@ -1,7 +1,7 @@
 // Onboarding answers → initial region familiarity and the payload sent to the backend.
 import type { Content } from '../../data/content';
 import { levelFromDistinctVisits } from '../../domain/policy';
-import { isNonFranchisePlace } from '../../domain/placeEligibility';
+import { isRecommendationCandidate } from '../../domain/placeEligibility';
 import type { OnboardingAnswers, Residence } from '../../domain/types';
 
 /** Visitors and residents of under 6 months skip Q2/Q3 and start as 초심자. */
@@ -13,7 +13,7 @@ export const isBeginner = (residence: Residence) => residence === 'visitor' || r
  */
 export function initialLevelsFrom(answers: OnboardingAnswers, data: Content): Record<string, 0 | 1 | 2> {
   return Object.fromEntries(data.regions.map(region => {
-    const known = data.places.filter(place => place.regionId === region.id && isNonFranchisePlace(place)
+    const known = data.places.filter(place => place.regionId === region.id && isRecommendationCandidate(place)
       && answers.visitedPlaceIds.includes(place.id)).length;
     const dongVisited = region.adminCode ? answers.visitedDongCodes.includes(region.adminCode) : false;
     return [region.id, Math.max(levelFromDistinctVisits(known), dongVisited ? 1 : 0) as 0 | 1 | 2];

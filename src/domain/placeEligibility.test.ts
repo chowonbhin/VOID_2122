@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { baseContent as content, eventsOfPlace, placesOfRegion, validateContent, type Content } from '../data/content';
-import { franchiseStatus, isNonFranchisePlace } from './placeEligibility';
+import { baseContent as content } from '../data/testContent';
+import { eventsOfPlace, placesOfRegion, validateContent, type Content } from '../data/content';
+import { franchiseStatus, isNonFranchisePlace, isRecommendationCandidate } from './placeEligibility';
 import { recommend, regionLevel, scorePlaces } from './score';
 import type { Place, Profile, SearchContext, Visit } from './types';
 
@@ -36,7 +37,7 @@ describe('franchise exclusion', () => {
       const ids = scorePlaces(region, content, profile, [], ctx).map(p => p.placeId);
       expect(ids).not.toContain(franchise.id);
       expect(ids).not.toContain(unverified.id);
-      expect(placesOfRegion(region.id).every(isNonFranchisePlace)).toBe(true);
+      expect(placesOfRegion(region.id).every(isRecommendationCandidate)).toBe(true);
     }
   });
 

@@ -35,7 +35,8 @@ export interface FootfallDataset {
 }
 
 export type FootfallAdjustment =
-  | { status: 'available'; adjustment: number; normalizedShare: number; dailyAverage: number; referenceTotal: number; period: string; source: Source }
+  | { status: 'available'; adjustment: number; penaltyRate: number; normalizedIntensity: number; referenceMax: number;
+      normalizedShare: number; dailyAverage: number; referenceTotal: number; period: string; source: Source }
   | { status: 'unavailable'; adjustment: 0; reason: 'unmapped' | 'missing_data' | 'invalid_data' };
 
 export interface Region {
@@ -51,6 +52,8 @@ export interface Region {
   placeIds: PlaceId[];
   /** Explicit source-market mapping; never inferred from a district name or coordinates. */
   footfallMarketIds?: string[];
+  /** Source-reported dong group, a proxy only: market boundaries are not split by administrative dong. */
+  footfallMappingBasis?: 'source_dong_label';
   source?: Source;
   startSource?: Source;
   /** App-defined approximate exploration area, not an official boundary. */
@@ -75,6 +78,8 @@ export interface OpeningInfo {
   verifiedPeriod?: { from: DateString; through: DateString };
   /** Key = day of week in KST, 0 = Sunday. A missing or empty day means closed. */
   weekly?: Partial<Record<0 | 1 | 2 | 3 | 4 | 5 | 6, TimeRange[]>>;
+  /** A partially published timetable must not turn missing days into holidays. */
+  unknownDays?: (0 | 1 | 2 | 3 | 4 | 5 | 6)[];
   /** Overrides `weekly` for that date. Empty `ranges` = 휴무. */
   exceptions?: { date: DateString; ranges: TimeRange[]; note?: string }[];
   entryCondition?: string;
@@ -95,6 +100,8 @@ export interface Place {
   address?: string;
   regionSource?: Source;
   searchSource?: Source;
+  /** Actual search metadata, never a review count or a place score. */
+  discovery?: { category: string; excludedReason?: string };
   /** 기본 가치 B, 0~100. Not a star rating. */
   baseValue: number;
   /** Legacy simulated P, accepted only for explicitly virtual places. */
@@ -105,6 +112,8 @@ export interface Place {
     count: number;
     /** 'cumulative' or YYYY-MM; different periods are never pooled. */
     period: string;
+    /** Date reported by a secondary source, distinct from our retrieval date. */
+    observedAt?: DateString;
     source: Source;
   };
   opening: OpeningInfo;
@@ -176,7 +185,11 @@ export type PlaceStatus = 'open' | 'closed' | 'unknown';
 
 export interface RegionRecommendation {
   regionId: RegionId;
+  /** Fixed 0–100 scale, after proportional footfall, novelty and distance. */
   score: number;
+  normalizedBaseScore: number;
+  placeScoreSum: number;
+  provisionalPlaceCount: number;
   reasons: string[];
   /** Straight-line km from origin to region start point. */
   distanceKm: number;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { baseContent as content } from '../../data/content';
+import { baseContent as content } from '../../data/testContent';
 import { buildOnboardingPayload, initialLevelsFrom, isBeginner } from './onboardingScore';
 
 const JUNGANG = 'dong-4127353200'; // 중앙동: places a1–a5 (+ a6-franchise)

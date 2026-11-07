@@ -1,78 +1,42 @@
-// Uses the real shipped simulation content, including an excluded chain and unclassified place.
-import { test, expect, type Page } from './baseline';
-import fs from 'node:fs';
-import { changeSearch, openSetup, submitSetup } from './setupSteps';
-const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:3002';
-const evidence = `.claude/state/evidence/franchise-${new Date().toISOString().replace(/[:.]/g, '-')}`;
+import { test, expect } from './baseline';
+import data from '../../src/data/real-places.json' with { type: 'json' };
+import { base, setup, list } from './real';
 
-async function setup(page: Page) {
-  await openSetup(page, baseURL);
-  await submitSetup(page);
-}
-async function checkPlaces(page: Page, region: 'A' | 'B') {
-  await expect(page.getByRole('heading', { level: 1 })).toContainText(region === 'A' ? '중앙동' : '원곡동');
-  await expect(page.getByText(region === 'A'
-    ? '프랜차이즈 1곳 · 분류 미확인 0곳은 목록·지도·점수에서 제외했습니다.'
-    : '프랜차이즈 0곳 · 분류 미확인 1곳은 목록·지도·점수에서 제외했습니다.', { exact: true })).toBeVisible();
-  await expect(page.getByRole('list', { name: '행정동 장소 추천' }).locator(':scope > li')).toHaveCount(region === 'A' ? 5 : 4);
-  await expect(page.getByRole('region', { name: '안산 탐험 지도' }).getByRole('button', { name: /지도에서 선택$/ })).toHaveCount(region === 'A' ? 5 : 4);
-  await expect(page.getByText(/시연 프랜차이즈 카페|시연 분류 미확인 카페|시연 체인점 행사/)).toHaveCount(0);
-  await expect(page.getByText(/비프랜차이즈 설정 \(시연용\)/)).toHaveCount(region === 'A' ? 5 : 4);
-}
-async function shot(page: Page, name: string) {
-  fs.mkdirSync(evidence, { recursive: true });
-  await page.screenshot({ path: `${evidence}/${name}.png`, fullPage: true });
-  console.log(`franchise evidence: ${evidence}/${name}.png`);
-}
-
-test('franchise/unverified exclusions apply to scores, cards, markers and event display', async ({ page }) => {
-  const errors: string[] = [];
-  page.on('pageerror', error => errors.push(error.message));
+test('known and suspected chains stay outside cards, markers and scores; pending classification is labelled', async ({ page }) => {
   await setup(page);
-  await expect(page.getByText('프랜차이즈와 분류 미확인 장소는 추천·점수에서 제외합니다.', { exact: true })).toBeVisible();
-  const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
-  await expect(cards.first()).toContainText('추천 점수 240.7');
-  await expect(cards.nth(1)).toContainText('추천 점수 146.4');
-  await expect(cards.first()).toContainText('운영 확인 장소 수 3곳');
-  await page.getByRole('button', { name: /^지도 중앙동/ }).click();
-  await checkPlaces(page, 'A');
-  await shot(page, 'excluded-franchise');
-  await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
-  await page.getByRole('button', { name: /^지도 원곡동/ }).click();
-  await checkPlaces(page, 'B');
-  await page.reload();
-  await checkPlaces(page, 'B');
-  expect(errors).toEqual([]);
+  const region = 'dong-4127353500';
+  await page.goto(`${base}/#/region/${region}`);
+  await page.getByRole('button', { name: '전체 후보' }).click();
+  for (const place of data.filter(p => p.regionId === region && (p.discovery.excludedReason || p.franchise.status === 'franchise'))) {
+    await expect(list(page).getByRole('heading', { name: new RegExp(`\\. ${place.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`) })).toHaveCount(0);
+  }
+  await expect(list(page)).toContainText('프랜차이즈 여부 검토 중');
+  await page.getByRole('button', { name: '점수 반영 장소' }).click();
+  await expect(list(page).locator(':scope > li')).toHaveCount(20);
+  await expect(list(page)).toContainText('정보 검토 중인 잠정 점수');
 });
 
-test('mobile direct exploration and absence of saved conditions cannot bypass exclusion', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto(`${baseURL}/#/region/dong-4127354500`);
-  await expect(page.getByText('조건을 설정하면 추천순으로 표시합니다.', { exact: true })).toBeVisible();
-  await checkPlaces(page, 'B');
-  await shot(page, 'unverified-mobile');
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+test('pending real-place visits update score and Lv while missing evidence stays explicitly provisional', async ({ page }) => {
   await setup(page);
-  await changeSearch(page, { maxDistanceKm: 0.1 });
-  await page.getByRole('region', { name: '직접 탐색' }).getByRole('button', { name: /중앙동/ }).click();
-  await checkPlaces(page, 'A');
-});
-
-test('previously saved excluded visits remain stored but never alter Lv, scores or map shades', async ({ page }) => {
-  await setup(page);
-  const before = await page.locator('[data-region-id="dong-4127353200"]').getAttribute('fill');
-  // Legacy storage input, not a mocked recommendation response.
-  await page.evaluate(() => {
-    const state = JSON.parse(localStorage.getItem('ansan-explore/v1')!);
-    state.visits = ['a6-franchise', 'b6-unverified'].map(placeId => ({ id: placeId, placeId, date: '2026-11-08', method: 'self_report' }));
-    localStorage.setItem('ansan-explore/v1', JSON.stringify(state));
-  });
+  await page.goto(`${base}/#/region/dong-4127353200`);
+  const first = list(page).locator(':scope > li').first();
+  const heading = await first.getByRole('heading').innerText();
+  const name = heading.replace(/^\d+\. /, '');
+  const panel = first.getByRole('region');
+  await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
+  await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
+  await expect(list(page).locator(':scope > li')).toHaveCount(20);
+  await expect(list(page).getByRole('heading', { name: new RegExp(name) })).toHaveCount(0);
+  await page.getByRole('button', { name: '가본 장소' }).click();
+  await expect(list(page)).toContainText(name);
+  await expect(list(page)).toContainText('지역 Lv.1');
+  await expect(list(page)).toContainText('장소 Lv.2');
+  await expect(list(page)).not.toContainText('장소 Lv 검토 대기');
+  await expect(list(page)).toContainText('분류 검토 중인 실제 장소입니다');
   await page.reload();
-  const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
-  await expect(cards.first()).toContainText('지역 Lv.0');
-  await expect(cards.first()).toContainText('추천 점수 240.7');
-  await expect(cards.nth(1)).toContainText('지역 Lv.0');
-  await expect(cards.nth(1)).toContainText('추천 점수 146.4');
-  await expect(page.locator('[data-region-id="dong-4127353200"]')).toHaveAttribute('fill', before!);
-  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('ansan-explore/v1')!).visits)).toHaveLength(2);
+  await page.getByRole('button', { name: '가본 장소' }).click();
+  await expect(list(page)).toContainText('2026-11-08');
+  await list(page).getByRole('button', { name: '2026-11-08 방문 기록 삭제' }).click();
+  await page.getByRole('button', { name: '발견할 20곳', exact: true }).click();
+  await expect(list(page)).toContainText(name);
 });

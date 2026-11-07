@@ -1,6 +1,6 @@
-/** Fixed visual scale only. The recommendation score itself is never capped or renormalized. */
-// 20 places × at most 110 × novelty 1.2 = 2640; fixed rounded visual endpoint.
-export const MAP_COLOR_MAX = 3000;
+/** Same fixed 0–100 scale as the shared regional score; never rank-relative. */
+import { REGION_SCORE_MAX } from '../../domain/policy';
+export const MAP_COLOR_MAX = REGION_SCORE_MAX;
 const low = [235, 246, 239];
 const high = [15, 88, 65];
 export const UNAVAILABLE_COLOR = '#e3e7e3';
