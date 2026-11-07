@@ -1,0 +1,13 @@
+.app-menu { position: relative; flex-shrink: 0; }
+.app-menu svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.app-menu-trigger { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid transparent; background: transparent; font-size: 14px; color: var(--accent); }
+.app-menu-trigger[aria-expanded="true"] { background: var(--accent-soft); border-color: #b9ccc0; }
+.app-menu-panel { position: absolute; right: 0; top: calc(100% + 12px); width: min(300px, calc(100vw - 32px)); padding: 12px; border: 1px solid var(--line-strong); border-radius: 18px; background: var(--card); box-shadow: 0 16px 48px #293e3926; }
+.app-menu-panel[hidden] { display: none; }
+.app-menu-panel > p { font-size: 11px; letter-spacing: .08em; color: var(--muted); padding: 8px 10px 12px; margin: 0; }
+.app-menu-panel a { display: flex; align-items: center; gap: 12px; padding: 15px 10px; text-decoration: none; border-radius: 12px; }
+.app-menu-panel a:hover { background: var(--accent-soft); }
+.app-menu-panel a + a { border-top: 1px solid var(--line); }
+.app-menu-panel a > span:first-of-type { flex: 1; }
+.app-menu-panel strong { display: block; font-size: 15px; font-weight: 650; }
+.app-menu-panel small { display: block; margin-top: 5px; font-size: 12px; color: var(--muted); }

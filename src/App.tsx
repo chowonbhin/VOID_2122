@@ -6,6 +6,8 @@ import { RegionPage } from './features/region/RegionPage';
 import { DongPage } from './features/region/DongPage';
 import { DataNotice } from './features/recommend/DemoNotice';
 import { Splash } from './features/splash/Splash';
+import { AppMenu } from './features/navigation/AppMenu';
+import { NotebookPage } from './features/notebook/NotebookPage';
 
 export function App() {
   const route = useRoute();
@@ -21,17 +23,18 @@ export function App() {
       <header className="appbar">
         <div className="appbar-inner">
           <a className="appbar-brand" href="#/">안산에 스며들다</a>
-          <a className="appbar-link" href="#/onboarding">나의 동네 수첩</a>
+          <AppMenu />
         </div>
       </header>
-      <main className={`page${discovering ? ' page-map' : ''}`}>
-        {!onboarding && <DataNotice />}
+      <main className={`page${discovering ? ' page-map' : ''}${route.name === 'notebook' ? ' page-notebook' : ''}`}>
+        {discovering && <DataNotice />}
         {onboarding && <Onboarding />}
         {(main || route.name === 'recommend') && <RecommendPage />}
         {route.name === 'region' && <RegionPage regionId={route.regionId} />}
         {route.name === 'dong' && <DongPage code={route.code} />}
+        {route.name === 'notebook' && <NotebookPage />}
       </main>
-      {!onboarding && <footer className="footer">25개 행정동 · 실제 장소 상위 20개로 계산한 0~100점. 미확인 정보가 포함된 잠정 추천입니다. 방문·리뷰 수와 운영정보의 출처·확인일을 장소별로 표시합니다. 유동인구는 2026년 8월 수집 상권 자료입니다. 기존 역 시작점: © OpenStreetMap contributors (ODbL).<br />
+      {!onboarding && route.name !== 'notebook' && <footer className="footer">25개 행정동 · 실제 장소 상위 20개로 계산한 0~100점. 미확인 정보가 포함된 잠정 추천입니다. 방문·리뷰 수와 운영정보의 출처·확인일을 장소별로 표시합니다. 유동인구는 2026년 8월 수집 상권 자료입니다. 기존 역 시작점: © OpenStreetMap contributors (ODbL).<br />
         경계: SGIS 공공누리 제1유형 · <a href="https://github.com/vuski/admdongkor" target="_blank" rel="noreferrer">vuski/admdongkor</a> 가공 · 2026-10-01 · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>. 탐색용 경계이며 오차가 있을 수 있습니다.</footer>}
     </div>
   );

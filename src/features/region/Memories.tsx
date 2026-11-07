@@ -19,7 +19,7 @@ export function Memories({ items, selectedId, onSelect, controls }: {
   return <section className="region-memories" aria-label="이 동네의 추억">
     <h2>이 동네의 추억 <span className="region-memory-count">{items.length}</span></h2>
     {controls}
-    {items.some(item => item.sample) && <p className="region-note memory-preview-note">사동의 실제 장소를 골라 보여주는 추억 예시예요. 방문 기록에는 남지 않아요.</p>}
+    {items.some(item => item.sample) && <p className="region-note memory-preview-note">사동의 도니스커피와 초지참숯불갈비를 담은 추억 예시예요. 방문 기록에는 남지 않아요.</p>}
     {items.length ? <>
       <ul>
         {items.map(item => <li key={item.id}>

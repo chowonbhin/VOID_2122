@@ -3,10 +3,10 @@ import fs from 'node:fs';
 import { base, setup, list, openBono } from './real';
 
 const REGION = 'dong-4127152500';
-const KEY = 'ansan-explore/sadong-memory-preview/v1';
+const KEY = 'ansan-explore/sadong-memory-preview/v2';
 const state = (page: import('@playwright/test').Page) => page.evaluate(() => localStorage.getItem('ansan-explore/v1'));
 
-test('Sadong alone shows two real memory examples; selection, redraw, hide and reload never create visits or change scores', async ({ page }) => {
+test('Sadong alone shows two real memory examples; selection, fixed examples, hide and reload never create visits or change scores', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 });
   await setup(page);
   const originalState = await state(page);
@@ -38,10 +38,8 @@ test('Sadong alone shows two real memory examples; selection, redraw, hide and r
   await page.reload();
   await expect(examples).toHaveCount(2);
   expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)!).placeIds, KEY)).toEqual(originalIds);
-  await memories.getByRole('button', { name: '다른 예시 보기', exact: true }).click();
-  const newIds = await page.evaluate(key => JSON.parse(localStorage.getItem(key)!).placeIds as string[], KEY);
-  expect(newIds.every(id => !originalIds.includes(id))).toBe(true);
-  await expect(examples).toHaveCount(2);
+  await expect(memories.getByRole('button', { name: '다른 예시 보기', exact: true })).toHaveCount(0);
+  expect(new Set(originalIds)).toEqual(new Set(['naver-ae318ce3e729e02e81ef', 'naver-1d7e281c7c50afba23e0']));
 
   // Exercise the maximum marker density: eight ordinary places plus two hearts.
   await page.getByRole('button', { name: '전체 후보', exact: true }).click();

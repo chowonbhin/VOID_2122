@@ -53,7 +53,6 @@ export function RecommendPage() {
         <p>{search.origin.label} 출발 · 최대 직선거리 {search.maxDistanceKm} km</p>
         <p>{search.when.replace('T', ' ')} (한국 시간)</p>
         <p>관심 활동: {search.interests.length ? search.interests.map((category) => CATEGORY_LABELS[category]).join(', ') : '전체'}</p>
-        <button onClick={() => go({ name: 'onboarding' })}>다시 설정하기</button>
       </div>
 
       <ExplorationMap regions={content.regions} recommendations={result.recommendations} exclusions={result.excluded} searchConfigured

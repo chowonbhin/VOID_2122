@@ -5,6 +5,7 @@ export type Route =
   | { name: 'landing' }
   | { name: 'onboarding' }
   | { name: 'recommend' }
+  | { name: 'notebook' }
   | { name: 'region'; regionId: string }
   | { name: 'dong'; code: string };
 
@@ -12,6 +13,7 @@ export function parseRoute(hash: string): Route {
   const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean);
   if (parts[0] === 'onboarding' || parts[0] === 'setup') return { name: 'onboarding' };
   if (parts[0] === 'recommend') return { name: 'recommend' };
+  if (parts[0] === 'notebook') return { name: 'notebook' };
   if (parts[0] === 'region' && parts[1]) {
     const id = decodeURIComponent(parts[1]);
     const legacy: Record<string, string> = { 'region-a': 'dong-4127353200', 'region-b': 'dong-4127354500' };

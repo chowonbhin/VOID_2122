@@ -11,7 +11,7 @@ import { discoverPlaces } from '../../domain/discovery';
 import { centreLatLng, dongByCode, dongsOfRegion } from '../map/ansanGeo';
 import { DongMap, type MapMarker } from '../map/DongMap';
 import { Memories, type MemoryItem } from './Memories';
-import { loadSadongMemoryPreview, pickSadongMemoryPlaces, SADONG_ID, SADONG_MEMORY_KEY, type SadongMemoryPreview } from './sadongMemories';
+import { loadSadongMemoryPreview, SADONG_ID, SADONG_MEMORY_KEY, type SadongMemoryPreview } from './sadongMemories';
 import { VisitPanel } from '../visits/VisitPanel';
 import './region.css';
 
@@ -138,8 +138,6 @@ function RegionDetail({ regionId }: { regionId: string }) {
       {visiblePlaces.some(place => !place.location) && <p className="region-note">정밀 좌표 미확인 장소는 지도 마커 없이 목록에서 안내합니다.</p>}
       <Memories items={memoryItems} selectedId={memoryId} onSelect={selectMemory} controls={regionId === SADONG_ID && <>
         <div className="memory-preview-actions">
-          <button type="button" onClick={() => changePreview({ enabled: true, placeIds: pickSadongMemoryPlaces(content.places,
-            [...preview.value.placeIds, ...visitedIds]).map(place => place.id) })}>다른 예시 보기</button>
           <button type="button" onClick={() => changePreview({ ...preview.value, enabled: !preview.value.enabled })}>{preview.value.enabled ? '예시 숨기기' : '예시 보기'}</button>
         </div>
         {preview.error && <p role="alert" className="region-note">{preview.error}</p>}

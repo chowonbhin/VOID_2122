@@ -1,43 +1,32 @@
 import type { Place } from '../../domain/types';
 import { isRecommendationCandidate } from '../../domain/placeEligibility';
+import { MEMORY_PHOTOS } from '../../data/memoryPhotos';
 
 export const SADONG_ID = 'dong-4127152500';
-export const SADONG_MEMORY_KEY = 'ansan-explore/sadong-memory-preview/v1';
+export const SADONG_MEMORY_KEY = 'ansan-explore/sadong-memory-preview/v2';
+const LEGACY_KEY = 'ansan-explore/sadong-memory-preview/v1';
+export interface SadongMemoryPreview { enabled: boolean; placeIds: string[] }
 
-export interface SadongMemoryPreview {
-  enabled: boolean;
-  placeIds: string[];
-}
-
-/** Display examples only. Never creates Visit records or changes recommendation inputs. */
-export function pickSadongMemoryPlaces(places: Place[], previousIds: string[] = [], random = Math.random): Place[] {
-  const available = places.filter(place => place.regionId === SADONG_ID && !place.isVirtual
-    && place.location && isRecommendationCandidate(place));
-  const different = available.filter(place => !previousIds.includes(place.id));
-  const pool = [...(different.length >= 2 ? different : available)];
-  const picked: Place[] = [];
-  while (pool.length && picked.length < 2) {
-    picked.push(pool.splice(Math.floor(random() * pool.length), 1)[0]);
-  }
-  return picked;
+/** Fixed storefronts shared by the map and gallery. Never adds Visit records. */
+export function fixedSadongMemoryPlaces(places: Place[]): Place[] {
+  return MEMORY_PHOTOS.flatMap(photo => {
+    const place = places.find(item => item.id === photo.placeId && item.regionId === SADONG_ID
+      && !item.isVirtual && item.location && isRecommendationCandidate(item));
+    return place ? [place] : [];
+  });
 }
 
 export function loadSadongMemoryPreview(places: Place[]): { value: SadongMemoryPreview; error: string } {
-  const fresh = () => ({ enabled: true, placeIds: pickSadongMemoryPlaces(places).map(place => place.id) });
-  let value: SadongMemoryPreview;
+  const placeIds = fixedSadongMemoryPlaces(places).map(place => place.id);
   try {
-    const raw: unknown = JSON.parse(localStorage.getItem(SADONG_MEMORY_KEY) ?? 'null');
-    const validIds = new Set(places.filter(place => place.regionId === SADONG_ID && !place.isVirtual
-      && place.location && isRecommendationCandidate(place)).map(place => place.id));
-    if (raw && typeof raw === 'object' && 'enabled' in raw && typeof raw.enabled === 'boolean'
-      && 'placeIds' in raw && Array.isArray(raw.placeIds) && raw.placeIds.length >= 1 && raw.placeIds.length <= 2
-      && new Set(raw.placeIds).size === raw.placeIds.length && raw.placeIds.every(id => typeof id === 'string' && validIds.has(id))) {
-      return { value: raw as SadongMemoryPreview, error: '' };
-    }
-    value = fresh();
-    localStorage.setItem(SADONG_MEMORY_KEY, JSON.stringify(value));
+    // Retain hidden/visible preference; migrate old random IDs only.
+    const raw: unknown = JSON.parse(localStorage.getItem(SADONG_MEMORY_KEY) ?? localStorage.getItem(LEGACY_KEY) ?? 'null');
+    const enabled = raw && typeof raw === 'object' && 'enabled' in raw && typeof raw.enabled === 'boolean' ? raw.enabled : true;
+    const value = { enabled, placeIds };
+    const serialized = JSON.stringify(value);
+    if (localStorage.getItem(SADONG_MEMORY_KEY) !== serialized) localStorage.setItem(SADONG_MEMORY_KEY, serialized);
     return { value, error: '' };
   } catch {
-    return { value: fresh(), error: '추억 예시 설정을 저장하지 못했어요. 새로고침하면 예시가 달라질 수 있어요.' };
+    return { value: { enabled: true, placeIds }, error: '추억 예시 표시 설정을 저장하지 못했어요. 새로고침하면 숨김 설정이 초기화될 수 있어요.' };
   }
 }

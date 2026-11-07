@@ -20,8 +20,10 @@ test('a resident under 6 months skips Q2/Q3 and lands on the main map as 초심�
   // No setup page and no bottom tab bar.
   await expect(page.getByRole('navigation', { name: '주요 화면' })).toHaveCount(0);
   await expect(page.getByRole('link', { name: '내 동네 설정' })).toHaveCount(0);
-  // 나의 동네 수첩 in the app bar reopens onboarding (the old setup page is gone).
-  await expect(page.getByRole('link', { name: '나의 동네 수첩' })).toHaveAttribute('href', '#/onboarding');
+  // User requested separate gallery and settings destinations in the top-right menu.
+  await page.getByRole('button', { name: '메뉴', exact: true }).click();
+  await expect(page.getByRole('link', { name: /나의 동네수첩/ })).toHaveAttribute('href', '#/notebook');
+  await page.keyboard.press('Escape');
   await expect(page.getByRole('contentinfo')).toHaveCount(1);
   const state = await stored(page, 'ansan-explore/v1');
   expect(state.profile.onboarding).toMatchObject({ residence: 'under_6m', visitedDongCodes: [], visitedPlaceIds: [] });
@@ -82,7 +84,8 @@ test('다시 설정하기 reruns onboarding, replaces familiarity and interests,
   })));
   await page.goto(`${base}/#/recommend`);
   await page.reload();
-  await page.getByRole('button', { name: '다시 설정하기' }).click();
+  await page.getByRole('button', { name: '메뉴', exact: true }).click();
+  await page.getByRole('link', { name: /다시 설정하기/ }).click();
   await expect(page.getByRole('radio', { name: /6개월이 안 됐어요/ })).toBeVisible();
   await page.getByRole('radio', { name: /6개월이 안 됐어요/ }).click();
   await page.getByRole('button', { name: '다음', exact: true }).click();
