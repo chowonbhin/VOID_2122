@@ -1,7 +1,6 @@
 import { useAppState } from './AppState';
 import { useRoute } from './route';
 import { Onboarding } from './features/onboarding/Onboarding';
-import { SetupPage } from './features/setup/SetupPage';
 import { RecommendPage } from './features/recommend/RecommendPage';
 import { RegionPage } from './features/region/RegionPage';
 import { DongPage } from './features/region/DongPage';
@@ -11,36 +10,29 @@ import { Splash } from './features/splash/Splash';
 export function App() {
   const route = useRoute();
   const { state } = useAppState();
-  // First run only: nothing saved yet. Everyone else opens straight onto the main map.
-  const onboarding = route.name === 'landing' && !state.profile.onboarding && !state.search && state.visits.length === 0;
+  // First run (nothing saved yet) or 다시 설정하기. Everyone else opens straight onto the main map.
+  const onboarding = route.name === 'onboarding' ||
+    (route.name === 'landing' && !state.profile.onboarding && !state.search && state.visits.length === 0);
   const main = route.name === 'landing' && !onboarding;
   const discovering = main || route.name === 'recommend' || route.name === 'region' || route.name === 'dong';
-  const showTabs = !onboarding;
   return (
-    <div className={`app${showTabs ? ' has-tabbar' : ''}`}>
+    <div className="app">
       <Splash />
       <header className="appbar">
         <div className="appbar-inner">
           <a className="appbar-brand" href="#/">안산에 스며들다</a>
-          <a className="appbar-link" href="#/setup">나의 동네 수첩</a>
+          <a className="appbar-link" href="#/onboarding">나의 동네 수첩</a>
         </div>
       </header>
       <main className={`page${discovering ? ' page-map' : ''}`}>
         {!onboarding && <DataNotice />}
         {onboarding && <Onboarding />}
-        {route.name === 'setup' && <SetupPage />}
         {(main || route.name === 'recommend') && <RecommendPage />}
         {route.name === 'region' && <RegionPage regionId={route.regionId} />}
         {route.name === 'dong' && <DongPage code={route.code} />}
       </main>
       {!onboarding && <footer className="footer">25개 행정동 · 실제 장소 상위 20개로 계산한 0~100점. 미확인 정보가 포함된 잠정 추천입니다. 방문·리뷰 수와 운영정보의 출처·확인일을 장소별로 표시합니다. 유동인구는 2026년 8월 수집 상권 자료입니다. 기존 역 시작점: © OpenStreetMap contributors (ODbL).<br />
         경계: SGIS 공공누리 제1유형 · <a href="https://github.com/vuski/admdongkor" target="_blank" rel="noreferrer">vuski/admdongkor</a> 가공 · 2026-10-01 · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>. 탐색용 경계이며 오차가 있을 수 있습니다.</footer>}
-      {showTabs && <nav className="tabbar" aria-label="주요 화면">
-        <div className="tabbar-inner">
-          <a href="#/recommend" aria-current={discovering ? 'page' : undefined}>동네 발견</a>
-          <a href="#/setup" aria-current={route.name === 'setup' ? 'page' : undefined}>내 동네 설정</a>
-        </div>
-      </nav>}
     </div>
   );
 }

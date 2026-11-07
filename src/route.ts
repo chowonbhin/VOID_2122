@@ -1,16 +1,16 @@
-// Hash routes: #/ landing, #/setup, #/recommend, #/region/<regionId>, #/dong/<administrative code>. Owner: Byeunghee02.
+// Hash routes: #/ landing, #/onboarding (#/setup kept as an alias), #/recommend, #/region/<regionId>, #/dong/<administrative code>. Owner: Byeunghee02.
 import { useEffect, useState } from 'react';
 
 export type Route =
   | { name: 'landing' }
-  | { name: 'setup' }
+  | { name: 'onboarding' }
   | { name: 'recommend' }
   | { name: 'region'; regionId: string }
   | { name: 'dong'; code: string };
 
 export function parseRoute(hash: string): Route {
   const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean);
-  if (parts[0] === 'setup') return { name: 'setup' };
+  if (parts[0] === 'onboarding' || parts[0] === 'setup') return { name: 'onboarding' };
   if (parts[0] === 'recommend') return { name: 'recommend' };
   if (parts[0] === 'region' && parts[1]) {
     const id = decodeURIComponent(parts[1]);

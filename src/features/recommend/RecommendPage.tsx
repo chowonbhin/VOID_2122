@@ -19,9 +19,9 @@ export function RecommendPage() {
           homeDongCode={state.profile.homeDongCode}
           onRegionSelect={(regionId) => go({ name: 'region', regionId })} onDongSelect={(code) => go({ name: 'dong', code })} />
         <div className="recommend-empty">
-          <p>먼저 탐험 조건을 입력해 주세요.</p>
-          <p className="recommend-note">출발지와 시간, 관심 활동을 알려주면 지금 운영 중인 곳을 기준으로 동네를 추천해요.</p>
-          <button className="primary" onClick={() => go({ name: 'setup' })}>조건 설정</button>
+          <p>먼저 간단한 질문에 답해 주세요.</p>
+          <p className="recommend-note">내 동네와 가본 곳, 관심 활동을 알려주면 내 동네에서 출발하는 동네를 추천해요.</p>
+          <button className="primary" onClick={() => go({ name: 'onboarding' })}>시작 설정하기</button>
         </div>
       </section>
     );
@@ -48,12 +48,12 @@ export function RecommendPage() {
     <section className="recommend">
       {/* The welcome copy lives in the launch splash (Splash.tsx); this heading names the page. */}
       <h1 className="visually-hidden">추천 행정동</h1>
-      {state.needsDongLevelReview && <p role="status">행정동별 익숙함을 다시 확인해 주세요. 이전 A·B권역의 초기 설정은 보관했고 방문 기록은 유지했습니다. ‘조건 변경’에서 새로 설정할 수 있습니다.</p>}
+      {state.needsDongLevelReview && <p role="status">행정동별 익숙함을 다시 확인해 주세요. 이전 A·B권역의 초기 설정은 보관했고 방문 기록은 유지했습니다. ‘다시 설정하기’에서 새로 설정할 수 있습니다.</p>}
       <div className="recommend-summary" aria-label="현재 탐험 조건">
         <p>{search.origin.label} 출발 · 최대 직선거리 {search.maxDistanceKm} km</p>
         <p>{search.when.replace('T', ' ')} (한국 시간)</p>
         <p>관심 활동: {search.interests.length ? search.interests.map((category) => CATEGORY_LABELS[category]).join(', ') : '전체'}</p>
-        <button onClick={() => go({ name: 'setup' })}>조건 변경</button>
+        <button onClick={() => go({ name: 'onboarding' })}>다시 설정하기</button>
       </div>
 
       <ExplorationMap regions={content.regions} recommendations={result.recommendations} exclusions={result.excluded} searchConfigured

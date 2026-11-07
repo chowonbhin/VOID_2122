@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { content, naverCandidateStatus } from '../../data/content';
 
 /** Retain the team's floating notice design, with factual content and no synthetic-mode switch. */
@@ -6,7 +6,19 @@ export function DataNotice() {
   const [hovered, setHovered] = useState(false);
   const [pinned, setPinned] = useState(false);
   const open = hovered || pinned;
-  return <div className="demo-float" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+  const root = useRef<HTMLDivElement>(null);
+  // A press anywhere outside closes it. Touch taps also leave the hover state on, so clear both.
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (root.current?.contains(event.target as Node)) return;
+      setPinned(false);
+      setHovered(false);
+    };
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => document.removeEventListener('pointerdown', onPointerDown);
+  }, [open]);
+  return <div ref={root} className="demo-float" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
     onFocus={() => setHovered(true)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setHovered(false); }}
     onKeyDown={event => { if (event.key === 'Escape') { setPinned(false); setHovered(false); } }}>
     <aside id="data-notice-panel" className="demo-notice" aria-label="데이터와 점수 안내" hidden={!open}>

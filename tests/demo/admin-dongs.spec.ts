@@ -1,7 +1,7 @@
 import { test, expect } from './baseline';
 import regions from '../../src/data/regions.json' with { type: 'json' };
 import { base, setup, list } from './real';
-import { DEFAULT_ORIGIN, openSetup, submitSetup } from './setupSteps';
+import { changeState, DEFAULT_ORIGIN, openWithSearch, writeSearch } from './setupSteps';
 
 test('every one of 25 administrative dongs displays 20 unique actual search venues, without synthetic examples', async ({ page }) => {
   await setup(page);
@@ -38,9 +38,8 @@ test('urban/island slides, keyboard selection and legacy dong links remain avail
 
 test('home island and records survive reload, and no seeded memories appear', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 });
-  await openSetup(page, base, { origin: DEFAULT_ORIGIN, maxDistanceKm: 10 });
-  await page.getByLabel('내 동네 선택').selectOption({ label: '대부동' });
-  await submitSetup(page);
+  await openWithSearch(page, base, { origin: DEFAULT_ORIGIN, maxDistanceKm: 10 });
+  await changeState(page, { profile: { homeDongCode: '4127361000' } });
   await page.reload();
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
   await expect(map.getByRole('img', { name: '내 동네 · 대부동' })).toBeVisible();
@@ -57,14 +56,15 @@ test('legacy synthetic visits remain stored but never revive phantom venues or s
     profile: { initialLevels: { 'region-a': 2 }, interests: [], experiencedEventIds: ['legacy-event'] },
     visits: [{ id: 'legacy', placeId: 'a1', date: '2026-11-07', method: 'self_report' }], search: null,
   })));
-  await page.goto(`${base}/#/setup`);
+  await writeSearch(page, { origin: DEFAULT_ORIGIN, maxDistanceKm: 10 });
+  await page.goto(`${base}/#/recommend`);
   await page.reload();
-  await expect(page.getByRole('status')).toContainText('기존 방문 기록은 유지');
-  await submitSetup(page);
+  await expect(page.getByRole('status')).toContainText('방문 기록은 유지');
   await page.goto(`${base}/#/region/region-a`);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('중앙동');
   await expect(list(page)).not.toContainText('시연 산책 공간');
   const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('ansan-explore/v1')!));
   expect(stored.visits[0].id).toBe('legacy');
-  expect(stored.legacyInitialLevels).toEqual({ 'region-a': 2 });
+  // Nothing re-saves the profile now, so the archived A·B level is still either migrated or raw.
+  expect(stored.legacyInitialLevels?.['region-a'] ?? stored.profile.initialLevels['region-a']).toBe(2);
 });

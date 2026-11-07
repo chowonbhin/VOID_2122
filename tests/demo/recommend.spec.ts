@@ -1,16 +1,13 @@
 import { test, expect } from './baseline';
 import { base, setup, mapScore, list } from './real';
-import { setupStep, submitSetup } from './setupSteps';
+import { changeState } from './setupSteps';
 
 test('normalized scores include all 20 actual venues and experience still changes the score', async ({ page }) => {
   await setup(page);
   await expect(page.getByRole('button', { name: /^지도 본오1동/ })).toHaveAccessibleName(/오늘의 추천 \d+순위/);
   await expect(page.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/오늘의 추천 \d+순위/);
   const before = Number(await mapScore(page).getAttribute('data-score'));
-  await page.getByRole('button', { name: '조건 변경' }).click();
-  await setupStep(page, '지역별 익숙함');
-  await page.getByLabel('본오1동 익숙함').selectOption('2');
-  await submitSetup(page);
+  await changeState(page, { profile: { initialLevels: { 'dong-4127154000': 2 } } });
   expect(Number(await mapScore(page).getAttribute('data-score'))).toBeLessThan(before);
   await page.reload();
   await expect(page.getByRole('button', { name: /^지도 본오1동/ })).toHaveAccessibleName(/내가 좋아하는 동네/);
@@ -18,10 +15,7 @@ test('normalized scores include all 20 actual venues and experience still change
 
 test('interest and distance filters constrain the same displayed/scored set; the complete pool stays reachable', async ({ page }) => {
   await setup(page);
-  await page.getByRole('button', { name: '조건 변경' }).click();
-  await setupStep(page, '관심 활동');
-  await page.getByLabel('자연·산책', { exact: true }).check();
-  await submitSetup(page);
+  await changeState(page, { search: { interests: ['nature'] } });
   await expect(mapScore(page)).not.toHaveAttribute('data-score', 'unavailable');
   await page.goto(`${base}/#/region/dong-4127154000`);
   const selectedCount = await list(page).locator(':scope > li').count();
@@ -48,7 +42,7 @@ test('at night closed sources cannot be represented as open recommendations', as
 
 test('without conditions the map asks for conditions and still opens 20 real venues', async ({ page }) => {
   await page.goto(`${base}/#/recommend`);
-  await expect(page.getByRole('button', { name: '조건 설정' })).toBeVisible();
+  await expect(page.getByRole('button', { name: '시작 설정하기' })).toBeVisible();
   await page.getByRole('button', { name: /^지도 중앙동/ }).focus();
   await page.keyboard.press('Enter');
   await expect(list(page).locator(':scope > li')).toHaveCount(20);
