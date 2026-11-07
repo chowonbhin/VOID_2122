@@ -7,7 +7,7 @@ const KEY = 'ansan-explore/sadong-memory-preview/v1';
 const state = (page: import('@playwright/test').Page) => page.evaluate(() => localStorage.getItem('ansan-explore/v1'));
 
 test('Sadong alone shows two real memory examples; selection, redraw, hide and reload never create visits or change scores', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
+  await page.setViewportSize({ width: 320, height: 844 });
   await setup(page);
   const originalState = await state(page);
   const scores = await page.locator('[data-region-id]').evaluateAll(nodes => nodes.map(n => [n.getAttribute('data-region-id'), n.getAttribute('data-score')]));
@@ -18,6 +18,15 @@ test('Sadong alone shows two real memory examples; selection, redraw, hide and r
   await expect(memories).toContainText('방문 기록·점수에는 반영하지 않아요');
   await expect(page.getByText('방문 기록이 있는 장소 0곳', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /추억 예시 지도에서 선택$/ })).toHaveCount(2);
+  const assertPinSpacing = async () => {
+    const pins = await page.locator('.dong-pin').evaluateAll(nodes => nodes.map(node => {
+      const r = node.getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+    }));
+    for (let i = 0; i < pins.length; i++) for (let j = i + 1; j < pins.length; j++) {
+      expect(Math.hypot(pins[i].x - pins[j].x, pins[i].y - pins[j].y)).toBeGreaterThanOrEqual(44);
+    }
+  };
+  await assertPinSpacing();
   const firstName = await examples.first().locator('strong').innerText();
   await examples.first().click();
   await expect(memories.locator('figure')).toContainText(firstName);
@@ -34,6 +43,15 @@ test('Sadong alone shows two real memory examples; selection, redraw, hide and r
   const newIds = await page.evaluate(key => JSON.parse(localStorage.getItem(key)!).placeIds as string[], KEY);
   expect(newIds.every(id => !originalIds.includes(id))).toBe(true);
   await expect(examples).toHaveCount(2);
+
+  // Exercise the maximum marker density: eight ordinary places plus two hearts.
+  await page.getByRole('button', { name: '전체 후보', exact: true }).click();
+  await assertPinSpacing();
+  const next = page.getByRole('button', { name: '다음 지도 장소', exact: true });
+  while (await next.isEnabled()) {
+    await next.click();
+    await assertPinSpacing();
+  }
 
   const dir = process.env.EVIDENCE_DIR ?? '.claude/state/evidence/sadong-memory-preview';
   fs.mkdirSync(dir, { recursive: true });
