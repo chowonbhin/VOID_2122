@@ -4,10 +4,10 @@
  *
  * GOLDEN PATH (copied from .claude/state/golden-path.md, used for drift detection):
  * 1. Open the app → landing page with the one-sentence pitch and a "탐험 시작" button (owner: Byeunghee02)
- * 2. "탐험 시작" → choose 지역별 익숙함(신규 주민), 관심 활동, 출발지, 날짜·시각, 최대 거리 and press "추천 받기" → region cards ranked by computed score, each showing 추천 이유, 시작점 직선거리, 운영 확인 장소 수 (demo data: A above B) (owner: chowonbhin)
- * 3. Click the top region card → region detail: only that region's 5 places with 운영 중/휴무/운영정보 미확인 and 출처·확인일, its event cards, and a map with start-point and place markers; clicking a marker selects the same place card [API] (owner: iwtkmn0219)
+ * 2. "탐험 시작" → choose 지역별 익숙함(신규 주민), 관심 활동, 출발지, 날짜·시각, 최대 거리 and press "추천 받기" → 안산 지도 with region boundaries, computed scores and ranks; supporting cards show 추천 이유, 시작점 직선거리, 운영 확인 장소 수, 유동인구 감점 (A above B) [API] (OSM tiles) (owner: chowonbhin)
+ * 3. Click a region on the map → zoomed region map and only that region's 5 places ordered by recommendation, with 운영 중/휴무/운영정보 미확인, 출처·확인일 and event cards; clicking a marker selects the same place card [API] (OSM tiles; list still works if tiles fail) (owner: iwtkmn0219)
  * 4. On a place, enter a 방문일 and press "방문 기록" → the record appears labelled "자기 신고" and the region shows Lv.0 → Lv.1 (owner: zT4ek)
- * 5. Press "추천으로 돌아가기", then reload the page → recommendation recomputed from the visit (demo data: B now above A) and the visit and new order are still there after reload (owner: zT4ek)
+ * 5. Press "추천으로 돌아가기", then reload the page → map scores, footfall penalty and recommendation recomputed from the visit (B now above A); visit and new order persist [API] (OSM tiles) (owner: zT4ek)
  */
 import { test, expect, type Page } from '@playwright/test';
 import fs from 'node:fs';
@@ -17,7 +17,7 @@ const BASE_URL = process.env.BASE_URL ?? 'http://localhost:3000';
 const EVIDENCE_DIR = process.env.EVIDENCE_DIR ?? '.claude/state/evidence/manual';
 fs.mkdirSync(EVIDENCE_DIR, { recursive: true });
 
-// Demo inputs (전부 가상 데이터). 2026-11-08 is a Sunday: a4 has an exception closure, b4 is closed on Sundays.
+// Demo: real region starts/footfall, simulated places/opening/events. 2026-11-08 is a Sunday: a4 has an exception closure, b4 is closed on Sundays.
 const DEMO = { date: '2026-11-08', time: '14:00', maxDistanceKm: '10' };
 
 let stepNo = 0;
@@ -81,15 +81,14 @@ test('golden path', async ({ page }) => {
       { budgetMs: 3000 }, // first load includes dev-server cold start
     );
 
-    // TODO(chowonbhin): fill familiarity/interests/origin with DEMO.date, DEMO.time, DEMO.maxDistanceKm,
-    // then assert 2 region cards in order A, B, each with 추천 이유, "km", and 운영 확인 장소 수 text.
+    // User-requested real-region/map integration; existing owners remain unchanged.
     await demoStep(
       page,
-      '2. Set conditions and 추천 받기 → ranked region cards',
+      '2. Set conditions → map scores and ranked region cards',
       async () => {
         await page.getByRole('button', { name: '탐험 시작' }).click();
-        await page.getByLabel('A권역 · 호숫가 산책길 익숙함').selectOption('0');
-        await page.getByLabel('B권역 · 골목 시장길 익숙함').selectOption('0');
+        await page.getByLabel('A권역 · 중앙동·중앙역 익숙함').selectOption('0');
+        await page.getByLabel('B권역 · 안산역·다문화거리 익숙함').selectOption('0');
         await page.getByLabel('출발지 이름').fill('시연 출발지 (가상)');
         await page.getByLabel('위도', { exact: true }).fill('37.3219');
         await page.getByLabel('경도', { exact: true }).fill('126.8309');
@@ -101,25 +100,38 @@ test('golden path', async ({ page }) => {
         await expect(cards).toHaveCount(2);
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 A권역/);
         await expect(cards.nth(1)).toHaveAccessibleName(/2순위 B권역/);
+        await expect(page.getByRole('button', { name: /^지도 A권역/ })).toContainText('1순위 · 240.7점');
+        await expect(page.locator('.map-canvas')).toHaveAttribute('aria-busy', 'false');
         for (const card of [cards.nth(0), cards.nth(1)]) {
           await expect(card).toContainText('추천 이유');
-          await expect(card).toContainText('시작점 직선거리 4.0 km');
+          await expect(card).toContainText('시작점 직선거리');
           await expect(card).toContainText('운영 확인 장소 수 3곳');
           await expect(card).toContainText('운영정보 미확인 1곳');
         }
       },
+      { budgetMs: 8000 }, // This step now loads external map tiles.
     );
 
-    // TODO(iwtkmn0219): assert 5 places of region A only, 운영 중/휴무/운영정보 미확인 labels, 출처,
-    // event cards (취소 shown as 취소), map markers; click a marker → same place card selected.
     await demoStep(
       page,
       '3. Open top region → places, events, map',
       async () => {
-        await page.getByRole('button', { name: /A권역/ }).click();
+        await page.getByRole('button', { name: /^지도 A권역/ }).click();
         await expect(page.getByRole('heading', { level: 1 })).toContainText('A권역');
+        const places = page.getByRole('list', { name: '권역 장소 추천' });
+        await expect(places.locator(':scope > li')).toHaveCount(5);
+        await expect(places).toContainText('운영 중');
+        await expect(places).toContainText('휴무');
+        await expect(places).toContainText('운영정보 미확인');
+        await expect(places).toContainText('출처:');
+        await expect(places).toContainText('확인일');
+        await expect(places).toContainText('취소');
+        await expect(places).not.toContainText('시연 골목 시장');
+        await page.getByRole('button', { name: '시연 작은 전시관 지도에서 선택', exact: true }).click();
+        await expect(page.getByRole('button', { name: '시연 작은 전시관 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
+        await expect(page.locator('.map-canvas')).toHaveAttribute('aria-busy', 'false');
       },
-      { pending: 'iwtkmn0219' },
+      { budgetMs: 8000 }, // API map step; normal form/visit steps retain their existing budget.
     );
 
     // zT4ek: record the visit through the real form and assert the persisted UI state.
@@ -127,7 +139,7 @@ test('golden path', async ({ page }) => {
       page,
       '4. Record a visit → 자기 신고 and Lv.0 → Lv.1',
       async () => {
-        const visits = page.getByRole('region', { name: '호수 전망 데크 방문 기록', exact: true });
+        const visits = page.getByRole('region', { name: '시연 산책 공간 방문 기록', exact: true });
         await expect(visits.getByText('지역 Lv.0', { exact: true })).toBeVisible();
         await visits.getByLabel('방문일', { exact: true }).fill(DEMO.date);
         await visits.getByRole('button', { name: '방문 기록', exact: true }).click();
@@ -148,19 +160,23 @@ test('golden path', async ({ page }) => {
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 B권역/);
         await expect(cards.nth(1)).toHaveAccessibleName(/2순위 A권역/);
         await expect(cards.nth(1)).toContainText('지역 Lv.1');
+        await expect(cards.nth(1)).toContainText('유동인구 감점 3.21점');
+        await expect(page.getByRole('button', { name: /^지도 A권역/ })).toContainText('2순위 · 188.9점');
         await page.reload();
         await expect(page.getByRole('heading', { name: '추천 권역' })).toBeVisible();
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 B권역/);
         await expect(cards.nth(1)).toHaveAccessibleName(/2순위 A권역/);
         await expect(cards.nth(1)).toContainText('지역 Lv.1');
-        await page.getByRole('button', { name: /A권역/ }).click();
-        const visits = page.getByRole('region', { name: '호수 전망 데크 방문 기록', exact: true });
+        await page.getByRole('button', { name: /^지도 A권역/ }).click();
+        const visits = page.getByRole('region', { name: '시연 산책 공간 방문 기록', exact: true });
         await expect(visits.locator('time')).toHaveText(DEMO.date);
         await expect(visits.getByText('자기 신고', { exact: true })).toBeVisible();
         await expect(visits.getByText('지역 Lv.1', { exact: true })).toBeVisible();
         await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 B권역/);
+        await expect(page.locator('.map-canvas')).toHaveAttribute('aria-busy', 'false');
       },
+      { budgetMs: 8000 }, // Reload/navigation now loads external map tiles.
     );
   } finally {
     fs.appendFileSync(

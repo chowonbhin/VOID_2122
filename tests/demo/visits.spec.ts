@@ -7,7 +7,7 @@ import type { UserState } from '../../src/storage';
 // The happy path uses the actual VisitPanel and shared persistence, without mocked results.
 const BASE_URL = process.env.BASE_URL ?? 'http://127.0.0.1:3000';
 const KEY = 'ansan-explore/v1';
-const PLACE = '호수 전망 데크';
+const PLACE = '시연 산책 공간';
 const EVIDENCE_DIR = process.env.VISIT_EVIDENCE_DIR ?? path.join(
   '.claude', 'state', 'evidence', `visits-${new Date().toISOString().replace(/[:.]/g, '-')}`,
 );
@@ -115,8 +115,8 @@ test('records persist, can be edited and revisited, reject duplicate days, and d
 
 test('three distinct places raise regional Lv and removing the last record for each place recalculates it', async ({ page }) => {
   const first = await openRegion(page);
-  const second = page.getByRole('region', { name: '작은 호수 전시관 방문 기록', exact: true });
-  const third = page.getByRole('region', { name: '호숫가 국수집 방문 기록', exact: true });
+  const second = page.getByRole('region', { name: '시연 작은 전시관 방문 기록', exact: true });
+  const third = page.getByRole('region', { name: '시연 국수집 방문 기록', exact: true });
 
   await addVisit(first, '2026-11-08');
   await expectProgress(first, 1, 2, 1);
@@ -146,7 +146,7 @@ test('deleting visits preserves initial regional familiarity and unvisited place
   seed.profile.initialLevels['region-a'] = 2;
   seed.visits = [{ id: 'familiar-a1', placeId: 'a1', date: '2026-11-08', method: 'self_report' }];
   const panel = await openRegion(page, seed);
-  const unvisited = page.getByRole('region', { name: '작은 호수 전시관 방문 기록', exact: true });
+  const unvisited = page.getByRole('region', { name: '시연 작은 전시관 방문 기록', exact: true });
   await expectProgress(panel, 2, 3, 1);
   await expectProgress(unvisited, 2, 2, 1);
   await panel.getByRole('button', { name: '2026-11-08 방문 기록 삭제', exact: true }).click();
@@ -180,7 +180,7 @@ test('write failure preserves existing records and shows no successful add, edit
   }, { key: KEY, state: seed });
   await page.goto(`${BASE_URL}/#/region/region-a`);
   const panel = page.getByRole('region', { name: `${PLACE} 방문 기록`, exact: true });
-  const unvisited = page.getByRole('region', { name: '작은 호수 전시관 방문 기록', exact: true });
+  const unvisited = page.getByRole('region', { name: '시연 작은 전시관 방문 기록', exact: true });
   const unchanged = async () => expect(await persisted(page)).toEqual(seed);
   await expectProgress(panel, 1, 2, 1);
   await expectProgress(unvisited, 1, 1, 1);

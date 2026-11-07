@@ -1,19 +1,20 @@
 # Handoff: zT4ek
 
-phase: build (2026-11-07 KST); 최종 deadline은 사용자 요청대로 추후 확인
-branch: zT4ek/step-4 (origin/main 3e6714c 반영)
-last verify pass: .claude/state/evidence/2026-11-07T23-35-54 — PARTIAL 4/5, 담당 4·5단계 PASS, 3단계만 PENDING
-done: 담당 4·5단계와 M07 전체. 방문 CRUD·중복 방지·실패 처리·공통 엔진 Lv·추천 순위 변경·새로고침 유지 검증
-in progress: 없음. 빌드·단위 71개·조건/추천/방문 브라우저 14개 통과
+phase: build (2026-11-08 KST); 최종 deadline은 사용자 요청대로 추후 확인
+branch: zT4ek/footfall-policy (origin/main 2c8f300 기준)
+last verify: .claude/state/evidence/2026-11-08T00-06-46 — desktop 3회 PASS 5/5, 콘솔 오류·SLOW 없음
+mobile: .claude/state/evidence/2026-11-08T00-07-13-mobile — PASS 5/5, 지도/상세/재계산 화면 검토
+validation: build PASS, unit 83 PASS, browser 17 PASS; 지도 렌더링 보완 후 지도 3개 재검증 PASS
+finished: 원래 유동인구 감점, 실제 권역 2곳·자료 18행 연결, 지도 경계·점수·순위, 권역 클릭·장소 추천·마커 연동
 next:
-1. iwtkmn0219의 3단계 반영 후 전체 데모 재검증; 담당 외 기능은 임의 구현하지 않음
-2. 새 원격 변경을 fetch로 확인·반영하고 방문 기능 회귀 검증
-3. 추가 담당이 정해지기 전에는 현재 담당 기능의 실제 버그만 처리
+1. 실제 장소·행사·운영정보 수집 후 시연 장소를 명시적으로 교체 (현재 모두 가상 표시)
+2. 기존 담당의 M08 행사 경험 토글·M09 위치 권한·M11 사용 테스트는 별도로 진행
+3. 최신 원격 변경 확인, 공통 계약과 지도/방문 흐름 회귀 검증
 
 ## For captain
-- 공통 score.ts와 실제 추천 화면을 사용. A → B 순위가 방문 후 B → A로 변경되고 새로고침 후 유지됨
-- 데스크톱 3회 연속: .claude/state/evidence/2026-11-07T23-35-54, 콘솔 오류·SLOW 없음, 5단계 화면 검토
-- 모바일 1회: .claude/state/evidence/2026-11-07T23-36-11-mobile, 동일 결과·화면 검토
-- 개발 서버 최초 검증은 초기 localStorage.clear()와 페이지 전환 경합으로 0/5 실패; 테스트를 완화하지 않고 빌드 preview 3001에서 안정성 검증함
-- 포터블 Node 22.22.3·Chromium: /private/tmp/ansan-visit-runtime. 전역 Node 설정은 변경하지 않음
-- handoff 스킬이 없어 직접 기록함. HACKATHON.md는 .git/info/exclude로 로컬 제외 유지
+- 사용자가 유동인구 정책 구현·실제 권역 구성·지도 형식 반영을 명시 요청하여 공통 계산·타입·추천/상세 및 golden path를 함께 갱신. 담당자는 유지
+- 실자료: 중앙동 대표 상권 150039, 안산역·다문화거리 65567 / 고정 분모 466765. f(Lv0/1/2)=0/10/20은 초기 조정값
+- 자세한 출처·자료 한계·매핑·시연값은 src/data/README.md. 경계는 앱 정의 탐험 범위, 공식 통계 경계가 아님
+- 방문 전 A240.7024/B207.0125 → a1 방문 후 A188.8980. 실제 시작점 거리로 기존 숫자·라벨 검사 갱신
+- 최초 공식 검사는 새 지도 버튼과 카드 이름 중복으로 step5 선택자 실패. 지도 버튼으로 범위를 좁힌 뒤 desktop 3회·mobile 1회 모두 통과
+- 포터블 Node/Chromium: /private/tmp/ansan-visit-runtime. preview 3002. HACKATHON.md·evidence는 커밋 제외

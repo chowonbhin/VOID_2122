@@ -1,0 +1,29 @@
+{
+  "period": "2026-08",
+  "source": {
+    "label": "소상공인365 · 주요상권 → 발달상권 → 유동인구 (제공 이미지 전사)",
+    "url": "https://bigdata.sbiz.or.kr/#/hotplace/gis",
+    "checkedAt": "2026-11-07"
+  },
+  "sourceAsset": "assets/안산/03_상권_동_비중표_1.png",
+  "markets": [
+    { "id": "ansan-samil", "name": "안산삼일빌딩우편취급국", "sourceDong": "중앙동", "dailyAverage": 150039 },
+    { "id": "ansan-hosu-post", "name": "안산호수동우체국", "sourceDong": "호수동", "dailyAverage": 48954 },
+    { "id": "ansan-station-exit-2", "name": "안산역2번 출구", "sourceDong": "원곡동", "dailyAverage": 47955 },
+    { "id": "star-plaza-terminal", "name": "스타프라자시외터미널", "sourceDong": "호수동", "dailyAverage": 46849 },
+    { "id": "rodeo-stop", "name": "로데오거리 정류장", "sourceDong": "이동", "dailyAverage": 27315 },
+    { "id": "idong-police", "name": "이동파출소", "sourceDong": "사동", "dailyAverage": 25653 },
+    { "id": "ansan-multicultural", "name": "안산 다문화특구", "sourceDong": "원곡동", "dailyAverage": 17612 },
+    { "id": "seonbu-station-exit-1", "name": "선부역1번 출구", "sourceDong": "선부3동", "dailyAverage": 16427 },
+    { "id": "ansan-choji-post", "name": "안산초지동우체국", "sourceDong": "초지동", "dailyAverage": 12926 },
+    { "id": "songho-school", "name": "송호중학교", "sourceDong": "호수동", "dailyAverage": 12365 },
+    { "id": "sangnoksu-station-exit-3", "name": "상록수역3번 출구", "sourceDong": "본오3동", "dailyAverage": 11545 },
+    { "id": "ansan-sinan-post", "name": "안산신안우편취급국", "sourceDong": "본오1동", "dailyAverage": 11360 },
+    { "id": "hanyang-stop", "name": "한양대입구 정류장", "sourceDong": "해양동", "dailyAverage": 10702 },
+    { "id": "green-village-14-stop", "name": "그린빌14단지 정류장", "sourceDong": "초지동", "dailyAverage": 9976 },
+    { "id": "seongpo-police", "name": "성포파출소", "sourceDong": "월피동", "dailyAverage": 6552 },
+    { "id": "gamgol-library-stop", "name": "감골도서관 정류장", "sourceDong": "사동", "dailyAverage": 4770 },
+    { "id": "gojan-station-exit-2", "name": "고잔역2번 출구", "sourceDong": "호수동", "dailyAverage": 3246 },
+    { "id": "ansan-wholesale-market", "name": "안산농수산물도매시장", "sourceDong": "이동", "dailyAverage": 2519 }
+  ]
+}

@@ -5,9 +5,9 @@ const baseURL = process.env.BASE_URL ?? 'http://localhost:3000';
 
 test('조건 저장과 새로고침: 지역별 경험·관심·출발지·한국 시각을 유지한다', async ({ page }) => {
   await page.goto(`${baseURL}/#/setup`);
-  await expect(page.getByLabel('A권역 · 호숫가 산책길 익숙함')).toHaveValue('0');
-  await expect(page.getByLabel('B권역 · 골목 시장길 익숙함')).toHaveValue('0');
-  await page.getByLabel('A권역 · 호숫가 산책길 익숙함').selectOption('2');
+  await expect(page.getByLabel('A권역 · 중앙동·중앙역 익숙함')).toHaveValue('0');
+  await expect(page.getByLabel('B권역 · 안산역·다문화거리 익숙함')).toHaveValue('0');
+  await page.getByLabel('A권역 · 중앙동·중앙역 익숙함').selectOption('2');
   await page.getByLabel('자연·산책', { exact: true }).check();
   await page.getByLabel('출발지 이름').fill('직접 지정 출발지');
   await page.getByLabel('위도', { exact: true }).fill('37.3219');
@@ -18,8 +18,8 @@ test('조건 저장과 새로고침: 지역별 경험·관심·출발지·한국
   await expect(page.getByRole('heading', { name: '추천 권역', level: 1 })).toBeVisible();
   await page.reload();
   await page.getByRole('button', { name: '조건 변경' }).click();
-  await expect(page.getByLabel('A권역 · 호숫가 산책길 익숙함')).toHaveValue('2');
-  await expect(page.getByLabel('B권역 · 골목 시장길 익숙함')).toHaveValue('0');
+  await expect(page.getByLabel('A권역 · 중앙동·중앙역 익숙함')).toHaveValue('2');
+  await expect(page.getByLabel('B권역 · 안산역·다문화거리 익숙함')).toHaveValue('0');
   await expect(page.getByLabel('자연·산책', { exact: true })).toBeChecked();
   await expect(page.getByLabel('출발지 이름')).toHaveValue('직접 지정 출발지');
   await expect(page.getByLabel('위도', { exact: true })).toHaveValue('37.3219');
@@ -59,7 +59,7 @@ test('조건 변경은 기존 방문 기록과 행사 경험을 보존한다', a
   }, visits);
   await page.goto(`${baseURL}/#/setup`);
   await page.reload();
-  await page.getByLabel('A권역 · 호숫가 산책길 익숙함').selectOption('2');
+  await page.getByLabel('A권역 · 중앙동·중앙역 익숙함').selectOption('2');
   await page.getByRole('button', { name: '추천 받기' }).click();
   await expect(page.getByRole('heading', { name: '추천 권역', level: 1 })).toBeVisible();
   const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('ansan-explore/v1')!));

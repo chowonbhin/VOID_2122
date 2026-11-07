@@ -2,11 +2,11 @@
   {
     "id": "a1",
     "regionId": "region-a",
-    "name": "호수 전망 데크",
+    "name": "시연 산책 공간",
     "category": "nature",
     "location": {
-      "lat": 37.3242,
-      "lng": 126.8792
+      "lat": 37.3170302,
+      "lng": 126.8395294
     },
     "baseValue": 80,
     "popularity": 1,
@@ -67,11 +67,11 @@
   {
     "id": "a2",
     "regionId": "region-a",
-    "name": "작은 호수 전시관",
+    "name": "시연 작은 전시관",
     "category": "culture",
     "location": {
-      "lat": 37.3201,
-      "lng": 126.8805
+      "lat": 37.3185302,
+      "lng": 126.8415294
     },
     "baseValue": 70,
     "popularity": 0.5,
@@ -133,11 +133,11 @@
   {
     "id": "a3",
     "regionId": "region-a",
-    "name": "호숫가 국수집",
+    "name": "시연 국수집",
     "category": "food",
     "location": {
-      "lat": 37.3231,
-      "lng": 126.8738
+      "lat": 37.3200302,
+      "lng": 126.8375294
     },
     "baseValue": 60,
     "popularity": 0.2,
@@ -233,11 +233,11 @@
   {
     "id": "a4",
     "regionId": "region-a",
-    "name": "호수 보트 체험장",
+    "name": "시연 문화 공간",
     "category": "activity",
     "location": {
-      "lat": 37.3188,
-      "lng": 126.877
+      "lat": 37.3210302,
+      "lng": 126.8395294
     },
     "baseValue": 75,
     "popularity": 0.6,
@@ -305,11 +305,11 @@
   {
     "id": "a5",
     "regionId": "region-a",
-    "name": "호숫가 독립서점",
+    "name": "시연 독립서점",
     "category": "culture",
     "location": {
-      "lat": 37.3255,
-      "lng": 126.8751
+      "lat": 37.3220302,
+      "lng": 126.8405294
     },
     "baseValue": 65,
     "popularity": 0.3,
@@ -322,11 +322,11 @@
   {
     "id": "b1",
     "regionId": "region-b",
-    "name": "골목 전통시장",
+    "name": "시연 골목 시장",
     "category": "market",
     "location": {
-      "lat": 37.3601,
-      "lng": 126.8331
+      "lat": 37.3280474,
+      "lng": 126.7897966
     },
     "baseValue": 75,
     "popularity": 0.7,
@@ -387,11 +387,11 @@
   {
     "id": "b2",
     "regionId": "region-b",
-    "name": "시장 안 칼국수집",
+    "name": "시연 식당",
     "category": "food",
     "location": {
-      "lat": 37.3589,
-      "lng": 126.8285
+      "lat": 37.3295474,
+      "lng": 126.7917966
     },
     "baseValue": 65,
     "popularity": 0.4,
@@ -459,11 +459,11 @@
   {
     "id": "b3",
     "regionId": "region-b",
-    "name": "골목 목공방",
+    "name": "시연 공방",
     "category": "activity",
     "location": {
-      "lat": 37.3566,
-      "lng": 126.8322
+      "lat": 37.3310474,
+      "lng": 126.7877966
     },
     "baseValue": 60,
     "popularity": 0.2,
@@ -524,11 +524,11 @@
   {
     "id": "b4",
     "regionId": "region-b",
-    "name": "옛 정미소 갤러리",
+    "name": "시연 쉼터",
     "category": "culture",
     "location": {
-      "lat": 37.3571,
-      "lng": 126.8297
+      "lat": 37.3320474,
+      "lng": 126.7897966
     },
     "baseValue": 70,
     "popularity": 0.5,
@@ -584,11 +584,11 @@
   {
     "id": "b5",
     "regionId": "region-b",
-    "name": "골목 끝 찻집",
+    "name": "시연 카페",
     "category": "food",
     "location": {
-      "lat": 37.361,
-      "lng": 126.8302
+      "lat": 37.3330474,
+      "lng": 126.7907966
     },
     "baseValue": 55,
     "popularity": 0.1,

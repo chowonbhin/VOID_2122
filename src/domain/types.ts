@@ -26,6 +26,18 @@ export interface Source {
   checkedAt: DateString;
 }
 
+/** A single-period snapshot of collected commercial-area daily-average footfall. */
+export interface FootfallDataset {
+  period: string;
+  source: Source;
+  sourceAsset: string;
+  markets: { id: string; name: string; sourceDong: string; dailyAverage: number }[];
+}
+
+export type FootfallAdjustment =
+  | { status: 'available'; adjustment: number; normalizedShare: number; dailyAverage: number; referenceTotal: number; period: string; source: Source }
+  | { status: 'unavailable'; adjustment: 0; reason: 'unmapped' | 'missing_data' | 'invalid_data' };
+
 export interface Region {
   id: RegionId;
   name: string;
@@ -33,6 +45,12 @@ export interface Region {
   features: string[];
   start: LatLng & { label: string };
   placeIds: PlaceId[];
+  /** Explicit source-market mapping; never inferred from a district name or coordinates. */
+  footfallMarketIds?: string[];
+  source?: Source;
+  startSource?: Source;
+  /** App-defined approximate exploration area, not an official boundary. */
+  boundary?: LatLng[];
   /** 개발용 가상 데이터면 true. 화면에 "가상 데이터"로 표시한다. */
   isVirtual: boolean;
 }
@@ -125,4 +143,6 @@ export interface RegionRecommendation {
   placeIds: PlaceId[];
   openPlaceCount: number;
   unknownPlaceCount: number;
+  /** Adjustment before novelty/distance weighting; missing data is distinct from zero footfall. */
+  footfall: FootfallAdjustment;
 }

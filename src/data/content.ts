@@ -1,24 +1,29 @@
 // Content loader. Owner: Byeunghee02. Edit the JSON files, not this module.
-import type { Event, Place, Region } from '../domain/types';
+import type { Event, FootfallDataset, Place, Region } from '../domain/types';
+import { validateFootfallDataset } from '../domain/footfall';
 import regionsJson from './regions.json';
 import placesJson from './places.json';
 import eventsJson from './events.json';
+import footfallJson from './footfall.json';
 
 export interface Content {
   regions: Region[];
   places: Place[];
   events: Event[];
+  footfall?: FootfallDataset;
 }
 
 export const content: Content = {
   regions: regionsJson as Region[],
   places: placesJson as Place[],
   events: eventsJson as Event[],
+  footfall: footfallJson,
 };
 
 /** M01 checks: duplicate ids, dangling references, missing opening info. Returns problems found. */
 export function validateContent(c: Content): string[] {
   const problems: string[] = [];
+  if (c.footfall) problems.push(...validateFootfallDataset(c.footfall));
   const seen = new Set<string>();
   for (const item of [...c.regions, ...c.places, ...c.events]) {
     if (seen.has(item.id)) problems.push(`duplicate id: ${item.id}`);
@@ -33,6 +38,11 @@ export function validateContent(c: Content): string[] {
     if (p.opening?.status === 'known' && !p.source) problems.push(`place ${p.id}: known opening without source`);
   }
   for (const r of c.regions) {
+    const marketIds = r.footfallMarketIds ?? [];
+    if (new Set(marketIds).size !== marketIds.length) problems.push(`region ${r.id}: duplicate footfall market`);
+    for (const id of marketIds) {
+      if (!c.footfall?.markets.some((market) => market.id === id)) problems.push(`region ${r.id}: unknown footfall market ${id}`);
+    }
     for (const id of r.placeIds) {
       const p = c.places.find((x) => x.id === id);
       if (!p) problems.push(`region ${r.id}: unknown place ${id}`);

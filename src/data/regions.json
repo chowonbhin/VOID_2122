@@ -1,20 +1,28 @@
 [
   {
     "id": "region-a",
-    "name": "A권역 · 호숫가 산책길",
-    "description": "호수를 따라 걷고 작은 전시관과 카페를 들르는 권역 (개발용 가상 데이터)",
-    "features": ["호숫가 산책로", "작은 전시관", "조용한 카페 골목"],
-    "start": { "lat": 37.3219, "lng": 126.876135, "label": "A권역 시작점 · 호수 입구 (가상)" },
+    "name": "A권역 · 중앙동·중앙역",
+    "description": "중앙역에서 중앙동 로데오거리로 이어지는 탐험권역. 수집한 중앙동 대표 상권의 유동인구 지표를 사용합니다. 장소·행사·운영정보는 기능 시연용입니다.",
+    "features": ["중앙역", "중앙동 로데오거리", "음식·상점 골목"],
+    "start": { "lat": 37.3160302, "lng": 126.8385294, "label": "중앙역 (역 위치 기준)" },
+    "footfallMarketIds": ["ansan-samil"],
+    "boundary": [{ "lat": 37.3160, "lng": 126.8344 }, { "lat": 37.3227, "lng": 126.8344 }, { "lat": 37.3238, "lng": 126.8395 }, { "lat": 37.3205, "lng": 126.8423 }, { "lat": 37.3160, "lng": 126.8407 }],
+    "source": { "label": "안산시 중앙동 맛거리 안내", "url": "https://food.ansan.go.kr/ASF/bbs/content.php?co_id=s235", "checkedAt": "2026-11-07" },
+    "startSource": { "label": "OpenStreetMap contributors · 중앙역", "url": "https://www.openstreetmap.org/node/5349743238", "checkedAt": "2026-11-07" },
     "placeIds": ["a1", "a2", "a3", "a4", "a5"],
-    "isVirtual": true
+    "isVirtual": false
   },
   {
     "id": "region-b",
-    "name": "B권역 · 골목 시장길",
-    "description": "오래된 시장과 골목 식당, 공방이 모인 권역 (개발용 가상 데이터)",
-    "features": ["전통 시장", "골목 식당", "공방 체험"],
-    "start": { "lat": 37.357873, "lng": 126.8309, "label": "B권역 시작점 · 시장 입구 (가상)" },
+    "name": "B권역 · 안산역·다문화거리",
+    "description": "안산역과 원곡동 다문화거리를 함께 둘러보는 탐험권역. 수집한 안산역2번 출구·안산 다문화특구 상권 지표를 합산합니다. 장소·행사·운영정보는 기능 시연용입니다.",
+    "features": ["안산역", "다문화거리", "세계 음식·식료품"],
+    "start": { "lat": 37.3270474, "lng": 126.7887966, "label": "안산역 (역 위치 기준)" },
+    "footfallMarketIds": ["ansan-station-exit-2", "ansan-multicultural"],
+    "boundary": [{ "lat": 37.3264, "lng": 126.7845 }, { "lat": 37.3330, "lng": 126.7845 }, { "lat": 37.3340, "lng": 126.7918 }, { "lat": 37.3292, "lng": 126.7940 }, { "lat": 37.3264, "lng": 126.7916 }],
+    "source": { "label": "안산시 문화관광 · 다문화거리", "url": "https://ansan.go.kr/tourinfo/common/cntnts/selectContents.do?cntnts_id=C0001976", "checkedAt": "2026-11-07" },
+    "startSource": { "label": "OpenStreetMap contributors · 안산역", "url": "https://www.openstreetmap.org/node/5911861706", "checkedAt": "2026-11-07" },
     "placeIds": ["b1", "b2", "b3", "b4", "b5"],
-    "isVirtual": true
+    "isVirtual": false
   }
 ]

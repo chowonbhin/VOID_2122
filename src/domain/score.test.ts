@@ -100,21 +100,21 @@ describe('events', () => {
   });
 });
 
-describe('recommend — plan §5 numeric example', () => {
-  it('before any visit A (≈210) ranks above B (≈205)', () => {
-    expect(scoreOf('region-a', [])).toBeCloseTo(210, 0);
-    expect(scoreOf('region-b', [])).toBeCloseTo(205, 0);
+describe('recommend — real-region starts and footfall', () => {
+  it('before any visit A (≈240.70) ranks above B (≈207.01)', () => {
+    expect(scoreOf('region-a', [])).toBeCloseTo(240.7024, 3);
+    expect(scoreOf('region-b', [])).toBeCloseTo(207.0125, 3);
     expect(order([])).toEqual(['region-a', 'region-b']);
   });
 
-  it('visiting a1 drops A to ≈167.75 and B moves to the top', () => {
-    expect(scoreOf('region-a', [visit('a1')])).toBeCloseTo(167.75, 0);
+  it('visiting a1 drops A to ≈188.90 and B moves to the top', () => {
+    expect(scoreOf('region-a', [visit('a1')])).toBeCloseTo(188.8980, 3);
     expect(order([visit('a1')])).toEqual(['region-b', 'region-a']);
   });
 
   it('repeat visit to the same place changes nothing; deleting all restores', () => {
     expect(scoreOf('region-a', [visit('a1'), visit('a1', 2)])).toBe(scoreOf('region-a', [visit('a1')]));
-    expect(scoreOf('region-a', [])).toBeCloseTo(210, 0);
+    expect(scoreOf('region-a', [])).toBeCloseTo(240.7024, 3);
   });
 
   it('unknown and closed places are listed but not scored', () => {
@@ -125,7 +125,7 @@ describe('recommend — plan §5 numeric example', () => {
   });
 
   it('max distance applies before scoring', () => {
-    const res = recommend(content, fresh(), [], ctx({ maxDistanceKm: 3 }));
+    const res = recommend(content, fresh(), [], ctx({ maxDistanceKm: 0.1 }));
     expect(res.recommendations).toEqual([]);
     expect(res.excluded.map((e) => e.reason)).toEqual(['too_far', 'too_far']);
   });

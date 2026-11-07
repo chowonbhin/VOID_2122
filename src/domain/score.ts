@@ -8,7 +8,6 @@
 import type { Content } from '../data/content';
 import type { Event, LatLng, Place, PlaceStatus, Profile, Region, RegionRecommendation, SearchContext, TimeRange, Visit } from './types';
 import {
-  ALPHA,
   DISTANCE_SCALE_KM,
   EVENT_BONUS_CAP,
   MAX_PLACE_LEVEL,
@@ -17,6 +16,7 @@ import {
   POPULARITY_WEIGHT,
   levelFromDistinctVisits,
 } from './policy';
+import { footfallAdjustment } from './footfall';
 
 // ---------- time (selected time is always Asia/Seoul) ----------
 
@@ -184,7 +184,8 @@ export function recommend(content: Content, profile: Profile, visits: Visit[], c
     }
     const level = regionLevel(region.id, profile, visits, content.places);
     const sum = eligible.reduce((s, p) => s + p.score, 0);
-    const score = Math.max(0, sum + ALPHA) * NOVELTY[level] * distanceWeight(km);
+    const footfall = footfallAdjustment(region, level, content.footfall);
+    const score = Math.max(0, sum + footfall.adjustment) * NOVELTY[level] * distanceWeight(km);
 
     const reasons: string[] = [];
     const visited = distinctVisitedPlaces(region.id, visits, content.places).length;
@@ -202,6 +203,7 @@ export function recommend(content: Content, profile: Profile, visits: Visit[], c
       placeIds: eligible.map((p) => p.placeId),
       openPlaceCount: places.filter((p) => p.status.status === 'open').length,
       unknownPlaceCount: places.filter((p) => p.status.status === 'unknown').length,
+      footfall,
     });
   }
 

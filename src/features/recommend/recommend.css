@@ -12,3 +12,8 @@
 .recommend-explore { margin-top: 32px; }
 .recommend button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .recommend-card:hover { border-color: var(--accent); }
+.recommend-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
+.recommend-summary p { font-size: 14px; margin: 0; }
+.recommend-summary button { margin: 0 0 0 auto; }
+.recommend > .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 720px) { .recommend > .cards { grid-template-columns: minmax(0, 1fr); } }

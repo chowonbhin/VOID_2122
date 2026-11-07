@@ -20,10 +20,10 @@ test('신규 주민 순위와 점수 표시, 기존 주민 경험 변경으로 �
   await setup(page);
   await page.getByRole('button', { name: '추천 받기' }).click();
   await expect(cards(page).first()).toHaveAccessibleName(/1순위 A권역/);
-  await expect(cards(page).first()).toContainText('추천 점수 210.0');
-  await expect(cards(page).nth(1)).toContainText('추천 점수 205.0');
+  await expect(cards(page).first()).toContainText('추천 점수 240.7');
+  await expect(cards(page).nth(1)).toContainText('추천 점수 207.0');
   await page.getByRole('button', { name: '조건 변경' }).click();
-  await page.getByLabel('A권역 · 호숫가 산책길 익숙함').selectOption('2');
+  await page.getByLabel('A권역 · 중앙동·중앙역 익숙함').selectOption('2');
   await page.getByRole('button', { name: '추천 받기' }).click();
   await expect(cards(page).first()).toHaveAccessibleName(/1순위 B권역/);
   await expect(cards(page).nth(1)).toContainText('지역 Lv.2');
@@ -44,14 +44,14 @@ test('관심 활동 필터와 직접 탐색, 최대 거리로 후보 없음 안�
   await expect(page.getByRole('heading', { level: 1 })).toContainText('B권역');
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
   await page.getByRole('button', { name: '조건 변경' }).click();
-  await page.getByLabel('최대 거리 (km)').fill('3');
+  await page.getByLabel('최대 거리 (km)').fill('0.1');
   await page.getByRole('button', { name: '추천 받기' }).click();
   await expect(page.getByRole('status')).toContainText('조건에 맞는 추천 권역이 없어요');
   await expect(page.getByRole('list', { name: '추천 순위' })).toHaveCount(0);
   await expect(explore.getByRole('button')).toHaveCount(2);
   await expect(explore.getByRole('button').first()).toContainText('최대 거리 밖');
   await page.getByRole('button', { name: '조건 변경' }).click();
-  await expect(page.getByLabel('최대 거리 (km)')).toHaveValue('3');
+  await expect(page.getByLabel('최대 거리 (km)')).toHaveValue('0.1');
   await expect(page.getByLabel('자연·산책', { exact: true })).toBeChecked();
 });
 
@@ -85,7 +85,7 @@ test('저장된 방문 기록을 추천 계산에 전달하고 새로고침해�
   await page.reload();
   await expect(cards(page).first()).toHaveAccessibleName(/B권역/);
   await expect(cards(page).nth(1)).toContainText('지역 Lv.1');
-  await expect(cards(page).nth(1)).toContainText('추천 점수 167.8');
+  await expect(cards(page).nth(1)).toContainText('추천 점수 188.9');
   await page.reload();
   await expect(cards(page).first()).toHaveAccessibleName(/B권역/);
 });

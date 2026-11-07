@@ -1,0 +1,29 @@
+.exploration-map { min-width: 0; position: relative; }
+.page.page-map { max-width: 1240px; }
+.leaflet-container svg { max-width: none; }
+.map-canvas { height: 460px; min-height: 300px; width: 100%; border: 1px solid #c7d8d5; border-radius: 20px; background: #eaf0ef; z-index: 0; }
+.map-score-badge { width: 180px; min-height: 58px; display: grid; gap: 3px; padding: 9px 10px; border: 2px solid; border-radius: 13px; background: #fff; box-shadow: 0 3px 12px #173b3826; color: #172b32; font-size: 12px; line-height: 1.35; cursor: pointer; }
+.map-score-badge strong { font-size: 13px; }
+.map-score-badge.selected { background: #f0fdfa; }
+.map-place-marker { width: 44px; height: 44px; border-radius: 50%; background: #fff; color: #154d49; border: 2px solid #0f766e; font-weight: 800; padding: 0; box-shadow: 0 2px 6px #0002; cursor: pointer; }
+.map-place-marker.active { background: #0f766e; color: white; outline: 3px solid #99f6e4; }
+.map-score-badge:focus-visible, .map-place-marker:focus-visible, .leaflet-interactive:focus-visible { outline: 3px solid #dc6b22; outline-offset: 3px; }
+.map-legend { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; padding: 12px 2px 4px; color: #334155; font-size: 13px; }
+.map-legend-dot { width: 12px; height: 12px; border-radius: 3px; background: #0f766e; }
+.map-note { font-size: 12px; color: #64748b; margin: 4px 0 16px; }
+.map-warning { padding: 10px; background: #fff7dd; border-radius: 8px; color: #694e00; }
+.region-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr); gap: 24px; align-items: start; }
+.region-layout .exploration-map { position: sticky; top: 18px; }
+.region-place-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 16px; }
+.region-place-list > li { background: white; border: 1px solid #d7e3e0; border-radius: 16px; padding: 18px; scroll-margin-top: 20px; }
+.region-place-list > li.selected-place { border: 2px solid #0f766e; background: #f6fffc; }
+.region-place-heading { display: flex; align-items: center; gap: 12px; justify-content: space-between; flex-wrap: wrap; }
+.region-place-heading h2 { margin: 0; font-size: 18px; }
+.region-place-meta { font-size: 13px; color: #546575; margin: 10px 0; }
+.region-back { margin-bottom: 16px; }
+@media (max-width: 720px) {
+  .map-canvas { height: 360px; }
+  .region-layout { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .region-layout .exploration-map { position: static; }
+  .map-score-badge { width: 170px; }
+}

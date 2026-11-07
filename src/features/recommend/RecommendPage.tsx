@@ -4,6 +4,7 @@ import { content } from '../../data/content';
 import { CATEGORY_LABELS } from '../../domain/policy';
 import { recommend } from '../../domain/score';
 import { go } from '../../route';
+import { ExplorationMap } from '../map/ExplorationMap';
 import './recommend.css';
 
 export function RecommendPage() {
@@ -39,6 +40,9 @@ export function RecommendPage() {
       </div>
       <p className="recommend-note">선택한 시각의 운영정보를 기준으로 계산합니다. 직선거리는 실제 이동 거리·도착 시간이 아니며, 모든 장소를 한 번에 방문할 수 있다는 뜻은 아닙니다.</p>
 
+      <ExplorationMap regions={content.regions} recommendations={result.recommendations}
+        onRegionSelect={(regionId) => go({ name: 'region', regionId })} />
+
       {ranked.length > 0 ? (
         <ol className="cards" aria-label="추천 순위">
           {ranked.map((item, index) => {
@@ -51,6 +55,10 @@ export function RecommendPage() {
                   <span>{region.features.join(' · ')}</span>
                   {region.isVirtual && <span className="recommend-note">개발용 가상 데이터</span>}
                   <span>시작점 직선거리 {item.distanceKm.toFixed(1)} km · 추천 점수 {item.score.toFixed(1)}</span>
+                  {item.footfall.status === 'available' ? <>
+                    <span>{item.footfall.period} 상권 유동인구 지표 {item.footfall.dailyAverage.toLocaleString('ko-KR')}명 · 일평균 수치 합계</span>
+                    <span>유동인구 감점 {Math.abs(item.footfall.adjustment).toFixed(2)}점{item.level === 0 ? ' · Lv.0 감점 없음' : ' · 새로움·거리 가중치 적용 전'}</span>
+                  </> : <span className="recommend-note">유동인구 미반영 · 권역과 상권 자료 연결을 확인해야 합니다.</span>}
                   <span>운영 확인 장소 수 {item.openPlaceCount}곳 · 관심 활동 일치 {item.placeIds.length}곳</span>
                   <span className="recommend-note">운영정보 미확인 {item.unknownPlaceCount}곳은 점수에서 제외됩니다.</span>
                   <span className="recommend-reasons">
@@ -69,6 +77,13 @@ export function RecommendPage() {
           <p>{result.allZero ? '모든 후보의 추천 점수가 0점입니다. 조건을 변경하거나 권역을 직접 탐색해 주세요.' : '날짜·시각, 관심 활동 또는 최대 거리를 변경해 보세요. 입력한 조건은 그대로 유지됩니다.'}</p>
         </div>
       )}
+
+      {content.footfall && <p className="recommend-note">
+        유동인구 기준: {content.footfall.period}, 수집한 {content.footfall.markets.length}개 상권 내 비중입니다.
+        안산 전체 비중·중복을 제거한 실인원·실시간 혼잡도가 아닙니다.{' '}
+        <a href={content.footfall.source.url} target="_blank" rel="noreferrer">소상공인365 출처</a>
+        {' '}· 자료 조회일 {content.footfall.source.checkedAt}
+      </p>}
 
       {explore.length > 0 && <section aria-label="직접 탐색" className="recommend-explore">
         <h2>권역 직접 탐색</h2>

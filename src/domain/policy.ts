@@ -23,8 +23,8 @@ export const POPULARITY_WEIGHT: Record<0 | 1 | 2 | 3, number> = { 0: 0, 1: 10, 2
 /** 제안: only the largest matching, not-yet-experienced event bonus counts, capped. */
 export const EVENT_BONUS_CAP = 10;
 
-/** 제안: 유동인구 조정 α disabled until data exists. */
-export const ALPHA = 0;
+/** 기획 §8.4: α = -f(regionLv) * F. Initial tuning values, not measured coefficients. */
+export const FOOTFALL_PENALTY: Record<0 | 1 | 2, number> = { 0: 0, 1: 10, 2: 20 };
 
 /** 제안: W = 1 / (1 + d / DISTANCE_SCALE_KM). Max-distance filter applies first. */
 export const DISTANCE_SCALE_KM = 20;
