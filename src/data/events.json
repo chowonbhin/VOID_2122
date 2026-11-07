@@ -73,5 +73,31 @@
       "checkedAt": "2026-11-07"
     },
     "isVirtual": true
+  },
+  {
+    "id": "e-a6-franchise",
+    "placeId": "a6-franchise",
+    "name": "시연 체인점 행사",
+    "sessions": [
+      {
+        "start": "2026-11-07T10:00+09:00",
+        "end": "2026-11-09T20:00+09:00"
+      }
+    ],
+    "cancelled": false,
+    "condition": {
+      "status": "known",
+      "text": "자유 참여"
+    },
+    "categories": [
+      "market",
+      "food"
+    ],
+    "bonus": 10,
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
   }
 ]

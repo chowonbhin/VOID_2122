@@ -39,6 +39,7 @@ export function RecommendPage() {
         <button onClick={() => go({ name: 'setup' })}>조건 변경</button>
       </div>
       <p className="recommend-note">선택한 시각의 운영정보를 기준으로 계산합니다. 직선거리는 실제 이동 거리·도착 시간이 아니며, 모든 장소를 한 번에 방문할 수 있다는 뜻은 아닙니다.</p>
+      <p className="recommend-note">프랜차이즈와 분류 미확인 장소는 추천·점수에서 제외합니다.</p>
 
       <ExplorationMap regions={content.regions} recommendations={result.recommendations}
         onRegionSelect={(regionId) => go({ name: 'region', regionId })} />

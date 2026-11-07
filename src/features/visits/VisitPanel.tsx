@@ -3,6 +3,7 @@ import { useId, useMemo, useState, type FormEvent } from 'react';
 import { useAppState } from '../../AppState';
 import { content } from '../../data/content';
 import { TIME_ZONE } from '../../domain/policy';
+import { isNonFranchisePlace } from '../../domain/placeEligibility';
 import type { Visit } from '../../domain/types';
 import {
   addVisitRecord,
@@ -48,7 +49,7 @@ export function VisitPanel({ placeId }: { placeId: string }) {
     [place, state.profile, state.visits],
   );
 
-  if (!place || !progress) return null;
+  if (!place || !isNonFranchisePlace(place) || !progress) return null;
 
   function mutateVisits(operation: (previous: readonly Visit[]) => VisitRecordResult): boolean {
     let recordError: VisitRecordError | undefined;

@@ -1,8 +1,9 @@
 // Region map/detail; score and visit state come from the shared engine.
 import { useRef, useState } from 'react';
 import { useAppState } from '../../AppState';
-import { content, placesOfRegion, regionById } from '../../data/content';
+import { content, eventsOfPlace, placesOfRegion, regionById } from '../../data/content';
 import { CATEGORY_LABELS } from '../../domain/policy';
+import { franchiseStatus } from '../../domain/placeEligibility';
 import { eventState, recommend, scorePlaces } from '../../domain/score';
 import { go } from '../../route';
 import { ExplorationMap } from '../map/ExplorationMap';
@@ -21,6 +22,7 @@ export function RegionPage({ regionId }: { regionId: string }) {
     <button onClick={() => go({ name: 'recommend' })}>추천으로 돌아가기</button>
   </section>;
   const scores = state.search ? scorePlaces(region, content, state.profile, state.visits, state.search) : [];
+  const classifications = content.places.filter((place) => place.regionId === region.id).map(franchiseStatus);
   const places = [...placesOfRegion(region.id)].sort((a, b) => {
     const left = scores.find((score) => score.placeId === a.id);
     const right = scores.find((score) => score.placeId === b.id);
@@ -37,6 +39,8 @@ export function RegionPage({ regionId }: { regionId: string }) {
     <p>{region.description}</p>
     {region.source && <p className="region-place-meta"><a href={region.source.url} target="_blank" rel="noreferrer">{region.source.label}</a> · 확인 {region.source.checkedAt}</p>}
     <p>{state.search ? `${state.search.when.replace('T', ' ')} (한국 시간) 기준 장소 추천` : '조건을 설정하면 추천순으로 표시합니다.'}</p>
+    <p className="region-place-meta">프랜차이즈 {classifications.filter((status) => status === 'franchise').length}곳 · 분류 미확인 {classifications.filter((status) => status === 'unknown').length}곳은 목록·지도·점수에서 제외했습니다.</p>
+    {places.length === 0 && <p role="status">비프랜차이즈로 확인된 장소가 아직 없어요.</p>}
     <div className="region-layout">
       <ExplorationMap regions={content.regions} recommendations={result?.recommendations ?? []}
         selectedRegionId={region.id} places={places} selectedPlaceId={selectedPlaceId}
@@ -45,7 +49,7 @@ export function RegionPage({ regionId }: { regionId: string }) {
       <ul className="places region-place-list" aria-label="권역 장소 추천">
         {places.map((place, index) => {
           const scored = scores.find((score) => score.placeId === place.id);
-          const events = content.events.filter((event) => event.placeId === place.id);
+          const events = eventsOfPlace(place.id);
           return <li key={place.id} ref={(element) => { cards.current[place.id] = element; }}
             className={`place${place.id === selectedPlaceId ? ' selected-place' : ''}`}>
             <div className="region-place-heading">
@@ -59,6 +63,11 @@ export function RegionPage({ regionId }: { regionId: string }) {
             {scored?.status.note && <p className="region-place-meta">{scored.status.note}</p>}
             <p className="region-place-meta">{place.opening.entryCondition ?? '이용 조건 확인 필요'} · 도착 후 입장 가능 여부는 별도 확인이 필요합니다.</p>
             {place.isVirtual && <p className="region-place-meta">시연용 가상 장소 · 위치와 운영정보도 가상입니다.</p>}
+            <p className="region-place-meta">{place.isVirtual ? '비프랜차이즈 설정 (시연용)' : <>
+              비프랜차이즈 확인 · {place.franchise.source?.url
+                ? <a href={place.franchise.source.url} target="_blank" rel="noreferrer">{place.franchise.source.label}</a>
+                : place.franchise.source?.label} · {place.franchise.source?.checkedAt}
+            </>}</p>
             <p className="region-place-meta">출처: {place.source?.label ?? '확인 필요'}{place.source && ` · 확인일 ${place.source.checkedAt}`}</p>
             {events.map((event) => <div className="region-place-meta" key={event.id}>
               <strong>{event.name}{event.isVirtual ? ' (시연용)' : ''}</strong>

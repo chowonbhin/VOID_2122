@@ -1,6 +1,7 @@
 // Content loader. Owner: Byeunghee02. Edit the JSON files, not this module.
 import type { Event, FootfallDataset, Place, Region } from '../domain/types';
 import { validateFootfallDataset } from '../domain/footfall';
+import { hasClassificationSource, isNonFranchisePlace } from '../domain/placeEligibility';
 import regionsJson from './regions.json';
 import placesJson from './places.json';
 import eventsJson from './events.json';
@@ -33,6 +34,11 @@ export function validateContent(c: Content): string[] {
   const placeIds = new Set(c.places.map((p) => p.id));
   for (const p of c.places) {
     if (!regionIds.has(p.regionId)) problems.push(`place ${p.id}: unknown regionId ${p.regionId}`);
+    if (!p.franchise || !['non_franchise', 'franchise', 'unknown'].includes(p.franchise.status)) {
+      problems.push(`place ${p.id}: missing or invalid franchise classification`);
+    } else if (p.franchise.status !== 'unknown' && !hasClassificationSource(p.franchise.source)) {
+      problems.push(`place ${p.id}: franchise classification without valid source`);
+    }
     if (!p.opening) problems.push(`place ${p.id}: missing opening`);
     else if (p.opening.status === 'known' && !p.opening.weekly) problems.push(`place ${p.id}: known opening without weekly hours`);
     if (p.opening?.status === 'known' && !p.source) problems.push(`place ${p.id}: known opening without source`);
@@ -56,5 +62,10 @@ export function validateContent(c: Content): string[] {
 }
 
 export const regionById = (id: string) => content.regions.find((r) => r.id === id);
-export const placesOfRegion = (regionId: string) => content.places.filter((p) => p.regionId === regionId);
-export const eventsOfPlace = (placeId: string) => content.events.filter((e) => e.placeId === placeId);
+/** Discovery content: exclusion also applies to direct exploration without search conditions. */
+export const placesOfRegion = (regionId: string, data: Content = content) =>
+  data.places.filter((p) => p.regionId === regionId && isNonFranchisePlace(p));
+export const eventsOfPlace = (placeId: string, data: Content = content) => {
+  const place = data.places.find((p) => p.id === placeId);
+  return place && isNonFranchisePlace(place) ? data.events.filter((e) => e.placeId === placeId) : [];
+};

@@ -77,6 +77,12 @@ export interface Place {
   regionId: RegionId;
   name: string;
   category: Category;
+  /** Product classification includes franchise branches and same-brand company-operated chains. */
+  franchise: {
+    status: 'non_franchise' | 'franchise' | 'unknown';
+    /** Independent of opening-hours source. Simulated classifications must say so. */
+    source: Source | null;
+  };
   location: LatLng;
   /** 기본 가치 B, 0~100. Not a star rating. */
   baseValue: number;

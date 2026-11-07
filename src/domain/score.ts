@@ -17,6 +17,7 @@ import {
   levelFromDistinctVisits,
 } from './policy';
 import { footfallAdjustment } from './footfall';
+import { isNonFranchisePlace } from './placeEligibility';
 
 // ---------- time (selected time is always Asia/Seoul) ----------
 
@@ -103,7 +104,7 @@ export function eventBonus(placeId: string, events: Event[], ctx: SearchContext,
 
 /** Distinct places visited in the region. Repeat visits to one place count once. */
 export function distinctVisitedPlaces(regionId: string, visits: Visit[], places: Place[]): string[] {
-  const inRegion = new Set(places.filter((p) => p.regionId === regionId).map((p) => p.id));
+  const inRegion = new Set(places.filter((p) => p.regionId === regionId && isNonFranchisePlace(p)).map((p) => p.id));
   return [...new Set(visits.map((v) => v.placeId).filter((id) => inRegion.has(id)))];
 }
 
@@ -145,7 +146,7 @@ export interface PlaceScore {
 export function scorePlaces(region: Region, content: Content, profile: Profile, visits: Visit[], ctx: SearchContext): PlaceScore[] {
   const regionLv = regionLevel(region.id, profile, visits, content.places);
   return content.places
-    .filter((p) => p.regionId === region.id)
+    .filter((p) => p.regionId === region.id && isNonFranchisePlace(p))
     .map((p) => {
       const status = placeStatus(p, ctx.when);
       const level = placeLevel(p.id, regionLv, visits);
