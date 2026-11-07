@@ -1,18 +1,19 @@
 // Region map/detail; score and visit state come from the shared engine.
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAppState } from '../../AppState';
 import { content, eventsOfPlace, placesOfRegion, regionById } from '../../data/content';
 import { CATEGORY_LABELS } from '../../domain/policy';
 import { distanceKm, eventState, placeStatus } from '../../domain/score';
 import { placePopularity, POPULARITY_LABELS } from '../../domain/popularity';
 import { placeRating } from '../../domain/rating';
+import { openingOnDate } from '../../domain/opening';
 import { go } from '../../route';
 import { discoverPlaces } from '../../domain/discovery';
 import { centreLatLng, dongByCode, dongsOfRegion } from '../map/ansanGeo';
 import { DongMap, type MapMarker } from '../map/DongMap';
 import { Memories, type MemoryItem } from './Memories';
 import { loadSadongMemoryPreview, SADONG_ID, SADONG_MEMORY_KEY, type SadongMemoryPreview } from './sadongMemories';
-import { VisitPanel } from '../visits/VisitPanel';
+import { VisitDialog } from '../visits/VisitDialog';
 import './region.css';
 
 const statusLabel = { open: '운영 중', closed: '휴무·이용 마감', unknown: '운영정보 미확인' };
@@ -52,6 +53,14 @@ function RegionDetail({ regionId }: { regionId: string }) {
   const [mapPage, setMapPage] = useState(0);
   const [selectedId, setSelectedId] = useState<string>();
   const [memoryId, setMemoryId] = useState<string>();
+  const [visitPlaceId, setVisitPlaceId] = useState<string>();
+  const [now, setNow] = useState(nowKst);
+  useEffect(() => {
+    const refresh = () => setNow(nowKst());
+    const timer = window.setInterval(refresh, 30_000);
+    document.addEventListener('visibilitychange', refresh);
+    return () => { window.clearInterval(timer); document.removeEventListener('visibilitychange', refresh); };
+  }, []);
   const [preview, setPreview] = useState(() => regionId === SADONG_ID
     ? loadSadongMemoryPreview(content.places)
     : { value: { enabled: false, placeIds: [] } as SadongMemoryPreview, error: '' });
@@ -109,7 +118,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
     }
   };
 
-  const now = nowKst();
+  const visitPlace = places.find(place => place.id === visitPlaceId);
 
   return <section className="region-detail">
     <p className="eyebrow">동네 둘러보기</p>
@@ -155,12 +164,13 @@ function RegionDetail({ regionId }: { regionId: string }) {
       <section className="region-recommend" aria-labelledby="region-recommend-title">
       <p className="region-recommend-kicker">동네 추천</p>
       <h2 className="region-list-heading" id="region-recommend-title">{filter === 'visited' ? '다시 떠올리는 발걸음' : '이 동네에서 발견하기'}</h2>
-      <p className="region-note">관심 활동에 맞는 곳부터 보여드려요. 운영 정보는 오늘 {todayLabel.format(new Date())} 기준이에요.</p>
+      <p className="region-note">관심 활동에 맞는 곳부터 보여드려요. 운영 정보는 오늘 {todayLabel.format(new Date(now + '+09:00'))} 기준이에요.</p>
       <ul className="places region-place-list" aria-label="행정동 장소 추천">
         {/* Opening status always follows today's Korean time, not the time saved with the search. */}
         {visiblePlaces.map((place, index) => {
           const scored = scores.find((score) => score.placeId === place.id);
           const status = placeStatus(place, now);
+          const hours = openingOnDate(place.opening, now.slice(0, 10));
           const popularity = scored?.popularity ?? placePopularity(place, content.places);
           const events = eventsOfPlace(place.id);
           return <li key={place.id} ref={(element) => { cards.current[place.id] = element; }}
@@ -169,14 +179,24 @@ function RegionDetail({ regionId }: { regionId: string }) {
             <p className="region-category">{visitedIds.has(place.id) ? '내가 다녀온 곳' : '아직 안 가본 곳'}</p>
             <div className="region-place-heading">
               <h2>{index + 1}. {place.name}</h2>
+              <div className="region-place-actions">
+              <button type="button" className="region-visit-trigger" aria-label={`${place.name} 방문 날짜 설정`} aria-haspopup="dialog"
+                onClick={() => setVisitPlaceId(place.id)}>방문 기록</button>
               <button className="region-map-focus" aria-label={`${place.name} 카드에서 선택`} title="지도에서 강조" aria-pressed={place.id === selectedPlaceId}
                 onClick={() => { setSelectedId(place.id); setMapPage(Math.max(0, Math.floor(locatedPlaces.findIndex(item => item.id === place.id) / 8))); }}>
                 <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
                   <path d="M12 2.5a7 7 0 0 0-7 7c0 5 7 12 7 12s7-7 7-12a7 7 0 0 0-7-7zm0 9.6a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2z" fill="currentColor" />
                 </svg>
               </button>
+              </div>
             </div>
             <p>{CATEGORY_LABELS[place.category]} · {statusLabel[status.status]}</p>
+            <div className="region-today-hours" aria-label={`${place.name} 오늘 운영시간`}>
+              <p><strong>오늘 운영시간</strong> <time dateTime={now.slice(0, 10)}>{now.slice(5, 10).replace('-', '.')}</time></p>
+              {hours.status === 'unknown' ? <p>운영시간 미확인</p> : hours.ranges.length === 0 ? <p>오늘 휴무</p>
+                : <ul>{hours.ranges.map((range, slot) => <li key={slot}><span>{range.open}–{range.close}</span>
+                  {range.lastEntry && <small>입장·주문 마감 {range.lastEntry}</small>}</li>)}</ul>}
+            </div>
             {!scored?.eligible && state.search && <p>지금 조건에서는 추천하지 않지만 둘러볼 수 있어요.</p>}
             {status.note && <p className="region-place-meta">{friendlyNote(status.note)}</p>}
             {/* When hours are unconfirmed the status note already says to check; don't repeat it. */}
@@ -189,11 +209,11 @@ function RegionDetail({ regionId }: { regionId: string }) {
               <p>{eventLabel[eventState(event, now)]} · {event.condition.text ?? '참여 조건 확인 필요'}</p>
               {event.sessions.map((session, n) => <p key={n}>{eventDate.format(new Date(session.start))} ~ {eventDate.format(new Date(session.end))} (한국 시간)</p>)}
             </div>)}
-            <VisitPanel placeId={place.id} />
           </li>;
         })}
       </ul>
       </section>
     </div>
+    {visitPlace && <VisitDialog key={visitPlace.id} place={visitPlace} onClose={() => setVisitPlaceId(undefined)} />}
   </section>;
 }

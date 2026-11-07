@@ -2,6 +2,7 @@ import { test, expect, type Locator, type Page } from './baseline';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { UserState } from '../../src/storage';
+import { openVisit } from './real';
 
 // Isolated coverage for zT4ek's visit feature while the other demo screens are pending.
 // The happy path uses the actual VisitPanel and shared persistence, without mocked results.
@@ -35,7 +36,7 @@ async function openRegion(page: Page, state = initialState()): Promise<Locator> 
   }, { key: KEY, state });
   await page.goto(`${BASE_URL}/#/region/dong-4127154000`);
   await page.getByRole('button', { name: '전체 후보', exact: true }).click();
-  return page.getByRole('region', { name: `${PLACE} 방문 기록`, exact: true });
+  return openVisit(page, PLACE);
 }
 
 async function addVisit(panel: Locator, date: string): Promise<void> {
@@ -76,6 +77,7 @@ test('records persist, can be edited and revisited, reject duplicate days, and d
 
   await page.reload();
   await page.getByRole('button', { name: '전체 후보', exact: true }).click();
+  await openVisit(page, PLACE);
   await expectProgress(panel, 1, 2, 1);
   await expect(panel.getByText('2026-11-08', { exact: true })).toBeVisible();
   await expect(panel.getByText('다녀왔어요', { exact: true })).toHaveCount(1);
@@ -109,6 +111,7 @@ test('records persist, can be edited and revisited, reject duplicate days, and d
   await expectProgress(panel, 0, 0, 0);
   await page.reload();
   await page.getByRole('button', { name: '전체 후보', exact: true }).click();
+  await openVisit(page, PLACE);
   await expect(panel.getByText('아직 남긴 방문 기록이 없어요.', { exact: true })).toBeVisible();
   await expectProgress(panel, 0, 0, 0);
   const afterDelete = await persisted(page);
@@ -124,25 +127,35 @@ test('three distinct places raise regional Lv and removing the last record for e
 
   await addVisit(first, '2026-11-08');
   await expectProgress(first, 1, 2, 1);
+  await openVisit(page, '문다방');
   await expectProgress(second, 1, 1, 1);
   await addVisit(second, '2026-11-08');
   await expectProgress(second, 1, 2, 2);
+  await openVisit(page, '보노다방');
   await expectProgress(third, 1, 1, 2);
   await addVisit(third, '2026-11-08');
-  await expectProgress(first, 2, 3, 3);
-  await expectProgress(second, 2, 3, 3);
   await expectProgress(third, 2, 3, 3);
+  await openVisit(page, PLACE);
+  await expectProgress(first, 2, 3, 3);
+  await openVisit(page, '문다방');
+  await expectProgress(second, 2, 3, 3);
   await page.reload();
   await page.getByRole('button', { name: '전체 후보', exact: true }).click();
+  await openVisit(page, PLACE);
   await expectProgress(first, 2, 3, 3);
 
+  await openVisit(page, '보노다방');
   await third.getByRole('button', { name: '2026-11-08 방문 기록 삭제', exact: true }).click();
   await expectProgress(third, 1, 1, 2);
+  await openVisit(page, PLACE);
   await expectProgress(first, 1, 2, 2);
+  await openVisit(page, '문다방');
   await second.getByRole('button', { name: '2026-11-08 방문 기록 삭제', exact: true }).click();
   await expectProgress(second, 1, 1, 1);
+  await openVisit(page, PLACE);
   await first.getByRole('button', { name: '2026-11-08 방문 기록 삭제', exact: true }).click();
   await expectProgress(first, 0, 0, 0);
+  await openVisit(page, '문다방');
   await expectProgress(second, 0, 0, 0);
 });
 
@@ -153,12 +166,16 @@ test('deleting visits preserves initial regional familiarity and unvisited place
   const panel = await openRegion(page, seed);
   const unvisited = page.getByRole('region', { name: '문다방 방문 기록', exact: true });
   await expectProgress(panel, 2, 3, 1);
+  await openVisit(page, '문다방');
   await expectProgress(unvisited, 2, 2, 1);
+  await openVisit(page, PLACE);
   await panel.getByRole('button', { name: '2026-11-08 방문 기록 삭제', exact: true }).click();
   await expectProgress(panel, 2, 2, 0);
+  await openVisit(page, '문다방');
   await expectProgress(unvisited, 2, 2, 0);
   await page.reload();
   await page.getByRole('button', { name: '전체 후보', exact: true }).click();
+  await openVisit(page, PLACE);
   await expectProgress(panel, 2, 2, 0);
   expect((await persisted(page)).profile.initialLevels['dong-4127154000']).toBe(2);
 });
@@ -189,7 +206,9 @@ test('write failure preserves existing records and shows no successful add, edit
   const panel = page.getByRole('region', { name: `${PLACE} 방문 기록`, exact: true });
   const unvisited = page.getByRole('region', { name: '문다방 방문 기록', exact: true });
   const unchanged = async () => expect(await persisted(page)).toEqual(seed);
+  await openVisit(page, PLACE);
   await expectProgress(panel, 1, 2, 1);
+  await openVisit(page, '문다방');
   await expectProgress(unvisited, 1, 1, 1);
 
   await unvisited.getByLabel('방문일', { exact: true }).fill('2026-11-09');
@@ -197,9 +216,10 @@ test('write failure preserves existing records and shows no successful add, edit
   await expect(unvisited.getByRole('alert')).toContainText('기록을 저장하지 못했어요');
   await expect(unvisited.getByRole('status')).toHaveCount(0);
   await expectProgress(unvisited, 1, 1, 1);
+  await expect(unvisited.getByText('다녀왔어요', { exact: true })).toHaveCount(0);
+  await openVisit(page, PLACE);
   await expectProgress(panel, 1, 2, 1);
   await expect(panel.getByText('다녀왔어요', { exact: true })).toHaveCount(1);
-  await expect(unvisited.getByText('다녀왔어요', { exact: true })).toHaveCount(0);
   await unchanged();
 
   await panel.getByRole('button', { name: '2026-11-08 방문일 수정', exact: true }).click();

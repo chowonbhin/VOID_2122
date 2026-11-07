@@ -1,6 +1,6 @@
 import { test, expect } from './baseline';
 import fs from 'node:fs';
-import { base, setup, list, openBono } from './real';
+import { base, setup, list, openBono, openVisit, closeVisit } from './real';
 
 const REGION = 'dong-4127152500';
 const KEY = 'ansan-explore/sadong-memory-preview/v2';
@@ -82,9 +82,10 @@ test('a real visit to an example remains a real record after examples are hidden
   const example = memories.getByRole('list').getByRole('button').first();
   const name = await example.locator('strong').innerText();
   await example.click();
-  const panel = page.getByRole('region', { name: `${name} 방문 기록`, exact: true });
+  const panel = await openVisit(page, name);
   await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
   await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
+  await closeVisit(page);
   await expect(memories.getByRole('list').getByRole('button').filter({ has: page.getByText(name, { exact: true }) })).toHaveCount(1);
   await expect(memories).toContainText('2026년 11월 8일');
   const withVisit = await state(page);

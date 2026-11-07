@@ -15,3 +15,14 @@ export async function openBono(page: Page) {
   await page.goto(`${base}/#/region/dong-4127154000`);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('본오1동');
 }
+export async function closeVisit(page: Page) {
+  const close = page.getByRole('button', { name: '방문 날짜 설정 닫기', exact: true });
+  if (await close.isVisible()) await close.click();
+}
+export async function openVisit(page: Page, name: string) {
+  if (!await page.getByRole('dialog', { name: `${name} 방문 날짜 설정`, exact: true }).isVisible()) {
+    await closeVisit(page);
+    await page.getByRole('button', { name: `${name} 방문 날짜 설정`, exact: true }).click();
+  }
+  return page.getByRole('region', { name: `${name} 방문 기록`, exact: true });
+}

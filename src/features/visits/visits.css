@@ -17,7 +17,16 @@
 .visit-record-summary time { font-variant-numeric: tabular-nums; }
 .visit-badge { padding: 3px 8px; border-radius: 100px; background: var(--accent-soft); color: var(--accent); font-size: 12px; }
 .visit-edit-form { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.visit-dialog { width: min(480px, calc(100vw - 28px)); max-height: calc(100dvh - 40px); padding: 0; border: 1px solid var(--line-strong); border-radius: 22px; background: var(--bg); color: var(--fg); box-shadow: 0 24px 80px #152a3a3d; overflow: auto; }
+.visit-dialog::backdrop { background: #23352e88; backdrop-filter: blur(3px); }
+.visit-dialog-body { padding: 24px; }
+.visit-dialog-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.visit-dialog-heading h2 { font-size: 22px; margin: 4px 0 0; overflow-wrap: anywhere; }
+.visit-dialog-heading p { margin: 0; color: var(--muted); font-size: 12px; }
+.visit-dialog-close { flex: 0 0 44px; min-height: 44px; padding: 4px; border: 0; background: transparent; font-size: 27px; }
+.visit-dialog .visit-panel { margin-top: 20px; padding-top: 20px; }
 @media (max-width: 480px) {
+  .visit-dialog-body { padding: 18px; }
   .visit-form label { width: 100%; }
   .visit-form input { flex: 1; }
   .visit-edit-form { width: 100%; }

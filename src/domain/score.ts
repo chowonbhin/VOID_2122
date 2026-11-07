@@ -26,6 +26,7 @@ import { footfallAdjustment } from './footfall';
 import { franchiseStatus, isRecommendationCandidate, isRealSearchPlace } from './placeEligibility';
 import { createPopularityResolver, type PopularityResult } from './popularity';
 import { placeRating, type RatingResult } from './rating';
+import { openingOnDate } from './opening';
 
 // ---------- time (selected time is always Asia/Seoul) ----------
 
@@ -68,16 +69,11 @@ export function placeStatus(place: Place, when: string): PlaceStatusResult {
   const o = place.opening;
   if (!o || o.status !== 'known' || !o.weekly) return { status: 'unknown', note: '운영정보 미확인' };
   const t = parseKst(when);
-  if (o.verifiedPeriod && (t.date < o.verifiedPeriod.from || t.date > o.verifiedPeriod.through)) {
-    return { status: 'unknown', note: '운영정보 검토 기간 밖 · 공식 안내 재확인 필요' };
-  }
-  const exception = o.exceptions?.find((e) => e.date === t.date);
-  if (!exception && o.unknownDays?.includes(t.dayOfWeek)) {
-    return { status: 'unknown', note: '선택한 요일의 운영정보 미확인' };
-  }
-  const ranges = exception ? exception.ranges : (o.weekly[t.dayOfWeek] ?? []);
-  if (ranges.length === 0) return { status: 'closed', note: exception?.note ?? '휴무일' };
-  if (ranges.some((r) => inRange(r, t.minutes))) return { status: 'open', note: exception?.note };
+  const hours = openingOnDate(o, t.date);
+  if (hours.status === 'unknown') return hours;
+  const { ranges } = hours;
+  if (ranges.length === 0) return { status: 'closed', note: hours.note ?? '휴무일' };
+  if (ranges.some((r) => inRange(r, t.minutes))) return { status: 'open', note: hours.note };
   const afterEntry = ranges.find((r) => r.lastEntry && toMinutes(r.lastEntry) <= t.minutes && t.minutes < toMinutes(r.close));
   return { status: 'closed', note: afterEntry ? `입장·주문 마감 ${afterEntry.lastEntry}` : '운영 시간 아님' };
 }
