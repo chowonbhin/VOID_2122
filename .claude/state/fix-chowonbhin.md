@@ -29,3 +29,11 @@ URL as well as locally.
 - Step 6: not due yet. Captain scope review at 03:00; 02:00 checkpoint review requested. No scope cuts made.
 - Current app: 25 dongs, 3 scored simulated-place dongs, 3 awaiting popularity counts, 19 preparing. 413 collected candidates are not all verified recommendations.
 - Test source/spec: cc03041bf9e78c06986d59944ff8c1c9f9887d39; public deployment SHA not independently queried. Existing owner assignments retained.
+
+## Local main integration — 2026-11-08 02:37 KST
+- User requested latest main, tests and local run. Integrated 4decbfe into own branch; tested source a420922aca6aec23647fa138a715b7e259e10f91.
+- Step 1: local PC/mobile golden path 3 runs each PASS 5/5; evidence 02-35-48 and 02-36-05-mobile. Public checks not rerun for this local-execution request.
+- Steps 2–3: full browser suite 36/37 passes; zT4ek demo-fill.spec.ts captures originals before headings render (initial [] versus restored 20). Original test unchanged; owner follow-up required.
+- Separate readiness-aware diagnosis restores 20 headings and original score through visit/reload/pool toggles/deletion. Evidence local-main-2026-11-08-0235; this does not turn the failed repository test into a PASS.
+- Typecheck/build PASS, unit 123/123. Step 4: inspected onboarding and 320px map screenshots. Step 5: no new runtime API/LLM requirement. Step 6: 03:00 scope review still upcoming.
+- Preview serves latest dist at http://127.0.0.1:3011/; opened in default browser. No application source changes or push.
