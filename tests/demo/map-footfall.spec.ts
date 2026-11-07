@@ -16,24 +16,27 @@ async function shot(page: Page, name: string) {
   await expect(page.locator('.map-canvas')).toHaveAttribute('aria-busy', 'false', { timeout: 15000 });
   fs.mkdirSync(evidence, { recursive: true });
   await page.screenshot({ path: `${evidence}/${name}.png`, fullPage: true });
+  await page.getByRole('region', { name: '안산 탐험 지도' }).screenshot({ path: `${evidence}/${name}-map.png` });
   console.log(`map evidence: ${evidence}/${name}.png`);
 }
 
-test('real-region map → recommended places → visit → footfall and map scores persist, deletion restores', async ({ page }) => {
+test('Ansan schematic → places → visit changes score and shade, persistence and deletion restore', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
   await setup(page);
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
-  await expect(map.getByRole('button', { name: /^지도 A권역/ })).toContainText('1순위 · 240.7점');
-  await expect(map.getByRole('button', { name: /^지도 B권역/ })).toContainText('2순위 · 207.0점');
+  await expect(map.getByRole('button', { name: /^지도 A권역/ })).toHaveAccessibleName(/240.7.*1순위/);
+  await expect(map.getByRole('button', { name: /^지도 B권역/ })).toHaveAccessibleName(/207.0.*2순위/);
   await expect(rankCards(page).first()).toContainText('150,039명');
   await expect(rankCards(page).nth(1)).toContainText('65,567명');
   await expect(rankCards(page).first()).toContainText('Lv.0 감점 없음');
-  await expect(page.locator('.leaflet-tile-loaded').first()).toBeVisible({ timeout: 15000 });
+  await expect(map.getByText('300+', { exact: true })).toBeVisible();
   await shot(page, 'map-before-visit');
-  // Keyboard activation of the polygon, not just the fallback cards.
-  await map.getByRole('button', { name: /^영역 A권역/ }).focus();
+  const aFill = await map.locator('[data-region-id="region-a"]').getAttribute('fill');
+  const bFill = await map.locator('[data-region-id="region-b"]').getAttribute('fill');
+  // A keyboard user can open every region without interacting with SVG paths.
+  await map.getByRole('button', { name: /^지도 A권역/ }).focus();
   await page.keyboard.press('Enter');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('A권역 · 중앙동·중앙역');
   const list = page.getByRole('list', { name: '권역 장소 추천' });
@@ -49,18 +52,22 @@ test('real-region map → recommended places → visit → footfall and map scor
   const visit = page.getByRole('region', { name: '시연 산책 공간 방문 기록', exact: true });
   await visit.getByLabel('방문일', { exact: true }).fill('2026-11-08');
   await visit.getByRole('button', { name: '방문 기록', exact: true }).click();
-  await expect(map.getByRole('button', { name: /^지도 A권역/ })).toContainText('188.9점');
+  await expect(map.getByRole('button', { name: /^지도 A권역/ })).toContainText('188.9');
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
   await expect(rankCards(page).first()).toHaveAccessibleName(/B권역/);
   await expect(rankCards(page).nth(1)).toContainText('유동인구 감점 3.21점');
   await expect(map.getByRole('button', { name: /^지도 B권역/ })).toContainText('1순위');
   await page.reload();
-  await expect(map.getByRole('button', { name: /^지도 A권역/ })).toContainText('2순위 · 188.9점');
+  await expect(map.getByRole('button', { name: /^지도 A권역/ })).toHaveAccessibleName(/188.9.*2순위/);
+  await expect(map.locator('[data-region-id="region-a"]')).not.toHaveAttribute('fill', aFill!);
+  // B changes rank, but its unchanged score must keep exactly the same shade.
+  await expect(map.locator('[data-region-id="region-b"]')).toHaveAttribute('fill', bFill!);
   await shot(page, 'map-after-visit');
   await map.getByRole('button', { name: /^지도 A권역/ }).click();
   await visit.getByRole('button', { name: '2026-11-08 방문 기록 삭제', exact: true }).click();
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
-  await expect(map.getByRole('button', { name: /^지도 A권역/ })).toContainText('1순위 · 240.7점');
+  await expect(map.getByRole('button', { name: /^지도 A권역/ })).toHaveAccessibleName(/240.7.*1순위/);
+  await expect(map.locator('[data-region-id="region-a"]')).toHaveAttribute('fill', aFill!);
   expect(errors).toEqual([]);
 });
 
@@ -78,27 +85,41 @@ test('same familiarity penalizes the busier region more, with mobile map and det
   await expect(map.getByRole('button', { name: /^지도 A권역/ })).toBeVisible();
   await expect(map.getByRole('button', { name: /^지도 B권역/ })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await expect(page.locator('.leaflet-tile-loaded').first()).toBeVisible({ timeout: 15000 });
+  await expect(map.getByText('300+', { exact: true })).toBeVisible();
   await shot(page, 'map-mobile');
   await map.getByRole('button', { name: /^지도 B권역/ }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('B권역 · 안산역·다문화거리');
+  // Every marker must be clickable on a narrow phone, without obscuring a neighbour.
+  await page.setViewportSize({ width: 320, height: 844 });
+  const markerNames = await map.getByRole('button', { name: /지도에서 선택$/ }).evaluateAll(nodes => nodes.map(node => node.getAttribute('aria-label')!));
+  for (const name of markerNames) {
+    const marker = map.getByRole('button', { name, exact: true });
+    await marker.click();
+    await expect(marker).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByRole('button', { name: name.replace('지도에서', '카드에서'), exact: true })).toHaveAttribute('aria-pressed', 'true');
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
   await map.getByRole('button', { name: '시연 공방 지도에서 선택', exact: true }).click();
   await expect(page.getByRole('button', { name: '시연 공방 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await shot(page, 'map-detail-mobile');
 });
 
-test('tile failure keeps the polygon and list usable, excluded regions remain explorable', async ({ page }) => {
-  // Failure-path injection only; the normal browser tests use real OSM tiles.
-  await page.route('https://tile.openstreetmap.org/**', route => route.abort('failed'));
+test('schematic uses no external map requests and excluded regions remain explorable offline', async ({ page, context }) => {
+  const external: string[] = [];
+  page.on('request', request => { if (new URL(request.url()).origin !== new URL(baseURL).origin) external.push(request.url()); });
   await setup(page);
-  await expect(page.getByRole('status')).toContainText('배경지도를 불러오지 못했습니다');
+  await context.setOffline(true);
   await page.getByRole('button', { name: '조건 변경' }).click();
   await page.getByLabel('최대 거리 (km)').fill('0.1');
   await page.getByRole('button', { name: '추천 받기' }).click();
   await expect(page.getByText('조건에 맞는 추천 권역이 없어요', { exact: true })).toBeVisible();
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
   await expect(map.getByRole('button', { name: /^지도 A권역/ })).toContainText('조건 미충족');
-  await map.getByRole('button', { name: /^지도 A권역/ }).click();
+  await expect(map.locator('[data-region-id="region-a"]')).toHaveAttribute('fill', '#e3e7e3');
+  await expect(map.locator('[data-region-id="region-a"]')).toHaveAttribute('data-score', 'unavailable');
+  // The coloured region body also opens its recommendations, beyond its text button.
+  await map.locator('[data-region-id="region-a"]').click({ position: { x: 35, y: 70 } });
   await expect(page.getByRole('list', { name: '권역 장소 추천' }).locator(':scope > li')).toHaveCount(5);
+  expect(external).toEqual([]);
 });

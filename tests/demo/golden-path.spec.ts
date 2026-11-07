@@ -4,10 +4,10 @@
  *
  * GOLDEN PATH (copied from .claude/state/golden-path.md, used for drift detection):
  * 1. Open the app → landing page with the one-sentence pitch and a "탐험 시작" button (owner: Byeunghee02)
- * 2. "탐험 시작" → choose 지역별 익숙함(신규 주민), 관심 활동, 출발지, 날짜·시각, 최대 거리 and press "추천 받기" → 안산 지도 with region boundaries, computed scores and ranks; supporting cards show 추천 이유, 시작점 직선거리, 운영 확인 장소 수, 유동인구 감점 (A above B) [API] (OSM tiles) (owner: chowonbhin)
- * 3. Click a region on the map → zoomed region map and only that region's 5 places ordered by recommendation, with 운영 중/휴무/운영정보 미확인, 출처·확인일 and event cards; clicking a marker selects the same place card [API] (OSM tiles; list still works if tiles fail) (owner: iwtkmn0219)
+ * 2. "탐험 시작" → choose 지역별 익숙함(신규 주민), 관심 활동, 출발지, 날짜·시각, 최대 거리 and press "추천 받기" → 안산 schematic with softly rounded region edges, fixed score-based green shades, computed scores and ranks; supporting cards show 추천 이유, 시작점 직선거리, 운영 확인 장소 수, 유동인구 감점 (A above B) (owner: chowonbhin)
+ * 3. Click a region on the map → selected region schematic and only that region's 5 places ordered by recommendation, with 운영 중/휴무/운영정보 미확인, 출처·확인일 and event cards; clicking a marker selects the same place card (owner: iwtkmn0219)
  * 4. On a place, enter a 방문일 and press "방문 기록" → the record appears labelled "자기 신고" and the region shows Lv.0 → Lv.1 (owner: zT4ek)
- * 5. Press "추천으로 돌아가기", then reload the page → map scores, footfall penalty and recommendation recomputed from the visit (B now above A); visit and new order persist [API] (OSM tiles) (owner: zT4ek)
+ * 5. Press "추천으로 돌아가기", then reload the page → map scores, footfall penalty and recommendation recomputed from the visit (B now above A); visit, new order and score shades persist (unchanged scores keep the same shade) (owner: zT4ek)
  */
 import { test, expect, type Page } from '@playwright/test';
 import fs from 'node:fs';
@@ -100,8 +100,8 @@ test('golden path', async ({ page }) => {
         await expect(cards).toHaveCount(2);
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 A권역/);
         await expect(cards.nth(1)).toHaveAccessibleName(/2순위 B권역/);
-        await expect(page.getByRole('button', { name: /^지도 A권역/ })).toContainText('1순위 · 240.7점');
-        await expect(page.locator('.map-canvas')).toHaveAttribute('aria-busy', 'false');
+        await expect(page.getByRole('button', { name: /^지도 A권역/ })).toContainText('240.7점');
+        await expect(page.getByText('300+', { exact: true })).toBeVisible();
         for (const card of [cards.nth(0), cards.nth(1)]) {
           await expect(card).toContainText('추천 이유');
           await expect(card).toContainText('시작점 직선거리');
@@ -109,7 +109,6 @@ test('golden path', async ({ page }) => {
           await expect(card).toContainText('운영정보 미확인 1곳');
         }
       },
-      { budgetMs: 8000 }, // This step now loads external map tiles.
     );
 
     await demoStep(
@@ -129,9 +128,8 @@ test('golden path', async ({ page }) => {
         await expect(places).not.toContainText('시연 골목 시장');
         await page.getByRole('button', { name: '시연 작은 전시관 지도에서 선택', exact: true }).click();
         await expect(page.getByRole('button', { name: '시연 작은 전시관 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
-        await expect(page.locator('.map-canvas')).toHaveAttribute('aria-busy', 'false');
+        await expect(page.getByText('300+', { exact: true })).toBeVisible();
       },
-      { budgetMs: 8000 }, // API map step; normal form/visit steps retain their existing budget.
     );
 
     // zT4ek: record the visit through the real form and assert the persisted UI state.
@@ -161,7 +159,7 @@ test('golden path', async ({ page }) => {
         await expect(cards.nth(1)).toHaveAccessibleName(/2순위 A권역/);
         await expect(cards.nth(1)).toContainText('지역 Lv.1');
         await expect(cards.nth(1)).toContainText('유동인구 감점 3.21점');
-        await expect(page.getByRole('button', { name: /^지도 A권역/ })).toContainText('2순위 · 188.9점');
+        await expect(page.getByRole('button', { name: /^지도 A권역/ })).toContainText('188.9점');
         await page.reload();
         await expect(page.getByRole('heading', { name: '추천 권역' })).toBeVisible();
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 B권역/);
@@ -174,9 +172,8 @@ test('golden path', async ({ page }) => {
         await expect(visits.getByText('지역 Lv.1', { exact: true })).toBeVisible();
         await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 B권역/);
-        await expect(page.locator('.map-canvas')).toHaveAttribute('aria-busy', 'false');
+        await expect(page.getByText('300+', { exact: true })).toBeVisible();
       },
-      { budgetMs: 8000 }, // Reload/navigation now loads external map tiles.
     );
   } finally {
     fs.appendFileSync(

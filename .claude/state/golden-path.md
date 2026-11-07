@@ -5,16 +5,16 @@ Mark steps that call an external service with [LLM] or [API].
 After kickoff, only the captain (Byeunghee02) changes this file.
 
 Source: `mvp_implementation_plan.md` §7.2. Updated 2026-11-08 at the user's explicit request
-for a map-first UI, real regions and the original footfall penalty policy. Owners are unchanged.
+for an Ansan-only schematic with softened polygon corners, score-driven shades, real regions and the original footfall penalty policy. Owners are unchanged.
 Region A = 중앙동·중앙역, B = 안산역·다문화거리. Starts and August footfall are real-source data;
 places, opening hours and events remain labelled simulations. See `src/data/README.md`.
 The step-5 rank swap is calculated: A 240.7024 → 188.8980 after a1, B remains 207.0125.
 
 1. Open the app → landing page with the one-sentence pitch and a "탐험 시작" button (owner: Byeunghee02)
-2. "탐험 시작" → choose 지역별 익숙함(신규 주민), 관심 활동, 출발지, 날짜·시각, 최대 거리 and press "추천 받기" → 안산 지도 with region boundaries, computed scores and ranks; supporting cards show 추천 이유, 시작점 직선거리, 운영 확인 장소 수, 유동인구 감점 (A above B) [API] (OSM tiles) (owner: chowonbhin)
-3. Click a region on the map → zoomed region map and only that region's 5 places ordered by recommendation, with 운영 중/휴무/운영정보 미확인, 출처·확인일 and event cards; clicking a marker selects the same place card [API] (OSM tiles; list still works if tiles fail) (owner: iwtkmn0219)
+2. "탐험 시작" → choose 지역별 익숙함(신규 주민), 관심 활동, 출발지, 날짜·시각, 최대 거리 and press "추천 받기" → 안산 schematic with softly rounded region edges, fixed score-based green shades, computed scores and ranks; supporting cards show 추천 이유, 시작점 직선거리, 운영 확인 장소 수, 유동인구 감점 (A above B) (owner: chowonbhin)
+3. Click a region on the map → selected region schematic and only that region's 5 places ordered by recommendation, with 운영 중/휴무/운영정보 미확인, 출처·확인일 and event cards; clicking a marker selects the same place card (owner: iwtkmn0219)
 4. On a place, enter a 방문일 and press "방문 기록" → the record appears labelled "자기 신고" and the region shows Lv.0 → Lv.1 (owner: zT4ek)
-5. Press "추천으로 돌아가기", then reload the page → map scores, footfall penalty and recommendation recomputed from the visit (B now above A); visit and new order persist [API] (OSM tiles) (owner: zT4ek)
+5. Press "추천으로 돌아가기", then reload the page → map scores, footfall penalty and recommendation recomputed from the visit (B now above A); visit, new order and score shades persist (unchanged scores keep the same shade) (owner: zT4ek)
 
 ## Shared modules (not a demo step; owner keeps them stable for everyone)
 - App shell, routing, `src/domain/types.ts`, `policy.ts`, content JSON, `src/storage.ts`, verify harness (owner: Byeunghee02)
