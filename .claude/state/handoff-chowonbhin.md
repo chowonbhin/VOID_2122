@@ -1,17 +1,17 @@
 # Handoff — chowonbhin
-- Phase: build · 2026-11-07 KST; branch: chowonbhin/recommendation.
-- M02: SetupPage.tsx + setup.css; regional familiarity, interests, manual origin, KST datetime, distance, persisted through shared update().
-- Existing visits/event experience preserved; invalid input and failed storage prevent navigation.
-- Tests: tests/demo/setup.spec.ts 3/3 passed; typecheck and Vite production build passed with temporary Node 22.23.4.
-- Last demo-path-verify: PARTIAL 1/5, steps 2–5 PENDING; zero console errors. No full PASS yet.
-- Evidence: .claude/state/evidence/2026-11-07T23-13-13/; setup desktop/mobile and step-02 screenshots inspected.
-- Preview: http://127.0.0.1:3000/#/setup (Vite running); change conditions, submit, return and reload to inspect persistence.
-- Run with Node >=22.12: npm run dev; npx playwright test tests/demo/setup.spec.ts; node scripts/verify.mjs.
-- Temporary runtime: /private/tmp/void2122-runtime/node_modules/node/bin/node; system default remains Node 18.
-- Next 1: captain confirms/implements recommendation function contract.
-- Next 2: connect RecommendPage to scoring and add reason/distance/count plus empty state.
-- Next 3: remove step-2 pending only after real assertions pass; then verify before any main merge.
+- Phase: build · 2026-11-07 23:24 KST; branch: chowonbhin/recommendation.
+- Step 2 implemented: setup persistence + RecommendPage calls shared recommend(content, profile, visits, search).
+- Cards show computed rank/score/Lv, reasons, straight-line distance, open/eligible/unknown counts.
+- Existing-resident edits, interest/distance/time filters, empty state and excluded-region direct exploration verified.
+- allZero guidance implemented; current real demo data cannot reach this branch (not separately verified).
+- Tests: recommendation browser 5/5 + setup browser 3/3; typecheck/build passed.
+- Last demo-path-verify: step 2 PASS 0.2s; full path PARTIAL 2/5 (3–5 pending), no console errors.
+- Evidence: .claude/state/evidence/2026-11-07T23-24-06/; desktop step-02 screenshot inspected.
+- Mobile evidence: .claude/state/evidence/recommend-2026-11-07T14-23-22-754Z/; recommendation/empty layouts inspected.
+- Preview: http://127.0.0.1:3000/#/setup; use 2026-11-08 14:00 KST, origin 37.3219/126.8309, 10 km for A→B.
+- Next 1: integrate origin/main 03f2b19 (teammate visit recording).
+- Next 2: rerun shared checks and golden path; inspect screenshots; fast-forward main only if verify exits 0.
+- Next 3: hand push command to user; wait for confirmation before next step.
 ## For captain
-- User confirmed score.ts contract is undecided. Proposal only: recommendRegions(content: Content, profile: Profile, visits: Visit[], search: SearchContext): RegionRecommendation[].
-- Byeunghee02 owns shared scoring; please confirm export/signature and delivery. No shared module was changed.
-- No main merge, push or deploy. Checklist: build-chowonbhin.md. handoff skill missing; equivalent summary written inline.
+- No shared source edits; only own step-2 demoStep block changed. Setup assertion now identifies h1 precisely.
+- No remote push/deploy. handoff skill missing; maintained inline.

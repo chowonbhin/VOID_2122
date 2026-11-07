@@ -1,0 +1,14 @@
+.recommend { line-height: 1.6; }
+.recommend-summary { padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.recommend-summary p { margin: 0 0 6px; }
+.recommend-summary button { margin-top: 8px; }
+.recommend-note { color: var(--muted); font-size: 14px; }
+.recommend-card { gap: 8px; line-height: 1.6; }
+.recommend-title { font-size: 21px; }
+.recommend-rank, .recommend-link { color: var(--accent); font-weight: 700; }
+.recommend-reasons { display: grid; gap: 4px; margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--line); width: 100%; }
+.recommend-empty { padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.recommend-empty h2 { margin-top: 0; font-size: 22px; }
+.recommend-explore { margin-top: 32px; }
+.recommend button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.recommend-card:hover { border-color: var(--accent); }

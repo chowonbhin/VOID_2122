@@ -97,8 +97,17 @@ test('golden path', async ({ page }) => {
         await page.getByLabel('최대 거리 (km)').fill(DEMO.maxDistanceKm);
         await page.getByRole('button', { name: '추천 받기' }).click();
         await expect(page.getByRole('heading', { name: '추천 권역' })).toBeVisible();
+        const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
+        await expect(cards).toHaveCount(2);
+        await expect(cards.nth(0)).toHaveAccessibleName(/1순위 A권역/);
+        await expect(cards.nth(1)).toHaveAccessibleName(/2순위 B권역/);
+        for (const card of [cards.nth(0), cards.nth(1)]) {
+          await expect(card).toContainText('추천 이유');
+          await expect(card).toContainText('시작점 직선거리 4.0 km');
+          await expect(card).toContainText('운영 확인 장소 수 3곳');
+          await expect(card).toContainText('운영정보 미확인 1곳');
+        }
       },
-      { pending: 'chowonbhin' },
     );
 
     // TODO(iwtkmn0219): assert 5 places of region A only, 운영 중/휴무/운영정보 미확인 labels, 출처,
