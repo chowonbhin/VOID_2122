@@ -1,7 +1,5 @@
 .recommend { line-height: 1.6; }
 .recommend > h1 { font-size: 15px; font-weight: 700; color: var(--muted); letter-spacing: 0; margin: 0 0 6px; }
-.recommend-hero { font-size: 30px; font-weight: 800; line-height: 1.35; letter-spacing: -.03em; margin: 0; }
-.recommend-sub { color: var(--muted); margin: 10px 0 20px; }
 .recommend-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
 .recommend-summary p { font-size: 14px; margin: 0; }
 .recommend-summary button { margin: 0 0 0 auto; }
@@ -31,7 +29,6 @@
 .recommend button:focus-visible { outline: 3px solid var(--terracotta); outline-offset: 3px; }
 @media (max-width: 720px) {
   .recommend > .cards { grid-template-columns: minmax(0, 1fr); }
-  .recommend-hero { font-size: 25px; }
   .recommend-summary button { margin-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .recommend-link { transition: none; } }

@@ -15,9 +15,7 @@ export function RecommendPage() {
   if (!search) {
     return (
       <section className="recommend">
-        <p className="eyebrow">동네 발견</p>
-        <h1>추천 행정동</h1>
-        <p className="recommend-hero">오늘은 어느 동네에<br />마음을 남겨볼까요?</p>
+        <h1 className="visually-hidden">추천 행정동</h1>
         <ExplorationMap regions={content.regions} recommendations={[]}
           levels={Object.fromEntries(content.regions.map((region) => [region.id, regionLevel(region.id, state.profile, state.visits, content.places)]))}
           homeDongCode={state.profile.homeDongCode}
@@ -50,10 +48,8 @@ export function RecommendPage() {
 
   return (
     <section className="recommend">
-      <p className="eyebrow">동네 발견</p>
-      <h1>추천 행정동</h1>
-      <p className="recommend-hero">오늘은 어느 동네에<br />마음을 남겨볼까요?</p>
-      <p className="recommend-sub">나의 발자국 사이로, 새로운 발견 하나.</p>
+      {/* The welcome copy lives in the launch splash (Splash.tsx); this heading names the page. */}
+      <h1 className="visually-hidden">추천 행정동</h1>
       {state.needsDongLevelReview && <p role="status">행정동별 익숙함을 다시 확인해 주세요. 이전 A·B권역의 초기 설정은 보관했고 방문 기록은 유지했습니다. ‘조건 변경’에서 새로 설정할 수 있습니다.</p>}
       <div className="recommend-summary" aria-label="현재 탐험 조건">
         <p>{search.origin.label} 출발 · 최대 직선거리 {search.maxDistanceKm} km</p>

@@ -6,6 +6,7 @@ import { RecommendPage } from './features/recommend/RecommendPage';
 import { RegionPage } from './features/region/RegionPage';
 import { DongPage } from './features/region/DongPage';
 import { DemoNotice } from './features/recommend/DemoNotice';
+import { Splash } from './features/splash/Splash';
 
 export function App() {
   const route = useRoute();
@@ -17,6 +18,7 @@ export function App() {
   const showTabs = !onboarding;
   return (
     <div className={`app${showTabs ? ' has-tabbar' : ''}`}>
+      <Splash />
       <header className="appbar">
         <div className="appbar-inner">
           <a className="appbar-brand" href="#/">안산에 스며들다</a>
