@@ -1,19 +1,19 @@
 # Handoff: zT4ek
 
-phase: build (2026-11-07 KST)
-branch: zT4ek/step-4 (origin/main 7fe4382 반영)
-last verify pass: .claude/state/evidence/2026-11-07T23-18-50 — PARTIAL 2/5, 담당 4단계 PASS, 5단계 순위 연동 PENDING
-in progress: 방문일 등록·수정·삭제·중복 방지·저장 실패 안내·공통 엔진 Lv 갱신·새로고침 유지 구현 및 검증함
+phase: build (2026-11-07 KST); 최종 deadline은 사용자 요청대로 추후 확인
+branch: zT4ek/step-4 (origin/main 3e6714c 반영)
+last verify pass: .claude/state/evidence/2026-11-07T23-35-54 — PARTIAL 4/5, 담당 4·5단계 PASS, 3단계만 PENDING
+done: 담당 4·5단계와 M07 전체. 방문 CRUD·중복 방지·실패 처리·공통 엔진 Lv·추천 순위 변경·새로고침 유지 검증
+in progress: 없음. 빌드·단위 71개·조건/추천/방문 브라우저 14개 통과
 next:
-1. 추천 페이지가 공통 recommend()를 연결하면 5단계의 B → A 순위 assertion 추가 및 pending 제거
-2. 다른 담당의 2·3단계 반영 후 전체 demo-path-verify 재검증
-3. 기능 단위마다 fetch로 최신 변경 확인, 충돌 해결·검증 후 커밋·병합·업로드
+1. iwtkmn0219의 3단계 반영 후 전체 데모 재검증; 담당 외 기능은 임의 구현하지 않음
+2. 새 원격 변경을 fetch로 확인·반영하고 방문 기능 회귀 검증
+3. 추가 담당이 정해지기 전에는 현재 담당 기능의 실제 버그만 처리
 
 ## For captain
-- zT4ek 담당 4단계와 M07: 공통 타입·상태·저장 API 유지, 방문 함수/스타일은 features/visits 내부
-- 공통 score.ts가 중간에 반영되어 임시 계산을 제거함. progress.ts는 shared regionLevel/placeLevel/distinctVisitedPlaces 연결부만 유지
-- clock.md의 최종 deadline은 미정. 사용자가 나중에 재질문해 달라고 한 상태 유지
-- 빌드·단위 71개·방문 브라우저 6개 통과. 전체 데모는 콘솔 오류/SLOW 없이 PARTIAL 2/5. 추천 화면은 여전히 데이터 순서이므로 5단계 순위 변화 미검증
-- 포터블 Node 22.22.3과 Chromium은 /private/tmp/ansan-visit-runtime 아래 설치. 전역 Node 설정은 변경하지 않음
-- handoff 스킬 파일이 없어 hack-mode의 인수인계 형식을 직접 적용함
-- HACKATHON.md는 .git/info/exclude로 로컬 제외 상태 유지
+- 공통 score.ts와 실제 추천 화면을 사용. A → B 순위가 방문 후 B → A로 변경되고 새로고침 후 유지됨
+- 데스크톱 3회 연속: .claude/state/evidence/2026-11-07T23-35-54, 콘솔 오류·SLOW 없음, 5단계 화면 검토
+- 모바일 1회: .claude/state/evidence/2026-11-07T23-36-11-mobile, 동일 결과·화면 검토
+- 개발 서버 최초 검증은 초기 localStorage.clear()와 페이지 전환 경합으로 0/5 실패; 테스트를 완화하지 않고 빌드 preview 3001에서 안정성 검증함
+- 포터블 Node 22.22.3·Chromium: /private/tmp/ansan-visit-runtime. 전역 Node 설정은 변경하지 않음
+- handoff 스킬이 없어 직접 기록함. HACKATHON.md는 .git/info/exclude로 로컬 제외 유지

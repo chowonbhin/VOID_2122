@@ -137,23 +137,30 @@ test('golden path', async ({ page }) => {
       },
     );
 
-    // zT4ek: persistence is real. B-first ranking remains pending until the shared
-    // score engine and recommendation screen are integrated; never fake their order.
+    // zT4ek: real persisted visits must recompute the visible ranking, including after reload.
     await demoStep(
       page,
       '5. Back to recommendations and reload → recomputed order kept',
       async () => {
         await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
+        const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
+        await expect(cards).toHaveCount(2);
+        await expect(cards.nth(0)).toHaveAccessibleName(/1순위 B권역/);
+        await expect(cards.nth(1)).toHaveAccessibleName(/2순위 A권역/);
+        await expect(cards.nth(1)).toContainText('지역 Lv.1');
         await page.reload();
         await expect(page.getByRole('heading', { name: '추천 권역' })).toBeVisible();
+        await expect(cards.nth(0)).toHaveAccessibleName(/1순위 B권역/);
+        await expect(cards.nth(1)).toHaveAccessibleName(/2순위 A권역/);
+        await expect(cards.nth(1)).toContainText('지역 Lv.1');
         await page.getByRole('button', { name: /A권역/ }).click();
         const visits = page.getByRole('region', { name: '호수 전망 데크 방문 기록', exact: true });
         await expect(visits.locator('time')).toHaveText(DEMO.date);
         await expect(visits.getByText('자기 신고', { exact: true })).toBeVisible();
         await expect(visits.getByText('지역 Lv.1', { exact: true })).toBeVisible();
         await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
+        await expect(cards.nth(0)).toHaveAccessibleName(/1순위 B권역/);
       },
-      { pending: 'zT4ek: 방문 기록 유지 검증됨, 추천 화면·공통 엔진 통합 후 B 우선 순위 검증 필요' },
     );
   } finally {
     fs.appendFileSync(
