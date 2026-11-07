@@ -1,0 +1,77 @@
+[
+  {
+    "id": "e-b1-market",
+    "placeId": "b1",
+    "name": "가을 골목 장터",
+    "sessions": [
+      {
+        "start": "2026-11-07T10:00+09:00",
+        "end": "2026-11-09T20:00+09:00"
+      }
+    ],
+    "cancelled": false,
+    "condition": {
+      "status": "known",
+      "text": "자유 참여"
+    },
+    "categories": [
+      "market",
+      "food"
+    ],
+    "bonus": 5,
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
+  },
+  {
+    "id": "e-a2-concert",
+    "placeId": "a2",
+    "name": "호숫가 작은 음악회",
+    "sessions": [
+      {
+        "start": "2026-11-08T13:00+09:00",
+        "end": "2026-11-08T15:00+09:00"
+      }
+    ],
+    "cancelled": true,
+    "condition": {
+      "status": "known",
+      "text": "선착순 30명"
+    },
+    "categories": [
+      "culture"
+    ],
+    "bonus": 8,
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
+  },
+  {
+    "id": "e-b3-workshop",
+    "placeId": "b3",
+    "name": "목공 원데이 클래스",
+    "sessions": [
+      {
+        "start": "2026-11-08T14:00+09:00",
+        "end": "2026-11-08T16:00+09:00"
+      }
+    ],
+    "cancelled": false,
+    "condition": {
+      "status": "unknown"
+    },
+    "categories": [
+      "activity"
+    ],
+    "bonus": 6,
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
+  }
+]

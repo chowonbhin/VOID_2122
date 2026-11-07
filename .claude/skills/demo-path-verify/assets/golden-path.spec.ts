@@ -17,12 +17,16 @@ fs.mkdirSync(EVIDENCE_DIR, { recursive: true });
 let stepNo = 0;
 const RUN = process.env.RUN_INDEX ?? '1';
 
-/** One golden-path step: act, assert what is visible, time it, screenshot it. */
+/**
+ * One golden-path step: act, assert what is visible, time it, screenshot it.
+ * `pending`: the step is still a placeholder (give the owner). It only walks through the
+ * placeholder screen and is reported as PENDING, never as PASS. Remove it when the step is real.
+ */
 async function demoStep(
   page: Page,
   name: string,
   fn: () => Promise<void>,
-  opts: { budgetMs?: number } = {},
+  opts: { budgetMs?: number; pending?: string } = {},
 ) {
   const budgetMs = opts.budgetMs ?? 1500;
   stepNo += 1;
@@ -40,10 +44,12 @@ async function demoStep(
   } finally {
     const ms = Date.now() - t0;
     if (status === 'PASS' && ms > budgetMs) status = 'SLOW';
-    await page.screenshot({ path: shot, fullPage: true }).catch(() => {});
+    if (status === 'PASS' && opts.pending) status = 'PENDING';
+    let shotOk = true;
+    await page.screenshot({ path: shot, fullPage: true }).catch(() => (shotOk = false));
     fs.appendFileSync(
       path.join(EVIDENCE_DIR, 'steps.jsonl'),
-      JSON.stringify({ run: RUN, step: stepNo, name, status, ms, budgetMs, shot, error }) + '\n',
+      JSON.stringify({ run: RUN, step: stepNo, name, status, ms, budgetMs, shot, shotOk, pending: opts.pending, error }) + '\n',
     );
   }
 }

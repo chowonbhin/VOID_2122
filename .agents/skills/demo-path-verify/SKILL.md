@@ -39,9 +39,17 @@ Decide the mode from the repo:
      1500 ms for normal steps, 8000 ms for `[LLM]` steps.
 5. Copy the step list into the header comment of the spec so the next run can
    detect drift.
-6. Run it once (run mode below). Against placeholders in kickoff, it should
-   pass; if a step cannot pass even then, the step is badly specified, so fix
-   the assertion, not the app.
+6. Run it once (run mode below). Against placeholders in kickoff, mark each
+   unbuilt step `{ pending: '<owner>' }`: it only walks through the placeholder
+   screen and is reported as PENDING, and the headline says PARTIAL, never PASS.
+   The owner replaces the body with real assertions and removes `pending` when
+   the step is built. If a step cannot run even against its placeholder, the
+   step is badly specified, so fix the assertion, not the app.
+
+The script fails (exit 1) on any FAIL or SLOW step, a step listed in the
+spec header that did not run, a missing screenshot, or a console error not
+listed in `ALLOWED_CONSOLE_ERRORS`. It does not start the app; run
+`npm run dev` first.
 
 ### How to assert on LLM and API steps
 

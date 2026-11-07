@@ -1,0 +1,601 @@
+[
+  {
+    "id": "a1",
+    "regionId": "region-a",
+    "name": "호수 전망 데크",
+    "category": "nature",
+    "location": {
+      "lat": 37.3242,
+      "lng": 126.8792
+    },
+    "baseValue": 80,
+    "popularity": 1,
+    "opening": {
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "06:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "06:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "06:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "06:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "06:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "06:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "06:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "entryCondition": "무료, 상시 개방"
+    },
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
+  },
+  {
+    "id": "a2",
+    "regionId": "region-a",
+    "name": "작은 호수 전시관",
+    "category": "culture",
+    "location": {
+      "lat": 37.3201,
+      "lng": 126.8805
+    },
+    "baseValue": 70,
+    "popularity": 0.5,
+    "opening": {
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "1": [],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ]
+      },
+      "entryCondition": "입장료 2,000원, 입장 마감 17:30, 월요일 휴관"
+    },
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
+  },
+  {
+    "id": "a3",
+    "regionId": "region-a",
+    "name": "호숫가 국수집",
+    "category": "food",
+    "location": {
+      "lat": 37.3231,
+      "lng": 126.8738
+    },
+    "baseValue": 60,
+    "popularity": 0.2,
+    "opening": {
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00",
+            "lastEntry": "20:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00",
+            "lastEntry": "20:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00",
+            "lastEntry": "20:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00",
+            "lastEntry": "20:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00",
+            "lastEntry": "20:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00",
+            "lastEntry": "20:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00",
+            "lastEntry": "20:30"
+          }
+        ]
+      },
+      "entryCondition": "주문 마감 20:30"
+    },
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
+  },
+  {
+    "id": "a4",
+    "regionId": "region-a",
+    "name": "호수 보트 체험장",
+    "category": "activity",
+    "location": {
+      "lat": 37.3188,
+      "lng": 126.877
+    },
+    "baseValue": 75,
+    "popularity": 0.6,
+    "opening": {
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "exceptions": [
+        {
+          "date": "2026-11-08",
+          "ranges": [],
+          "note": "시설 점검 임시 휴무"
+        }
+      ],
+      "entryCondition": "1인 5,000원"
+    },
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
+  },
+  {
+    "id": "a5",
+    "regionId": "region-a",
+    "name": "호숫가 독립서점",
+    "category": "culture",
+    "location": {
+      "lat": 37.3255,
+      "lng": 126.8751
+    },
+    "baseValue": 65,
+    "popularity": 0.3,
+    "opening": {
+      "status": "unknown"
+    },
+    "source": null,
+    "isVirtual": true
+  },
+  {
+    "id": "b1",
+    "regionId": "region-b",
+    "name": "골목 전통시장",
+    "category": "market",
+    "location": {
+      "lat": 37.3601,
+      "lng": 126.8331
+    },
+    "baseValue": 75,
+    "popularity": 0.7,
+    "opening": {
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:00",
+            "close": "20:00"
+          }
+        ]
+      },
+      "entryCondition": "무료"
+    },
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
+  },
+  {
+    "id": "b2",
+    "regionId": "region-b",
+    "name": "시장 안 칼국수집",
+    "category": "food",
+    "location": {
+      "lat": 37.3589,
+      "lng": 126.8285
+    },
+    "baseValue": 65,
+    "popularity": 0.4,
+    "opening": {
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:30",
+            "close": "20:00",
+            "lastEntry": "19:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:30",
+            "close": "20:00",
+            "lastEntry": "19:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:30",
+            "close": "20:00",
+            "lastEntry": "19:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:30",
+            "close": "20:00",
+            "lastEntry": "19:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:30",
+            "close": "20:00",
+            "lastEntry": "19:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:30",
+            "close": "20:00",
+            "lastEntry": "19:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:30",
+            "close": "20:00",
+            "lastEntry": "19:30"
+          }
+        ]
+      },
+      "entryCondition": "주문 마감 19:30"
+    },
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
+  },
+  {
+    "id": "b3",
+    "regionId": "region-b",
+    "name": "골목 목공방",
+    "category": "activity",
+    "location": {
+      "lat": 37.3566,
+      "lng": 126.8322
+    },
+    "baseValue": 60,
+    "popularity": 0.2,
+    "opening": {
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "entryCondition": "체험 1회 10,000원, 현장 접수"
+    },
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
+  },
+  {
+    "id": "b4",
+    "regionId": "region-b",
+    "name": "옛 정미소 갤러리",
+    "category": "culture",
+    "location": {
+      "lat": 37.3571,
+      "lng": 126.8297
+    },
+    "baseValue": 70,
+    "popularity": 0.5,
+    "opening": {
+      "status": "known",
+      "weekly": {
+        "0": [],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "entryCondition": "무료, 일요일 휴관"
+    },
+    "source": {
+      "label": "개발용 가상 데이터",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": true
+  },
+  {
+    "id": "b5",
+    "regionId": "region-b",
+    "name": "골목 끝 찻집",
+    "category": "food",
+    "location": {
+      "lat": 37.361,
+      "lng": 126.8302
+    },
+    "baseValue": 55,
+    "popularity": 0.1,
+    "opening": {
+      "status": "unknown"
+    },
+    "source": null,
+    "isVirtual": true
+  }
+]

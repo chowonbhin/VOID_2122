@@ -1,0 +1,128 @@
+// Shared data contract (mvp_implementation_plan.md §3). Owner: Byeunghee02.
+// Change field names only after telling the team: every feature folder reads these.
+
+export type RegionId = string;
+export type PlaceId = string;
+export type EventId = string;
+
+/** Lv 0 = 신규, 1 = 방문 경험 적음, 2 = 익숙함. Place Lv goes up to 3. */
+export type Level = 0 | 1 | 2 | 3;
+
+export type Category = 'nature' | 'culture' | 'food' | 'market' | 'activity';
+
+export interface LatLng {
+  lat: number;
+  lng: number;
+}
+
+/** 'YYYY-MM-DD' in Asia/Seoul. */
+export type DateString = string;
+/** 'HH:MM' in Asia/Seoul. */
+export type TimeString = string;
+
+export interface Source {
+  label: string;
+  url?: string;
+  checkedAt: DateString;
+}
+
+export interface Region {
+  id: RegionId;
+  name: string;
+  description: string;
+  features: string[];
+  start: LatLng & { label: string };
+  placeIds: PlaceId[];
+  /** 개발용 가상 데이터면 true. 화면에 "가상 데이터"로 표시한다. */
+  isVirtual: boolean;
+}
+
+/** One opening slot on a single day. `close` and `lastEntry` are exclusive. */
+export interface TimeRange {
+  open: TimeString;
+  close: TimeString;
+  lastEntry?: TimeString;
+}
+
+export interface OpeningInfo {
+  /** 'unknown' → 운영정보 미확인: listed but never scored. */
+  status: 'known' | 'unknown';
+  /** Key = day of week in KST, 0 = Sunday. A missing or empty day means closed. */
+  weekly?: Partial<Record<0 | 1 | 2 | 3 | 4 | 5 | 6, TimeRange[]>>;
+  /** Overrides `weekly` for that date. Empty `ranges` = 휴무. */
+  exceptions?: { date: DateString; ranges: TimeRange[]; note?: string }[];
+  entryCondition?: string;
+}
+
+export interface Place {
+  id: PlaceId;
+  regionId: RegionId;
+  name: string;
+  category: Category;
+  location: LatLng;
+  /** 기본 가치 B, 0~100. Not a star rating. */
+  baseValue: number;
+  /** 인지도 P, 0~1. 시연용 가상값, shown as such on screen. */
+  popularity: number;
+  opening: OpeningInfo;
+  source: Source | null;
+  isVirtual: boolean;
+}
+
+export interface EventSession {
+  /** ISO date-time with offset, e.g. '2026-11-08T10:00+09:00'. `end` is exclusive. */
+  start: string;
+  end: string;
+}
+
+export interface Event {
+  id: EventId;
+  placeId: PlaceId;
+  name: string;
+  sessions: EventSession[];
+  cancelled: boolean;
+  condition: { status: 'known' | 'unknown'; text?: string };
+  categories: Category[];
+  /** 행사 가점 E. Capped by policy. */
+  bonus: number;
+  source: Source | null;
+  isVirtual: boolean;
+}
+
+export interface Profile {
+  /** 사용자가 신고한 지역별 초기 Lv. Missing region = 0. */
+  initialLevels: Record<RegionId, 0 | 1 | 2>;
+  interests: Category[];
+  experiencedEventIds: EventId[];
+}
+
+export interface Visit {
+  id: string;
+  placeId: PlaceId;
+  date: DateString;
+  method: 'self_report';
+}
+
+export interface SearchContext {
+  origin: LatLng & { label: string };
+  /** Selected time, 'YYYY-MM-DDTHH:MM' interpreted in Asia/Seoul. */
+  when: string;
+  /** Empty = all categories. */
+  interests: Category[];
+  maxDistanceKm: number;
+}
+
+export type PlaceStatus = 'open' | 'closed' | 'unknown';
+
+export interface RegionRecommendation {
+  regionId: RegionId;
+  score: number;
+  reasons: string[];
+  /** Straight-line km from origin to region start point. */
+  distanceKm: number;
+  level: 0 | 1 | 2;
+  /** Places that counted toward the score (운영 확인 + 관심 활동 일치). */
+  placeIds: PlaceId[];
+  openPlaceCount: number;
+  unknownPlaceCount: number;
+}
