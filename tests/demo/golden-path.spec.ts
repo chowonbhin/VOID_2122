@@ -88,6 +88,13 @@ test('golden path', async ({ page }) => {
       '2. Set conditions and 추천 받기 → ranked region cards',
       async () => {
         await page.getByRole('button', { name: '탐험 시작' }).click();
+        await page.getByLabel('A권역 · 호숫가 산책길 익숙함').selectOption('0');
+        await page.getByLabel('B권역 · 골목 시장길 익숙함').selectOption('0');
+        await page.getByLabel('출발지 이름').fill('시연 출발지 (가상)');
+        await page.getByLabel('위도', { exact: true }).fill('37.3219');
+        await page.getByLabel('경도', { exact: true }).fill('126.8309');
+        await page.getByLabel('날짜·시각 (한국 시간)').fill(`${DEMO.date}T${DEMO.time}`);
+        await page.getByLabel('최대 거리 (km)').fill(DEMO.maxDistanceKm);
         await page.getByRole('button', { name: '추천 받기' }).click();
         await expect(page.getByRole('heading', { name: '추천 권역' })).toBeVisible();
       },

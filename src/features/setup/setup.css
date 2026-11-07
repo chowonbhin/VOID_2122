@@ -1,0 +1,14 @@
+.setup form { display: grid; gap: 20px; }
+.setup fieldset { min-width: 0; margin: 0; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.setup legend { padding: 0 6px; font-weight: 700; }
+.setup label { display: grid; gap: 8px; margin: 12px 0; font-size: 15px; }
+.setup input, .setup select { min-width: 0; width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--fg); background: var(--card); font: inherit; }
+.setup input:focus-visible, .setup select:focus-visible, .setup button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.setup-hint { margin: 6px 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.setup-interests { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.setup label.setup-checkbox { display: flex; align-items: center; gap: 8px; }
+.setup-checkbox input { width: 18px; height: 18px; accent-color: var(--accent); }
+.setup-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.setup-error { color: #9b2020; line-height: 1.6; }
+.setup .primary { justify-self: start; }
+@media (max-width: 560px) { .setup-grid { grid-template-columns: 1fr; gap: 0; } }
