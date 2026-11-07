@@ -171,8 +171,12 @@ function RegionDetail({ regionId }: { regionId: string }) {
             <p className="region-category">{visitedIds.has(place.id) ? '내가 다녀온 곳' : '아직 안 가본 곳'}</p>
             <div className="region-place-heading">
               <h2>{index + 1}. {place.name}</h2>
-              <button aria-label={`${place.name} 카드에서 선택`} aria-pressed={place.id === selectedPlaceId}
-                onClick={() => { setSelectedId(place.id); setMapPage(Math.max(0, Math.floor(locatedPlaces.findIndex(item => item.id === place.id) / 8))); }}>지도에서 강조</button>
+              <button className="region-map-focus" aria-label={`${place.name} 카드에서 선택`} title="지도에서 강조" aria-pressed={place.id === selectedPlaceId}
+                onClick={() => { setSelectedId(place.id); setMapPage(Math.max(0, Math.floor(locatedPlaces.findIndex(item => item.id === place.id) / 8))); }}>
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                  <path d="M12 2.5a7 7 0 0 0-7 7c0 5 7 12 7 12s7-7 7-12a7 7 0 0 0-7-7zm0 9.6a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2z" fill="currentColor" />
+                </svg>
+              </button>
             </div>
             <p>{CATEGORY_LABELS[place.category]} · {statusLabel[status.status]}</p>
             {!scored?.eligible && state.search && <p>지금 조건에서는 추천하지 않지만 둘러볼 수 있어요.</p>}

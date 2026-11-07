@@ -44,3 +44,6 @@
 .region-recommend .cards { margin: 0; }
 .region-nearby { background: #FFFEFA; border: 1.5px solid var(--line-strong); }
 .region-nearby-link { margin-top: 8px; color: var(--action-primary); font-weight: 800; }
+/* "지도에서 강조" as a fixed-size pin icon so it never moves with the place name's length. */
+.region-detail .region-map-focus { flex: 0 0 44px; width: 44px; height: 44px; min-height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; color: var(--action-primary); background: var(--surface-card); }
+.region-detail .region-map-focus[aria-pressed="true"] { background: var(--action-primary); border-color: var(--action-primary); color: #fff; }
