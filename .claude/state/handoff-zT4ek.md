@@ -1,10 +1,14 @@
 # Handoff: zT4ek
 
-phase: fix (2026-11-08 KST)
-branch: zT4ek/place-payload; latest integrated origin/main 4b92f94
+phase: harden (2026-11-08 KST); 사동 예시는 사용자가 직접 범위를 지정한 요청
+branch: zT4ek/memory-marker-spacing; latest integrated origin/main be3cedf
 authorization: 사용자 단위별 검증·main 반영 승인 유지. 직접 요청한 실제 장소/지도/점수 공통 수정 범위이며 기존 담당은 유지.
 
 ## 최신 사용자 결정
+
+- 최신 요청: **사동에서만 실제 장소 1~2곳을 무작위로 추억 예시에 표시**, 점수·Lv·방문 기록에는 넣지 않음. 다른 동에 시연 추억을 추가하지 않음.
+- 사동 실제 후보 2곳을 기존 콘텐츠에서 선택. 새로고침 유지/다른 예시 보기/숨기기. 저장 키는 `ansan-explore/sadong-memory-preview/v1`이며 사용자 방문 상태와 분리. 날짜를 지어내지 않고 ‘추억 예시’ 표시. 하트·카드·실제 장소 정보 연결.
+- 최신 팀의 시작 스플래시/친밀도 중심 메인 지도/3단계 설정을 유지. 사동 상세에만 예시 표시를 추가.
 
 - 가상 625곳은 요청의 잘못된 해석이었다. 가상 장소/추억/시연 모드를 운영 화면에서 제거했다.
 - 실제 20곳을 표시만 하고 3곳만 점수에 넣은 것도 잘못이었다. 이제 **표시 20곳 = 점수 반영 20곳**이다.
@@ -26,6 +30,10 @@ authorization: 사용자 단위별 검증·main 반영 승인 유지. 직접 요
 - 예: 중앙동 Lv.1, 출발 중앙동,14시 → 장소합계1260.62, 정규화57.30, 유동인구15%/8.60점 차감, 최종44.6.
 
 ## 검증
+
+2026-11-08 사동 추억 예시: build PASS; unit137 PASS; browser36 PASS. 다른24개동에 예시 없음, 변경/숨김/새로고침 후 사용자 상태·25개동 점수 동일, 실제 방문으로 전환한 장소 중복 없음/숨김 후 기록 보존 확인.
+desktop3runs: .claude/state/evidence/2026-11-08T04-14-19 PASS5/5; 사동 스크린샷: .claude/state/evidence/sadong-memory-preview/sadong-map.png, sadong-memories.png. 실제 장소2곳 하트/카드 확인. 기존 장소 데이터는 추가하지 않음.
+후속 모바일 검수: 하트 추가 시 좁은 화면의 경계 부근 핀이 겹칠 수 있어, 기존 밀어내기로 해소되지 않는 경우만 간격 있는 위치에 버튼 배치. 실제 좌표 점·연결선 유지. 사동 모든 지도 페이지320px 버튼 중심 간격44px 이상/기존 장소 카드 연결5 tests PASS. PC/320px 실화면: .claude/state/evidence/sadong-inspection/.
 
 2026-11-08 03:45 payload 최적화: build PASS; unit135 PASS; API/import8 PASS; browser32 PASS.
 desktop3runs: .claude/state/evidence/2026-11-08T03-44-46 PASS5/5; mobile3runs: .claude/state/evidence/2026-11-08T03-45-04-mobile PASS5/5; 콘솔 오류 없음.

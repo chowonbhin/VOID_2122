@@ -17,7 +17,8 @@ test('every one of 25 administrative dongs displays 20 unique actual search venu
     await expect(list(page).getByRole('link', { name: '네이버에서 장소 보기', exact: true })).toHaveCount(20);
     await expect(list(page)).not.toContainText('시연용 가상');
     await expect(list(page)).not.toContainText('시연 산책');
-    await expect(page.getByRole('heading', { name: '이 동네의 추억 0' })).toBeVisible();
+    // User requested display-only examples in Sadong; all other dongs remain unseeded.
+    await expect(page.getByRole('heading', { name: `이 동네의 추억 ${region.name === '사동' ? 2 : 0}` })).toBeVisible();
   }
 });
 

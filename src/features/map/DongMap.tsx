@@ -47,6 +47,28 @@ function layout(markers: MapMarker[], box: [number, number, number, number]) {
       item.y = Math.min(box[1] + box[3] - inset, Math.max(box[1] + inset, item.y));
     }
   }
+  // Dense edge clusters can remain stuck against the bounds after repulsion.
+  // Fall back to separated slots only then; the original coordinate dots and
+  // leader lines still show where each venue actually is.
+  if (items.some((a, i) => items.some((b, j) => j > i && Math.hypot(a.x - b.x, a.y - b.y) < gap * 0.9))) {
+    const columns = Math.floor(box[2] / gap);
+    const rows = Math.floor(box[3] / gap);
+    const slots = Array.from({ length: columns * rows }, (_, i) => ({
+      x: box[0] + (box[2] - (columns - 1) * gap) / 2 + (i % columns) * gap,
+      y: box[1] + (box[3] - (rows - 1) * gap) / 2 + Math.floor(i / columns) * gap,
+    }));
+    if (slots.length >= items.length) {
+      for (const item of items) {
+        let closest = 0;
+        for (let i = 1; i < slots.length; i++) {
+          if (Math.hypot(slots[i].x - item.x0, slots[i].y - item.y0)
+            < Math.hypot(slots[closest].x - item.x0, slots[closest].y - item.y0)) closest = i;
+        }
+        const slot = slots.splice(closest, 1)[0];
+        item.x = slot.x; item.y = slot.y;
+      }
+    }
+  }
   return items;
 }
 
