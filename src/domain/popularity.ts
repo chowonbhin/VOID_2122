@@ -23,15 +23,23 @@ export function validPopularityEvidence(e: Place['popularityEvidence']): e is No
  * Log scaling limits outlier leverage; more counts always mean an equal or larger penalty.
  * This is an initial calibration, not a measured probability or a star rating.
  */
-export function placePopularity(place: Place, allPlaces: Place[]): PopularityResult {
+export function createPopularityResolver(allPlaces: Place[]): (place: Place) => PopularityResult {
+  const maxima = new Map<string, number>();
+  const key = (e: NonNullable<Place['popularityEvidence']>) => `${e.provider}:${e.metric}:${e.period}`;
+  for (const place of allPlaces) {
+    const e = place.popularityEvidence;
+    if (isRecommendationCandidate(place) && validPopularityEvidence(e)) {
+      maxima.set(key(e), Math.max(maxima.get(key(e)) ?? 0, e.count));
+    }
+  }
+  // This index belongs to one calculation, never cached across mutable data updates.
+  return place => popularityWithMax(place, evidence => maxima.get(key(evidence)) ?? 0);
+}
+
+function popularityWithMax(place: Place, reference: (e: NonNullable<Place['popularityEvidence']>) => number): PopularityResult {
   const evidence = place.popularityEvidence;
   if (validPopularityEvidence(evidence)) {
-    const counts = allPlaces.filter(isRecommendationCandidate).flatMap(p => {
-      const e = p.popularityEvidence;
-      return validPopularityEvidence(e) && e.provider === evidence.provider
-        && e.metric === evidence.metric && e.period === evidence.period ? [e.count] : [];
-    });
-    const referenceMax = Math.max(evidence.count, ...counts);
+    const referenceMax = Math.max(evidence.count, reference(evidence));
     return { status: 'measured', value: referenceMax === 0 ? 0 : Math.log1p(evidence.count) / Math.log1p(referenceMax), evidence, referenceMax };
   }
   // Never disguise missing/invalid real counts as zero or fall back to a fabricated value.
@@ -40,4 +48,8 @@ export function placePopularity(place: Place, allPlaces: Place[]): PopularityRes
     return { status: 'simulated', value: place.popularity };
   }
   return { status: 'unknown', value: null };
+}
+
+export function placePopularity(place: Place, allPlaces: Place[]): PopularityResult {
+  return createPopularityResolver(allPlaces)(place);
 }

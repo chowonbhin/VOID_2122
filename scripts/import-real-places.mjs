@@ -33,6 +33,7 @@ const counts=regions.map(r=>({regionId:r.id,name:r.name,candidates:places.filter
  discoverable:places.filter(p=>p.regionId===r.id&&!p.discovery.excludedReason&&p.franchise.status!=='franchise').length,
  reviewCounts:places.filter(p=>p.regionId===r.id&&p.popularityEvidence).length}));
 if(counts.some(c=>c.discoverable<20))throw new Error('Under 20 actual candidates: '+JSON.stringify(counts.filter(c=>c.discoverable<20)));
-fs.writeFileSync('src/data/real-places.json',JSON.stringify(places,null,2)+'\n');
+fs.writeFileSync('src/data/research/real-places.json',JSON.stringify(places,null,2)+'\n');
 fs.writeFileSync('src/data/real-collection.json',JSON.stringify({provider:snapshot.provider,checkedAt:snapshot.checkedAt,queryCount:snapshot.queries.length,rawCandidateCount:snapshot.candidates.length,duplicateCount:duplicates,importedCount:places.length,reviewCount:places.filter(p=>p.popularityEvidence).length,counts},null,2)+'\n');
 console.log(JSON.stringify({places:places.length,duplicates,counts},null,2));
+await import('./prepare-place-runtime.mjs');

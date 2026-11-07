@@ -1,5 +1,5 @@
 import { test, expect } from './baseline';
-import data from '../../src/data/real-places.json' with { type: 'json' };
+import data from '../../src/data/research/real-places.json' with { type: 'json' };
 import { base, setup, list } from './real';
 
 test('known and suspected chains stay outside cards, markers and scores; pending classification is labelled', async ({ page }) => {

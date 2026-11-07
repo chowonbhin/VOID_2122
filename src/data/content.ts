@@ -6,9 +6,9 @@ import regionsJson from './regions.json';
 import footfallJson from './footfall.json';
 import geography from './geography/admin-dongs.json';
 import { validPopularityEvidence } from '../domain/popularity';
-import naverPlacesJson from './naver-places.json';
 import realCollection from './real-collection.json';
-import realPlacesJson from './real-places.json';
+import placePayload from './places.runtime.json';
+import { expandPlacePayload, type PlacePayload } from './placePayload';
 
 export interface Content {
   regions: Region[];
@@ -17,17 +17,14 @@ export interface Content {
   footfall?: FootfallDataset;
 }
 
-// Reviewed Naver records may reuse an existing place ID to preserve its visit history.
-const reviewedNaverPlaces = naverPlacesJson as Place[];
 export const naverCandidateStatus = realCollection;
 
 const regions = regionsJson.map(region => ({ ...region,
   geometry: geography.dongs.find(dong => dong.id === region.id)?.geometry })) as Region[];
 
-// Production imports only real venue records. Synthetic regression fixtures are separate.
-const realPlaces = realPlacesJson as Place[];
-const realIds = new Set(realPlaces.map(place => place.id));
-const productionPlaces = [...reviewedNaverPlaces.filter(place => !realIds.has(place.id)), ...realPlaces];
+// Complete usable pool, including reserves below rank 20. Research/excluded records
+// are not imported into the browser. Shared metadata is expanded once at startup.
+const productionPlaces = expandPlacePayload(placePayload as PlacePayload, regions);
 export const content: Content = {
   footfall: footfallJson,
   places: productionPlaces,

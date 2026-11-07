@@ -24,7 +24,7 @@ import {
 } from './policy';
 import { footfallAdjustment } from './footfall';
 import { franchiseStatus, isRecommendationCandidate, isRealSearchPlace } from './placeEligibility';
-import { placePopularity, type PopularityResult } from './popularity';
+import { createPopularityResolver, type PopularityResult } from './popularity';
 
 // ---------- time (selected time is always Asia/Seoul) ----------
 
@@ -161,14 +161,15 @@ export interface PlaceScore {
   event?: Event;
 }
 
-export function scorePlaces(region: Region, content: Content, profile: Profile, visits: Visit[], ctx: SearchContext): PlaceScore[] {
+export function scorePlaces(region: Region, content: Content, profile: Profile, visits: Visit[], ctx: SearchContext,
+  popularityOf = createPopularityResolver(content.places)): PlaceScore[] {
   const regionLv = regionLevel(region.id, profile, visits, content.places);
   const scored = content.places
     .filter((p) => p.regionId === region.id && isRecommendationCandidate(p))
     .map((p) => {
       const status = placeStatus(p, ctx.when);
       const level = placeLevel(p.id, regionLv, visits);
-      const popularity = placePopularity(p, content.places);
+      const popularity = popularityOf(p);
       const provisionalAllowed = isRealSearchPlace(p);
       const eligible = (status.status === 'open' || (status.status === 'unknown' && provisionalAllowed))
         && matchesInterest([p.category], ctx.interests) && (popularity.status !== 'unknown' || provisionalAllowed);
@@ -205,6 +206,7 @@ export function normalizeRegionBase(placeScoreSum: number): number {
 export function recommend(content: Content, profile: Profile, visits: Visit[], ctx: SearchContext): RecommendResult {
   const recommendations: RegionRecommendation[] = [];
   const excluded: RecommendResult['excluded'] = [];
+  const popularityOf = createPopularityResolver(content.places);
 
   for (const region of content.regions) {
     const km = distanceKm(ctx.origin, region.start);
@@ -216,7 +218,7 @@ export function recommend(content: Content, profile: Profile, visits: Visit[], c
       excluded.push({ regionId: region.id, reason: 'too_far', distanceKm: km });
       continue;
     }
-    const places = scorePlaces(region, content, profile, visits, ctx);
+    const places = scorePlaces(region, content, profile, visits, ctx, popularityOf);
     const eligible = places.filter((p) => p.eligible);
     if (eligible.length === 0) {
       excluded.push({ regionId: region.id, reason: 'no_eligible_places', distanceKm: km });

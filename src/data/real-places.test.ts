@@ -6,6 +6,7 @@ import { isNonFranchisePlace, isRecommendationCandidate } from '../domain/placeE
 import { placeStatus, recommend, scorePlaces } from '../domain/score';
 import { placePopularity } from '../domain/popularity';
 import type { Profile, SearchContext } from '../domain/types';
+import research from './research/real-places.json';
 
 const profile: Profile = { initialLevels: {}, interests: [], experiencedEventIds: [] };
 const search: SearchContext = { origin: content.regions[0].start, when: '2026-11-08T14:00', interests: [], maxDistanceKm: 100 };
@@ -59,7 +60,10 @@ describe('production: real 20-place discovery', () => {
     const baba = content.places.find(p => p.name === '바바카멜')!;
     expect(baba.popularityEvidence).toMatchObject({ provider: 'naver_place', metric: 'visitor_reviews', count: 801 });
     expect(baba.popularityEvidence?.source.url).toMatch(/^https:\/\/hamgae.com\/place\//);
-    expect(content.places.filter(p => p.popularityEvidence).length).toBeGreaterThan(250);
+    // Excluded chains stay in research; every usable venue's real count is retained.
+    const usableObservedIds = research.filter(p => p.popularityEvidence && !p.discovery.excludedReason && (p.franchise.status as string) !== 'franchise').map(p => p.id);
+    expect(content.places.filter(p => p.popularityEvidence).map(p => p.id)).toEqual(usableObservedIds);
+    expect(usableObservedIds.length).toBeGreaterThan(200);
     const result = recommend(content, profile, [], search);
     for (const item of result.recommendations) {
       const region = content.regions.find(r => r.id === item.regionId)!;

@@ -1,7 +1,7 @@
 # Handoff: zT4ek
 
 phase: fix (2026-11-08 KST)
-branch: zT4ek/real-place-correction; latest integrated origin/main c5e1a94
+branch: zT4ek/place-payload; latest integrated origin/main 4b92f94
 authorization: 사용자 단위별 검증·main 반영 승인 유지. 직접 요청한 실제 장소/지도/점수 공통 수정 범위이며 기존 담당은 유지.
 
 ## 최신 사용자 결정
@@ -16,7 +16,9 @@ authorization: 사용자 단위별 검증·main 반영 승인 유지. 직접 요
 
 ## 데이터와 디자인
 
-- 실제 API 후보2329 / 수록1930 / 리뷰 수 공개2차출처 대조300. src/data/real-places.json, research/*.json. 실제 API값·검증근거 유지.
+- 실제 API 후보2329 / 조사 원본1930 / 리뷰 수 공개2차출처 대조300. research/real-places.json, research/*.json. 실제 API값·검증근거 유지.
+- places.runtime.json: 앱에서 쓰는 실제 후보1199 (리뷰 근거222), 이미 제외된 체인 의심731은 조사 원본에만 보존. 원본 분류 문자열 제거, 공통 기본값/출처를 한번 저장해 복원. 예비 후보·ID·정확한 URL·운영정보·리뷰 수 보존. 데이터 갱신/빌드/개발 시작 때 자동 생성.
+- 리뷰 감점 기준 최댓값을 추천당 한번 산출: 원본 대비 점수·상위20·유동인구 동일. 영구 캐시 없음.
 - 25개 동 모두 실제 후보20개 초과. 2026-11-08 14:00/전체활동/100km에서 Lv.0·1·2 전부 20/20.
 - 관심 활동을 좁히거나 확인된 휴무가 많으면 N/20 가능; 해당 활동과 다른 장소를 억지로 넣지 않음.
 - 최신 d2eebae 장소 추천 카드/스크롤/친밀도 문구/내 동네 빗금/푸터 경계 출처 유지. 점수 보기 기본 0~100; 친밀도 보기 전환. 작은 지도 접근용 동 이름 목록은 접어 둠.
@@ -24,6 +26,13 @@ authorization: 사용자 단위별 검증·main 반영 승인 유지. 직접 요
 - 예: 중앙동 Lv.1, 출발 중앙동,14시 → 장소합계1260.62, 정규화57.30, 유동인구15%/8.60점 차감, 최종44.6.
 
 ## 검증
+
+2026-11-08 03:45 payload 최적화: build PASS; unit135 PASS; API/import8 PASS; browser32 PASS.
+desktop3runs: .claude/state/evidence/2026-11-08T03-44-46 PASS5/5; mobile3runs: .claude/state/evidence/2026-11-08T03-45-04-mobile PASS5/5; 콘솔 오류 없음.
+지도·실제20/20·방문 후 예비 후보 재선정과 기록 유지 화면 확인. 최신 3단계 탐험 조건 디자인 유지.
+JS 2,383KB→866KB (gzip328KB→206KB); 추천 중앙값96.87ms→4.68ms, 결과 동일.
+로컬 Chromium390px, CPU4배 제한, 캐시 비활성, 새 컨텍스트5회 중앙값: 추천 화면0.980s→0.500s. 실제 배포/기기/망 성능 보장은 아님.
+측정: .claude/state/evidence/place-payload/performance.json. 아래는 이전 기능 변경 검증 이력.
 
 build PASS; unit130 PASS; API/import tests8 PASS; full browser30 PASS (최신 안내 칩까지 통합 후)
 desktop3runs: .claude/state/evidence/2026-11-08T03-16-31 PASS5/5

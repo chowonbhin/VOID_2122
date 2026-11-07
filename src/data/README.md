@@ -63,6 +63,15 @@
 
 ## 갱신과 자동화
 
+### 브라우저용 최소 데이터
+
+- `research/real-places.json`은 출처 대조·재분류용 원본 1,930곳이다. 브라우저에서 import하지 않는다.
+- `places.runtime.json`에는 제외 정책을 통과한 실제 후보 1,199곳만 넣는다. 체인 의심으로 이미 제외된 731곳과 수집용 원분류 문자열은 내려보내지 않는다. 상위 20곳 밖의 **예비 후보도 모두 유지**하며 기존 ID와 저장된 방문 기록은 바꾸지 않는다.
+- 장소명·동·앱 분류·주소·좌표·운영정보·방문자 리뷰 수·출처는 보존한다. 반복되는 기본값/출처는 한 번 저장하고 로딩 시 복원한다. 네이버 검색 링크는 같은 동명과 장소명으로 원래 URL을 복원한다. 다른 출처/기본값을 가진 개별 장소의 예외는 그대로 저장한다.
+- `npm run content:prepare`가 원본에서 배포용 파일을 생성한다. 수집 결과 가져오기와 `npm run dev` / `npm run build`도 이 단계를 실행한다. 배포용 JSON은 직접 수정하지 않는다.
+- 리뷰 감점 기준 최댓값은 추천 계산 한 번당 전체 후보를 한 번만 읽어 산출한다. 자료가 변경되면 다음 계산에서 다시 생성하므로 리뷰/분류 갱신과 방문 후 재선정을 가로막는 영구 캐시는 없다.
+- `placePayload.test.ts`는 전체 후보의 기능 필드·정확한 출처 URL 보존, Lv.0/1/2·방문·관심 활동별 점수/선정 결과 동일성을 원본과 비교한다.
+
 ```sh
 node --experimental-strip-types --env-file=.env.local scripts/collect-ansan-candidates.mjs --out .local/ansan-real-candidates --target 25 --max-requests 1800 --evidence src/data/research/hamgae-observations.json
 node scripts/import-real-places.mjs .local/ansan-real-candidates/candidates.json src/data/research/hamgae-observations.json

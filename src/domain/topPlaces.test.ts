@@ -73,6 +73,17 @@ describe('top 20 reselection from the complete candidate pool', () => {
 });
 
 describe('source-backed per-place popularity', () => {
+  it('rebuilds reference maxima after count and classification updates instead of keeping stale cached values', () => {
+    const target = place('target', 80, 10);
+    const other = place('other', 80, 1000);
+    const changed: Content = { ...data, places: [target, other] };
+    const scores = () => scorePlaces(region, changed, { ...profile, initialLevels: { [region.id]: 1 } }, [], ctx);
+    expect(scores()[0].popularity).toMatchObject({ referenceMax: 1000 });
+    other.popularityEvidence!.count = 100;
+    expect(scores()[0].popularity).toMatchObject({ referenceMax: 100 });
+    other.franchise = { status: 'franchise', source };
+    expect(scores()[0].popularity).toMatchObject({ referenceMax: 10, value: 1 });
+  });
   it('larger counts mean greater penalty at equal base value and Lv', () => {
     const c = { ...data, places: [place('few', 80, 10), place('many', 80, 1000)] };
     const scores = scorePlaces(region, c, { ...profile, initialLevels: { [region.id]: 1 } }, [], ctx);
