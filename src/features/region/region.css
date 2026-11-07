@@ -1,0 +1,14 @@
+.region-detail { --surface-page: #FBF8F1; --surface-card: #FFFEFA; --action-primary: #356859; --text-primary: #293E39; --text-secondary: #64736C; color: var(--text-primary); background: var(--surface-page); border-radius: 24px; padding: 24px; }
+.region-detail h1 { overflow-wrap: anywhere; }
+.region-detail .place { background: var(--surface-card); border-radius: 18px; }
+.region-detail .place.selected-place { border-color: var(--action-primary); }
+.region-summary { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; }
+.region-summary span { background: #EEE6D6; border-radius: 20px; padding: 8px 12px; }
+.region-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+.region-filters button { min-height: 44px; background: var(--surface-card); color: var(--text-primary); border-radius: 24px; }
+.region-filters button[aria-pressed="true"] { background: var(--action-primary); border-color: var(--action-primary); color: white; }
+.region-filters button:disabled { cursor: not-allowed; color: var(--text-secondary); border-style: dashed; }
+.region-filters button:focus-visible, .region-detail .region-back:focus-visible { outline: 3px solid #994B32; outline-offset: 3px; }
+.region-category, .region-note { color: var(--text-secondary); font-size: 13px; }
+.region-empty { padding: 24px; background: var(--surface-card); border: 1px dashed #B6CFB5; border-radius: 18px; text-align: center; margin-bottom: 16px; }
+@media (max-width: 480px) { .region-detail { padding: 12px; border-radius: 16px; } .region-detail h1 { font-size: 25px; } .region-filters { gap: 6px; } .region-filters button { padding: 10px 12px; font-size: 14px; } }
