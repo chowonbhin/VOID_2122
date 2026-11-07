@@ -1,6 +1,7 @@
 // Images for the map's chosen-place pin: the user's latest notebook photo, else a known store photo.
 import { useEffect, useState } from 'react';
 import { MEMORY_PHOTOS } from '../../data/memoryPhotos';
+import { PLACE_PHOTOS } from '../../data/placePhotos';
 import { listPhotos } from '../notebook/photoStorage';
 
 /** One IndexedDB read per page: latest personal thumbnail per place, as object URLs. */
@@ -25,4 +26,6 @@ export function usePlaceThumbnails(): Record<string, string> {
 }
 
 /** Image for a place: the user's latest photo, else the fixed storefront example. */
-export const placeImage = (placeId: string, personalUrl?: string) => personalUrl ?? MEMORY_PHOTOS.find(photo => photo.placeId === placeId)?.src;
+export const placeImage = (placeId: string, personalUrl?: string) => personalUrl
+  ?? PLACE_PHOTOS.find(photo => photo.placeId === placeId)?.src
+  ?? MEMORY_PHOTOS.find(photo => photo.placeId === placeId)?.src;
