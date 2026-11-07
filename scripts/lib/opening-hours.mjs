@@ -55,6 +55,44 @@ export function openingFromWeeklyText(hoursWeekly = {}) {
   }));
 }
 
+/** Public directory text: only explicitly named recurring weekdays become a weekly rule. */
+export function openingFromPublishedText(text = '') {
+  const days = Array(7).fill(null), cutoffs = Array(7).fill(null);
+  for (const part of text.split(/\s*\|\s*|\s*\/\s*(?=[일월화수목금토](?:·|\s|\())/)) {
+    const match = /^(?:매주:\s*)?(매일|[일월화수목금토](?:·[일월화수목금토])*)\s+(.+)$/.exec(part.trim());
+    if (!match) continue; // Dated entries such as 목(10/15) are not weekly schedules.
+    const [, group, value] = match;
+    const indexes = group === '매일' ? [0, 1, 2, 3, 4, 5, 6] : group.split('·').map(d => labels.indexOf(d));
+    if (/^정기휴무(?:\s*\(매주 [일월화수목금토]요일\))?$/.test(value)) {
+      for (const day of indexes) days[day] = [];
+      continue;
+    }
+    const hours = /^(\d{2}:\d{2})\s*[-~–]\s*(\d{2}:\d{2})(?:\s*\/\s*라스트오더\s*(\d{2}:\d{2}))?$/.exec(value);
+    if (!hours) continue;
+    const range = interval(hours[1], hours[2]);
+    if (!range) continue;
+    for (const day of indexes) {
+      days[day] = [range];
+      if (hours[3]) {
+        let cutoff = minute(hours[3]);
+        if (cutoff !== null && cutoff < range[0]) cutoff += 1440;
+        if (cutoff !== null && cutoff >= range[0] && cutoff < range[1]) cutoffs[day] = cutoff;
+      }
+    }
+  }
+  const opening = calendarOpening(days);
+  for (let day = 0; day < 7; day++) {
+    for (const [sourceDay, shift] of [[day, 0], [(day + 6) % 7, 1440]]) {
+      const cutoff = cutoffs[sourceDay];
+      if (cutoff === null || cutoff < shift || cutoff >= shift + 1440) continue;
+      const value = clock(cutoff - shift);
+      const range = opening.weekly[day]?.find(r => r.open <= value && value < r.close);
+      if (range) range.lastEntry = value;
+    }
+  }
+  return opening;
+}
+
 export function openingFromTabling(evidence) {
   // Monthly/irregular holidays need dated exceptions, not a fabricated weekly rule.
   if (evidence.temporaryHolidays?.length || (evidence.regularHolidays ?? []).some(h => h.criterion !== 'WEEK' || h.weekNo != null)) return { status: 'unknown' };

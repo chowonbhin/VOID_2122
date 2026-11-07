@@ -1,5 +1,5 @@
 import { distanceMeters } from './real-place-import.mjs';
-import { openingFromWeeklyText, openingFromTabling } from './opening-hours.mjs';
+import { openingFromWeeklyText, openingFromTabling, openingFromPublishedText } from './opening-hours.mjs';
 
 const normalize = value => value.normalize('NFKC').replace(/\([^)]*\)/g, '').replace(/[^\p{L}\p{N}]/gu, '').toLowerCase();
 const road = value => value.match(/안산시\s*(?:상록|단원)구\s*\S+(?:로|길)(?:\d+번길)?\s+\d+(?:-\d+)?(?=\s|$)/)?.[0].replace(/\s+/g, '');
@@ -21,7 +21,8 @@ export function applyOpeningObservations(places, observations) {
       throw new Error(`Opening evidence identity/provenance mismatch: ${place.id}`);
     }
     if (place.source?.checkedAt > e.source.checkedAt) return place;
-    const opening = e.provider === 'tabling' ? openingFromTabling(e) : openingFromWeeklyText(e.hoursWeekly);
+    const opening = e.provider === 'tabling' ? openingFromTabling(e)
+      : e.hoursText ? openingFromPublishedText(e.hoursText) : openingFromWeeklyText(e.hoursWeekly);
     if (opening.status !== 'known') throw new Error(`No usable opening evidence: ${place.id}`);
     return { ...place, opening, source: e.source };
   });

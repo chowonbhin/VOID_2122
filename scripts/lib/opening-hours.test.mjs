@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { openingFromWeeklyText, openingFromTabling } from './opening-hours.mjs';
+import { openingFromWeeklyText, openingFromTabling, openingFromPublishedText } from './opening-hours.mjs';
 import { applyOpeningObservations } from './opening-observations.mjs';
 
 test('missing days and invalid/ambiguous times do not become opening hours', () => {
@@ -22,6 +22,20 @@ test('overnight periods carry into the following calendar day, including Sunday 
 test('explicit 24-hour schedules stay continuous at midnight', () => {
   const o = openingFromWeeklyText(Object.fromEntries([...'일월화수목금토'].map(d => [d, '00:00~24:00'])));
   assert.deepEqual(o.weekly[0], [{ open: '00:00', close: '24:00' }]);
+});
+test('published directory schedules preserve last orders without repeating date-specific hours', () => {
+  const o = openingFromPublishedText('수·금·토·일·월 10:00 ~ 21:00 / 라스트오더 20:30 | 목(10/15) 12:00 ~ 21:00 | 화 정기휴무 (매주 화요일)');
+  assert.deepEqual(o.weekly[0], [{ open: '10:00', close: '21:00', lastEntry: '20:30' }]);
+  assert.deepEqual(o.weekly[2], []);
+  assert.deepEqual(o.unknownDays, [4]);
+  assert.equal(openingFromPublishedText('일(10/4)·월(10/5) 휴무').status, 'unknown');
+  assert.equal(openingFromPublishedText('영업시간 미수집').status, 'unknown');
+  const partial = openingFromPublishedText('토 16:30~22:00 / 일·월·수·목·금 11:30~22:00 / 화(10/13) 정기휴무 (매달 2, 4번째 화요일)');
+  assert.deepEqual(partial.unknownDays, [2]);
+  assert.deepEqual(partial.weekly[0], [{ open: '11:30', close: '22:00' }]);
+  assert.equal(openingFromPublishedText('매일 10:00~22:00 / 브레이크타임 15:00~17:00').status, 'unknown');
+  const overnight = openingFromPublishedText('매일 18:00~02:00 / 라스트오더 01:00');
+  assert.deepEqual(overnight.weekly[0], [{ open: '00:00', close: '02:00', lastEntry: '01:00' }, { open: '18:00', close: '24:00' }]);
 });
 test('subtracts weekday-specific breaks and respects regular holidays', () => {
   const e = { regularHolidays: [{ criterion: 'WEEK', weekNo: null, dayOfWeek: 1 }], restaurantTimes: [

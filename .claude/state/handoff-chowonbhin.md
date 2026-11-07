@@ -1,16 +1,17 @@
 # Handoff — chowonbhin
-- User override: ignore schedule/deadline; no clock-based phase transitions.
-- Branch chowonbhin/map-navigation-polish; previous UI checkpoint 115582a remains unpublished, base main 64d84cb.
-- Latest scope: gentler map fades/zoom, rightward onboarding progression, remove pointer tooltips, clean hover edges.
-- Map zoom now 640ms; back/finish fade 440ms; incoming main/detail fades 460ms with smooth easing.
-- Each next question exits left then enters from the right (200+440ms); previous reverses direction. Answers stay in parent state and duplicate input is blocked during motion.
-- Reduced motion skips effects. New heading receives focus after inert is removed; an initially failing keyboard regression drove this correction.
-- Save failure restores opacity and controls rather than leaving onboarding faded out.
-- Native title tooltips removed from main regions/arrows and detail pins. Hover uses round white-halo/ink outlines above neighbours; base borders remain stable.
-- Build PASS; final related browser checks 21/21 PASS; earlier navigation/search/onboarding 12/12 PASS.
-- Final PC demo PASS 5/5: .claude/state/evidence/2026-11-08T07-14-32/.
-- Final mobile demo PASS 5/5: .claude/state/evidence/2026-11-08T07-14-50-mobile/; no console errors/SLOW.
-- Visual evidence: .claude/state/evidence/gentle-motion/; question-from-right.png, mobile-hover.png and desktop-hover.png inspected.
-- Local http://127.0.0.1:3011/ serves index-CtroEiXr.js; these changes are not pushed/deployed.
-- Next 1: inspect menu → 다시 설정하기 and main-map hover/entry/back locally.
-- Next 2: integrate current main and push only on request, then verify public PC/mobile.
+- User override: ignore schedule/deadline; build remains active.
+- Branch: chowonbhin/more-opening-hours, based on deployed main fd79706.
+- Latest scope: retain ‘예시 숨기기’; collect missing opening hours from other public sources.
+- Added 27 existing venues: dessertnow 9 and gogijip 18; each name, road/building and coordinates matched.
+- Runtime still 1,199 venues; weekly hours 327→354; Sunday schedule/closure 284→311; 845 remain without hours.
+- Sources/checked dates/raw schedule facts saved in opening-observations.json; no invented hours or venue identity changes.
+- Parser supports explicit weekdays, regular closure, midnight crossing and last-order cutoff. Dated/irregular days remain unknown.
+- Build PASS (index-DsZm2Z1a.js); unit 154/154; importer/parser 6/6; related browser checks 5/5.
+- Final PC demo PASS 5/5: .claude/state/evidence/2026-11-08T07-26-42/.
+- Final mobile demo PASS 5/5: .claude/state/evidence/2026-11-08T07-26-54-mobile/; no console errors/SLOW.
+- Inspected opening-data/secondary-source-cutoff.png: Omelt hours + last order fit the mobile card.
+- Local http://127.0.0.1:3011/ serves new build. This task is not pushed/deployed.
+- Next 1: inspect 해양동 → 오멜트 locally; Sunday 10:00–21:00 / last order 20:30.
+- Next 2: research remaining 845 venues; existing known hours were preserved.
+- Next 3: integrate main and publish only when requested.
+- For captain: none.

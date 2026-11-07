@@ -10,6 +10,7 @@ test('existing shops show researched breaks, overnight hours and the fixed memor
     { dong: 'dong-4127357000', name: '여우카츠', times: ['11:30–15:00', '17:00–21:00'], image: 'break-time' },
     { dong: 'dong-4127156000', name: '미스터꼼장어막창', times: ['00:00–03:00', '17:00–24:00'], image: 'overnight' },
     { dong: 'dong-4127152500', name: '초지참숯불갈비', times: ['13:00–22:00'], image: 'memory-shop' },
+    { dong: 'dong-4127153700', name: '오멜트', times: ['10:00–21:00', '입장·주문 마감 20:30'], image: 'secondary-source-cutoff' },
   ];
   const out = '.claude/state/evidence/opening-data';
   fs.mkdirSync(out, { recursive: true });
