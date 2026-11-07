@@ -49,3 +49,9 @@ end to end. Work strictly in golden-path order.
 - Step 2 PASS (0.2s); full path PARTIAL 2/5, other steps pending. Desktop/mobile screenshots inspected.
 - setup.spec.ts now selects the h1 explicitly: new empty-state h2 also contains the words 추천 권역.
 - Latest fetch found teammate visit commit 03f2b19; integrate next, then rerun affected verification before local main merge.
+
+## Integrated verification — 2026-11-07 23:26 KST
+- Rebased onto teammate visit commit 03f2b19 without conflicts; source 69a25b9074709559d2af1532106d9210e71a0766.
+- Unit 71/71, browser 14/14, typecheck/build passed. Golden path PARTIAL 3/5 (1,2,4 PASS; 3,5 pending), exit 0, no console errors.
+- Real visit changed A→B to B→A in screenshot; step-5 owner must add rank assertion and remove pending.
+- Steps 6–8 await human push after local fast-forward merge; no further feature work in this turn.
