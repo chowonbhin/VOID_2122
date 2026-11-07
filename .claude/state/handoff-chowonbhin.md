@@ -1,17 +1,17 @@
 # Handoff — chowonbhin
 - User override: ignore schedule/deadline; build remains active.
 - Branch: chowonbhin/more-opening-hours, based on deployed main fd79706.
-- Latest scope: retain ‘예시 숨기기’; collect missing opening hours from other public sources.
+- Latest scope: main-map mobile rank dots reduced from ~44px to ~30px; 13px numerals, 44px touch targets and desktop sizes preserved.
 - Added 27 existing venues: dessertnow 9 and gogijip 18; each name, road/building and coordinates matched.
 - Runtime still 1,199 venues; weekly hours 327→354; Sunday schedule/closure 284→311; 845 remain without hours.
 - Sources/checked dates/raw schedule facts saved in opening-observations.json; no invented hours or venue identity changes.
 - Parser supports explicit weekdays, regular closure, midnight crossing and last-order cutoff. Dated/irregular days remain unknown.
-- Build PASS (index-DsZm2Z1a.js); unit 154/154; importer/parser 6/6; related browser checks 5/5.
+- Latest build PASS (index-D0fVXKYm.js); map-search checks 5/5 at 1280/390/320px. Previous data unit 154/154 + parser 6/6 remain valid.
 - Final PC demo PASS 5/5: .claude/state/evidence/2026-11-08T07-26-42/.
-- Final mobile demo PASS 5/5: .claude/state/evidence/2026-11-08T07-26-54-mobile/; no console errors/SLOW.
+- Final mobile demo PASS 5/5: .claude/state/evidence/2026-11-08T07-29-30-mobile/; no console errors/SLOW. Step-02 screenshot inspected: smaller rank dots are readable.
 - Inspected opening-data/secondary-source-cutoff.png: Omelt hours + last order fit the mobile card.
 - Local http://127.0.0.1:3011/ serves new build. This task is not pushed/deployed.
-- Next 1: inspect 해양동 → 오멜트 locally; Sunday 10:00–21:00 / last order 20:30.
+- Next 1: inspect smaller 1/2/3 rank markers on the main map at phone width; prior hours checkpoint 564f8b0.
 - Next 2: research remaining 845 venues; existing known hours were preserved.
 - Next 3: integrate main and publish only when requested.
 - For captain: none.

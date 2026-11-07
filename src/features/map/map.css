@@ -65,6 +65,9 @@
 .region-back { margin-bottom: 16px; }
 @media (prefers-reduced-motion: reduce) { .ansan-region-fill { transition: none; } }
 @media (max-width: 720px) {
+  /* Smaller visible ranks; the transparent 44px touch targets stay easy to tap. */
+  .map-rank-face { r: 14px; stroke-width: 1.5px; }
+  .map-rank-pin text { font-size: 13px; }
   /* Tiny districts cannot carry readable text on a phone. Their accessible
      labels, focus caption and 44px directory buttons retain names and scores. */
   .ansan-region-label { display: none; }
