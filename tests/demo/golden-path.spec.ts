@@ -113,7 +113,7 @@ test('golden path', async ({ page }) => {
       await page.getByRole('button', { name: '가본 장소', exact: true }).click();
       // Lv is no longer printed; the panel keeps it as a hidden data hook.
       await expect(panel).toHaveAttribute('data-region-level', '1');
-      await expect(panel.getByText('자기 신고', { exact: true })).toBeVisible();
+      await expect(panel.getByText('다녀왔어요', { exact: true })).toBeVisible();
       await expect(panel.locator('time')).toHaveText('2026-11-08');
     });
     await demoStep(page, '5. Return and reload → same real score, source counts and visit persist', async () => {

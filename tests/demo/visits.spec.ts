@@ -69,7 +69,7 @@ test('records persist, can be edited and revisited, reject duplicate days, and d
   await addVisit(panel, '2026-11-08');
   await expectProgress(panel, 1, 2, 1);
   await expect(panel.getByText('2026-11-08', { exact: true })).toBeVisible();
-  await expect(panel.getByText('자기 신고', { exact: true })).toHaveCount(1);
+  await expect(panel.getByText('다녀왔어요', { exact: true })).toHaveCount(1);
   await expect(panel.getByRole('button', { name: '방문 기록', exact: true })).toBeDisabled();
   expect((await persisted(page)).profile).toEqual(seed.profile);
   expect((await persisted(page)).search).toEqual(seed.search);
@@ -78,7 +78,7 @@ test('records persist, can be edited and revisited, reject duplicate days, and d
   await page.getByRole('button', { name: '전체 후보', exact: true }).click();
   await expectProgress(panel, 1, 2, 1);
   await expect(panel.getByText('2026-11-08', { exact: true })).toBeVisible();
-  await expect(panel.getByText('자기 신고', { exact: true })).toHaveCount(1);
+  await expect(panel.getByText('다녀왔어요', { exact: true })).toHaveCount(1);
   await panel.getByRole('button', { name: '2026-11-08 방문일 수정', exact: true }).click();
   await panel.getByLabel('수정할 방문일', { exact: true }).fill('2026-11-07');
   await panel.getByRole('button', { name: '수정 저장', exact: true }).click();
@@ -87,7 +87,7 @@ test('records persist, can be edited and revisited, reject duplicate days, and d
 
   await addVisit(panel, '2026-11-09');
   await expectProgress(panel, 1, 2, 1);
-  await expect(panel.getByText('자기 신고', { exact: true })).toHaveCount(2);
+  await expect(panel.getByText('다녀왔어요', { exact: true })).toHaveCount(2);
   await panel.getByLabel('방문일', { exact: true }).fill('2026-11-07');
   await expect(panel.getByRole('button', { name: '방문 기록', exact: true })).toBeDisabled();
   await expect(panel.getByText(/이 날짜의 방문 기록이 있어요/)).toBeVisible();
@@ -96,7 +96,7 @@ test('records persist, can be edited and revisited, reject duplicate days, and d
   await panel.getByLabel('수정할 방문일', { exact: true }).fill('2026-11-07');
   await panel.getByRole('button', { name: '수정 저장', exact: true }).click();
   await expect(panel.getByRole('alert')).toContainText('같은 날짜 방문 기록이 이미 있어요');
-  await expect(panel.getByText('자기 신고', { exact: true })).toHaveCount(2);
+  await expect(panel.getByText('다녀왔어요', { exact: true })).toHaveCount(2);
   await panel.getByRole('button', { name: '취소', exact: true }).click();
   await screenshot(page, 'visits-desktop.png');
 
@@ -168,7 +168,7 @@ test('an empty visit date shows an error and stores no visit', async ({ page }) 
   await panel.getByLabel('방문일', { exact: true }).fill('');
   await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
   await expect(panel.getByRole('alert')).toHaveText('올바른 방문일을 선택해 주세요.');
-  await expect(panel.getByText('자기 신고', { exact: true })).toHaveCount(0);
+  await expect(panel.getByText('다녀왔어요', { exact: true })).toHaveCount(0);
   expect((await persisted(page)).visits).toEqual([]);
 });
 
@@ -198,8 +198,8 @@ test('write failure preserves existing records and shows no successful add, edit
   await expect(unvisited.getByRole('status')).toHaveCount(0);
   await expectProgress(unvisited, 1, 1, 1);
   await expectProgress(panel, 1, 2, 1);
-  await expect(panel.getByText('자기 신고', { exact: true })).toHaveCount(1);
-  await expect(unvisited.getByText('자기 신고', { exact: true })).toHaveCount(0);
+  await expect(panel.getByText('다녀왔어요', { exact: true })).toHaveCount(1);
+  await expect(unvisited.getByText('다녀왔어요', { exact: true })).toHaveCount(0);
   await unchanged();
 
   await panel.getByRole('button', { name: '2026-11-08 방문일 수정', exact: true }).click();
@@ -225,7 +225,7 @@ test('visit controls and records remain visible on a narrow mobile viewport', as
   const panel = await openRegion(page);
   await addVisit(panel, '2026-11-08');
   await expectProgress(panel, 1, 2, 1);
-  await expect(panel.getByText('자기 신고', { exact: true })).toBeVisible();
+  await expect(panel.getByText('다녀왔어요', { exact: true })).toBeVisible();
   await expect(panel.getByRole('button', { name: '2026-11-08 방문일 수정', exact: true })).toBeVisible();
   await expect(panel.getByRole('button', { name: '2026-11-08 방문 기록 삭제', exact: true })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);

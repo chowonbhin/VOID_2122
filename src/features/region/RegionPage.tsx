@@ -168,7 +168,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
           return <li key={place.id} ref={(element) => { cards.current[place.id] = element; }}
             className={`place${place.id === selectedPlaceId ? ' selected-place' : ''}`}
             data-rated={(scored?.rating ?? placeRating(place)).status === 'measured'}>
-            <p className="region-category">{visitedIds.has(place.id) ? '가본 장소 · 자기 신고' : '남긴 방문 기록 없음'}</p>
+            <p className="region-category">{visitedIds.has(place.id) ? '내가 다녀온 곳' : '아직 안 가본 곳'}</p>
             <div className="region-place-heading">
               <h2>{index + 1}. {place.name}</h2>
               <button aria-label={`${place.name} 카드에서 선택`} aria-pressed={place.id === selectedPlaceId}

@@ -132,7 +132,7 @@ export function VisitPanel({ placeId }: { placeId: string }) {
             <li key={visit.id}>
               <div className="visit-record-summary">
                 <time dateTime={visit.date}>{visit.date}</time>
-                <span className="visit-badge">자기 신고</span>
+                <span className="visit-badge">다녀왔어요</span>
               </div>
               {editing?.id === visit.id ? (
                 <form className="visit-edit-form" onSubmit={saveDate} aria-label={`${visit.date} 방문일 수정`} noValidate>
