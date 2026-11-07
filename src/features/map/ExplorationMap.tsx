@@ -116,7 +116,13 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
         <div className="map-search-field">
           <input type="search" aria-label="지역 검색" placeholder="지역 검색" value={query}
             aria-controls="map-search-results" autoComplete="off"
-            onFocus={() => setSearchOpen(true)} onChange={event => { setQuery(event.target.value); setSearchOpen(true); }} />
+            onFocus={() => setSearchOpen(true)} onChange={event => {
+              setQuery(event.target.value);
+              setSearchOpen(true);
+              setSelected(undefined);
+              setHovered(undefined);
+              pendingFocus.current = null;
+            }} />
           <button type="submit" aria-label="지역 찾기">
             <Icon name="search" size={20} />
           </button>
@@ -130,7 +136,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
         </div>}
       </form>
     </div>
-    <div className="ansan-map-stage">
+    <div className="ansan-map-stage" onMouseLeave={() => setHovered(undefined)}>
     <div className="ansan-slider" ref={element => {
       slider.current = element;
       if (element && initial && !positioned.current) { positioned.current = true; element.scrollLeft = initial * element.clientWidth; }
@@ -170,6 +176,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
               ref={element => { if (element) regionElements.current.set(shape.region.id, element); else regionElements.current.delete(shape.region.id); }}
               className={`ansan-region${shape.recommended ? ' recommended' : ''}${shape.region.id === selected ? ' search-selected' : ''}`}
               onMouseEnter={() => setHovered(shape.region.id)} onFocus={() => setHovered(shape.region.id)}
+              onMouseLeave={() => setHovered(undefined)} onBlur={() => setHovered(undefined)}
               onClick={() => onRegionSelect(shape.region.id)} onKeyDown={event => onKey(event, shape.region.id)}>
               <title>{`${shape.region.name} · ${shape.status}`}</title>
               <path className="ansan-region-fill" d={pathOfDong(shape.dong)} fillRule="evenodd" data-region-id={shape.region.id}
@@ -183,6 +190,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
             <g role="button" tabIndex={0} className="map-rank-pin" aria-label={`추천 ${pin.shape.rank}위 ${pin.shape.region.name} 동네로 들어가기`}
               transform={`translate(${pin.x} ${pin.y}) scale(${unit})`}
               onMouseEnter={() => setHovered(pin.shape.region.id)} onFocus={() => setHovered(pin.shape.region.id)}
+              onMouseLeave={() => setHovered(undefined)} onBlur={() => setHovered(undefined)}
               onClick={() => onRegionSelect(pin.shape.region.id)} onKeyDown={event => onKey(event, pin.shape.region.id)}>
               <circle r="22" className="map-rank-hit" />
               <circle r="21" className="map-rank-face" />

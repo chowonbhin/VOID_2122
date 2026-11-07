@@ -1,17 +1,15 @@
 # Handoff — chowonbhin
 - User override: ignore schedule/deadline; no clock-based phase transitions.
-- User authorized main push. Integrated origin/main eead364 without conflicts; application head 180d09d.
-- Latest request: remove recommendation wording from place cards, match place-page pins, replace urban/island tabs with translucent side arrows.
-- Place cards retain category, dong, name and familiarity; five-place limit remains.
-- Top-three pins now use white circles with green borders/numbers and hover/focus feedback.
-- Left/right overlay arrows switch maps; unavailable direction is disabled. Region search and horizontal swipe remain.
-- Integrated build PASS; unit tests 154/154 and full browser tests 55/55 PASS.
-- PC demo PASS 5/5: .claude/state/evidence/2026-11-08T06-16-34/.
-- Mobile demo PASS 5/5: .claude/state/evidence/2026-11-08T06-16-44-mobile/; no console errors/SLOW in either run.
-- Screenshots: .claude/state/evidence/map-side-arrows/ at 1280/390/320px, no horizontal overflow; mobile map/cards inspected.
-- Local URL http://127.0.0.1:3011/ serves integrated build; index-BlyKRsd6.js.
-- Next 1: fast-forward local main and push the verified integrated source (authorized).
-- Next 2: confirm public bundle matches index-BlyKRsd6.js.
+- Branch chowonbhin/map-hover-reset; base main a8e705b was pushed and deployed in the preceding task.
+- Current request: clear stale search marking after deleting search text and hide captions when the pointer leaves the map.
+- Both bugs reproduced with failing browser regressions before the fix.
+- Editing the query clears selected region, caption and pending search focus; recommendation pins remain.
+- Region/pin mouse leave and blur clear captions; leaving the map stage also clears search-triggered captions.
+- Build PASS; map/search/admin browser tests 13/13 PASS, including desktop/320px query edits and region/pin pointer/focus exits.
+- Local PC demo PASS 5/5: .claude/state/evidence/2026-11-08T06-22-26/.
+- Local mobile demo PASS 5/5: .claude/state/evidence/2026-11-08T06-22-44-mobile/; no console errors or SLOW steps.
+- Visual evidence inspected: .claude/state/evidence/map-hover-reset/selected.png and left-map.png.
+- Local URL http://127.0.0.1:3011/ serves index-B5CvyOgk.js. This fix is not pushed/deployed.
+- Next 1: user checks search deletion and pointer exit locally.
+- Next 2: integrate current main and push only when requested.
 - Next 3: verify public PC/mobile after deployment.
-## For captain
-- No data/scoring/golden-path changes; browser assertions updated for the requested UI.

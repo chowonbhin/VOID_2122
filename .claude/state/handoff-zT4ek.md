@@ -1,7 +1,7 @@
 # Handoff: zT4ek
 
 phase: harden; 로즈 테라코타·뉴트럴 화이트 / 공통 에셋 적용 (2026-11-08 KST)
-branch: zT4ek/rose-paper-theme (65e4a91 지도 이동 포함); latest integrated origin/main a8e705b
+branch: zT4ek/rose-paper-theme (65e4a91 지도 이동 포함); latest integrated origin/main 41475b8
 authorization: 사용자 최신 지시로 바로 main에 올리지 않는다. 다른 곳에서 진행 중인 ‘지도 아이콘을 누른 장소만 표시’ 구현이 완료되면 통합·검증한 뒤 main에 올린다.
 
 ## 최신: 컬러·에셋 통일
@@ -12,7 +12,7 @@ authorization: 사용자 최신 지시로 바로 main에 올리지 않는다. �
 - 강한 그림자/그라데이션/반복 점무늬/사진 기울임 제거. primary는 주요 행동 위주, 나머지는 연한 선택 배경·테두리로 표현. 오류는 아이콘+문구+의미 색 함께 표시.
 - 기존 녹색 fill을 기대하던 브라우저 assertion만 새 역할 토큰으로 갱신; 친밀도 단계/추천 순위 검증 유지.
 - 최종 build PASS, browser55 PASS, 모바일 golden5/5 PASS(.claude/state/evidence/2026-11-08T06-23-58-mobile), 콘솔 오류 없음. neutral-rose/에서 light/dark 각 PC1280·390·320px 주요 화면30개 검사: 화면에 보이는 일반 텍스트 대비4.5:1 미만0, 가로 넘침0, 저장 상태 변동0, 페이지 오류0. 전체 WCAG 감사는 아님. 수첩 PC/모바일·메인·장소 카드·날짜 오류창 실화면 확인.
-- 원격 a8e705b의 지역 검색/메인 상위3개 핀/설명 축약을 보존하고 새 색상/아이콘으로 통합. 상세의 ‘선택 장소만 표시’ 변경은 아직 원격에 없음. 마지막 확인에서 후속41475b8(검색 선택/hover 해제)이 도착해 이어서 통합한다.
+- 원격 a8e705b의 지역 검색/메인 상위3개 핀/설명 축약과 41475b8(검색 선택/hover 해제)을 보존하고 새 색상/아이콘으로 통합. 후속 build·지도 검색5개·모바일 golden5/5 PASS(.claude/state/evidence/2026-11-08T06-25-16-mobile), 콘솔 오류 없음, step02 실화면 확인. 상세의 ‘선택 장소만 표시’ 변경은 아직 원격에 없으므로 main 반영 대기 유지.
 
 ## 최신: 장소 지도 이동 연결 (다른 지도 표시 변경 통합 대기)
 
