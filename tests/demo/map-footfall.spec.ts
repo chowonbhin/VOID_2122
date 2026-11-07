@@ -64,7 +64,7 @@ test('the main map is familiarity-only with home hatching; the hidden score stil
   await expect(mapScore(page)).toHaveAttribute('fill', '#E1EBDD');
   expect(Number(await mapScore(page).getAttribute('data-score'))).toBeGreaterThan(0);
   await expect(map.locator('.ansan-home-hatch')).toHaveCount(1);
-  await expect(map.locator('text')).toHaveCount(0);
+  await expect(map.locator('.map-rank-pin text')).toHaveText(['1', '2', '3']);
   await expect(map.getByRole('button', { name: /^지도 본오1동/ })).toHaveAccessibleName(/오늘의 추천 \d+순위/);
   await openBono(page);
   await expect(page.locator('.dong-pin.kind-start')).toHaveCount(0);

@@ -7,9 +7,18 @@
 .ansan-map-heading h2 { margin: 4px 0 0; font-size: 22px; }
 .score-map-kicker { font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--accent); }
 .score-map-intro { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
-.ansan-overview { flex: 0 0 auto; width: 92px; height: auto; background: var(--sea); border: 1px solid #c9dbe0; border-radius: 10px; }
-.ansan-overview path { fill: var(--land); stroke: var(--land-stroke); stroke-width: 3px; }
-.ansan-overview rect { fill: none; stroke: #b75d3e; stroke-width: 9px; transition: x .25s, y .25s, width .25s, height .25s; }
+.map-search { position: relative; flex: 0 1 260px; max-width: 55%; min-width: 0; z-index: 5; }
+.map-search-field { display: flex; align-items: center; border: 1.5px solid var(--line-strong); border-radius: 12px; background: var(--bg); overflow: hidden; }
+.map-search-field:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+.map-search-field input { width: 100%; min-width: 0; padding: 10px 8px; border: 0; border-radius: 0; background: transparent; color: var(--fg); font: inherit; font-size: 16px; outline: none; box-shadow: none; }
+.map-search-field button { flex: 0 0 44px; width: 44px; min-height: 44px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 0; background: transparent; color: var(--accent); }
+.map-search-field svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.map-search-dropdown { position: absolute; top: calc(100% + 8px); right: 0; width: max(100%, 200px); max-width: calc(100vw - 56px); background: var(--card); border: 1px solid var(--line-strong); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.map-search-dropdown ul { list-style: none; margin: 0; padding: 4px; max-height: 264px; overflow-y: auto; }
+.map-search-dropdown button { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 8px; text-align: left; background: transparent; }
+.map-search-dropdown button:hover, .map-search-dropdown button:focus-visible { background: var(--accent-soft); }
+.map-search-dropdown span { color: var(--muted); font-size: 12px; }
+.map-search-dropdown p { margin: 0; padding: 16px; font-size: 14px; }
 
 .ansan-area-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 12px; }
 .ansan-area-tabs button { border-radius: 14px; color: var(--muted); }
@@ -26,6 +35,15 @@
 .ansan-region.recommended .ansan-region-fill { stroke: #b75d3e; stroke-width: 5px; }
 .ansan-region:hover .ansan-region-fill { stroke-width: 7px; }
 .ansan-region:focus-visible .ansan-region-fill { stroke: #994b32; stroke-width: 8px; stroke-dasharray: 10 6; }
+.ansan-region.search-selected .ansan-region-fill { stroke: var(--accent); stroke-width: 8px; stroke-dasharray: 10 6; }
+.map-rank-leader { stroke: #994b32; stroke-width: 1.5px; vector-effect: non-scaling-stroke; pointer-events: none; }
+.map-rank-anchor { fill: #994b32; pointer-events: none; }
+.map-rank-pin { cursor: pointer; outline: none; }
+.map-rank-hit { fill: transparent; }
+.map-rank-tip, .map-rank-face { fill: #994b32; }
+.map-rank-face { stroke: #fffefa; stroke-width: 2px; }
+.map-rank-pin text { fill: #fffefa; font-size: 16px; font-weight: 800; pointer-events: none; }
+.map-rank-pin:hover .map-rank-face, .map-rank-pin:focus-visible .map-rank-face { fill: var(--accent); stroke-width: 3px; }
 
 .ansan-legend { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--fg); }
 .ansan-legend li { display: flex; align-items: center; gap: 6px; }
@@ -44,17 +62,21 @@
 .region-place-heading h2 { flex: 1; min-width: 0; margin: 0; padding-top: 10px; font-size: 18px; overflow-wrap: anywhere; }
 .region-place-meta { font-size: 13px; color: var(--muted); margin: 10px 0; }
 .region-back { margin-bottom: 16px; }
-@media (prefers-reduced-motion: reduce) { .ansan-region-fill, .ansan-overview rect { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .ansan-region-fill { transition: none; } }
 @media (max-width: 720px) {
   /* Tiny districts cannot carry readable text on a phone. Their accessible
      labels, focus caption and 44px directory buttons retain names and scores. */
   .ansan-region-label { display: none; }
   .ansan-map { padding: 16px 12px; border-radius: 20px; }
   .ansan-map-heading h2 { font-size: 20px; }
-  .ansan-overview { width: 72px; }
 }
 
 /* Single-동네 map (no tiles): same drawn style as the main map. */
+@media (max-width: 360px) {
+  .ansan-map-heading { gap: 8px; align-items: center; }
+  .ansan-map-heading h2 { font-size: 18px; }
+  .map-search { max-width: 52%; }
+}
 .dong-map { position: relative; width: 100%; margin: 0 auto; border-radius: 18px; border: 1px solid #c9dbe0; overflow: hidden; background-color: var(--sea); background-image: radial-gradient(#b5ccd3 1px, transparent 1.2px); background-size: 14px 14px; }
 .dong-map-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .dong-map-context { fill: #eee6d6; stroke: var(--land-stroke); stroke-width: .5px; vector-effect: non-scaling-stroke; opacity: .75; }
