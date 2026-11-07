@@ -7,13 +7,24 @@
 .ansan-map-heading h2 { margin: 4px 0 0; font-size: 22px; }
 .score-map-kicker { font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--color-link); }
 .score-map-intro { margin: 8px 0 0; font-size: 14px; color: var(--color-text-secondary); }
-.ansan-overview { flex: 0 0 auto; width: 92px; height: auto; background: var(--color-map-bg); border: 1px solid var(--color-border-strong); border-radius: 10px; }
-.ansan-overview path { fill: var(--color-map-land); stroke: var(--color-map-boundary); stroke-width: 3px; }
-.ansan-overview rect { fill: none; stroke: var(--color-primary); stroke-width: 9px; transition: x .25s, y .25s, width .25s, height .25s; }
+.map-search { position: relative; flex: 0 1 260px; max-width: 55%; min-width: 0; z-index: 5; }
+.map-search-field { display: flex; align-items: center; border: 1.5px solid var(--color-border-strong); border-radius: 12px; background: var(--color-bg); overflow: hidden; }
+.map-search-field:focus-within { outline: 2px solid var(--color-link); outline-offset: 2px; }
+.map-search-field input { width: 100%; min-width: 0; padding: 10px 8px; border: 0; border-radius: 0; background: transparent; color: var(--color-text); font: inherit; font-size: 16px; outline: none; box-shadow: none; }
+.map-search-field button { flex: 0 0 44px; width: 44px; min-height: 44px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 0; background: transparent; color: var(--color-link); }
+.map-search-dropdown { position: absolute; top: calc(100% + 8px); right: 0; width: max(100%, 200px); max-width: calc(100vw - 56px); background: var(--color-surface); border: 1px solid var(--color-border-strong); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.map-search-dropdown ul { list-style: none; margin: 0; padding: 4px; max-height: 264px; overflow-y: auto; }
+.map-search-dropdown button { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 8px; text-align: left; background: transparent; }
+.map-search-dropdown button:hover, .map-search-dropdown button:focus-visible { background: var(--color-primary-subtle); }
+.map-search-dropdown span { color: var(--color-text-secondary); font-size: 12px; }
+.map-search-dropdown p { margin: 0; padding: 16px; font-size: 14px; }
 
-.ansan-area-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 12px; }
-.ansan-area-tabs button { border-radius: 14px; color: var(--color-text-secondary); }
-.ansan-area-tabs button[aria-pressed="true"] { border: 1.5px solid var(--color-link); color: var(--color-link); font-weight: 800; background: var(--color-primary-subtle); }
+.ansan-map-stage { position: relative; margin-top: 16px; }
+.map-area-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; display: grid; place-items: center; width: 44px; min-height: 56px; padding: 0; border: 1px solid var(--color-border-strong); border-radius: 14px; background: var(--color-surface); backdrop-filter: blur(4px); color: var(--color-link); box-shadow: var(--shadow); }
+.map-area-arrow.previous { left: 8px; }
+.map-area-arrow.next { right: 8px; }
+.map-area-arrow:hover:not(:disabled) { background: var(--color-surface); }
+.map-area-arrow:disabled { opacity: .25; cursor: default; box-shadow: none; }
 
 .ansan-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 18px; border: 1px solid var(--color-border-strong); overscroll-behavior-x: contain; }
 .ansan-slider::-webkit-scrollbar { display: none; }
@@ -26,6 +37,16 @@
 .ansan-region.recommended .ansan-region-fill { stroke: var(--color-primary); stroke-width: 5px; }
 .ansan-region:hover .ansan-region-fill { stroke-width: 7px; }
 .ansan-region:focus-visible .ansan-region-fill { stroke: var(--color-link); stroke-width: 8px; stroke-dasharray: 10 6; }
+.ansan-region.search-selected .ansan-region-fill { stroke: var(--color-link); stroke-width: 8px; stroke-dasharray: 10 6; }
+.map-rank-leader { stroke: var(--color-link); stroke-width: 1.5px; vector-effect: non-scaling-stroke; pointer-events: none; }
+.map-rank-anchor { fill: var(--color-link); pointer-events: none; }
+.map-rank-pin { cursor: pointer; outline: none;  }
+.map-rank-hit { fill: transparent; }
+.map-rank-face { fill: var(--color-surface); stroke: var(--color-link); stroke-width: 2px; }
+.map-rank-pin text { fill: var(--color-link); font-size: 16px; font-weight: 800; pointer-events: none; }
+.map-rank-pin:hover .map-rank-face, .map-rank-pin:focus-visible .map-rank-face { fill: var(--color-primary-subtle); }
+.map-rank-pin:hover text, .map-rank-pin:focus-visible text { fill: var(--color-link); }
+.map-rank-pin:focus-visible .map-rank-face { stroke: var(--color-link); stroke-width: 3px; }
 
 .ansan-legend { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--color-text); }
 .ansan-legend li { display: flex; align-items: center; gap: 6px; }
@@ -44,17 +65,21 @@
 .region-place-heading h2 { flex: 1; min-width: 0; margin: 0; padding-top: 10px; font-size: 18px; overflow-wrap: anywhere; }
 .region-place-meta { font-size: 13px; color: var(--color-text-secondary); margin: 10px 0; }
 .region-back { margin-bottom: 16px; }
-@media (prefers-reduced-motion: reduce) { .ansan-region-fill, .ansan-overview rect { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .ansan-region-fill { transition: none; } }
 @media (max-width: 720px) {
   /* Tiny districts cannot carry readable text on a phone. Their accessible
      labels, focus caption and 44px directory buttons retain names and scores. */
   .ansan-region-label { display: none; }
   .ansan-map { padding: 16px 12px; border-radius: 20px; }
   .ansan-map-heading h2 { font-size: 20px; }
-  .ansan-overview { width: 72px; }
 }
 
 /* Single-동네 map (no tiles): same drawn style as the main map. */
+@media (max-width: 360px) {
+  .ansan-map-heading { gap: 8px; align-items: center; }
+  .ansan-map-heading h2 { font-size: 18px; }
+  .map-search { max-width: 52%; }
+}
 .dong-map { position: relative; width: 100%; margin: 0 auto; border-radius: 18px; border: 1px solid var(--color-border-strong); overflow: hidden; background-color: var(--color-map-bg); }
 .dong-map-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .dong-map-context { fill: var(--color-surface-sunken); stroke: var(--color-map-boundary); stroke-width: .5px; vector-effect: non-scaling-stroke; opacity: .75; }
@@ -77,7 +102,7 @@
 .ansan-home circle { fill: var(--color-surface); stroke: var(--color-text); stroke-width: 3px; }
 .ansan-home path { fill: var(--color-text); }
 .ansan-slider { margin-bottom: 4px; }
-.map-hover { min-height: 24px; margin: 4px 0 16px; text-align: center; color: var(--color-text); font-size: 13px; }
+.map-hover { min-height: 30px; margin: 12px 0 16px; text-align: center; color: var(--color-text); font-size: 20px; font-weight: 700; line-height: 1.5; }
 .dong-directory { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
 .dong-directory summary { cursor: pointer; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
 .dong-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
@@ -89,7 +114,7 @@
   .dong-directory { grid-template-columns: 1fr; gap: 12px; }
   .dong-buttons { grid-template-columns: 1fr 1fr; }
   .dong-buttons button { font-size: 13px; padding: 11px 8px; }
-  .map-hover { font-size: 12px; }
+  .map-hover { min-height: 54px; font-size: 18px; }
 }
 
 /* 내 동네: hatching over the familiarity fill (no icon). */

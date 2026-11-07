@@ -1,22 +1,22 @@
-/* Single source of UI colours: DESIGN_COLORS.md (Rose Terracotta × Paper & Ink).
+/* Single source of UI colours: DESIGN_COLORS.md (Rose Terracotta × Neutral White).
    Components use semantic roles; map colours still encode familiarity, not score. */
 :root {
   color-scheme: light;
-  --color-bg: #FAF6EC;
-  --color-surface: #FFFDF7;
-  --color-surface-sunken: #F2EBDC;
-  --color-border: #E6DCC8;
-  --color-border-strong: #CFC2AA;
-  --color-text: #3B2A22;
-  --color-text-secondary: #6E5D50;
-  --color-text-placeholder: #9A8A78;
+  --color-bg: #F8F9FA;
+  --color-surface: #FFFFFF;
+  --color-surface-sunken: #F0F1F3;
+  --color-border: #E4E6E8;
+  --color-border-strong: #C8CDD2;
+  --color-text: #292B30;
+  --color-text-secondary: #60656D;
+  --color-text-placeholder: #858B94;
   --color-primary: #B0524A;
   --color-primary-pressed: #8F3F38;
   --color-on-primary: #FFFFFF;
   --color-link: #8F3F38;
   --color-primary-subtle: #FBEFEC;
-  --color-highlight: #F8E2D3;
-  --color-on-highlight: #5A3524;
+  --color-highlight: var(--color-primary-subtle);
+  --color-on-highlight: var(--color-link);
   --color-accent: #EBB89A;
   --color-success: #567553;
   --color-success-bg: #E8EDDC;
@@ -31,7 +31,7 @@
   --color-info-bg: #E3E8E8;
   --color-info-text: #2C4250;
 
-  /* Map and illustration roles use only the document's paper/rose/peach palette. */
+  /* Neutral map ground, rose familiarity levels, a single accent family. */
   --color-map-bg: var(--color-bg);
   --color-map-land: var(--color-surface-sunken);
   --color-map-boundary: var(--color-text-placeholder);
@@ -39,8 +39,8 @@
   --color-map-familiarity-1: #F5D6CF;
   --color-map-familiarity-2: #D9887A;
   --color-map-hatch: var(--color-text);
-  --color-ink: #3B2A22;
-  --color-photo-paper: #FFFDF7;
+  --color-ink: #292B30;
+  --color-photo-paper: #FFFFFF;
   --color-shadow: color-mix(in srgb, var(--color-ink) 8%, transparent);
   --color-backdrop: color-mix(in srgb, var(--color-ink) 48%, transparent);
   --shadow: 0 2px 8px var(--color-shadow);
@@ -49,21 +49,19 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --color-bg: #221C17;
-    --color-surface: #2C2520;
-    --color-surface-sunken: #352C25;
-    --color-border: #43382F;
-    --color-border-strong: #5A4A3E;
-    --color-text: #F2EADC;
-    --color-text-secondary: #C2B5A3;
-    --color-text-placeholder: #8A7C6C;
+    --color-bg: #1B1D20;
+    --color-surface: #24272B;
+    --color-surface-sunken: #2D3136;
+    --color-border: #393E45;
+    --color-border-strong: #555D68;
+    --color-text: #F4F5F6;
+    --color-text-secondary: #BFC4CC;
+    --color-text-placeholder: #898F98;
     --color-primary: #E08A7B;
     --color-primary-pressed: #EBA597;
     --color-on-primary: #2A1513;
     --color-link: #EBA597;
     --color-primary-subtle: #3D2724;
-    --color-highlight: #3A2C22;
-    --color-on-highlight: #F3CDB4;
     --color-success: #8FB08B;
     --color-warning: #E0B05A;
     --color-error: #E8828F;

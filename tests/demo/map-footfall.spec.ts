@@ -27,8 +27,12 @@ test('real visit changes exact map score and shade; deletion and reload restore 
 test('a real visit keeps the main screen score-free and the 동네 page free of footfall internals', async ({ page }) => {
   // Footfall and score maths are covered by footfall.test.ts and score.test.ts; the UI shows none of it.
   await setup(page);
-  const card = page.getByRole('list', { name: '장소 추천' }).getByRole('button').filter({ hasText: '본오1동' }).first();
-  await expect(card).toContainText('오늘의 추천');
+  // The main screen now shows only five picks; 본오1동 may fall outside that shortlist.
+  const picks = page.getByRole('list', { name: '장소 추천' }).getByRole('button');
+  await expect(picks).toHaveCount(5);
+  const card = picks.first();
+  await expect(card).toContainText('동네');
+  await expect(page.getByRole('list', { name: '장소 추천' })).not.toContainText('오늘의 추천');
   await expect(page.getByRole('list', { name: '지도 범례' })).toContainText('오늘의 추천');
   await openBono(page);
   await expect(page.locator('.region-detail')).not.toContainText('유동인구');
@@ -38,7 +42,9 @@ test('a real visit keeps the main screen score-free and the 동네 page free of 
   await expect(page.locator('.region-detail')).not.toContainText('감점');
   await closeVisit(page);
   await page.getByRole('link', { name: '안산에 스며들다' }).click();
-  await expect(card).toContainText('오늘의 추천');
+  await expect(picks).toHaveCount(5);
+  await expect(card).toContainText('동네');
+  await expect(page.getByRole('list', { name: '장소 추천' })).not.toContainText('오늘의 추천');
 });
 
 test('drawing and real-place exploration make no external map or API calls in browser, including offline', async ({ page, context }) => {
@@ -60,7 +66,7 @@ test('the main map is familiarity-only with home hatching; the hidden score stil
   await expect(mapScore(page)).toHaveAttribute('fill', 'var(--color-map-familiarity-0)');
   expect(Number(await mapScore(page).getAttribute('data-score'))).toBeGreaterThan(0);
   await expect(map.locator('.ansan-home-hatch')).toHaveCount(1);
-  await expect(map.locator('text')).toHaveCount(0);
+  await expect(map.locator('.map-rank-pin text')).toHaveText(['1', '2', '3']);
   await expect(map.getByRole('button', { name: /^지도 본오1동/ })).toHaveAccessibleName(/오늘의 추천 \d+순위/);
   await openBono(page);
   await expect(page.locator('.dong-pin.kind-start')).toHaveCount(0);
