@@ -6,6 +6,10 @@ import regionsJson from './regions.json';
 import placesJson from './places.json';
 import eventsJson from './events.json';
 import footfallJson from './footfall.json';
+import geography from './geography/admin-dongs.json';
+import { validPopularityEvidence } from '../domain/popularity';
+import naverPlacesJson from './naver-places.json';
+import naverCollection from './naver-collection.json';
 
 export interface Content {
   regions: Region[];
@@ -14,9 +18,16 @@ export interface Content {
   footfall?: FootfallDataset;
 }
 
+// Reviewed Naver records may reuse an existing place ID to preserve its visit history.
+const reviewedNaverPlaces = naverPlacesJson as Place[];
+const reviewedIds = new Set(reviewedNaverPlaces.map(place => place.id));
+const places = [...placesJson.filter(place => !reviewedIds.has(place.id)), ...reviewedNaverPlaces] as Place[];
+export const naverCandidateStatus = { ...naverCollection, importedCount: reviewedNaverPlaces.length };
+
 export const content: Content = {
-  regions: regionsJson as Region[],
-  places: placesJson as Place[],
+  regions: regionsJson.map(region => ({ ...region, placeIds: places.filter(place => place.regionId === region.id).map(place => place.id),
+    geometry: geography.dongs.find(dong => dong.id === region.id)?.geometry })) as Region[],
+  places,
   events: eventsJson as Event[],
   footfall: footfallJson,
 };
@@ -41,6 +52,7 @@ export function validateContent(c: Content): string[] {
     }
     if (!p.opening) problems.push(`place ${p.id}: missing opening`);
     else if (p.opening.status === 'known' && !p.opening.weekly) problems.push(`place ${p.id}: known opening without weekly hours`);
+    if (p.popularityEvidence && !validPopularityEvidence(p.popularityEvidence)) problems.push(`place ${p.id}: invalid popularity evidence`);
     if (p.opening?.status === 'known' && !p.source) problems.push(`place ${p.id}: known opening without source`);
   }
   for (const r of c.regions) {

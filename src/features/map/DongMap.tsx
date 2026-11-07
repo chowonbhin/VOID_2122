@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { dongs, fitBox, pathOf, project, type Dong } from './ansanGeo';
+import { dongs, fitBox, pathOfDong, project, type Dong } from './ansanGeo';
 import './map.css';
 
 export interface MapMarker {
@@ -74,9 +74,9 @@ export function DongMap({ target, markers, onSelect }: {
           <circle cx={box[2] / 240} cy={box[2] / 240} r={box[2] / 400} fill="#c9b99a" opacity=".6" />
         </pattern>
       </defs>
-      {dongs.filter(d => !codes.has(d.code)).map(d => <path key={d.code} d={pathOf(d.ring)} className="dong-map-context" />)}
-      {target.map(d => <path key={d.code} d={pathOf(d.ring)} className="dong-map-target" />)}
-      {target.map(d => <path key={`${d.code}-dots`} d={pathOf(d.ring)} fill={`url(#${uid}dots)`} />)}
+      {dongs.filter(d => !codes.has(d.code)).map(d => <path key={d.code} d={pathOfDong(d)} fillRule="evenodd" className="dong-map-context" />)}
+      {target.map(d => <path key={d.code} d={pathOfDong(d)} fillRule="evenodd" className="dong-map-target" />)}
+      {target.map(d => <path key={`${d.code}-dots`} d={pathOfDong(d)} fillRule="evenodd" fill={`url(#${uid}dots)`} />)}
       {placed.filter(p => Math.hypot(p.x - p.x0, p.y - p.y0) > box[2] / 200).map(p =>
         <line key={p.marker.id} x1={p.x0} y1={p.y0} x2={p.x} y2={p.y} className="dong-map-leader" strokeWidth={box[2] / 300} />)}
       {placed.map(p => <circle key={p.marker.id} cx={p.x0} cy={p.y0} r={box[2] / 160} className={`dong-map-dot ${p.marker.kind}`} />)}

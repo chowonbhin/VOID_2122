@@ -40,6 +40,10 @@ export type FootfallAdjustment =
 
 export interface Region {
   id: RegionId;
+  adminCode?: string;
+  district?: '상록구' | '단원구';
+  /** WGS84 administrative-dong MultiPolygon, including holes and islands. */
+  geometry?: { type: 'MultiPolygon'; coordinates: number[][][][] };
   name: string;
   description: string;
   features: string[];
@@ -51,7 +55,7 @@ export interface Region {
   startSource?: Source;
   /** App-defined approximate exploration area, not an official boundary. */
   boundary?: LatLng[];
-  /** KOSTAT 2013 행정동 codes whose real outline this exploration area is drawn with (src/data/ansan-dongs.json). */
+  /** Legacy KOSTAT codes kept only for compatibility; current geometry uses adminCode. */
   dongCodes?: string[];
   /** 개발용 가상 데이터면 true. 화면에 "가상 데이터"로 표시한다. */
   isVirtual: boolean;
@@ -67,6 +71,8 @@ export interface TimeRange {
 export interface OpeningInfo {
   /** 'unknown' → 운영정보 미확인: listed but never scored. */
   status: 'known' | 'unknown';
+  /** Outside the reviewed period, never infer holiday/temporary opening. */
+  verifiedPeriod?: { from: DateString; through: DateString };
   /** Key = day of week in KST, 0 = Sunday. A missing or empty day means closed. */
   weekly?: Partial<Record<0 | 1 | 2 | 3 | 4 | 5 | 6, TimeRange[]>>;
   /** Overrides `weekly` for that date. Empty `ranges` = 휴무. */
@@ -85,11 +91,22 @@ export interface Place {
     /** Independent of opening-hours source. Simulated classifications must say so. */
     source: Source | null;
   };
-  location: LatLng;
+  location: LatLng | null;
+  address?: string;
+  regionSource?: Source;
+  searchSource?: Source;
   /** 기본 가치 B, 0~100. Not a star rating. */
   baseValue: number;
-  /** 인지도 P, 0~1. 시연용 가상값, shown as such on screen. */
-  popularity: number;
+  /** Legacy simulated P, accepted only for explicitly virtual places. */
+  popularity?: number;
+  popularityEvidence?: {
+    provider: 'naver_place' | 'operator';
+    metric: 'visitor_reviews' | 'blog_reviews' | 'visits';
+    count: number;
+    /** 'cumulative' or YYYY-MM; different periods are never pooled. */
+    period: string;
+    source: Source;
+  };
   opening: OpeningInfo;
   source: Source | null;
   isVirtual: boolean;
@@ -120,7 +137,7 @@ export interface Profile {
   initialLevels: Record<RegionId, 0 | 1 | 2>;
   interests: Category[];
   experiencedEventIds: EventId[];
-  /** 내 동네: KOSTAT 2013 행정동 code (src/data/ansan-dongs.json). Not the same as 출발지 or familiarity. */
+  /** 내 동네: current administrative-dong code. Not the same as 출발지 or familiarity. */
   homeDongCode?: string;
   /** Present once onboarding was completed or skipped as 초심자. */
   onboarding?: OnboardingAnswers;
@@ -164,8 +181,11 @@ export interface RegionRecommendation {
   /** Straight-line km from origin to region start point. */
   distanceKm: number;
   level: 0 | 1 | 2;
-  /** Places that counted toward the score (운영 확인 + 관심 활동 일치). */
+  /** Current top 20 by personal place score; all candidates are retained for reselection. */
   placeIds: PlaceId[];
+  eligiblePlaceCount: number;
+  placeLimit: number;
+  shortfallCount: number;
   openPlaceCount: number;
   unknownPlaceCount: number;
   /** Adjustment before novelty/distance weighting; missing data is distinct from zero footfall. */

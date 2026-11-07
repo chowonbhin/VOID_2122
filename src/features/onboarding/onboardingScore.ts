@@ -15,7 +15,7 @@ export function initialLevelsFrom(answers: OnboardingAnswers, data: Content): Re
   return Object.fromEntries(data.regions.map(region => {
     const known = data.places.filter(place => place.regionId === region.id && isNonFranchisePlace(place)
       && answers.visitedPlaceIds.includes(place.id)).length;
-    const dongVisited = region.dongCodes?.some(code => answers.visitedDongCodes.includes(code)) ?? false;
+    const dongVisited = region.adminCode ? answers.visitedDongCodes.includes(region.adminCode) : false;
     return [region.id, Math.max(levelFromDistinctVisits(known), dongVisited ? 1 : 0) as 0 | 1 | 2];
   }));
 }

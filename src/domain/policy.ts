@@ -23,6 +23,9 @@ export const POPULARITY_WEIGHT: Record<0 | 1 | 2 | 3, number> = { 0: 0, 1: 10, 2
 /** 제안: only the largest matching, not-yet-experienced event bonus counts, capped. */
 export const EVENT_BONUS_CAP = 10;
 
+/** User policy: reselect from all eligible candidates after each score change. */
+export const REGION_PLACE_LIMIT = 20;
+
 /** 기획 §8.4: α = -f(regionLv) * F. Initial tuning values, not measured coefficients. */
 export const FOOTFALL_PENALTY: Record<0 | 1 | 2, number> = { 0: 0, 1: 10, 2: 20 };
 

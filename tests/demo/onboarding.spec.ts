@@ -24,11 +24,11 @@ test('a resident under 6 months skips Q2/Q3 and lands on the main map as 초심�
 test('long-term resident answers card-news Q2/Q3; answers set initial Lv and queue the backend payload', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole('radio', { name: /2년 이상/ }).click();
-  await page.getByLabel(/지금 사는 동네/).selectOption({ label: '원곡본동' });
+  await page.getByLabel(/지금 사는 동네/).selectOption({ label: '원곡동' });
   await page.getByRole('button', { name: '다음', exact: true }).click();
 
   const dongs = page.getByRole('group', { name: '가본 동네 카드' });
-  await expect(dongs.getByRole('heading', { name: '원곡본동 · 내 동네' })).toBeVisible();
+  await expect(dongs.getByRole('heading', { name: '원곡동 · 내 동네' })).toBeVisible();
   await dongs.getByRole('button', { name: /여기 가봤어요/ }).first().click();
   await expect(dongs.getByText('1 / 25 · 체크 1')).toBeVisible();
   // Tapping the card body turns the page without toggling it.
@@ -46,12 +46,12 @@ test('long-term resident answers card-news Q2/Q3; answers set initial Lv and que
   await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toBeVisible();
 
   const state = await stored(page, 'ansan-explore/v1');
-  expect(state.profile.homeDongCode).toBe('3109263');
-  expect(state.profile.initialLevels['region-b']).toBe(2);
+  expect(state.profile.homeDongCode).toBe('4127354500');
+  expect(state.profile.initialLevels['dong-4127354500']).toBe(2);
   expect(state.profile.onboarding.visitedPlaceIds).toHaveLength(3);
   expect(state.visits).toEqual([]);
   const outbox = await stored(page, 'ansan-explore/outbox');
-  expect(outbox[0]).toMatchObject({ type: 'onboarding', payload: { version: 1, beginner: false, initialLevels: { 'region-b': 2 } } });
-  await expect(page.getByRole('img', { name: '내 동네 · 원곡본동' })).toHaveCount(1);
+  expect(outbox[0]).toMatchObject({ type: 'onboarding', payload: { version: 1, beginner: false, initialLevels: { 'dong-4127354500': 2 } } });
+  await expect(page.getByRole('img', { name: '내 동네 · 원곡동' })).toHaveCount(1);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

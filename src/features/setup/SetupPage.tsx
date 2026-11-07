@@ -5,7 +5,7 @@ import { content } from '../../data/content';
 import { CATEGORY_LABELS, DEFAULT_MAX_DISTANCE_KM, LEVEL_LABELS } from '../../domain/policy';
 import type { Category, Profile, SearchContext } from '../../domain/types';
 import { go } from '../../route';
-import { dongAt, dongs } from '../map/ansanGeo';
+import { dongAt, dongByCode, dongs } from '../map/ansanGeo';
 import './setup.css';
 
 function localDateTime() {
@@ -27,7 +27,7 @@ export function SetupPage() {
   const [latitude, setLatitude] = useState(String(origin.lat));
   const [longitude, setLongitude] = useState(String(origin.lng));
   const [error, setError] = useState('');
-  const [homeDongCode, setHomeDongCode] = useState(state.profile.homeDongCode ?? dongAt(origin.lat, origin.lng)?.code ?? '');
+  const [homeDongCode, setHomeDongCode] = useState((state.profile.homeDongCode ? dongByCode(state.profile.homeDongCode)?.code : dongAt(origin.lat, origin.lng)?.code) ?? '');
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -50,6 +50,7 @@ export function SetupPage() {
     };
     const saved = update((previous) => ({
       ...previous,
+      needsDongLevelReview: false,
       profile: { ...previous.profile, initialLevels: levels, interests, homeDongCode: homeDongCode || undefined },
       search,
     }));
@@ -66,6 +67,7 @@ export function SetupPage() {
       <h1>탐험 조건</h1>
       <p className="lead">지역별 경험과 외출 조건을 알려주세요. 선택한 한국 시각의 운영정보로 추천합니다.</p>
       <form onSubmit={submit}>
+        {state.needsDongLevelReview && <p role="status">행정동 기준으로 변경되었습니다. 기존 방문 기록은 유지되며 A·B권역의 초기 익숙함은 보관했습니다. 행정동별 익숙함을 다시 선택해 주세요.</p>}
         <fieldset>
           <legend>내 동네</legend>
           <label>
@@ -75,12 +77,13 @@ export function SetupPage() {
               {[...dongs].sort((a, b) => a.name.localeCompare(b.name, 'ko')).map((dong) => <option key={dong.code} value={dong.code}>{dong.name}</option>)}
             </select>
           </label>
-          <p className="setup-hint">지도에 집 모양으로 표시돼요. 출발지나 익숙함과는 별개이며, 2013년 행정동 기준입니다.</p>
+          <p className="setup-hint">지도에 집 모양으로 표시돼요. 출발지나 익숙함과는 별개이며, 2026-10-01 행정동 기준입니다.</p>
         </fieldset>
         <fieldset>
           <legend>지역별 익숙함</legend>
           <p className="setup-hint">새로 온 주민은 기본값인 신규로 시작하세요. 기존 주민은 익숙한 지역만 변경할 수 있습니다. 방문 기록은 유지됩니다.</p>
-          {content.regions.map((region) => (
+          <div className="setup-dongs">{(['단원구', '상록구'] as const).map(district => <details key={district} open><summary>{district}</summary>
+          <div className="setup-dong-grid">{content.regions.filter(region => region.district === district).sort((a, b) => a.name.localeCompare(b.name, 'ko')).map((region) => (
             <label key={region.id}>
               {region.name} 익숙함
               <select value={levels[region.id] ?? 0} onChange={(event) => {
@@ -92,7 +95,7 @@ export function SetupPage() {
                 ))}
               </select>
             </label>
-          ))}
+          ))}</div></details>)}</div>
         </fieldset>
         <fieldset>
           <legend>관심 활동</legend>
@@ -120,7 +123,7 @@ export function SetupPage() {
               setLatitude(String(region.start.lat));
               setLongitude(String(region.start.lng));
             }}>
-              <option value="" disabled>권역 시작점을 선택하거나 아래에서 직접 입력</option>
+              <option value="" disabled>행정동 대표 지점을 선택하거나 아래에서 직접 입력</option>
               {content.regions.map((region) => <option key={region.id} value={region.id}>{region.start.label}</option>)}
             </select>
           </label>
@@ -129,7 +132,7 @@ export function SetupPage() {
             <label>위도<input required type="number" min="-90" max="90" step="any" value={latitude} onChange={(event) => setLatitude(event.target.value)} /></label>
             <label>경도<input required type="number" min="-180" max="180" step="any" value={longitude} onChange={(event) => setLongitude(event.target.value)} /></label>
           </div>
-          <p className="setup-hint">직접 입력한 좌표가 출발지입니다. 거리는 권역 시작점까지의 직선거리이며 이동 경로나 도착 시간을 뜻하지 않습니다.</p>
+          <p className="setup-hint">직접 입력한 좌표가 출발지입니다. 거리는 행정동 대표 지점까지의 직선거리이며 이동 경로나 도착 시간을 뜻하지 않습니다.</p>
         </fieldset>
         <fieldset>
           <legend>외출 조건</legend>

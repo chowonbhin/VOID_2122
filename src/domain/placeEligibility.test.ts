@@ -51,7 +51,8 @@ describe('franchise exclusion', () => {
   it('a region with only excluded places has no recommendation, discoverable places or event escape hatch', () => {
     const excludedOnly = { ...content, places: [franchise, unverified] };
     expect(recommend(excludedOnly, profile, [], ctx).recommendations).toEqual([]);
-    expect(recommend(excludedOnly, profile, [], ctx).excluded.every(r => r.reason === 'no_eligible_places')).toBe(true);
+    expect(recommend(excludedOnly, profile, [], ctx).excluded.filter(r => r.reason === 'no_eligible_places')).toHaveLength(2);
+    expect(recommend(excludedOnly, profile, [], ctx).excluded.filter(r => r.reason === 'no_data')).toHaveLength(23);
     for (const region of content.regions) expect(placesOfRegion(region.id, excludedOnly)).toEqual([]);
   });
 

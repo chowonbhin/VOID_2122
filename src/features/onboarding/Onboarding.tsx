@@ -6,7 +6,7 @@ import { CATEGORY_LABELS } from '../../domain/policy';
 import { distanceKm } from '../../domain/score';
 import type { OnboardingAnswers, Residence } from '../../domain/types';
 import { go } from '../../route';
-import { centreLatLng, dongByCode, dongs, dongsOfRegion, pathOf, wholeBox } from '../map/ansanGeo';
+import { centreLatLng, dongByCode, dongs, dongsOfRegion, mapAreas, pathOfDong, wholeBox } from '../map/ansanGeo';
 import { CardDeck } from './CardDeck';
 import { buildOnboardingPayload, isBeginner } from './onboardingScore';
 import { submitOnboarding } from './submit';
@@ -36,11 +36,11 @@ export function Onboarding() {
   const deckDongs = [...dongs].sort((a, b) => origin
     ? distanceKm(origin, centreLatLng(a)) - distanceKm(origin, centreLatLng(b))
     : a.name.localeCompare(b.name, 'ko')).map(dong => ({ ...dong, id: dong.code }));
-  // Q3: places of the exploration area on 내 동네, else the nearest one.
-  const mapped = content.regions.filter(region => dongsOfRegion(region).length);
-  const homeRegion = mapped.find(region => region.dongCodes?.includes(home))
+  // Q3: places of 내 동네, else of the nearest 동네 that has place data.
+  const mapped = content.regions.filter(region => dongsOfRegion(region).length && placesOfRegion(region.id).length);
+  const homeRegion = mapped.find(region => region.adminCode === home)
     ?? [...mapped].sort((a, b) => origin ? distanceKm(origin, centreLatLng(dongsOfRegion(a)[0])) - distanceKm(origin, centreLatLng(dongsOfRegion(b)[0])) : 0)[0];
-  const ownArea = homeRegion?.dongCodes?.includes(home) ?? false;
+  const ownArea = homeRegion?.adminCode === home;
   const deckPlaces = homeRegion ? placesOfRegion(homeRegion.id) : [];
 
   function finish(chosen: Residence) {
@@ -96,8 +96,8 @@ export function Onboarding() {
       <p className="lead">가봤던 동네라면 "여기 가봤어요"를 눌러요. 처음 지도 색과 추천에 반영돼요.</p>
       <CardDeck label="가본 동네 카드" items={deckDongs} checked={visitedDongs} onToggle={id => setVisitedDongs(list => toggle(list, id))}
         render={dong => <>
-          <svg className="deck-map" viewBox={wholeBox.join(' ')} aria-hidden="true">
-            {dongs.map(d => <path key={d.code} d={pathOf(d.ring)} className={d.code === dong.code ? 'target' : ''} />)}
+          <svg className="deck-map" viewBox={(mapAreas.find(area => area.dongs.some(d => d.code === dong.code))?.box ?? wholeBox).join(' ')} aria-hidden="true">
+            {dongs.map(d => <path key={d.code} d={pathOfDong(d)} className={d.code === dong.code ? 'target' : ''} />)}
           </svg>
           <h2>{dong.name}{dong.code === home ? ' · 내 동네' : ''}</h2>
         </>} />
@@ -110,7 +110,7 @@ export function Onboarding() {
     {step === 3 && <>
       <p className="eyebrow">Q3 · {ownArea && homeDong ? `${homeDong.name}의 장소` : `가까운 탐험 동네 · ${homeRegion?.name ?? ''}`}</p>
       <h1>{ownArea ? '지금 동네에서 가본 곳이 있나요?' : '이 동네에서 가본 곳이 있나요?'}</h1>
-      <p className="lead">{ownArea ? '' : '내 동네의 장소 데이터는 준비 중이라 가장 가까운 탐험 동네로 물어볼게요. '}가본 곳을 체크하면 처음부터 덜 알려진 곳 위주로 추천해요.</p>
+      <p className="lead">{ownArea ? '' : '내 동네의 장소 데이터는 준비 중이라 장소 데이터가 있는 가장 가까운 동네로 물어볼게요. '}가본 곳을 체크하면 처음부터 덜 알려진 곳 위주로 추천해요.</p>
       {deckPlaces.length > 0 && <CardDeck label="가본 장소 카드" items={deckPlaces} checked={visitedPlaces} onToggle={id => setVisitedPlaces(list => toggle(list, id))}
         render={place => <>
           <p className="deck-kicker">{CATEGORY_LABELS[place.category]}{place.isVirtual ? ' · 시연용 장소' : ''}</p>

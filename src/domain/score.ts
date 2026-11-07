@@ -4,7 +4,7 @@
 //   regionLevel = max(initialLevel, levelFromDistinctVisitedPlaces)
 //   placeLevel  = min(3, regionLevel + (visited ? 1 : 0))
 //   placeScore  = max(0, B - w[placeLevel] * P) + E
-//   regionScore = max(0, sum(eligiblePlaceScores) + alpha) * novelty * distanceWeight
+//   regionScore = max(0, sum(currentTop20PlaceScores) + alpha) * novelty * distanceWeight
 import type { Content } from '../data/content';
 import type { Event, LatLng, Place, PlaceStatus, Profile, Region, RegionRecommendation, SearchContext, TimeRange, Visit } from './types';
 import {
@@ -14,10 +14,12 @@ import {
   NOVELTY,
   PLACE_VISIT_DELTA,
   POPULARITY_WEIGHT,
+  REGION_PLACE_LIMIT,
   levelFromDistinctVisits,
 } from './policy';
 import { footfallAdjustment } from './footfall';
 import { isNonFranchisePlace } from './placeEligibility';
+import { placePopularity, type PopularityResult } from './popularity';
 
 // ---------- time (selected time is always Asia/Seoul) ----------
 
@@ -60,6 +62,9 @@ export function placeStatus(place: Place, when: string): PlaceStatusResult {
   const o = place.opening;
   if (!o || o.status !== 'known' || !o.weekly) return { status: 'unknown', note: '운영정보 미확인' };
   const t = parseKst(when);
+  if (o.verifiedPeriod && (t.date < o.verifiedPeriod.from || t.date > o.verifiedPeriod.through)) {
+    return { status: 'unknown', note: '운영정보 검토 기간 밖 · 공식 안내 재확인 필요' };
+  }
   const exception = o.exceptions?.find((e) => e.date === t.date);
   const ranges = exception ? exception.ranges : (o.weekly[t.dayOfWeek] ?? []);
   if (ranges.length === 0) return { status: 'closed', note: exception?.note ?? '휴무일' };
@@ -137,27 +142,39 @@ export interface PlaceScore {
   placeId: string;
   status: PlaceStatusResult;
   level: 0 | 1 | 2 | 3;
-  /** Counted toward the region score (open + matches interests). */
+  /** Passes opening, interest and popularity evidence filters; may fall outside the current top 20. */
   eligible: boolean;
+  selected: boolean;
+  /** Rank among eligible candidates, including those below 20. */
+  rank?: number;
+  popularity: PopularityResult;
   score: number;
   event?: Event;
 }
 
 export function scorePlaces(region: Region, content: Content, profile: Profile, visits: Visit[], ctx: SearchContext): PlaceScore[] {
   const regionLv = regionLevel(region.id, profile, visits, content.places);
-  return content.places
+  const scored = content.places
     .filter((p) => p.regionId === region.id && isNonFranchisePlace(p))
     .map((p) => {
       const status = placeStatus(p, ctx.when);
       const level = placeLevel(p.id, regionLv, visits);
-      const eligible = status.status === 'open' && matchesInterest([p.category], ctx.interests);
+      const popularity = placePopularity(p, content.places);
+      const eligible = status.status === 'open' && matchesInterest([p.category], ctx.interests) && popularity.status !== 'unknown';
       const { bonus, event } = eventBonus(p.id, content.events, ctx, profile);
-      const score = eligible ? Math.max(0, p.baseValue - POPULARITY_WEIGHT[level] * p.popularity) + bonus : 0;
-      return { placeId: p.id, status, level, eligible, score, event: eligible ? event : undefined };
+      const score = eligible ? Math.max(0, p.baseValue - POPULARITY_WEIGHT[level] * popularity.value!) + bonus : 0;
+      return { placeId: p.id, status, level, popularity, eligible, score, event: eligible ? event : undefined };
     });
+  // Rebuild from the complete candidate pool every time, not the previously selected 20.
+  // Stable ID tie-break preserves equal-score membership through reloads and source reorder.
+  const ranked = scored.filter(place => place.eligible).sort((a, b) =>
+    b.score - a.score || (a.placeId < b.placeId ? -1 : a.placeId > b.placeId ? 1 : 0));
+  const ranks = new Map(ranked.map((place, index) => [place.placeId, index + 1]));
+  return scored.map(place => ({ ...place, rank: ranks.get(place.placeId),
+    selected: (ranks.get(place.placeId) ?? Infinity) <= REGION_PLACE_LIMIT }));
 }
 
-export type ExclusionReason = 'too_far' | 'no_eligible_places';
+export type ExclusionReason = 'too_far' | 'no_eligible_places' | 'no_data';
 
 export interface RecommendResult {
   /** Sorted best first. */
@@ -173,6 +190,10 @@ export function recommend(content: Content, profile: Profile, visits: Visit[], c
 
   for (const region of content.regions) {
     const km = distanceKm(ctx.origin, region.start);
+    if (!content.places.some((place) => place.regionId === region.id)) {
+      excluded.push({ regionId: region.id, reason: 'no_data', distanceKm: km });
+      continue;
+    }
     if (km > ctx.maxDistanceKm) {
       excluded.push({ regionId: region.id, reason: 'too_far', distanceKm: km });
       continue;
@@ -184,16 +205,17 @@ export function recommend(content: Content, profile: Profile, visits: Visit[], c
       continue;
     }
     const level = regionLevel(region.id, profile, visits, content.places);
-    const sum = eligible.reduce((s, p) => s + p.score, 0);
+    const selected = places.filter(p => p.selected).sort((a, b) => a.rank! - b.rank!);
+    const sum = selected.reduce((s, p) => s + p.score, 0);
     const footfall = footfallAdjustment(region, level, content.footfall);
     const score = Math.max(0, sum + footfall.adjustment) * NOVELTY[level] * distanceWeight(km);
 
     const reasons: string[] = [];
     const visited = distinctVisitedPlaces(region.id, visits, content.places).length;
-    if (visited === 0 && level === 0) reasons.push('아직 방문 기록이 없는 권역이에요');
+    if (visited === 0 && level === 0) reasons.push('아직 방문 기록이 없는 행정동이에요');
     else reasons.push(`방문 기록 ${visited}곳 · 지역 Lv.${level}`);
-    reasons.push(`선택한 시각 기준 운영 확인 장소 ${eligible.length}곳`);
-    for (const p of eligible) if (p.event) reasons.push(`진행 중 행사: ${p.event.name}`);
+    reasons.push(`조건 충족 후보 ${eligible.length}곳 중 상위 ${selected.length}/${REGION_PLACE_LIMIT}개 합산`);
+    for (const p of selected) if (p.event) reasons.push(`진행 중 행사: ${p.event.name}`);
 
     recommendations.push({
       regionId: region.id,
@@ -201,7 +223,10 @@ export function recommend(content: Content, profile: Profile, visits: Visit[], c
       reasons,
       distanceKm: km,
       level,
-      placeIds: eligible.map((p) => p.placeId),
+      placeIds: selected.map((p) => p.placeId),
+      eligiblePlaceCount: eligible.length,
+      placeLimit: REGION_PLACE_LIMIT,
+      shortfallCount: Math.max(0, REGION_PLACE_LIMIT - selected.length),
       openPlaceCount: places.filter((p) => p.status.status === 'open').length,
       unknownPlaceCount: places.filter((p) => p.status.status === 'unknown').length,
       footfall,

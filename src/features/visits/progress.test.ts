@@ -4,12 +4,12 @@ import type { Profile, Visit } from '../../domain/types';
 import { getVisitProgress } from './progress';
 
 const places = content.places;
-const regionAPlaces = places.filter((place) => place.regionId === 'region-a');
+const regionAPlaces = places.filter((place) => place.regionId === 'dong-4127353200');
 const a1 = regionAPlaces[0];
 const a2 = regionAPlaces[1];
 
 function profile(initialLevel: 0 | 1 | 2 = 0): Profile {
-  return { initialLevels: { 'region-a': initialLevel }, interests: [], experiencedEventIds: [] };
+  return { initialLevels: { 'dong-4127353200': initialLevel }, interests: [], experiencedEventIds: [] };
 }
 
 function visits(placeIds: string[]): Visit[] {

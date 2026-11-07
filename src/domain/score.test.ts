@@ -59,21 +59,21 @@ describe('time', () => {
 describe('levels', () => {
   const places = content.places;
   it('distinct places 0/1/2/3 → Lv 0/1/1/2, repeats count once', () => {
-    expect(regionLevel('region-a', fresh(), [], places)).toBe(0);
-    expect(regionLevel('region-a', fresh(), [visit('a1')], places)).toBe(1);
-    expect(regionLevel('region-a', fresh(), [visit('a1'), visit('a1', 2)], places)).toBe(1);
-    expect(regionLevel('region-a', fresh(), [visit('a1'), visit('a2')], places)).toBe(1);
-    expect(regionLevel('region-a', fresh(), [visit('a1'), visit('a2'), visit('a3')], places)).toBe(2);
+    expect(regionLevel('dong-4127353200', fresh(), [], places)).toBe(0);
+    expect(regionLevel('dong-4127353200', fresh(), [visit('a1')], places)).toBe(1);
+    expect(regionLevel('dong-4127353200', fresh(), [visit('a1'), visit('a1', 2)], places)).toBe(1);
+    expect(regionLevel('dong-4127353200', fresh(), [visit('a1'), visit('a2')], places)).toBe(1);
+    expect(regionLevel('dong-4127353200', fresh(), [visit('a1'), visit('a2'), visit('a3')], places)).toBe(2);
   });
 
   it('visits in another region do not count', () => {
-    expect(regionLevel('region-a', fresh(), [visit('b1'), visit('b2'), visit('b3')], places)).toBe(0);
+    expect(regionLevel('dong-4127353200', fresh(), [visit('b1'), visit('b2'), visit('b3')], places)).toBe(0);
   });
 
   it('initial level is kept when visits are fewer', () => {
-    const p = { ...fresh(), initialLevels: { 'region-a': 2 as const } };
-    expect(regionLevel('region-a', p, [], places)).toBe(2);
-    expect(regionLevel('region-a', p, [visit('a1')], places)).toBe(2);
+    const p = { ...fresh(), initialLevels: { 'dong-4127353200': 2 as const } };
+    expect(regionLevel('dong-4127353200', p, [], places)).toBe(2);
+    expect(regionLevel('dong-4127353200', p, [visit('a1')], places)).toBe(2);
   });
 
   it('place level caps at 3', () => {
@@ -101,24 +101,24 @@ describe('events', () => {
 });
 
 describe('recommend — real-region starts and footfall', () => {
-  it('before any visit A (≈240.70) ranks above B (≈207.01)', () => {
-    expect(scoreOf('region-a', [])).toBeCloseTo(240.7024, 3);
-    expect(scoreOf('region-b', [])).toBeCloseTo(207.0125, 3);
-    expect(order([])).toEqual(['region-a', 'region-b']);
+  it('before any visit A (≈240.70) ranks above B (≈146.42)', () => {
+    expect(scoreOf('dong-4127353200', [])).toBeCloseTo(240.7024, 3);
+    expect(scoreOf('dong-4127354500', [])).toBeCloseTo(146.4235, 3);
+    expect(order([])).toEqual(['dong-4127353200', 'dong-4127354500', 'dong-4127356500']);
   });
 
-  it('visiting a1 drops A to ≈188.90 and B moves to the top', () => {
-    expect(scoreOf('region-a', [visit('a1')])).toBeCloseTo(188.8980, 3);
-    expect(order([visit('a1')])).toEqual(['region-b', 'region-a']);
+  it('visiting a1 drops central score without forcing a rank swap', () => {
+    expect(scoreOf('dong-4127353200', [visit('a1')])).toBeCloseTo(188.8980, 3);
+    expect(order([visit('a1')])).toEqual(order([]));
   });
 
   it('repeat visit to the same place changes nothing; deleting all restores', () => {
-    expect(scoreOf('region-a', [visit('a1'), visit('a1', 2)])).toBe(scoreOf('region-a', [visit('a1')]));
-    expect(scoreOf('region-a', [])).toBeCloseTo(240.7024, 3);
+    expect(scoreOf('dong-4127353200', [visit('a1'), visit('a1', 2)])).toBe(scoreOf('dong-4127353200', [visit('a1')]));
+    expect(scoreOf('dong-4127353200', [])).toBeCloseTo(240.7024, 3);
   });
 
   it('unknown and closed places are listed but not scored', () => {
-    const r = recommend(content, fresh(), [], ctx()).recommendations.find((x) => x.regionId === 'region-a')!;
+    const r = recommend(content, fresh(), [], ctx()).recommendations.find((x) => x.regionId === 'dong-4127353200')!;
     expect(r.placeIds).toEqual(['a1', 'a2', 'a3']);
     expect(r.unknownPlaceCount).toBe(1);
     expect(r.openPlaceCount).toBe(3);
@@ -127,13 +127,14 @@ describe('recommend — real-region starts and footfall', () => {
   it('max distance applies before scoring', () => {
     const res = recommend(content, fresh(), [], ctx({ maxDistanceKm: 0.1 }));
     expect(res.recommendations).toEqual([]);
-    expect(res.excluded.map((e) => e.reason)).toEqual(['too_far', 'too_far']);
+    expect(res.excluded.filter(e => e.reason === 'too_far')).toHaveLength(6);
+    expect(res.excluded.filter(e => e.reason === 'no_data')).toHaveLength(19);
   });
 
   it('region with no eligible places is excluded', () => {
     const res = recommend(content, fresh(), [], ctx({ interests: ['nature'] }));
-    expect(res.recommendations.map((r) => r.regionId)).toEqual(['region-a']);
-    expect(res.excluded).toEqual([expect.objectContaining({ regionId: 'region-b', reason: 'no_eligible_places' })]);
+    expect(res.recommendations.map((r) => r.regionId)).toEqual(['dong-4127353200']);
+    expect(res.excluded).toContainEqual(expect.objectContaining({ regionId: 'dong-4127354500', reason: 'no_eligible_places' }));
   });
 
   it('at night nothing is open → no recommendation', () => {

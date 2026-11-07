@@ -7,7 +7,7 @@ import type { FootfallDataset, Profile, SearchContext } from './types';
 const data = content.footfall!;
 const central = content.regions[0];
 const multicultural = content.regions[1];
-const profile: Profile = { initialLevels: { 'region-a': 1, 'region-b': 1 }, interests: [], experiencedEventIds: [] };
+const profile: Profile = { initialLevels: { 'dong-4127353200': 1, 'dong-4127354500': 1 }, interests: [], experiencedEventIds: [] };
 const ctx: SearchContext = { origin: central.start, when: '2026-11-08T14:00', interests: [], maxDistanceKm: 10 };
 
 describe('footfall policy and source snapshot', () => {

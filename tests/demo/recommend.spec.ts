@@ -16,19 +16,19 @@ async function setup(page: Page) {
 
 const cards = (page: Page) => page.getByRole('list', { name: '추천 순위' }).getByRole('button');
 
-test('신규 주민 순위와 점수 표시, 기존 주민 경험 변경으로 재정렬', async ({ page }) => {
+test('신규 주민 순위와 점수 표시, 기존 주민 경험 변경으로 재계산', async ({ page }) => {
   await setup(page);
   await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(cards(page).first()).toHaveAccessibleName(/1순위 A권역/);
+  await expect(cards(page).first()).toHaveAccessibleName(/1순위 중앙동/);
   await expect(cards(page).first()).toContainText('추천 점수 240.7');
-  await expect(cards(page).nth(1)).toContainText('추천 점수 207.0');
+  await expect(cards(page).nth(1)).toContainText('추천 점수 146.4');
   await page.getByRole('button', { name: '조건 변경' }).click();
-  await page.getByLabel('A권역 · 중앙동·중앙역 익숙함').selectOption('2');
+  await page.getByLabel('중앙동 익숙함').selectOption('2');
   await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(cards(page).first()).toHaveAccessibleName(/1순위 B권역/);
-  await expect(cards(page).nth(1)).toContainText('지역 Lv.2');
+  await expect(cards(page).first()).toHaveAccessibleName(/1순위 중앙동/);
+  await expect(cards(page).first()).toContainText('지역 Lv.2');
   await page.reload();
-  await expect(cards(page).first()).toHaveAccessibleName(/1순위 B권역/);
+  await expect(cards(page).first()).toHaveAccessibleName(/1순위 중앙동/);
 });
 
 test('관심 활동 필터와 직접 탐색, 최대 거리로 후보 없음 안내', async ({ page }) => {
@@ -36,19 +36,19 @@ test('관심 활동 필터와 직접 탐색, 최대 거리로 후보 없음 안�
   await page.getByLabel('자연·산책', { exact: true }).check();
   await page.getByRole('button', { name: '추천 받기' }).click();
   await expect(cards(page)).toHaveCount(1);
-  await expect(cards(page).first()).toHaveAccessibleName(/A권역/);
-  await expect(cards(page).first()).toContainText('운영 확인 장소 수 3곳 · 관심 활동 일치 1곳');
+  await expect(cards(page).first()).toHaveAccessibleName(/중앙동/);
+  await expect(cards(page).first()).toContainText('운영 확인 장소 수 3곳 · 전체 점수 조건 충족 1곳');
   const explore = page.getByRole('region', { name: '직접 탐색' });
-  await expect(explore).toContainText('선택한 시각·관심 활동에 맞는 운영 확인 장소가 없어요');
-  await explore.getByRole('button', { name: /B권역/ }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('B권역');
+  await expect(explore).toContainText('운영·관심 활동·인지도 자료 조건을 충족하는 장소가 없어요');
+  await explore.getByRole('button', { name: /원곡동/ }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('원곡동');
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
   await page.getByRole('button', { name: '조건 변경' }).click();
   await page.getByLabel('최대 거리 (km)').fill('0.1');
   await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(page.getByRole('status')).toContainText('조건에 맞는 추천 권역이 없어요');
+  await expect(page.getByRole('status')).toContainText('조건에 맞는 추천 행정동이 없어요');
   await expect(page.getByRole('list', { name: '추천 순위' })).toHaveCount(0);
-  await expect(explore.getByRole('button')).toHaveCount(2);
+  await expect(explore.getByRole('button')).toHaveCount(25);
   await expect(explore.getByRole('button').first()).toContainText('최대 거리 밖');
   await page.getByRole('button', { name: '조건 변경' }).click();
   await expect(page.getByLabel('최대 거리 (km)')).toHaveValue('0.1');
@@ -59,15 +59,15 @@ test('야간 운영 후보 없음과 모바일 화면', async ({ page }) => {
   await setup(page);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(cards(page)).toHaveCount(2);
+  await expect(cards(page)).toHaveCount(3);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   fs.mkdirSync(evidence, { recursive: true });
   await page.screenshot({ path: `${evidence}/recommend-mobile.png`, fullPage: true });
   await page.getByRole('button', { name: '조건 변경' }).click();
   await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T23:30');
   await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(page.getByRole('status')).toContainText('조건에 맞는 추천 권역이 없어요');
-  await expect(page.getByRole('region', { name: '직접 탐색' }).getByRole('button')).toHaveCount(2);
+  await expect(page.getByRole('status')).toContainText('조건에 맞는 추천 행정동이 없어요');
+  await expect(page.getByRole('region', { name: '직접 탐색' }).getByRole('button')).toHaveCount(25);
   await page.screenshot({ path: `${evidence}/empty-mobile.png`, fullPage: true });
   console.log(`recommend evidence: ${evidence}`);
 });
@@ -75,7 +75,7 @@ test('야간 운영 후보 없음과 모바일 화면', async ({ page }) => {
 test('저장된 방문 기록을 추천 계산에 전달하고 새로고침해도 유지', async ({ page }) => {
   await setup(page);
   await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(cards(page).first()).toHaveAccessibleName(/A권역/);
+  await expect(cards(page).first()).toHaveAccessibleName(/중앙동/);
   // Only seed a visit as the input fixture: visit-entry UI belongs to step 4's owner.
   await page.evaluate(() => {
     const state = JSON.parse(localStorage.getItem('ansan-explore/v1')!);
@@ -83,11 +83,11 @@ test('저장된 방문 기록을 추천 계산에 전달하고 새로고침해�
     localStorage.setItem('ansan-explore/v1', JSON.stringify(state));
   });
   await page.reload();
-  await expect(cards(page).first()).toHaveAccessibleName(/B권역/);
-  await expect(cards(page).nth(1)).toContainText('지역 Lv.1');
-  await expect(cards(page).nth(1)).toContainText('추천 점수 188.9');
+  await expect(cards(page).first()).toHaveAccessibleName(/중앙동/);
+  await expect(cards(page).first()).toContainText('지역 Lv.1');
+  await expect(cards(page).first()).toContainText('추천 점수 188.9');
   await page.reload();
-  await expect(cards(page).first()).toHaveAccessibleName(/B권역/);
+  await expect(cards(page).first()).toHaveAccessibleName(/중앙동/);
 });
 
 test('저장된 조건 없이 추천 주소에 접근하면 설정으로 안내', async ({ page }) => {
