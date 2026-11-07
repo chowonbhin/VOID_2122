@@ -1,5 +1,6 @@
+import { useAppState } from './AppState';
 import { useRoute } from './route';
-import { Landing } from './features/landing/Landing';
+import { Onboarding } from './features/onboarding/Onboarding';
 import { SetupPage } from './features/setup/SetupPage';
 import { RecommendPage } from './features/recommend/RecommendPage';
 import { RegionPage } from './features/region/RegionPage';
@@ -7,8 +8,12 @@ import { DongPage } from './features/region/DongPage';
 
 export function App() {
   const route = useRoute();
-  const discovering = route.name === 'recommend' || route.name === 'region' || route.name === 'dong';
-  const showTabs = route.name !== 'landing';
+  const { state } = useAppState();
+  // First run only: nothing saved yet. Everyone else opens straight onto the main map.
+  const onboarding = route.name === 'landing' && !state.profile.onboarding && !state.search && state.visits.length === 0;
+  const main = route.name === 'landing' && !onboarding;
+  const discovering = main || route.name === 'recommend' || route.name === 'region' || route.name === 'dong';
+  const showTabs = !onboarding;
   return (
     <div className={`app${showTabs ? ' has-tabbar' : ''}`}>
       <header className="appbar">
@@ -18,9 +23,9 @@ export function App() {
         </div>
       </header>
       <main className={`page${discovering ? ' page-map' : ''}`}>
-        {route.name === 'landing' && <Landing />}
+        {onboarding && <Onboarding />}
         {route.name === 'setup' && <SetupPage />}
-        {route.name === 'recommend' && <RecommendPage />}
+        {(main || route.name === 'recommend') && <RecommendPage />}
         {route.name === 'region' && <RegionPage regionId={route.regionId} />}
         {route.name === 'dong' && <DongPage code={route.code} />}
       </main>

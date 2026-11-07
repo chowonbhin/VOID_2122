@@ -74,8 +74,10 @@ test('golden path', async ({ page }) => {
       page,
       '1. Open the app → pitch and 탐험 시작',
       async () => {
+        // First run opens onboarding Q1; a resident of under 6 months starts as 초심자.
         await page.goto(BASE_URL);
         await expect(page.getByRole('heading', { level: 1 })).toContainText('안산');
+        await page.getByRole('radio', { name: /6개월이 안 됐어요/ }).click();
         await expect(page.getByRole('button', { name: '탐험 시작' })).toBeVisible();
       },
       { budgetMs: 3000 }, // first load includes dev-server cold start
@@ -87,6 +89,8 @@ test('golden path', async ({ page }) => {
       '2. Set conditions → map scores and ranked region cards',
       async () => {
         await page.getByRole('button', { name: '탐험 시작' }).click();
+        await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toBeVisible();
+        await page.getByRole('button', { name: '조건 설정' }).click();
         await page.getByLabel('A권역 · 중앙동·중앙역 익숙함').selectOption('0');
         await page.getByLabel('B권역 · 안산역·다문화거리 익숙함').selectOption('0');
         await page.getByLabel('출발지 이름').fill('시연 출발지 (가상)');

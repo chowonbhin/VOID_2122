@@ -13,9 +13,18 @@ export function RecommendPage() {
   if (!search) {
     return (
       <section className="recommend">
+        <p className="eyebrow">동네 발견</p>
         <h1>추천 권역</h1>
-        <p>먼저 탐험 조건을 입력해 주세요.</p>
-        <button className="primary" onClick={() => go({ name: 'setup' })}>조건 설정</button>
+        <p className="recommend-hero">오늘은 어느 동네에<br />마음을 남겨볼까요?</p>
+        <ExplorationMap regions={content.regions} recommendations={[]}
+          levels={Object.fromEntries(content.regions.map((region) => [region.id, regionLevel(region.id, state.profile, state.visits, content.places)]))}
+          homeDongCode={state.profile.homeDongCode}
+          onRegionSelect={(regionId) => go({ name: 'region', regionId })} onDongSelect={(code) => go({ name: 'dong', code })} />
+        <div className="recommend-empty">
+          <p>먼저 탐험 조건을 입력해 주세요.</p>
+          <p className="recommend-note">출발지와 시간, 관심 활동을 알려주면 지금 운영 중인 곳을 기준으로 동네를 추천해요.</p>
+          <button className="primary" onClick={() => go({ name: 'setup' })}>조건 설정</button>
+        </div>
       </section>
     );
   }

@@ -122,6 +122,21 @@ export interface Profile {
   experiencedEventIds: EventId[];
   /** 내 동네: KOSTAT 2013 행정동 code (src/data/ansan-dongs.json). Not the same as 출발지 or familiarity. */
   homeDongCode?: string;
+  /** Present once onboarding was completed or skipped as 초심자. */
+  onboarding?: OnboardingAnswers;
+}
+
+export type Residence = 'visitor' | 'under_6m' | '6m_2y' | 'over_2y';
+
+/** Self-reported at onboarding. Feeds initialLevels only; never creates Visit records. */
+export interface OnboardingAnswers {
+  residence: Residence;
+  homeDongCode?: string;
+  /** Q2: 가본 동네 (KOSTAT 2013 codes). */
+  visitedDongCodes: string[];
+  /** Q3: 지금 동네에서 가본 장소. */
+  visitedPlaceIds: string[];
+  completedAt: string;
 }
 
 export interface Visit {
