@@ -147,8 +147,8 @@ function RegionDetail({ regionId }: { regionId: string }) {
 
   return <section ref={screen} className="region-detail" aria-busy={pending}>
     <button type="button" className="region-back" disabled={pending} onClick={() => exit(screen.current,
-      [{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(8px)' }],
-      () => go({ name: 'recommend' }), 200)}><Icon name="arrowLeft" size={18} />전체 지도로 돌아가기</button>
+      [{ opacity: 1 }, { opacity: 0 }],
+      () => go({ name: 'recommend' }), 440)}><Icon name="arrowLeft" size={18} />전체 지도로 돌아가기</button>
     <h1 tabIndex={-1}>{region.name}</h1>
     {places.length === 0 && <p role="status">이 동네의 장소는 준비 중이에요.</p>}
     {!state.search && <p className="region-note">조건을 설정하면 추천 장소를 골라볼 수 있어요.</p>}

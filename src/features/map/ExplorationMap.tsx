@@ -91,7 +91,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
       { transform: 'translate(0px, 0px) scale(1)', opacity: 1 },
       { transform: `${center} scale(2.1)`, opacity: 1, offset: .8 },
       { transform: `${center} scale(2.4)`, opacity: 0 },
-    ], () => onRegionSelect(id), 320);
+    ], () => onRegionSelect(id), 640);
   };
   const onKey = (event: KeyboardEvent, id: string) => {
     if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); enterRegion(id); }
@@ -197,12 +197,16 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
               onMouseEnter={() => setHovered(shape.region.id)} onFocus={() => setHovered(shape.region.id)}
               onMouseLeave={() => setHovered(undefined)} onBlur={() => setHovered(undefined)}
               onClick={() => enterRegion(shape.region.id)} onKeyDown={event => onKey(event, shape.region.id)}>
-              <title>{`${shape.region.name} · ${shape.status}`}</title>
               <path className="ansan-region-fill" d={pathOfDong(shape.dong)} fillRule="evenodd" data-region-id={shape.region.id}
                 data-score={shape.score ?? 'unavailable'} data-level={shape.level} fill={shape.fill} />
             </g>)}
           {home && area.dongs.some(d => d.code === home.code) && <path className="ansan-home-hatch" d={pathOfDong(home)} fillRule="evenodd"
             fill={`url(#home-hatch-${area.id})`} role="img" aria-label={`내 동네 · ${home.name}`} />}
+          {shapes.filter(shape => shape.region.id === hovered && shape.region.id !== selected && area.dongs.some(d => d.code === shape.dong.code)).map(shape =>
+            <g key={shape.region.id} className="map-hover-highlight" aria-hidden="true">
+              <path d={pathOfDong(shape.dong)} className="map-hover-halo" />
+              <path d={pathOfDong(shape.dong)} className="map-hover-outline" />
+            </g>)}
           {shapes.filter(shape => shape.region.id === selected && area.dongs.some(d => d.code === shape.dong.code)).map(shape =>
             <g key={shape.region.id} className="map-search-highlight" aria-hidden="true">
               <path d={pathOfDong(shape.dong)} className="map-search-halo" />
@@ -224,11 +228,11 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
         </svg>
       </div>; })}
     </div>
-      <button type="button" className="map-area-arrow previous" aria-label="이전 지도" title="안산 도심"
+      <button type="button" className="map-area-arrow previous" aria-label="이전 지도"
         disabled={active === 0} onClick={() => { setHovered(undefined); show(active - 1); }}>
         <Icon name="chevronLeft" size={24} />
       </button>
-      <button type="button" className="map-area-arrow next" aria-label="다음 지도" title="대부도"
+      <button type="button" className="map-area-arrow next" aria-label="다음 지도"
         disabled={active === mapAreas.length - 1} onClick={() => { setHovered(undefined); show(active + 1); }}>
         <Icon name="chevronRight" size={24} />
       </button>

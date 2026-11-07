@@ -139,7 +139,7 @@ export function DongMap({ target, markers, onSelect, ref }: {
         {(marker.kind === 'memory' || marker.remembered) && <span className="pin-heart" aria-hidden="true"><Heart /></span>}
       </> : marker.kind === 'memory' ? <Heart /> : marker.text;
       if (marker.href) return <a key={marker.id} className={className} style={style} href={marker.href} target="_blank" rel="noreferrer"
-        aria-label={marker.label} title={marker.label} aria-current={marker.pressed ? 'location' : undefined}>
+        aria-label={marker.label} aria-current={marker.pressed ? 'location' : undefined}>
         {face}
       </a>;
       return <button type="button" key={marker.id} className={className} style={style} aria-label={marker.label}

@@ -1,16 +1,16 @@
 # Handoff — chowonbhin
 - User override: ignore schedule/deadline; no clock-based phase transitions.
-- Branch chowonbhin/map-navigation-polish; base main 64d84cb.
-- Approved scope: desktop header alignment; clicked-dong zoom; detail back button/fade; clear search outline; desaturated buttons with white text.
-- Header now shares the main map's 1240px container; back button replaces the eyebrow above the dong name.
-- Map clicks/Enter zoom toward the chosen dong and center it for 320ms; back fades for 200ms. Reduced motion skips animation; other navigation cancels pending transitions.
-- Search selection is a teal solid outline with white halo above neighbouring boundaries; clearing input removes it.
-- Actions use slate #52636B, primary/selected actions use muted rose #76656B, both with white text. Reading cards remain white. DESIGN_COLORS.md updated.
-- Build PASS; unit 154/154; full browser 64/64 PASS before final zoom centering adjustment; affected navigation/search 9/9 rechecked on final source.
-- Final PC demo PASS 5/5: .claude/state/evidence/2026-11-08T07-04-38/.
-- Final mobile demo PASS 5/5: .claude/state/evidence/2026-11-08T07-04-53-mobile/; no console errors/SLOW.
-- Visual evidence: .claude/state/evidence/navigation-polish/; desktop search/zoom, mobile detail, final onboarding and centered zoom inspected.
-- Regression covers header edges, solid outline/reset, action text contrast >=4.5:1, back position, zoom/fade, reduced motion, history and cancellation.
-- Local http://127.0.0.1:3011/ serves index-DF3MZjZA.js; no push/deployment for this task.
-- Next 1: user inspects main → 월피동 → 전체 지도로 돌아가기 locally.
-- Next 2: integrate current main and push only on request; verify public PC/mobile after deployment.
+- Branch chowonbhin/map-navigation-polish; previous UI checkpoint 115582a remains unpublished, base main 64d84cb.
+- Latest scope: gentler map fades/zoom, rightward onboarding progression, remove pointer tooltips, clean hover edges.
+- Map zoom now 640ms; back/finish fade 440ms; incoming main/detail fades 460ms with smooth easing.
+- Each next question exits left then enters from the right (200+440ms); previous reverses direction. Answers stay in parent state and duplicate input is blocked during motion.
+- Reduced motion skips effects. New heading receives focus after inert is removed; an initially failing keyboard regression drove this correction.
+- Save failure restores opacity and controls rather than leaving onboarding faded out.
+- Native title tooltips removed from main regions/arrows and detail pins. Hover uses round white-halo/ink outlines above neighbours; base borders remain stable.
+- Build PASS; final related browser checks 21/21 PASS; earlier navigation/search/onboarding 12/12 PASS.
+- Final PC demo PASS 5/5: .claude/state/evidence/2026-11-08T07-14-32/.
+- Final mobile demo PASS 5/5: .claude/state/evidence/2026-11-08T07-14-50-mobile/; no console errors/SLOW.
+- Visual evidence: .claude/state/evidence/gentle-motion/; question-from-right.png, mobile-hover.png and desktop-hover.png inspected.
+- Local http://127.0.0.1:3011/ serves index-CtroEiXr.js; these changes are not pushed/deployed.
+- Next 1: inspect menu → 다시 설정하기 and main-map hover/entry/back locally.
+- Next 2: integrate current main and push only on request, then verify public PC/mobile.

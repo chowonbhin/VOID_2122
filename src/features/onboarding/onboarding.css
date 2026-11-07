@@ -39,3 +39,8 @@
 .onboarding-interest input { width: 18px; height: 18px; min-height: 0; margin: 0; accent-color: var(--color-link); }
 .onboarding-interest:has(input:focus-visible) { outline: 3px solid var(--color-link); outline-offset: 2px; }
 .onboarding-error { color: var(--color-error-text); line-height: 1.6; }
+
+/* Question content moves inside its own frame; progress and header stay still. */
+.onboarding-question-viewport { overflow: clip; padding: 6px; margin: -6px; }
+.onboarding-question { min-width: 0; }
+.onboarding-question h1:focus { outline: none; }

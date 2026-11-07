@@ -70,10 +70,25 @@ test('another navigation during zoom cancels the old destination', async ({ page
   await setup(page);
   await page.getByRole('button', { name: /^지도 월피동/ }).click();
   await page.getByRole('link', { name: '안산에 스며들다' }).click();
-  await page.waitForTimeout(400);
+  await page.waitForTimeout(800);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('추천 행정동');
   await expect(page.locator('.ansan-map-stage')).toHaveAttribute('aria-busy', 'false');
   await page.locator('.map-rank-pin').first().focus();
   await page.keyboard.press('Enter');
   await expect(page.getByRole('button', { name: '전체 지도로 돌아가기', exact: true })).toBeVisible();
+});
+
+test('hover outlines sit above shared boundaries without native tooltips', async ({ page }) => {
+  await setup(page);
+  const map = page.getByRole('region', { name: '안산 탐험 지도' });
+  await expect(map.locator('title, [title]')).toHaveCount(0);
+  const dong = page.getByRole('button', { name: /^지도 월피동/ });
+  await dong.hover();
+  await expect(map.locator('.map-hover-outline')).toBeVisible();
+  await expect(map.locator('.map-hover-outline')).toHaveCSS('stroke-linejoin', 'round');
+  await expect(dong.locator('path')).toHaveCSS('stroke-width', '1px');
+  await expect(map.locator('.map-hover')).toContainText('월피동');
+  await page.getByRole('button', { name: '메뉴', exact: true }).hover();
+  await expect(map.locator('.map-hover-highlight')).toHaveCount(0);
+  await expect(map.locator('.map-hover')).toBeEmpty();
 });
