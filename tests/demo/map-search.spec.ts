@@ -74,3 +74,38 @@ test('only the top three recommendations have readable, separated pins; empty re
   await expect(pins).toHaveCount(0);
   await expect(page.getByRole('searchbox', { name: '지역 검색' })).toBeVisible();
 });
+
+test('editing or clearing a selected search removes its marking and caption', async ({ page }) => {
+  await setup(page);
+  const input = page.getByRole('searchbox', { name: '지역 검색', exact: true });
+  for (const width of [1280, 320]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const replacement of ['', '대부', '   ']) {
+      await input.fill('본오1동');
+      await input.press('Enter');
+      await expect(page.locator('.search-selected')).toHaveCount(1);
+      await input.fill(replacement);
+      await expect(page.locator('.search-selected')).toHaveCount(0);
+      await expect(page.locator('.map-hover')).toBeEmpty();
+      await expect(page.locator('.map-rank-pin')).toHaveCount(3);
+    }
+  }
+});
+
+test('dong and pin captions clear when the pointer leaves or keyboard focus moves away', async ({ page }) => {
+  await setup(page);
+  const caption = page.locator('.map-hover');
+  const pin = page.locator('.map-rank-pin').first();
+  const region = page.getByRole('button', { name: /^지도 본오1동/ });
+  const input = page.getByRole('searchbox', { name: '지역 검색', exact: true });
+  for (const target of [region, pin]) {
+    await target.hover();
+    await expect(caption).not.toBeEmpty();
+    await input.hover();
+    await expect(caption).toBeEmpty();
+    await target.focus();
+    await expect(caption).not.toBeEmpty();
+    await input.focus();
+    await expect(caption).toBeEmpty();
+  }
+});
