@@ -17,7 +17,7 @@
 .visit-record-summary time { font-variant-numeric: tabular-nums; }
 .visit-badge { padding: 3px 8px; border-radius: 100px; background: var(--color-primary-subtle); color: var(--color-link); font-size: 12px; }
 .visit-edit-form { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.visit-dialog { width: min(480px, calc(100vw - 28px)); max-height: calc(100dvh - 40px); padding: 0; border: 1px solid var(--color-border-strong); border-radius: 22px; background: var(--color-bg); color: var(--color-text); box-shadow: var(--shadow); overflow: auto; }
+.visit-dialog { width: min(480px, calc(100vw - 28px)); max-height: calc(100dvh - 40px); padding: 0; border: 1px solid var(--color-border-strong); border-radius: var(--radius); background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow); overflow: auto; }
 .visit-dialog::backdrop { background: var(--color-backdrop); backdrop-filter: blur(3px); }
 .visit-dialog-body { padding: 24px; }
 .visit-dialog-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }

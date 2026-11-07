@@ -1,0 +1,20 @@
+/* Self-hosted, unmodified SUIT Variable. See public/fonts/suit/OFL.txt. */
+@font-face {
+  font-family: "SUIT Variable";
+  src: url("/fonts/suit/SUIT-Variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --font-ui: "SUIT Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  --weight-regular: 400;
+  --weight-medium: 550;
+  --weight-semibold: 650;
+  --weight-display: 760;
+}
+
+/* Colour placement follows DESIGN_COLORS.md; only key title words use rose. */
+.title-prefix { font-weight: var(--weight-regular); }
+.title-accent { color: var(--color-link); }

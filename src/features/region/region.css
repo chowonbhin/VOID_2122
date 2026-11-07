@@ -1,23 +1,23 @@
 .region-detail { color: var(--color-text); background: var(--color-bg); border-radius: 24px; padding: 8px 0 24px; }
-.region-detail h1 { overflow-wrap: anywhere; }
-.region-detail .place { background: var(--color-surface); border-radius: 18px; }
+.region-detail h1 { overflow-wrap: anywhere; color: var(--color-link); }
+.region-detail .place { background: var(--color-surface); border-radius: var(--radius); }
 .region-detail .place.selected-place { border-color: var(--color-primary); background: var(--color-primary-subtle); }
 .region-summary { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; }
 .region-summary span { background: var(--color-surface-sunken); border-radius: 20px; padding: 8px 12px; }
 .region-detail .region-back:focus-visible { outline: 3px solid var(--color-link); outline-offset: 3px; }
 .region-category, .region-note { color: var(--color-text-secondary); font-size: 13px; }
-.region-empty { padding: 24px; background: var(--color-surface); border: 1px dashed var(--color-border-strong); border-radius: 18px; text-align: center; margin-bottom: 16px; }
+.region-empty { padding: 24px; background: var(--color-surface); border: 1px dashed var(--color-border-strong); border-radius: var(--radius); text-align: center; margin-bottom: 16px; }
 @media (max-width: 480px) { .region-detail { padding: 4px 0 12px; border-radius: 0; } .region-detail h1 { font-size: 25px; } }
 .region-detail { max-width: 880px; margin: 0 auto; }
 .region-design-layout { display: block; }
 .region-lead { color: var(--color-text-secondary); line-height: 1.7; }
-.region-list-heading { margin: 28px 0 20px; font-size: 21px; }
-.region-detail .region-place-list > li { padding: 24px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 18px; box-shadow: var(--shadow); }
+.region-list-heading { margin: 28px 0 20px; font-size: 23px; font-weight: var(--weight-display); }
+.region-detail .region-place-list > li { padding: 24px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); box-shadow: none; }
 .region-detail .region-place-meta { color: var(--color-text-secondary); overflow-wrap: anywhere; }
 .region-detail .region-place-heading button { min-height: 44px; }
 @media (max-width: 480px) { .region-detail .region-place-list > li { padding: 16px; } }
 /* Memories linked to real-location markers, then a separate recommendation block. */
-.region-memories { margin-top: 20px; padding: 16px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 18px; }
+.region-memories { margin-top: 20px; padding: 16px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); }
 .region-memories h2 { margin: 0 0 10px; font-size: 18px; }
 .region-memories ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity; }
 .region-memories li { flex: 0 0 auto; scroll-snap-align: start; }
@@ -27,8 +27,8 @@
 .memory-preview-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
 .memory-preview-actions button { min-height: 44px; font-size: 13px; }
 .region-memories .memory-preview-note { margin: 0 0 10px; }
-.region-recommend { margin-top: 28px; padding-top: 24px; border-top: 2px dashed var(--color-border-strong); }
-.region-recommend-kicker { margin: 0; color: var(--color-link); font-weight: 800; font-size: 13px; letter-spacing: .08em; }
+.region-recommend { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--color-border); }
+.region-recommend-kicker { margin: 0; color: var(--color-link); font-weight: 800; font-size: 13px; letter-spacing: .02em; }
 .region-recommend .region-list-heading { margin: 4px 0 4px; }
 .region-recommend > .region-note { margin: 0 0 16px; }
 .region-design-layout > .dong-map { margin-top: 16px; }

@@ -1,72 +1,50 @@
-/* Single source of UI colours: DESIGN_COLORS.md (Rose Terracotta × Neutral White).
-   Components use semantic roles; map colours still encode familiarity, not score. */
+/* DESIGN_COLORS.md: the dark notebook is the default across the app.
+   Role tokens only; map fills continue to encode familiarity, not score. */
 :root {
-  color-scheme: light;
-  --color-bg: #F8F9FA;
-  --color-surface: #FFFFFF;
-  --color-surface-sunken: #F0F1F3;
-  --color-border: #E4E6E8;
-  --color-border-strong: #C8CDD2;
-  --color-text: #292B30;
-  --color-text-secondary: #60656D;
-  --color-text-placeholder: #858B94;
-  --color-primary: #B0524A;
-  --color-primary-pressed: #8F3F38;
-  --color-on-primary: #FFFFFF;
-  --color-link: #8F3F38;
-  --color-primary-subtle: #FBEFEC;
+  color-scheme: dark;
+  --color-bg: #1B1D20;
+  --color-surface: #24272B;
+  --color-surface-sunken: #2D3136;
+  --color-border: #393E45;
+  --color-border-strong: #555D68;
+  --color-text: #F4F5F6;
+  --color-text-secondary: #BFC4CC;
+  --color-text-placeholder: #898F98;
+
+  /* Same rose family, with less saturation than the earlier dark palette. */
+  --color-primary: #C5968D;
+  --color-primary-pressed: #D3ADA4;
+  --color-on-primary: #2A1513;
+  --color-link: #D3ADA4;
+  --color-primary-subtle: #352A28;
   --color-highlight: var(--color-primary-subtle);
   --color-on-highlight: var(--color-link);
   --color-accent: #EBB89A;
-  --color-success: #567553;
-  --color-success-bg: #E8EDDC;
-  --color-success-text: #2F4A2D;
-  --color-warning: #B07D22;
-  --color-warning-bg: #F7EACB;
-  --color-warning-text: #6E4A12;
-  --color-error: #9A1F32;
-  --color-error-bg: #F7DDDD;
-  --color-error-text: #6E1524;
-  --color-info: #4F6A7A;
-  --color-info-bg: #E3E8E8;
-  --color-info-text: #2C4250;
 
-  /* Neutral map ground, rose familiarity levels, a single accent family. */
+  --color-success: #8FB08B;
+  --color-success-bg: #28352B;
+  --color-success-text: #B8D0B5;
+  --color-warning: #E0B05A;
+  --color-warning-bg: #3A3226;
+  --color-warning-text: #E0C08B;
+  --color-error: #E8828F;
+  --color-error-bg: #402B30;
+  --color-error-text: #EAB1BA;
+  --color-info: #8FAABB;
+  --color-info-bg: #29343D;
+  --color-info-text: #B4CBD9;
+
   --color-map-bg: var(--color-bg);
   --color-map-land: var(--color-surface-sunken);
   --color-map-boundary: var(--color-text-placeholder);
   --color-map-familiarity-0: var(--color-surface-sunken);
-  --color-map-familiarity-1: #F5D6CF;
-  --color-map-familiarity-2: #D9887A;
+  --color-map-familiarity-1: #473532;
+  --color-map-familiarity-2: #78564F;
   --color-map-hatch: var(--color-text);
   --color-ink: #292B30;
+  /* Image-export backing, not a UI surface: keep existing saved photos faithful. */
   --color-photo-paper: #FFFFFF;
   --color-shadow: color-mix(in srgb, var(--color-ink) 8%, transparent);
-  --color-backdrop: color-mix(in srgb, var(--color-ink) 48%, transparent);
+  --color-backdrop: color-mix(in srgb, var(--color-bg) 72%, transparent);
   --shadow: 0 2px 8px var(--color-shadow);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --color-bg: #1B1D20;
-    --color-surface: #24272B;
-    --color-surface-sunken: #2D3136;
-    --color-border: #393E45;
-    --color-border-strong: #555D68;
-    --color-text: #F4F5F6;
-    --color-text-secondary: #BFC4CC;
-    --color-text-placeholder: #898F98;
-    --color-primary: #E08A7B;
-    --color-primary-pressed: #EBA597;
-    --color-on-primary: #2A1513;
-    --color-link: #EBA597;
-    --color-primary-subtle: #3D2724;
-    --color-success: #8FB08B;
-    --color-warning: #E0B05A;
-    --color-error: #E8828F;
-    --color-info: #8FAABB;
-    --color-map-familiarity-1: #4A1F1C;
-    --color-map-familiarity-2: #8F3F38;
-  }
 }

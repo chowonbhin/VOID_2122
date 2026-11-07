@@ -102,7 +102,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
   return <section className="exploration-map ansan-map" aria-label="안산 탐험 지도">
     <div className="ansan-map-heading">
       <div>
-        <h2>나의 안산 지도</h2>
+        <h2><span className="title-prefix">나의 </span><span className="title-accent">안산 지도</span></h2>
       </div>
       <form className="map-search" role="search" aria-label="지도 지역 검색"
         onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setSearchOpen(false); }}

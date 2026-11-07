@@ -65,7 +65,7 @@ test('weekday uncertainty and place links remain visible without review counts',
   await page.goto(`${base}/#/region/dong-4127353200`);
   const nuave = list(page).locator(':scope > li').filter({ has: page.getByRole('heading', { name: /누아베/ }) });
   await expect(nuave.getByRole('link', { name: '네이버에서 장소 보기', exact: true })).toHaveAttribute('href', /^https:\/\/map.naver.com\//);
-  await expect(nuave.getByLabel('누아베 오늘 운영시간', { exact: true })).toContainText('운영시간 미확인');
+  await expect(nuave.getByLabel('누아베 오늘 운영시간', { exact: true })).toContainText('오늘 요일의 운영 시간은 아직 확인하지 못했어요.');
   await expect(page.locator('.region-detail')).toContainText('11월 8일 14:00 기준');
   await expect(list(page)).not.toContainText('리뷰');
 });

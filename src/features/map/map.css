@@ -2,13 +2,13 @@
 .page.page-map { max-width: 1240px; }
 
 /* Main map: real Ansan outline, score fill, 도심/대부도 slides. */
-.ansan-map { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 24px; padding: 20px; margin: 20px 0 24px; box-shadow: var(--shadow); }
+.ansan-map { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 24px; margin: 20px 0 28px; box-shadow: none; }
 .ansan-map-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
-.ansan-map-heading h2 { margin: 4px 0 0; font-size: 22px; }
+.ansan-map-heading h2 { margin: 4px 0 0; font-size: 26px; font-weight: var(--weight-display); }
 .score-map-kicker { font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--color-link); }
 .score-map-intro { margin: 8px 0 0; font-size: 14px; color: var(--color-text-secondary); }
 .map-search { position: relative; flex: 0 1 260px; max-width: 55%; min-width: 0; z-index: 5; }
-.map-search-field { display: flex; align-items: center; border: 1.5px solid var(--color-border-strong); border-radius: 12px; background: var(--color-bg); overflow: hidden; }
+.map-search-field { display: flex; align-items: center; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg); overflow: hidden; }
 .map-search-field:focus-within { outline: 2px solid var(--color-link); outline-offset: 2px; }
 .map-search-field input { width: 100%; min-width: 0; padding: 10px 8px; border: 0; border-radius: 0; background: transparent; color: var(--color-text); font: inherit; font-size: 16px; outline: none; box-shadow: none; }
 .map-search-field button { flex: 0 0 44px; width: 44px; min-height: 44px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 0; background: transparent; color: var(--color-link); }
@@ -26,7 +26,7 @@
 .map-area-arrow:hover:not(:disabled) { background: var(--color-surface); }
 .map-area-arrow:disabled { opacity: .25; cursor: default; box-shadow: none; }
 
-.ansan-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 18px; border: 1px solid var(--color-border-strong); overscroll-behavior-x: contain; }
+.ansan-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 12px; border: 1px solid var(--color-border-strong); overscroll-behavior-x: contain; }
 .ansan-slider::-webkit-scrollbar { display: none; }
 .ansan-slide { flex: 0 0 100%; scroll-snap-align: start; background-color: var(--color-map-bg); }
 .ansan-svg { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; max-height: 640px; }
@@ -43,12 +43,12 @@
 .map-rank-pin { cursor: pointer; outline: none;  }
 .map-rank-hit { fill: transparent; }
 .map-rank-face { fill: var(--color-surface); stroke: var(--color-link); stroke-width: 2px; }
-.map-rank-pin text { fill: var(--color-link); font-size: 16px; font-weight: 800; pointer-events: none; }
+.map-rank-pin text { fill: var(--color-link); font-size: 16px; font-weight: var(--weight-semibold); pointer-events: none; }
 .map-rank-pin:hover .map-rank-face, .map-rank-pin:focus-visible .map-rank-face { fill: var(--color-primary-subtle); }
 .map-rank-pin:hover text, .map-rank-pin:focus-visible text { fill: var(--color-link); }
 .map-rank-pin:focus-visible .map-rank-face { stroke: var(--color-link); stroke-width: 3px; }
 
-.ansan-legend { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--color-text); }
+.ansan-legend { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--color-text-secondary); }
 .ansan-legend li { display: flex; align-items: center; gap: 6px; }
 .ansan-legend i { width: 14px; height: 14px; border-radius: 4px; border: 1px solid var(--color-map-boundary); }
 .ansan-legend .legend-land { background: var(--color-surface-sunken); }
@@ -62,7 +62,7 @@
 .region-place-list > li { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 16px; padding: 18px; scroll-margin-top: 72px; }
 .region-place-list > li.selected-place { border: 2px solid var(--color-link); background: var(--color-primary-subtle); }
 .region-place-heading { display: flex; align-items: flex-start; gap: 12px; justify-content: space-between; }
-.region-place-heading h2 { flex: 1; min-width: 0; margin: 0; padding-top: 10px; font-size: 18px; overflow-wrap: anywhere; }
+.region-place-heading h2 { flex: 1; min-width: 0; margin: 0; padding-top: 8px; font-size: 20px; overflow-wrap: anywhere; }
 .region-place-meta { font-size: 13px; color: var(--color-text-secondary); margin: 10px 0; }
 .region-back { margin-bottom: 16px; }
 @media (prefers-reduced-motion: reduce) { .ansan-region-fill { transition: none; } }
@@ -70,7 +70,7 @@
   /* Tiny districts cannot carry readable text on a phone. Their accessible
      labels, focus caption and 44px directory buttons retain names and scores. */
   .ansan-region-label { display: none; }
-  .ansan-map { padding: 16px 12px; border-radius: 20px; }
+  .ansan-map { padding: 16px 12px; border-radius: var(--radius); }
   .ansan-map-heading h2 { font-size: 20px; }
 }
 
@@ -80,7 +80,7 @@
   .ansan-map-heading h2 { font-size: 18px; }
   .map-search { max-width: 52%; }
 }
-.dong-map { position: relative; width: 100%; margin: 0 auto; border-radius: 18px; border: 1px solid var(--color-border-strong); overflow: hidden; background-color: var(--color-map-bg); }
+.dong-map { position: relative; width: 100%; margin: 0 auto; border-radius: var(--radius); border: 1px solid var(--color-border-strong); overflow: hidden; background-color: var(--color-map-bg); }
 .dong-map-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .dong-map-context { fill: var(--color-surface-sunken); stroke: var(--color-map-boundary); stroke-width: .5px; vector-effect: non-scaling-stroke; opacity: .75; }
 .dong-map-target { fill: var(--color-map-familiarity-0); stroke: var(--color-link); stroke-width: 3px; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
@@ -88,7 +88,7 @@
 .dong-map-dot { fill: var(--color-link); }
 .dong-map-dot.memory { fill: var(--color-primary); }
 .dong-map-dot.home { fill: var(--color-text); }
-.dong-pin { position: absolute; transform: translate(-50%, -50%); z-index: 2; width: 44px; height: 44px; min-height: 44px; padding: 0; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 16px; background: var(--color-surface); color: var(--color-link); border: 2px solid var(--color-link); box-shadow: var(--shadow); }
+.dong-pin { position: absolute; transform: translate(-50%, -50%); z-index: 2; width: 44px; height: 44px; min-height: 44px; padding: 0; border-radius: 50%; display: grid; place-items: center; font-weight: var(--weight-semibold); font-size: 16px; background: var(--color-surface); color: var(--color-link); border: 2px solid var(--color-link); box-shadow: var(--shadow); }
 .dong-pin.selected { background: var(--color-primary-subtle); color: var(--color-link); outline: 3px solid var(--color-surface); z-index: 3; }
 .dong-pin.remembered { border-color: var(--color-primary); color: var(--color-link); box-shadow: var(--shadow); }
 .dong-pin.remembered.selected { background: var(--color-primary-subtle); color: var(--color-link); }
@@ -122,3 +122,13 @@
 .ansan-legend .legend-home i { background: var(--color-map-land); overflow: hidden; }
 
 .ansan-legend .legend-home svg { display: block; width: 100%; height: 100%; stroke: var(--color-map-hatch); stroke-width: 1.4; }
+
+/* The selected store photo sits above its location, with a small memory badge. */
+.dong-pin.has-image { width: 64px; height: 64px; min-height: 64px; transform: translate(-50%, calc(-100% - 10px)); border: 3px solid var(--color-primary); background: var(--color-surface); box-shadow: var(--shadow); overflow: visible; }
+.dong-pin.has-image img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.dong-pin.has-image::after { content: ''; position: absolute; left: 50%; bottom: -13px; transform: translateX(-50%); border: 8px solid transparent; border-top: 9px solid var(--color-primary); }
+.dong-pin.has-image.selected { outline: none; }
+.dong-pin.has-image:focus-visible { outline: 3px solid var(--color-link); outline-offset: 3px; }
+.dong-pin.kind-place.selected:not(.has-image) { width: 52px; height: 52px; min-height: 52px; font-size: 18px; }
+.pin-heart { position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: var(--color-primary); color: var(--color-on-primary); border: 2px solid var(--color-surface); }
+.pin-heart svg { width: 12px; height: 12px; }

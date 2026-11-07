@@ -2,8 +2,8 @@
 .recommend > h1 { font-size: 15px; font-weight: 700; color: var(--color-text-secondary); letter-spacing: 0; margin: 0 0 6px; }
 .recommend-note { color: var(--color-text-secondary); font-size: 13px; }
 
-.recommend-section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin: 32px 0 4px; }
-.recommend-section-head h2 { margin: 0; font-size: 23px; }
+.recommend-section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin: 36px 0 12px; }
+.recommend-section-head h2 { margin: 0; font-size: 24px; font-weight: var(--weight-display); }
 .recommend-section-head span { color: var(--color-link); font-weight: 700; font-size: 14px; }
 
 /* Journal card: a label tucked into the top border, as in the mockup. */
@@ -27,7 +27,7 @@
 @media (prefers-reduced-motion: reduce) { .recommend-link { transition: none; } }
 /* Demo notice floats over the UI: chip bottom-right, panel opens above it on hover/focus/tap. */
 .demo-float { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: calc(57px + env(safe-area-inset-bottom) + 14px); z-index: 1200; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-.demo-chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 100px; border: 1.5px solid var(--color-border-strong); background: var(--color-highlight); color: var(--color-on-highlight); font-size: 14px; font-weight: 800; box-shadow: var(--shadow); }
+.demo-chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 100px; border: 1.5px solid var(--color-border-strong); background: var(--color-highlight); color: var(--color-on-highlight); font-size: 13px; font-weight: var(--weight-semibold); box-shadow: var(--shadow); }
 .demo-chip[aria-expanded="true"] { border-color: var(--color-link); }
 .demo-chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); }
 .demo-notice { width: min(340px, calc(100vw - 32px)); max-height: min(70vh, 460px); overflow-y: auto; padding: 1rem 1.2rem; border: 1px solid var(--color-border-strong); border-radius: 16px; background: var(--color-highlight); color: var(--color-on-highlight); font-size: .86rem; box-shadow: var(--shadow); animation: demo-pop .16s ease-out; }
@@ -39,8 +39,8 @@
 
 /* 장소 추천: scrolls inside its own box so the page stays short. */
 .place-recommend-list { list-style: none; margin: 12px 0 0; padding: 4px 6px 4px 0; display: grid; gap: 10px; max-height: min(60vh, 520px); overflow-y: auto; overscroll-behavior: contain; border-radius: var(--radius); }
-.place-pick { width: 100%; display: grid; gap: 4px; text-align: left; padding: 14px 16px; background: var(--color-surface); border: 1px solid var(--color-border);  color: var(--color-text); }
+.place-pick { width: 100%; display: grid; gap: 4px; text-align: left; padding: 18px 20px; background: var(--color-surface); border: 1px solid var(--color-border);  color: var(--color-text); }
 .place-pick:hover { border-color: var(--color-link); }
-.place-pick strong { font-size: 18px; }
-.place-pick-kicker { color: var(--color-link); font-weight: 700; font-size: 13px; }
+.place-pick strong { font-size: 20px; line-height: 1.45; }
+.place-pick-kicker { color: var(--color-link); font-weight: var(--weight-medium); font-size: 12px; }
 .place-pick-meta { color: var(--color-text-secondary); font-size: 13px; }

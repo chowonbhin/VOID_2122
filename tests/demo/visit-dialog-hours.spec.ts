@@ -20,6 +20,7 @@ test('name-side visit button opens a focused date editor; cancel and Escape pres
     const visit = await trigger.boundingBox();
     const map = await card.getByRole('button', { name: '바바카멜 지도에서 위치 보기' }).boundingBox();
     expect(visit).not.toBeNull(); expect(map).not.toBeNull();
+    // Keep the visit and map actions on one row, including on narrow phones.
     expect(Math.abs(visit!.y - map!.y)).toBeLessThan(1);
     expect(map!.x).toBeGreaterThanOrEqual(visit!.x + visit!.width);
     expect(visit!.height).toBeGreaterThanOrEqual(44);
@@ -67,5 +68,6 @@ test('today’s actual schedule ignores saved search date and updates across mid
   await expect(hours).toContainText('오늘 휴무');
   await expect(hours).not.toContainText('09:00');
   await page.clock.fastForward(6 * 24 * 60 * 60 * 1000);
-  await expect(hours).toContainText('운영정보 재확인 필요');
+  // Expired hours: explained once, conversationally, inside the today-hours box.
+  await expect(hours).toContainText('운영 정보가 오래됐어요');
 });

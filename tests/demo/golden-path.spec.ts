@@ -104,11 +104,15 @@ test('golden path', async ({ page }) => {
       await expect(places).not.toContainText('시연용 가상');
       await expect(places).not.toContainText('리뷰');
       await expect(places).not.toContainText('점수');
+      // The card icon reveals exactly one place pin; the pin opens the external map.
+      const map = page.getByRole('region', { name: '안산 탐험 지도' });
+      await expect(map.locator('.dong-pin.kind-place')).toHaveCount(0);
       await page.getByRole('button', { name: '바바카멜 지도에서 위치 보기', exact: true }).click();
       const pin = page.getByRole('link', { name: '바바카멜 네이버지도에서 보기 (새 탭)', exact: true });
       await expect(pin).toHaveAttribute('aria-current', 'location');
       await expect(pin).toBeInViewport({ ratio: 1 });
       await expect(pin).toHaveAttribute('href', /^https:\/\/map.naver.com\//);
+      await expect(map.locator('.dong-pin.kind-place')).toHaveCount(1);
     });
     await demoStep(page, '4. Record a real visit → score recomputation and Lv.1 with 20 places retained', async () => {
       const panel = await openVisit(page, VISITED);

@@ -43,7 +43,7 @@ test('at night closed sources cannot be represented as open recommendations', as
   await page.getByRole('region', { name: '이 동네의 추억' }).getByRole('button').filter({ hasText: '바바카멜' }).click();
   const baba = list(page).locator(':scope > li').filter({ has: page.getByRole('heading', { name: /바바카멜/ }) });
   await expect(baba).toContainText('휴무·이용 마감');
-  await expect(baba).toContainText('현재 추천 조건 밖');
+  await expect(baba).toContainText('지금 조건에서는 추천하지 않지만 둘러볼 수 있어요.');
 });
 
 test('after onboarding, missing search conditions still allow exploring 20 real venues', async ({ page }) => {

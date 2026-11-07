@@ -194,7 +194,7 @@ export function NotebookPage() {
   return <section className="notebook">
     <a className="notebook-back" href="#/recommend"><Icon name="arrowLeft" size={18} /> 나의 안산 지도로</a>
     <header className="notebook-heading">
-      <h1>나의 동네수첩<span className="notebook-title-dot">.</span></h1>
+      <h1><span className="title-prefix">나의 </span><span className="title-accent">동네수첩</span><span className="notebook-title-dot">.</span></h1>
       <button className="notebook-add" disabled={loading || !!loadError} onClick={() => openEditor()}><Icon name="plus" /> 사진 남기기</button>
     </header>
     <div className="notebook-overview">
