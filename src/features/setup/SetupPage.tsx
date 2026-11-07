@@ -6,6 +6,7 @@ import { CATEGORY_LABELS, DEFAULT_MAX_DISTANCE_KM, LEVEL_LABELS } from '../../do
 import type { Category, Profile, SearchContext } from '../../domain/types';
 import { go } from '../../route';
 import { dongAt, dongByCode, dongs } from '../map/ansanGeo';
+import { OriginMapPicker } from './OriginMapPicker';
 import './setup.css';
 
 function localDateTime() {
@@ -158,6 +159,15 @@ export function SetupPage() {
         </fieldset>}
         {step === 3 && <fieldset ref={panelRef} tabIndex={-1} className="setup-panel">
           <legend>출발지</legend>
+          <p className="setup-hint">지도를 끌어 가운데 핀에 출발지를 맞추세요. 아래 목록이나 좌표 입력으로도 정할 수 있어요.</p>
+          <OriginMapPicker
+            lat={Number.isFinite(lat) && latitude.trim() ? lat : origin.lat}
+            lng={Number.isFinite(lng) && longitude.trim() ? lng : origin.lng}
+            onPick={(point) => {
+              setOrigin({ label: point.dongName ? `${point.dongName} 지도 선택 지점` : '지도에서 고른 출발지', lat: point.lat, lng: point.lng });
+              setLatitude(String(point.lat));
+              setLongitude(String(point.lng));
+            }} />
           <label>
             출발지 선택
             <select value="" onChange={(event) => {
@@ -176,7 +186,7 @@ export function SetupPage() {
             <label>위도<input required type="number" min="-90" max="90" step="any" value={latitude} onChange={(event) => setLatitude(event.target.value)} /></label>
             <label>경도<input required type="number" min="-180" max="180" step="any" value={longitude} onChange={(event) => setLongitude(event.target.value)} /></label>
           </div>
-          <p className="setup-hint">직접 입력한 좌표가 출발지입니다. 거리는 행정동 대표 지점까지의 직선거리이며 이동 경로나 도착 시간을 뜻하지 않습니다.</p>
+          <p className="setup-hint">핀 위치와 위 좌표는 항상 같습니다. 거리는 행정동 대표 지점까지의 직선거리이며 이동 경로나 도착 시간을 뜻하지 않습니다.</p>
         </fieldset>}
         {step === 4 && <fieldset ref={panelRef} tabIndex={-1} className="setup-panel">
           <legend>외출 조건</legend>

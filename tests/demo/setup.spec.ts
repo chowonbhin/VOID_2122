@@ -107,3 +107,27 @@ test('조건은 한 단계씩 다음·이전으로 넘기고, 출발지 오류�
   await page.getByRole('button', { name: '이전' }).click();
   await expect(page.getByLabel('위도', { exact: true })).toHaveValue('37.3219');
 });
+
+test('출발지는 지도를 끌어 가운데 핀으로 정하고 좌표·이름이 함께 바뀐다', async ({ page }) => {
+  await page.goto(`${baseURL}/#/setup`);
+  await setupStep(page, '출발지');
+  const map = page.getByRole('application', { name: /출발지 지도/ });
+  await expect(map).toBeVisible();
+  const before = await page.getByLabel('경도', { exact: true }).inputValue();
+  const box = (await map.boundingBox())!;
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width / 2 - 80, box.y + box.height / 2, { steps: 5 });
+  await page.mouse.up();
+  const after = Number(await page.getByLabel('경도', { exact: true }).inputValue());
+  expect(after).toBeGreaterThan(Number(before));
+  await expect(page.getByLabel('출발지 이름')).toHaveValue(/지도 선택 지점|지도에서 고른 출발지/);
+  await map.focus();
+  await page.keyboard.press('ArrowUp');
+  expect(Number(await page.getByLabel('위도', { exact: true }).inputValue())).toBeGreaterThan(0);
+  await expect(page.locator('#origin-map-status')).toContainText('핀 위치');
+  await submitSetup(page);
+  await expect(page.getByRole('heading', { name: '추천 행정동', level: 1 })).toBeVisible();
+  const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('ansan-explore/v1')!));
+  expect(stored.search.origin.lng).toBeCloseTo(after, 3);
+});
