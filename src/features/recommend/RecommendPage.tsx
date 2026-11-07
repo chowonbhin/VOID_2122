@@ -46,7 +46,7 @@ export function RecommendPage() {
       <p className="recommend-note">네이버 검색 후보 {naverCandidateStatus.candidateCount}개 확보 · {naverCandidateStatus.checkedAt} 확인.
         {' '}기존 실제 장소 {naverCandidateStatus.importedCount}곳에 검색 위치를 연결했습니다. 방문·리뷰 수 미확인 장소는 점수에서 제외합니다.</p>
       {state.needsDongLevelReview && <p role="status">행정동별 익숙함을 다시 확인해 주세요. 이전 A·B권역의 초기 설정은 보관했고 방문 기록은 유지했습니다. ‘조건 변경’에서 새로 설정할 수 있습니다.</p>}
-      <p className="recommend-note">25개 행정동 중 장소 데이터가 있는 동 {content.regions.filter(region => region.placeIds.length > 0).length}곳 · 실제 조사 장소 3곳을 우선 반영했습니다. 기존 시연 장소는 별도로 표시합니다. 등록 장소 수에 영향을 받는 추천 점수이며 동 전체의 매력도를 뜻하지 않습니다.</p>
+      <p className="recommend-note">25개 행정동 중 장소 데이터가 있는 동 {content.regions.filter(region => region.placeIds.length > 0).length}곳 · 실제 조사 장소 3곳은 인지도 확인 대기입니다. 시연 장소는 별도로 표시합니다. 등록 장소 수에 영향을 받는 추천 점수이며 동 전체의 매력도를 뜻하지 않습니다.</p>
       <div className="recommend-summary" aria-label="현재 탐험 조건">
         <p>{search.origin.label} 출발 · 최대 직선거리 {search.maxDistanceKm} km</p>
         <p>{search.when.replace('T', ' ')} (한국 시간)</p>

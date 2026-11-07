@@ -1,7 +1,7 @@
 // Region map/detail; score and visit state come from the shared engine.
 import { useRef, useState } from 'react';
 import { useAppState } from '../../AppState';
-import { content, eventsOfPlace, placesOfRegion, regionById } from '../../data/content';
+import { content, demoEnabled, eventsOfPlace, placesOfRegion, regionById } from '../../data/content';
 import { CATEGORY_LABELS } from '../../domain/policy';
 import { franchiseStatus } from '../../domain/placeEligibility';
 import { distanceKm, eventState, scorePlaces } from '../../domain/score';
@@ -24,7 +24,8 @@ export function RegionPage({ regionId }: { regionId: string }) {
 
 function RegionDetail({ regionId }: { regionId: string }) {
   const { state } = useAppState();
-  const [filter, setFilter] = useState<'all' | 'visited' | 'recommended'>('all');
+  const [filter, setFilter] = useState<'all' | 'visited' | 'recommended'>(demoEnabled && state.search ? 'recommended' : 'all');
+  const [mapPage, setMapPage] = useState(0);
   const [selectedId, setSelectedId] = useState<string>();
   const [memoryId, setMemoryId] = useState<string>();
   const cards = useRef<Record<string, HTMLLIElement | null>>({});
@@ -45,6 +46,9 @@ function RegionDetail({ regionId }: { regionId: string }) {
   const visiblePlaces = places.filter((place) => filter === 'all' || (filter === 'visited'
     ? visitedIds.has(place.id) : scores.some((score) => score.placeId === place.id && score.selected)));
   const selectedPlaceId = visiblePlaces.some((place) => place.id === selectedId) ? selectedId : visiblePlaces[0]?.id;
+  const locatedPlaces = visiblePlaces.filter(place => place.location);
+  const mapPages = Math.ceil(locatedPlaces.length / 8);
+  const currentMapPage = Math.min(mapPage, Math.max(0, mapPages - 1));
   const regionDongs = dongsOfRegion(region);
   // Memories: the user's own visit records (newest first) plus labelled demo memories in this 동네.
   const visitMemories: MemoryItem[] = places.flatMap((place) => {
@@ -57,12 +61,14 @@ function RegionDetail({ regionId }: { regionId: string }) {
   const markers: MapMarker[] = [
     { id: 'start', kind: 'start', ...region.start, label: region.start.label, text: 'S' },
     ...(home ? [{ id: 'home', kind: 'home' as const, ...centreLatLng(home), label: `내 동네 · ${home.name}` }] : []),
-    ...visiblePlaces.flatMap((place, index) => place.location ? [{ id: place.id, kind: 'place' as const, ...place.location, text: String(index + 1),
+    ...locatedPlaces.slice(currentMapPage * 8, (currentMapPage + 1) * 8).flatMap(place => place.location ? [{ id: place.id, kind: 'place' as const, ...place.location, text: String(visiblePlaces.indexOf(place) + 1),
       label: `${place.name} 지도에서 선택`, pressed: place.id === selectedPlaceId, remembered: visitedIds.has(place.id) }] : []),
     ...samples.map((memory) => ({ id: memory.id, kind: 'memory' as const, ...memory.location, label: `${memory.title} 추억 보기`, pressed: memory.id === memoryId })),
   ];
   const selectPlace = (id: string) => {
-    if (!visiblePlaces.some((place) => place.id === id)) setFilter('all');
+    const nextPlaces = visiblePlaces.some(place => place.id === id) ? visiblePlaces : places;
+    if (nextPlaces !== visiblePlaces) setFilter('all');
+    setMapPage(Math.max(0, Math.floor(nextPlaces.filter(place => place.location).findIndex(place => place.id === id) / 8)));
     setSelectedId(id);
     setMemoryId(id);
     requestAnimationFrame(() => cards.current[id]?.scrollIntoView({ behavior: 'instant', block: 'nearest' }));
@@ -87,10 +93,12 @@ function RegionDetail({ regionId }: { regionId: string }) {
     <div className="region-filters" role="group" aria-label="동네 안 장소 필터">
       {([['all', '전체 장소'], ['visited', '가본 장소'], ['recommended', '추천 장소']] as const).map(([value, label]) =>
         <button key={value} aria-pressed={filter === value} disabled={value === 'recommended' && !state.search}
-          onClick={() => { setFilter(value); setSelectedId(undefined); }}>{label}</button>)}
+          onClick={() => { setFilter(value); setSelectedId(undefined); setMapPage(0); }}>{label}</button>)}
     </div>
     {!state.search && <p className="region-note">조건을 설정하면 추천 장소를 골라볼 수 있어요.</p>}
     <p className="region-note" role="status">표시된 장소 {visiblePlaces.length}곳</p>
+    {filter === 'recommended' && places.some(place => visitedIds.has(place.id) && !visiblePlaces.some(visible => visible.id === place.id)) &&
+      <p className="region-note" role="status">방문 기록을 반영해 상위 20개를 다시 골랐어요. 추천 밖으로 이동한 장소의 기록은 ‘가본 장소’에서 확인·수정·삭제할 수 있어요.</p>}
     {visiblePlaces.length === 0 && places.length > 0 && <div className="region-empty">
       <p>{filter === 'visited' ? '아직 이 동네에 남긴 방문 기록이 없어요.' : '선택한 조건에 맞는 추천 장소가 없어요.'}</p>
       <button onClick={() => setFilter('all')}>전체 장소 보기</button>
@@ -98,7 +106,12 @@ function RegionDetail({ regionId }: { regionId: string }) {
     <div className="region-design-layout">
       <DongMap target={regionDongs} markers={markers}
         onSelect={(marker) => marker.kind === 'memory' ? setMemoryId(marker.id) : selectPlace(marker.id)} />
-      <p className="region-note">실제 좌표 기반 · 2026-10-01 행정동 경계 · S: 동 대표 지점 · 번호: 아래 장소 목록 순서 · 하트: 기록한 추억 · 점: 실제 위치</p>
+      {mapPages > 1 && <nav className="region-filters" aria-label="지도 장소 페이지">
+        <button disabled={currentMapPage === 0} onClick={() => setMapPage(currentMapPage - 1)}>이전 지도 장소</button>
+        <span>{currentMapPage + 1} / {mapPages} · 지도에 {currentMapPage * 8 + 1}–{Math.min((currentMapPage + 1) * 8, locatedPlaces.length)}번 표시</span>
+        <button disabled={currentMapPage + 1 >= mapPages} onClick={() => setMapPage(currentMapPage + 1)}>다음 지도 장소</button>
+      </nav>}
+      <p className="region-note">2026-10-01 실제 행정동 경계 · 시연 장소의 좌표는 가상 위치입니다. S: 동 대표 지점 · 번호: 아래 장소 목록 순서 · 하트: 기록한 추억 · 점: 장소 좌표</p>
       <p className="region-note">경계: SGIS 공공누리 제1유형 · <a href="https://github.com/vuski/admdongkor" target="_blank" rel="noreferrer">vuski/admdongkor</a> 가공 · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a></p>
       {visiblePlaces.some(place => !place.location) && <p className="region-note">정밀 좌표 미확인 장소는 지도 마커 없이 목록에서 안내합니다.</p>}
       <Memories items={memoryItems} selectedId={memoryId} onSelect={selectMemory} />
@@ -127,7 +140,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
             <div className="region-place-heading">
               <h2>{index + 1}. {place.name}</h2>
               <button aria-label={`${place.name} 카드에서 선택`} aria-pressed={place.id === selectedPlaceId}
-                onClick={() => setSelectedId(place.id)}>지도에서 강조</button>
+                onClick={() => { setSelectedId(place.id); setMapPage(Math.max(0, Math.floor(locatedPlaces.findIndex(item => item.id === place.id) / 8))); }}>지도에서 강조</button>
             </div>
             <p>{CATEGORY_LABELS[place.category]} · {scored ? statusLabel[scored.status.status] : '시각 미선택'}</p>
             {scored?.eligible ? <p>장소 추천 점수 {scored.score.toFixed(1)} · {scored.rank}위 · {scored.selected ? '상위 20개 · 지역 점수에 포함' : '상위 20개 밖 · 지역 점수에 미포함'}</p>

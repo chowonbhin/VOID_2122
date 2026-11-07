@@ -1,5 +1,5 @@
 // M02 input/storage behavior. Owner: chowonbhin. Scoring is not implemented yet.
-import { test, expect } from '@playwright/test';
+import { test, expect } from './baseline';
 
 const baseURL = process.env.BASE_URL ?? 'http://localhost:3000';
 

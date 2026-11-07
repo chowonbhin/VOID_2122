@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect, type Page } from './baseline';
 const base = process.env.BASE_URL ?? 'http://127.0.0.1:3000';
 const list = (page: Page) => page.getByRole('list', { name: '행정동 장소 추천' }).locator(':scope > li');
 const markers = (page: Page) => page.getByRole('region', { name: '안산 탐험 지도' }).getByRole('button', { name: /지도에서 선택$/ });
