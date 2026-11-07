@@ -1,11 +1,8 @@
 import { test, expect, type Page } from './baseline';
-import { setupStep, submitSetup } from './setupSteps';
+import { changeSearch, DEFAULT_ORIGIN, openSetup, setupStep, submitSetup, writeSearch } from './setupSteps';
 const base = process.env.BASE_URL ?? 'http://127.0.0.1:3002';
 async function setup(page: Page) {
-  await page.goto(`${base}/#/setup`);
-  await setupStep(page, '외출 조건');
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
-  await page.getByLabel('최대 거리 (km)').fill('100');
+  await openSetup(page, base, { origin: DEFAULT_ORIGIN, maxDistanceKm: 100 });
   await submitSetup(page);
 }
 
@@ -49,10 +46,7 @@ test('real venue supports visits but cannot be scored without measured popularit
   await expect(panel.locator('time')).toHaveText('2026-11-08');
   await page.screenshot({ path: '.claude/state/evidence/admin-dongs/real-place.png', fullPage: true });
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
-  await page.getByRole('button', { name: '조건 변경' }).click();
-  await setupStep(page, '외출 조건');
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-14T14:00');
-  await submitSetup(page);
+  await changeSearch(page, { when: '2026-11-14T14:00' });
   await expect(page.getByRole('button', { name: /^지도 일동 ·/ })).toHaveAccessibleName(/추천 조건 미충족/);
   await page.getByRole('button', { name: /^지도 일동 ·/ }).click();
   await expect(list).toContainText('운영정보 미확인');
@@ -65,6 +59,7 @@ test('old records survive migration and update the actual dong; level review is 
     profile: { initialLevels: { 'region-a': 2, 'region-b': 2 }, interests: [], experiencedEventIds: ['e-b1-market'] },
     visits: [{ id: 'old-b3', placeId: 'b3', date: '2026-11-07', method: 'self_report' }], search: null,
   })));
+  await writeSearch(page, { origin: DEFAULT_ORIGIN, maxDistanceKm: 100 });
   await page.goto(`${base}/#/setup`);
   await page.reload();
   await expect(page.getByRole('status')).toContainText('기존 방문 기록은 유지');
@@ -72,8 +67,6 @@ test('old records survive migration and update the actual dong; level review is 
   await expect(page.getByLabel('중앙동 익숙함')).toHaveValue('0');
   await expect(page.getByLabel('원곡동 익숙함')).toHaveValue('0');
   await page.getByLabel('중앙동 익숙함').selectOption('2');
-  await setupStep(page, '외출 조건');
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
   await submitSetup(page);
   await page.getByRole('button', { name: /^지도 신길동/ }).click();
   const panel = page.getByRole('region', { name: '시연 공방 방문 기록', exact: true });
@@ -104,11 +97,9 @@ test('25-dong map and directory fit a 320px phone, and every directory target st
 
 test('home dong survives reload, opens island memories, and samples never change scores or visits', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 });
-  await page.goto(`${base}/#/setup`);
+  await openSetup(page, base, { origin: DEFAULT_ORIGIN, maxDistanceKm: 100 });
   await setupStep(page, '내 동네');
   await page.getByLabel('내 동네 선택').selectOption({ label: '대부동' });
-  await setupStep(page, '외출 조건');
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
   await submitSetup(page);
   const ranking = page.getByRole('list', { name: '추천 순위' });
   const before = await ranking.innerText();

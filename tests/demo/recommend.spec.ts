@@ -1,20 +1,13 @@
 // Owner: chowonbhin. Real scoring with condition inputs; persisted visits are integration fixtures.
 import { test, expect, type Page } from './baseline';
 import fs from 'node:fs';
-import { setupStep, submitSetup } from './setupSteps';
+import { changeSearch, openSetup, setupStep, submitSetup } from './setupSteps';
 
 const baseURL = process.env.BASE_URL ?? 'http://localhost:3000';
 const evidence = `.claude/state/evidence/recommend-${new Date().toISOString().replace(/[:.]/g, '-')}`;
 
 async function setup(page: Page) {
-  await page.goto(`${baseURL}/#/setup`);
-  await setupStep(page, '출발지');
-  await page.getByLabel('출발지 이름').fill('시연 출발지 (가상)');
-  await page.getByLabel('위도', { exact: true }).fill('37.3219');
-  await page.getByLabel('경도', { exact: true }).fill('126.8309');
-  await setupStep(page, '외출 조건');
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
-  await page.getByLabel('최대 거리 (km)').fill('10');
+  await openSetup(page, baseURL, { origin: { label: '시연 출발지 (가상)', lat: 37.3219, lng: 126.8309 } });
 }
 
 const cards = (page: Page) => page.getByRole('list', { name: '추천 순위' }).getByRole('button');
@@ -48,17 +41,12 @@ test('관심 활동 필터와 직접 탐색, 최대 거리로 후보 없음 안�
   await explore.getByRole('button', { name: /원곡동/ }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('원곡동');
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
-  await page.getByRole('button', { name: '조건 변경' }).click();
-  await setupStep(page, '외출 조건');
-  await page.getByLabel('최대 거리 (km)').fill('0.1');
-  await submitSetup(page);
+  await changeSearch(page, { maxDistanceKm: 0.1 });
   await expect(page.getByRole('status')).toContainText('조건에 맞는 추천 행정동이 없어요');
   await expect(page.getByRole('list', { name: '추천 순위' })).toHaveCount(0);
   await expect(explore.getByRole('button')).toHaveCount(25);
   await expect(explore.getByRole('button').first()).toContainText('최대 거리 밖');
   await page.getByRole('button', { name: '조건 변경' }).click();
-  await setupStep(page, '외출 조건');
-  await expect(page.getByLabel('최대 거리 (km)')).toHaveValue('0.1');
   await setupStep(page, '관심 활동');
   await expect(page.getByLabel('자연·산책', { exact: true })).toBeChecked();
 });
@@ -71,10 +59,7 @@ test('야간 운영 후보 없음과 모바일 화면', async ({ page }) => {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   fs.mkdirSync(evidence, { recursive: true });
   await page.screenshot({ path: `${evidence}/recommend-mobile.png`, fullPage: true });
-  await page.getByRole('button', { name: '조건 변경' }).click();
-  await setupStep(page, '외출 조건');
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T23:30');
-  await submitSetup(page);
+  await changeSearch(page, { when: '2026-11-08T23:30' });
   await expect(page.getByRole('status')).toContainText('조건에 맞는 추천 행정동이 없어요');
   await expect(page.getByRole('region', { name: '직접 탐색' }).getByRole('button')).toHaveCount(25);
   await page.screenshot({ path: `${evidence}/empty-mobile.png`, fullPage: true });

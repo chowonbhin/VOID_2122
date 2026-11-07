@@ -1,19 +1,12 @@
 // Uses the real shipped simulation content, including an excluded chain and unclassified place.
 import { test, expect, type Page } from './baseline';
 import fs from 'node:fs';
-import { setupStep, submitSetup } from './setupSteps';
+import { changeSearch, openSetup, submitSetup } from './setupSteps';
 const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:3002';
 const evidence = `.claude/state/evidence/franchise-${new Date().toISOString().replace(/[:.]/g, '-')}`;
 
 async function setup(page: Page) {
-  await page.goto(`${baseURL}/#/setup`);
-  await setupStep(page, '출발지');
-  await page.getByLabel('출발지 이름').fill('시연 출발지');
-  await page.getByLabel('위도', { exact: true }).fill('37.3219');
-  await page.getByLabel('경도', { exact: true }).fill('126.8309');
-  await setupStep(page, '외출 조건');
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
-  await page.getByLabel('최대 거리 (km)').fill('10');
+  await openSetup(page, baseURL);
   await submitSetup(page);
 }
 async function checkPlaces(page: Page, region: 'A' | 'B') {
@@ -60,10 +53,7 @@ test('mobile direct exploration and absence of saved conditions cannot bypass ex
   await shot(page, 'unverified-mobile');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await setup(page);
-  await page.getByRole('button', { name: '조건 변경' }).click();
-  await setupStep(page, '외출 조건');
-  await page.getByLabel('최대 거리 (km)').fill('0.1');
-  await submitSetup(page);
+  await changeSearch(page, { maxDistanceKm: 0.1 });
   await page.getByRole('region', { name: '직접 탐색' }).getByRole('button', { name: /중앙동/ }).click();
   await checkPlaces(page, 'A');
 });

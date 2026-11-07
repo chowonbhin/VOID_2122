@@ -6,7 +6,6 @@ import { CATEGORY_LABELS, DEFAULT_MAX_DISTANCE_KM, LEVEL_LABELS } from '../../do
 import type { Category, Profile, SearchContext } from '../../domain/types';
 import { go } from '../../route';
 import { dongAt, dongByCode, dongs } from '../map/ansanGeo';
-import { OriginMapPicker } from './OriginMapPicker';
 import './setup.css';
 
 function localDateTime() {
@@ -18,25 +17,31 @@ function localDateTime() {
   return `${get('year')}-${get('month')}-${get('day')}T${get('hour')}:${get('minute')}`;
 }
 
-const STEPS = ['내 동네', '지역별 익숙함', '관심 활동', '출발지', '외출 조건'] as const;
-const ORIGIN_STEP = 3;
+// The trip starts from the chosen 내 동네: its region start point, else the dong's label point.
+function homeOrigin(code: string) {
+  const dong = code ? dongByCode(code) : undefined;
+  if (!dong) return undefined;
+  const region = content.regions.find((item) => item.adminCode === dong.code);
+  return region?.start ?? { label: `${dong.name} (내 동네)`, lat: dong.labelPoint.lat, lng: dong.labelPoint.lng };
+}
+
+const STEPS =['내 동네', '지역별 익숙함', '관심 활동'] as const;
 const LAST_STEP = STEPS.length - 1;
 
 export function SetupPage() {
   const { state, update } = useAppState();
   const [levels, setLevels] = useState<Profile['initialLevels']>({ ...state.profile.initialLevels });
   const [interests, setInterests] = useState<Category[]>(state.search?.interests ?? state.profile.interests);
-  const [origin, setOrigin] = useState(state.search?.origin ?? content.regions[0].start);
-  const [when, setWhen] = useState(state.search?.when ?? localDateTime());
-  const [maxDistance, setMaxDistance] = useState(String(state.search?.maxDistanceKm ?? (demoEnabled ? 100 : DEFAULT_MAX_DISTANCE_KM)));
-  const [latitude, setLatitude] = useState(String(origin.lat));
-  const [longitude, setLongitude] = useState(String(origin.lng));
+  // 날짜·최대 거리 are no longer asked: keep the saved values, else the first-run defaults.
+  const savedOrigin = state.search?.origin ?? content.regions[0].start;
   const [error, setError] = useState('');
   // Re-entering after the 행정동 migration starts on familiarity, the step that needs review.
   const [step, setStep] = useState(state.needsDongLevelReview ? 1 : 0);
   const panelRef = useRef<HTMLFieldSetElement>(null);
   const moved = useRef(false);
-  const [homeDongCode, setHomeDongCode] = useState((state.profile.homeDongCode ? dongByCode(state.profile.homeDongCode)?.code : dongAt(origin.lat, origin.lng)?.code) ?? '');
+  const [homeDongCode, setHomeDongCode] = useState((state.profile.homeDongCode ? dongByCode(state.profile.homeDongCode)?.code : dongAt(savedOrigin.lat, savedOrigin.lng)?.code) ?? '');
+  // A saved point already inside the home dong stays; otherwise start from the home dong.
+  const origin = dongAt(savedOrigin.lat, savedOrigin.lng)?.code === homeDongCode ? savedOrigin : homeOrigin(homeDongCode) ?? savedOrigin;
 
   // Move focus to the new step so keyboard and screen-reader users land on its heading.
   useEffect(() => {
@@ -49,35 +54,19 @@ export function SetupPage() {
     setStep(next);
   }
 
-  const lat = Number(latitude);
-  const lng = Number(longitude);
-  const distance = Number(maxDistance);
-  const originValid = !!origin.label.trim() && !!latitude.trim() && !!longitude.trim() &&
-    Number.isFinite(lat) && lat >= -90 && lat <= 90 &&
-    Number.isFinite(lng) && lng >= -180 && lng <= 180;
-  const outingValid = Number.isFinite(distance) && distance > 0 && !!when &&
-    Number.isFinite(Date.parse(`${when}:00+09:00`));
-
-  function fail(atStep: number) {
-    if (atStep !== step) goTo(atStep);
-    setError('출발지, 날짜·시각, 최대 거리를 확인해 주세요.');
-  }
-
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // Enter or 다음 on an earlier step only advances; the origin step is checked before leaving it.
+    // Enter or 다음 on an earlier step only advances.
     if (step < LAST_STEP) {
-      if (step === ORIGIN_STEP && !originValid) return fail(ORIGIN_STEP);
       goTo(step + 1);
       return;
     }
-    if (!originValid) return fail(ORIGIN_STEP);
-    if (!outingValid) return fail(LAST_STEP);
 
     // Contract: Profile.initialLevels/interests + SearchContext are saved together.
     // Visits and experiencedEventIds are preserved; the shared score engine consumes this state.
     const search: SearchContext = {
-      origin: { label: origin.label.trim(), lat, lng }, when, interests, maxDistanceKm: distance,
+      origin, when: state.search?.when ?? localDateTime(), interests,
+      maxDistanceKm: state.search?.maxDistanceKm ?? (demoEnabled ? 100 : DEFAULT_MAX_DISTANCE_KM),
     };
     const saved = update((previous) => ({
       ...previous,
@@ -96,7 +85,7 @@ export function SetupPage() {
     <section className="setup">
       <p className="eyebrow">나에게 맞는 지역 탐험</p>
       <h1>탐험 조건</h1>
-      <p className="lead">지역별 경험과 외출 조건을 알려주세요. 선택한 한국 시각의 운영정보로 추천합니다.</p>
+      <p className="lead">내 동네와 지역별 경험, 관심 활동을 알려주세요.</p>
       <form onSubmit={submit} noValidate>
         {state.needsDongLevelReview && <p role="status">행정동 기준으로 변경되었습니다. 기존 방문 기록은 유지되며 A·B권역의 초기 익숙함은 보관했습니다. 행정동별 익숙함을 다시 선택해 주세요.</p>}
         <nav className="setup-steps" aria-label="탐험 조건 단계">
@@ -122,7 +111,7 @@ export function SetupPage() {
               {[...dongs].sort((a, b) => a.name.localeCompare(b.name, 'ko')).map((dong) => <option key={dong.code} value={dong.code}>{dong.name}</option>)}
             </select>
           </label>
-          <p className="setup-hint">지도에 집 모양으로 표시돼요. 출발지나 익숙함과는 별개이며, 2026-10-01 행정동 기준입니다.</p>
+          <p className="setup-hint">지도에 집 모양으로 표시되고, 이 동네의 대표 지점에서 출발해 거리를 계산해요. 익숙함과는 별개이며, 2026-10-01 행정동 기준입니다.</p>
         </fieldset>}
         {step === 1 && <fieldset ref={panelRef} tabIndex={-1} className="setup-panel">
           <legend>지역별 익숙함</legend>
@@ -156,45 +145,6 @@ export function SetupPage() {
               </label>
             ))}
           </div>
-        </fieldset>}
-        {step === 3 && <fieldset ref={panelRef} tabIndex={-1} className="setup-panel">
-          <legend>출발지</legend>
-          <p className="setup-hint">지도를 끌어 가운데 핀에 출발지를 맞추세요. 아래 목록이나 좌표 입력으로도 정할 수 있어요.</p>
-          <OriginMapPicker
-            lat={Number.isFinite(lat) && latitude.trim() ? lat : origin.lat}
-            lng={Number.isFinite(lng) && longitude.trim() ? lng : origin.lng}
-            onPick={(point) => {
-              setOrigin({ label: point.dongName ? `${point.dongName} 지도 선택 지점` : '지도에서 고른 출발지', lat: point.lat, lng: point.lng });
-              setLatitude(String(point.lat));
-              setLongitude(String(point.lng));
-            }} />
-          <label>
-            출발지 선택
-            <select value="" onChange={(event) => {
-              const region = content.regions.find((item) => item.id === event.target.value);
-              if (!region) return;
-              setOrigin(region.start);
-              setLatitude(String(region.start.lat));
-              setLongitude(String(region.start.lng));
-            }}>
-              <option value="" disabled>행정동 대표 지점을 선택하거나 아래에서 직접 입력</option>
-              {content.regions.map((region) => <option key={region.id} value={region.id}>{region.start.label}</option>)}
-            </select>
-          </label>
-          <label>출발지 이름<input required maxLength={100} value={origin.label} onChange={(event) => setOrigin({ ...origin, label: event.target.value })} /></label>
-          <div className="setup-grid">
-            <label>위도<input required type="number" min="-90" max="90" step="any" value={latitude} onChange={(event) => setLatitude(event.target.value)} /></label>
-            <label>경도<input required type="number" min="-180" max="180" step="any" value={longitude} onChange={(event) => setLongitude(event.target.value)} /></label>
-          </div>
-          <p className="setup-hint">핀 위치와 위 좌표는 항상 같습니다. 거리는 행정동 대표 지점까지의 직선거리이며 이동 경로나 도착 시간을 뜻하지 않습니다.</p>
-        </fieldset>}
-        {step === 4 && <fieldset ref={panelRef} tabIndex={-1} className="setup-panel">
-          <legend>외출 조건</legend>
-          <div className="setup-grid">
-            <label>날짜·시각 (한국 시간)<input required type="datetime-local" value={when} onChange={(event) => setWhen(event.target.value)} /></label>
-            <label>최대 거리 (km)<input required type="number" min="0.1" step="any" value={maxDistance} onChange={(event) => setMaxDistance(event.target.value)} /></label>
-          </div>
-          <p className="setup-hint">운영 중인 여러 장소를 한 번에 모두 방문할 수 있다는 의미는 아닙니다.</p>
         </fieldset>}
         {error && <p role="alert" className="setup-error">{error}</p>}
         <div className="setup-actions">

@@ -1,17 +1,10 @@
 import { test, expect, type Page } from './baseline';
 import fs from 'node:fs';
-import { setupStep, submitSetup } from './setupSteps';
+import { changeSearch, openSetup, setupStep, submitSetup } from './setupSteps';
 const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:3001';
 const evidence = process.env.MAP_EVIDENCE_DIR ?? `.claude/state/evidence/map-footfall-${new Date().toISOString().replace(/[:.]/g, '-')}`;
 async function setup(page: Page) {
-  await page.goto(`${baseURL}/#/setup`);
-  await setupStep(page, '출발지');
-  await page.getByLabel('출발지 이름').fill('안산 시연 출발지');
-  await page.getByLabel('위도', { exact: true }).fill('37.3219');
-  await page.getByLabel('경도', { exact: true }).fill('126.8309');
-  await setupStep(page, '외출 조건');
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
-  await page.getByLabel('최대 거리 (km)').fill('10');
+  await openSetup(page, baseURL, { origin: { label: '안산 시연 출발지', lat: 37.3219, lng: 126.8309 } });
   await submitSetup(page);
 }
 const rankCards = (page: Page) => page.getByRole('list', { name: '추천 순위' }).getByRole('button');
@@ -113,10 +106,9 @@ test('schematic uses no external map requests and excluded regions remain explor
   const external: string[] = [];
   page.on('request', request => { if (new URL(request.url()).origin !== new URL(baseURL).origin) external.push(request.url()); });
   await setup(page);
+  await changeSearch(page, { maxDistanceKm: 0.1 });
   await context.setOffline(true);
   await page.getByRole('button', { name: '조건 변경' }).click();
-  await setupStep(page, '외출 조건');
-  await page.getByLabel('최대 거리 (km)').fill('0.1');
   await submitSetup(page);
   await expect(page.getByText('조건에 맞는 추천 행정동이 없어요', { exact: true })).toBeVisible();
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
