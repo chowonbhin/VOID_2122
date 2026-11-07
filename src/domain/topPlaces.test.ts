@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { content, type Content } from '../data/content';
+import { baseContent as content, type Content } from '../data/content';
 import type { Place, Profile, SearchContext, Visit } from './types';
 import { recommend, regionLevel, scorePlaces } from './score';
 import { placePopularity } from './popularity';

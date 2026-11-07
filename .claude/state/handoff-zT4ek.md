@@ -1,19 +1,19 @@
 # Handoff: zT4ek
-phase: build (2026-11-08 KST); deadline은 사용자 요청대로 추후 확인
-branch: zT4ek/admin-dong-map → main; 사용자 main 반영·최신 변경 재검증 승인. 신규 원격 aab0cec 통합
-last verify: .claude/state/evidence/2026-11-08T01-56-34-mobile — 최종 mobile 3회 PASS 5/5, SLOW·콘솔 오류 없음
-desktop: .claude/state/evidence/2026-11-08T01-53-43 — 3회 PASS 5/5; 이후 최종 전체 브라우저 32 PASS
-validation: build PASS, unit 111 PASS, API adapter 5 PASS, 키보드 지도 전환 5회 PASS, 21개 후보 상위20 교체·삭제복원·320px 전체 마커 클릭 PASS
-looked at: map-footfall-2026-11-07T16-56-12-457Z/map-mobile-map.png, map-detail-mobile-map.png, admin-dongs/home-memory-320.png, top20-browser/markers-mobile.png — 지도·집·추억·마커 정상
-finished: 25개 행정동 경계·Lv 이관, 개별 방문/리뷰 수 로그 감점, 전체 후보에서 상위20 재선정, N/20 부족 표시
-API: NAVER API HUB 인증 1회·수집 300회 성공, 25개 동 413개 후보. 원본 .local/naver-api-hub-20261108/ (Git 제외)
-data: 기존 실제 시설 3곳의 ID·방문 기록 유지하며 검색 좌표 연결. 실제 방문/리뷰 수 미확인으로 점수 제외
-next 1: docs/naver-candidate-collection.md / docs/naver-place-data.md에 따라 후보 소속·운영·프랜차이즈·개별 수치 출처 검토 후 순차 반영
-next 2: 동별 비교 가능한 후보 확보 후 실제 점수 효과 검증. 413개 모두 검증된 추천 장소는 아님
+phase: fix (2026-11-08 KST); 사용자 단위별 검증·main 반영 승인 유지
+branch: zT4ek/demo-top20 → main; 최신 온보딩 ef0d3be 통합
+last verify: .claude/state/evidence/2026-11-08T02-24-15-mobile — mobile 3회 PASS 5/5, SLOW·콘솔 오류 없음
+desktop: .claude/state/evidence/2026-11-08T02-23-51 — 3회 PASS 5/5
+validation: build PASS, unit 123 PASS, API adapter 5 PASS, 전체 브라우저 37 PASS, 최신 푸터 통합 후 온보딩 2 PASS
+looked at: demo-fill/central-320.png, score-map-320.png, notice-390.png, desktop run1-step-04.png 및 최종 step-01.png — 지도·집·추억·방문 기록·시연 안내 확인
+finished: 사용자 최신 요청으로 25개 동에 시연 후보 25곳씩(총 625곳) 추가, 현재 상위20 합산·방문 후 재선정
+flow: 첫 온보딩 완료 → 전체 활동·100 km 시연 조건 자동 적용. 기존 사용자는 ‘25개 동 시연 조건 적용’ 버튼, 기록·Lv 유지
+data: 기존 실제 3곳·원본 가상 10곳·제외 검증 2곳 그대로 유지. 실제 운영/리뷰 미확인을 임의로 채우지 않음
+mode: 화면에서 추가 시연 장소 켜기/끄기. 기존 회귀 검증은 끄기 모드, golden/demo-fill/onboarding은 기본 켜기 모드
+map: 최신 수첩·SVG 경계·집·추억 디자인 유지. 장소 마커 8개씩 페이지, 카드 선택 시 해당 페이지 강조
+proof: 각 동 20번째 후보 방문 → 예비 후보 편입, 해당 동만 점수 변경. 새로고침·모드 전환·삭제 복원·320px 20개 마커 클릭 통과
 ## For captain
-- 사용자 명시 요청으로 행정동 지도·실제 장소·개별 수치·상위20·최신 디자인 통합. 공통 코드와 golden path 문구 갱신, 담당 유지
-- aab0cec 손그림 상세지도·내 동네·추억 예시·가까운 동네 보존. 경계는 2026-10-01, 주 지도 색상은 사용자 요청대로 추천 점수
-- 예전 동 코드 링크/집 표시 호환, 추억 예시는 현재 좌표·동 코드로 연결하고 점수·방문에서 제외. 전환 애니메이션의 일시적 inert 초점 상실 수정
-- 실제 시설 운영 검토 기간 11/08~13. 기본 3개 동 시연 점수, 3개 동 수치 대기, 19개 동 자료 없음. Lv.0 감점 0 유지
-- 21개 검증 입력은 실측 네이버 수치 아님. API 최대5건/검색어이며 방문·리뷰 수와 운영시간은 별도 조사 필요
-- Node/Chromium /private/tmp/ansan-visit-runtime, preview 3002. HACKATHON/.env.local/.local/evidence 제외. 동기화 전 stash 백업 보존
+- 사용자 명시 요청으로 공통 콘텐츠/온보딩 기본 검색/지역 화면과 golden path 갱신, 기존 담당 유지
+- 실제 후보 413개는 별도 검토 대기. 새 625개는 실제 네이버 장소가 아니라 이름·위치·운영·인지도를 명시한 가상 데이터
+- 필터를 좁히면 N/20로 감소할 수 있음. 20개 보장은 전체 활동 시연 조건이며 수식·프랜차이즈·실제 자료 결측 정책 유지
+- 후속: 실제 장소 운영·프랜차이즈·개별 수치 확인 및 행정동 유동인구 연결. docs/naver-place-data.md 참고
+- HACKATHON/.env.local/.local/evidence Git 제외. Node/Chromium /private/tmp/ansan-visit-runtime, preview 3002

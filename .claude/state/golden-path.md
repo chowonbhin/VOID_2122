@@ -6,16 +6,17 @@ After kickoff, only the captain (Byeunghee02) changes this file.
 
 Source: `mvp_implementation_plan.md` §7.2. Updated 2026-11-08 at the user's explicit request
 for 25 administrative dongs, source boundaries, top-20 reselection and individual visit/review-count penalties. Owners are unchanged.
-The dataset has 3 real venues awaiting popularity counts and 10 simulated discovery places. b3 belongs to Singil-dong.
-API HUB authentication and 300 collection calls succeeded: 413 candidates, 3 existing venue coordinates linked. Counts still await verification.
-Central score changes 240.7024 → 188.8980 after a1; Wongok stays 146.4235. Do not force a rank swap.
-See `src/data/README.md` for operating review periods, source licenses and old-state migration.
+Temporary demo fill explicitly requested by the user on 2026-11-08: 25 synthetic candidates per dong (625 total).
+All synthetic names, positions, operation and popularity values are labelled. Existing real records and missing evidence remain intact.
+Default first-run search: all activities, 100 km, current Korean time. Existing search/visits are preserved; a visible preset applies these conditions.
+The top-20 sum, Lv/novelty/distance/footfall formulas and franchise exclusions are unchanged. Filters can still reduce eligible counts.
+The additional pool can be turned off in the app; baseline-data regression tests cover that shipped mode.
 
-1. Open the app → landing page with the one-sentence pitch and a "탐험 시작" button (owner: Byeunghee02)
-2. "탐험 시작" → choose 행정동별 익숙함, 관심 활동, 출발지, 날짜·시각, 최대 거리 and press "추천 받기" → 25-dong Ansan map with score shades and 3 scored dongs, 3 awaiting counts, 19 preparing; supporting cards show N/20, shortages, reasons, distance and footfall penalty (owner: chowonbhin)
-3. Click 중앙동 on the map → the team-designed drawn detail map with home pin and labelled sample memories and 5 simulated places with operating/closed/unknown status, source dates and events; marker/card selection and visit memories stay linked (owner: iwtkmn0219)
-4. On a place, enter a 방문일 and press "방문 기록" → the record appears labelled "자기 신고" and the region shows Lv.0 → Lv.1 (owner: zT4ek)
-5. Press "추천으로 돌아가기", then reload → central score changes to 188.9 with footfall penalty 3.21, other dong scores stay fixed; visit, computed order and score shades persist (owner: zT4ek)
+1. Open the app → first-run residence onboarding; choose under 6 months and see 탐험 시작 (owner: Byeunghee02)
+2. Press 탐험 시작 → 25-dong score map with 20/20 places per dong and an explicit demo-data notice; existing users can apply 25개 동 시연 조건 적용 (owner: chowonbhin)
+3. Click 중앙동 on the map → the team-designed detail map and 20 recommended demo places from at least 25 candidates; marker pages and cards stay linked (owner: iwtkmn0219)
+4. Record a visit to the twentieth place → reserves replace it in the top 20; 가본 장소 shows 자기 신고 and 지역 Lv.1 (owner: zT4ek)
+5. Return to recommendations and reload → recalculated region score, 20/20 selection, visits and Lv persist; other dong scores stay fixed (owner: zT4ek)
 
 ## Shared modules (not a demo step; owner keeps them stable for everyone)
 - App shell, routing, `src/domain/types.ts`, `policy.ts`, content JSON, `src/storage.ts`, verify harness (owner: Byeunghee02)

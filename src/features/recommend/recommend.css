@@ -35,3 +35,7 @@
   .recommend-summary button { margin-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .recommend-link { transition: none; } }
+.demo-notice { margin: 0 0 1.5rem; padding: 1rem 1.2rem; border: 1px solid #b8c4b0; border-radius: 16px; background: #f0f2e9; color: #3d523e; font-size: .86rem; }
+.demo-notice p { margin: .45rem 0; line-height: 1.65; }
+.demo-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .7rem; }
+.demo-actions button { min-height: 44px; }

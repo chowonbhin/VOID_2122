@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { content, validateContent } from '../data/content';
+import { baseContent as content, validateContent } from '../data/content';
 import { footfallAdjustment } from './footfall';
 import { recommend } from './score';
 import type { FootfallDataset, Profile, SearchContext } from './types';

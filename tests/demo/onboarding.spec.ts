@@ -9,9 +9,11 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('a resident under 6 months skips Q2/Q3 and lands on the main map as 초심자', async ({ page }) => {
+  await expect(page.getByRole('contentinfo')).toHaveCount(0);
   await page.getByRole('radio', { name: /6개월이 안 됐어요/ }).click();
   await page.getByRole('button', { name: '탐험 시작' }).click();
   await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toBeVisible();
+  await expect(page.getByRole('contentinfo')).toHaveCount(1);
   const state = await stored(page, 'ansan-explore/v1');
   expect(state.profile.onboarding).toMatchObject({ residence: 'under_6m', visitedDongCodes: [], visitedPlaceIds: [] });
   expect(state.visits).toEqual([]);

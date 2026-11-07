@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { content } from './content';
+import { baseContent as content } from './content';
 import geography from './geography/admin-dongs.json';
 import { containsPoint, projection, regionPath } from '../features/map/geometry';
 import { recommend, regionLevel, placeStatus } from '../domain/score';

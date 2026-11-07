@@ -5,6 +5,7 @@ import { SetupPage } from './features/setup/SetupPage';
 import { RecommendPage } from './features/recommend/RecommendPage';
 import { RegionPage } from './features/region/RegionPage';
 import { DongPage } from './features/region/DongPage';
+import { DemoNotice } from './features/recommend/DemoNotice';
 
 export function App() {
   const route = useRoute();
@@ -23,6 +24,7 @@ export function App() {
         </div>
       </header>
       <main className={`page${discovering ? ' page-map' : ''}`}>
+        {!onboarding && <DemoNotice />}
         {onboarding && <Onboarding />}
         {route.name === 'setup' && <SetupPage />}
         {(main || route.name === 'recommend') && <RecommendPage />}

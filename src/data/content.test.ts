@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { content, placesOfRegion, validateContent } from './content';
+import { baseContent as content, placesOfRegion, validateContent } from './content';
 import type { Place } from '../domain/types';
 
 describe('content', () => {
@@ -9,9 +9,9 @@ describe('content', () => {
 
   it('has 25 administrative dongs and correct per-dong discovery content', () => {
     expect(content.regions).toHaveLength(25);
-    expect(placesOfRegion('dong-4127353200')).toHaveLength(5);
-    expect(placesOfRegion('dong-4127354500')).toHaveLength(4);
-    expect(placesOfRegion('dong-4127356500').map(p => p.id)).toEqual(['b3']);
+    expect(placesOfRegion('dong-4127353200', content)).toHaveLength(5);
+    expect(placesOfRegion('dong-4127354500', content)).toHaveLength(4);
+    expect(placesOfRegion('dong-4127356500', content).map(p => p.id)).toEqual(['b3']);
   });
 
   it('catches duplicate ids and dangling regionId', () => {

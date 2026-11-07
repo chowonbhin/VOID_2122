@@ -1,7 +1,7 @@
 // Golden-path step 2 (조건 입력). Owner: chowonbhin.
 import { useState, type FormEvent } from 'react';
 import { useAppState } from '../../AppState';
-import { content } from '../../data/content';
+import { content, demoEnabled } from '../../data/content';
 import { CATEGORY_LABELS, DEFAULT_MAX_DISTANCE_KM, LEVEL_LABELS } from '../../domain/policy';
 import type { Category, Profile, SearchContext } from '../../domain/types';
 import { go } from '../../route';
@@ -23,7 +23,7 @@ export function SetupPage() {
   const [interests, setInterests] = useState<Category[]>(state.search?.interests ?? state.profile.interests);
   const [origin, setOrigin] = useState(state.search?.origin ?? content.regions[0].start);
   const [when, setWhen] = useState(state.search?.when ?? localDateTime());
-  const [maxDistance, setMaxDistance] = useState(String(state.search?.maxDistanceKm ?? DEFAULT_MAX_DISTANCE_KM));
+  const [maxDistance, setMaxDistance] = useState(String(state.search?.maxDistanceKm ?? (demoEnabled ? 100 : DEFAULT_MAX_DISTANCE_KM)));
   const [latitude, setLatitude] = useState(String(origin.lat));
   const [longitude, setLongitude] = useState(String(origin.lng));
   const [error, setError] = useState('');

@@ -45,7 +45,8 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
     const recommended = !!item && item.score > 0;
     const familiarity = `친밀도 ${FAMILIARITY[level].label}`;
     const status = recommended ? `${familiarity} · 오늘의 추천 ${rank}순위` : region.placeIds.length ? familiarity : `${familiarity} · 장소 준비 중`;
-    return [{ region, dong, recommended, level, status, fill: FAMILIARITY[level].fill,
+    // data-score is a hidden test hook for recomputation; the score is never shown.
+    return [{ region, dong, recommended, level, status, fill: FAMILIARITY[level].fill, score: item?.score ?? null,
       label: `지도 ${region.name} · ${status}${home?.code === dong.code ? ' · 내 동네' : ''} · 동네로 들어가기` }];
   });
   const onKey = (event: KeyboardEvent, id: string) => {
@@ -90,7 +91,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
               onClick={() => onRegionSelect(shape.region.id)} onKeyDown={event => onKey(event, shape.region.id)}>
               <title>{`${shape.region.name} · ${shape.status}`}</title>
               <path className="ansan-region-fill" d={pathOfDong(shape.dong)} fillRule="evenodd" data-region-id={shape.region.id}
-                data-level={shape.level} fill={shape.fill} />
+                data-score={shape.score ?? 'unavailable'} data-level={shape.level} fill={shape.fill} />
             </g>)}
           {home && area.dongs.some(d => d.code === home.code) && <path className="ansan-home-hatch" d={pathOfDong(home)} fillRule="evenodd"
             fill={`url(#home-hatch-${area.id})`} role="img" aria-label={`내 동네 · ${home.name}`} />}

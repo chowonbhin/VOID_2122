@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { content } from '../../data/content';
+import { baseContent as content } from '../../data/content';
 import type { Profile, Visit } from '../../domain/types';
 import { getVisitProgress } from './progress';
 

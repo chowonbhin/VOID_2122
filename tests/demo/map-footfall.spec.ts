@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect, type Page } from './baseline';
 import fs from 'node:fs';
 const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:3001';
 const evidence = process.env.MAP_EVIDENCE_DIR ?? `.claude/state/evidence/map-footfall-${new Date().toISOString().replace(/[:.]/g, '-')}`;

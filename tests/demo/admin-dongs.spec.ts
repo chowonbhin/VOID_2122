@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect, type Page } from './baseline';
 const base = process.env.BASE_URL ?? 'http://127.0.0.1:3002';
 async function setup(page: Page) {
   await page.goto(`${base}/#/setup`);

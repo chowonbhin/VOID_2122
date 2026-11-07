@@ -1,7 +1,8 @@
 // First-run onboarding: Q1 거주 시기 → (초심자면 바로 지도) → Q2 가본 동네 → Q3 지금 동네에서 가본 장소.
 import { useState } from 'react';
 import { useAppState } from '../../AppState';
-import { content, placesOfRegion } from '../../data/content';
+import { content, demoEnabled, placesOfRegion } from '../../data/content';
+import { demoSearch } from '../../data/demoPlaces';
 import { CATEGORY_LABELS } from '../../domain/policy';
 import { distanceKm } from '../../domain/score';
 import type { OnboardingAnswers, Residence } from '../../domain/types';
@@ -53,6 +54,7 @@ export function Onboarding() {
     const payload = buildOnboardingPayload(answers, content);
     const saved = update(previous => ({
       ...previous,
+      search: previous.search ?? (demoEnabled ? demoSearch(homeRegion?.start ?? content.regions[0].start) : null),
       profile: { ...previous.profile, homeDongCode: answers.homeDongCode, onboarding: answers, initialLevels: { ...previous.profile.initialLevels, ...payload.initialLevels } },
     }));
     if (!saved) {
@@ -79,7 +81,7 @@ export function Onboarding() {
         </button>)}
       </div>
       {residence && residence !== 'visitor' && <label className="onboarding-home">
-        지금 사는 동네 <span>(선택 · 2013년 행정동 기준)</span>
+        지금 사는 동네 <span>(선택 · 2026-10-01 행정동 기준)</span>
         <select value={home} onChange={event => setHome(event.target.value)}>
           <option value="">선택 안 함</option>
           {[...dongs].sort((a, b) => a.name.localeCompare(b.name, 'ko')).map(dong => <option key={dong.code} value={dong.code}>{dong.name}</option>)}

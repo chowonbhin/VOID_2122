@@ -1,5 +1,5 @@
 // Uses the real shipped simulation content, including an excluded chain and unclassified place.
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect, type Page } from './baseline';
 import fs from 'node:fs';
 const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:3002';
 const evidence = `.claude/state/evidence/franchise-${new Date().toISOString().replace(/[:.]/g, '-')}`;

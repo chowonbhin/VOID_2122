@@ -1,4 +1,4 @@
-import { test, expect, type Locator, type Page } from '@playwright/test';
+import { test, expect, type Locator, type Page } from './baseline';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { UserState } from '../../src/storage';

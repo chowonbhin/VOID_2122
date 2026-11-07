@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { content } from '../data/content';
+import { baseContent as content } from '../data/content';
 import type { Place, Profile, SearchContext, Visit } from './types';
 import { eventBonus, eventState, parseKst, placeLevel, placeStatus, recommend, regionLevel } from './score';
 

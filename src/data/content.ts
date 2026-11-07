@@ -10,6 +10,7 @@ import geography from './geography/admin-dongs.json';
 import { validPopularityEvidence } from '../domain/popularity';
 import naverPlacesJson from './naver-places.json';
 import naverCollection from './naver-collection.json';
+import { readDemoMode, withDemoPlaces } from './demoPlaces';
 
 export interface Content {
   regions: Region[];
@@ -24,13 +25,17 @@ const reviewedIds = new Set(reviewedNaverPlaces.map(place => place.id));
 const places = [...placesJson.filter(place => !reviewedIds.has(place.id)), ...reviewedNaverPlaces] as Place[];
 export const naverCandidateStatus = { ...naverCollection, importedCount: reviewedNaverPlaces.length };
 
-export const content: Content = {
+export const baseContent: Content = {
   regions: regionsJson.map(region => ({ ...region, placeIds: places.filter(place => place.regionId === region.id).map(place => place.id),
     geometry: geography.dongs.find(dong => dong.id === region.id)?.geometry })) as Region[],
   places,
   events: eventsJson as Event[],
   footfall: footfallJson,
 };
+
+export const demoEnabled = readDemoMode();
+export const demoContent = withDemoPlaces(baseContent);
+export const content = demoEnabled ? demoContent : baseContent;
 
 /** M01 checks: duplicate ids, dangling references, missing opening info. Returns problems found. */
 export function validateContent(c: Content): string[] {
