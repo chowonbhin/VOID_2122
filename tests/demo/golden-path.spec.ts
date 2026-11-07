@@ -133,7 +133,6 @@ test('golden path', async ({ page }) => {
       await expect(mapScore()).toHaveAttribute('data-score', String(afterScore));
       await page.getByRole('button', { name: /^지도 본오1동/ }).focus();
       await page.keyboard.press('Enter');
-      await page.getByRole('button', { name: '가본 장소', exact: true }).click();
       const panel = await openVisit(page, VISITED);
       await expect(panel.locator('time')).toHaveText('2026-11-08');
       // Lv is no longer printed; the panel keeps it as a hidden data hook.

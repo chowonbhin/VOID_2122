@@ -16,7 +16,6 @@ test('real visit changes exact map score and shade; deletion and reload restore 
   await page.reload();
   await expect(mapScore(page)).not.toHaveAttribute('fill', color!);
   await openBono(page);
-  await page.getByRole('button', { name: '가본 장소', exact: true }).click();
   await openVisit(page, '바바카멜');
   await panel.getByRole('button', { name: '2026-11-08 방문 기록 삭제' }).click();
   await closeVisit(page);

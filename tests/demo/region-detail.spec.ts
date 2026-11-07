@@ -1,5 +1,6 @@
 import { test, expect } from './baseline';
 import { base, setup, openBono, list } from './real';
+import fs from 'node:fs';
 
 test('20 actual cards and three marker pages share selection on a 320px phone', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 });
@@ -28,7 +29,6 @@ test('weekday uncertainty and place links remain visible without review counts',
   await page.clock.install({ time: new Date('2026-11-08T14:00:00+09:00') });
   await setup(page);
   await page.goto(`${base}/#/region/dong-4127353200`);
-  await page.getByRole('button', { name: '전체 후보' }).click();
   const nuave = list(page).locator(':scope > li').filter({ has: page.getByRole('heading', { name: /누아베/ }) });
   await expect(nuave.getByRole('link', { name: '네이버에서 장소 보기', exact: true })).toHaveAttribute('href', /^https:\/\/map.naver.com\//);
   await expect(nuave.getByLabel('누아베 오늘 운영시간', { exact: true })).toContainText('오늘 요일의 운영 시간은 아직 확인하지 못했어요.');
@@ -36,14 +36,21 @@ test('weekday uncertainty and place links remain visible without review counts',
   await expect(list(page)).not.toContainText('리뷰');
 });
 
-test('score-only filter shows exactly the venues summed by the region and all candidates remain accessible', async ({ page }) => {
+test('region opens directly on its 20 recommendations without the removed filter widgets', async ({ page }) => {
   await setup(page);
   await openBono(page);
-  await page.getByRole('button', { name: '추천 장소' }).click();
   await expect(list(page).locator(':scope > li')).toHaveCount(20);
   await expect(list(page)).toContainText('바바카멜');
   await expect(list(page)).toContainText('보노다방');
   await expect(list(page)).toContainText('문다방');
-  await page.getByRole('button', { name: '전체 후보' }).click();
-  expect(await list(page).locator(':scope > li').count()).toBeGreaterThan(20);
+  await expect(page.getByRole('group', { name: '동네 안 장소 필터' })).toHaveCount(0);
+  for (const name of ['발견할 20곳', '추천 장소', '가본 장소', '전체 후보']) {
+    await expect(page.getByRole('button', { name, exact: true })).toHaveCount(0);
+  }
+  fs.mkdirSync('.claude/state/evidence/region-tabs-removed', { recursive: true });
+  for (const width of [1280, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.getByRole('heading', { level: 1 }).scrollIntoViewIfNeeded();
+    await page.screenshot({ path: `.claude/state/evidence/region-tabs-removed/top-${width}.png` });
+  }
 });

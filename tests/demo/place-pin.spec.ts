@@ -14,7 +14,6 @@ test('the map icon pins only that place, as the store photo; other places stay u
   const place = places.find(item => item.id === photo.placeId)!;
   await setup(page);
   await page.goto(`${base}/#/region/${place.regionId}`);
-  await page.getByRole('button', { name: '전체 후보' }).click();
   await expect(pins(page)).toHaveCount(0);
   await list(page).getByRole('button', { name: `${place.name} 카드에서 선택`, exact: true }).click();
   const chosen = map(page).locator('.dong-pin.selected');

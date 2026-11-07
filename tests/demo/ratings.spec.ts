@@ -18,8 +18,8 @@ test('star ratings and review counts stay off the cards while a visit still upda
   await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
   await expect(panel).toHaveAttribute('data-region-level', '1');
   await closeVisit(page);
-  await page.getByRole('button', { name: '가본 장소', exact: true }).click();
+  await page.getByRole('region', { name: '이 동네의 추억' }).getByRole('button').filter({ hasText: '레드지' }).click();
   await expect(rated).not.toContainText('별점');
-  await page.getByRole('button', { name: '발견할 20곳', exact: true }).click();
+  await page.reload();
   await expect(places.locator(':scope > li')).toHaveCount(20);
 });

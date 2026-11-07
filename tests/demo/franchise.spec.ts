@@ -6,12 +6,10 @@ test('known and suspected chains stay outside cards, markers and scores; pending
   await setup(page);
   const region = 'dong-4127353500';
   await page.goto(`${base}/#/region/${region}`);
-  await page.getByRole('button', { name: '전체 후보' }).click();
   for (const place of data.filter(p => p.regionId === region && (p.discovery.excludedReason || p.franchise.status === 'franchise'))) {
     await expect(list(page).getByRole('heading', { name: new RegExp(`\\. ${place.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`) })).toHaveCount(0);
   }
   // Classification review status is internal and no longer shown; exclusion is what matters.
-  await page.getByRole('button', { name: '추천 장소' }).click();
   await expect(list(page).locator(':scope > li')).toHaveCount(20);
   await expect(list(page)).not.toContainText('점수');
 });
@@ -34,16 +32,16 @@ test('pending real-place visits update score and Lv while missing evidence stays
   await expect(panel).toHaveAttribute('data-region-level', '1');
   await expect(panel).toHaveAttribute('data-place-level', '2');
   await closeVisit(page);
-  await page.getByRole('button', { name: '가본 장소' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toBeFocused();
+  await page.getByRole('region', { name: '이 동네의 추억' }).getByRole('button').filter({ has: page.getByText(name, { exact: true }) }).click();
   await expect(list(page)).toContainText(name);
   await expect(list(page)).not.toContainText('Lv.');
   await expect(list(page)).not.toContainText('장소 Lv 검토 대기');
   await page.reload();
-  await page.getByRole('button', { name: '가본 장소' }).click();
   await openVisit(page, name);
   await expect(panel).toContainText('2026-11-08');
   await panel.getByRole('button', { name: '2026-11-08 방문 기록 삭제' }).click();
   await closeVisit(page);
-  await page.getByRole('button', { name: '발견할 20곳', exact: true }).click();
+  await page.reload();
   await expect(list(page)).toContainText(name);
 });

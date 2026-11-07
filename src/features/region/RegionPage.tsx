@@ -44,7 +44,7 @@ export function RegionPage({ regionId }: { regionId: string }) {
 
 function RegionDetail({ regionId }: { regionId: string }) {
   const { state } = useAppState();
-  const [filter, setFilter] = useState<'all' | 'visited' | 'recommended' | 'pool'>('all');
+  const [expandedForMemory, setExpandedForMemory] = useState(false);
   const [selectedId, setSelectedId] = useState<string>();
   const [memoryId, setMemoryId] = useState<string>();
   const [visitPlaceId, setVisitPlaceId] = useState<string>();
@@ -67,8 +67,9 @@ function RegionDetail({ regionId }: { regionId: string }) {
   </section>;
   const { candidates: places, displayed, scores } = discoverPlaces(region, content, state.profile, state.visits, state.search);
   const visitedIds = new Set(state.visits.map(visit => visit.placeId));
-  const visiblePlaces = filter === 'all' ? displayed : places.filter(place => filter === 'pool' || (filter === 'visited'
-    ? visitedIds.has(place.id) : scores.some(score => score.placeId === place.id && score.selected)));
+  // Keep the default 20-place recommendation. A remembered place outside those
+  // results can still reveal its card for reviewing and editing visit records.
+  const visiblePlaces = expandedForMemory ? places : displayed;
   // Nothing is pinned until the user picks a place; then only that place is pinned.
   const selectedPlaceId = visiblePlaces.some((place) => place.id === selectedId) ? selectedId : undefined;
   const locatedPlaces = visiblePlaces.filter(place => place.location);
@@ -96,7 +97,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
   ];
   const selectPlace = (id: string, scrollToCard = true) => {
     const nextPlaces = visiblePlaces.some(place => place.id === id) ? visiblePlaces : places;
-    if (nextPlaces !== visiblePlaces) setFilter('pool');
+    if (nextPlaces !== visiblePlaces) setExpandedForMemory(true);
     setSelectedId(id);
     setMemoryId(id);
     if (scrollToCard) requestAnimationFrame(() => cards.current[id]?.scrollIntoView({ behavior: 'instant', block: 'nearest' }));
@@ -116,18 +117,12 @@ function RegionDetail({ regionId }: { regionId: string }) {
 
   return <section className="region-detail">
     <p className="eyebrow">동네 둘러보기</p>
-    <h1>{region.name}</h1>
+    <h1 tabIndex={-1}>{region.name}</h1>
     {places.length === 0 && <p role="status">이 동네의 장소는 준비 중이에요.</p>}
-    <div className="region-filters" role="group" aria-label="동네 안 장소 필터">
-      {([['all', '발견할 20곳'], ['recommended', '추천 장소'], ['visited', '가본 장소'], ['pool', '전체 후보']] as const).map(([value, label]) =>
-        <button key={value} aria-pressed={filter === value} disabled={value === 'recommended' && !state.search}
-          onClick={() => { setFilter(value); setSelectedId(undefined); }}>{label}</button>)}
-    </div>
     {!state.search && <p className="region-note">조건을 설정하면 추천 장소를 골라볼 수 있어요.</p>}
     <p className="region-note" role="status">{visiblePlaces.length}곳</p>
     {visiblePlaces.length === 0 && places.length > 0 && <div className="region-empty">
-      <p>{filter === 'visited' ? '아직 이 동네에 남긴 방문 기록이 없어요.' : '선택한 조건에 맞는 추천 장소가 없어요.'}</p>
-      <button onClick={() => setFilter('all')}>발견할 20곳 보기</button>
+      <p>선택한 조건에 맞는 추천 장소가 없어요.</p>
     </div>}
     <div className="region-design-layout">
       <DongMap target={regionDongs} markers={markers}
@@ -149,7 +144,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
           </button></li>)}</ul>
       </section>}
       <section className="region-recommend" aria-labelledby="region-recommend-title">
-      <h2 className="region-list-heading" id="region-recommend-title">{filter === 'visited' ? '다시 떠올리는 발걸음' : '이 동네에서 발견하기'}</h2>
+      <h2 className="region-list-heading" id="region-recommend-title">이 동네에서 발견하기</h2>
       <p className="region-note">운영정보 · {todayLabel.format(new Date(now + '+09:00'))} 기준</p>
       <ul className="places region-place-list" aria-label="행정동 장소 추천">
         {/* Opening status always follows today's Korean time, not the time saved with the search. */}

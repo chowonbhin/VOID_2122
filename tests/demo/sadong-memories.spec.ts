@@ -42,7 +42,6 @@ test('Sadong alone shows two real memory examples; selection, fixed examples, hi
   expect(new Set(originalIds)).toEqual(new Set(['naver-ae318ce3e729e02e81ef', 'naver-1d7e281c7c50afba23e0']));
 
   // Exercise the maximum marker density: eight ordinary places plus two hearts.
-  await page.getByRole('button', { name: '전체 후보', exact: true }).click();
   await assertPinSpacing();
   // Walk every 8-place map group by choosing a card from each group.
   const cards = page.getByRole('list', { name: '행정동 장소 추천' }).locator(':scope > li');

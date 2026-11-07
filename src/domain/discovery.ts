@@ -23,7 +23,7 @@ export function discoverPlaces(region: Region, content: Content, profile: Profil
       || a.id.localeCompare(b.id, 'en');
   });
   // With conditions, display exactly the places used by the regional score. Closed
-  // or differently categorised places remain available under the full-pool filter.
+  // or differently categorised places remain in candidates for remembered-place access.
   const displayed = search ? candidates.filter(place => byId.get(place.id)?.selected) : candidates.slice(0, REGION_PLACE_LIMIT);
   return { candidates, displayed, scores };
 }

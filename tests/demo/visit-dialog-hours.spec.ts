@@ -49,9 +49,8 @@ test('name-side visit button opens a focused date editor; cancel and Escape pres
 
 test('today’s actual schedule ignores saved search date and updates across midnight, closure and expiry', async ({ page }) => {
   await page.clock.install({ time: new Date('2026-11-08T14:00:00+09:00') });
-  await setup(page, '2026-11-09T14:00');
+  await setup(page, '2026-11-10T14:00');
   await page.goto(base + '/#/region/dong-4127156000');
-  await page.getByRole('button', { name: '전체 후보', exact: true }).click();
   const card = list(page).locator(':scope > li').filter({ has: page.getByRole('heading', { name: /^\d+\. 최용신기념관$/ }) });
   const hours = card.getByLabel('최용신기념관 오늘 운영시간', { exact: true });
   await expect(hours.locator('time')).toHaveAttribute('datetime', '2026-11-08');
