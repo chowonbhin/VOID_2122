@@ -59,5 +59,4 @@
 .region-today-hours small { font-size: 12px; color: var(--muted); }
 @media (max-width: 480px) {
   .region-detail .region-place-heading { gap: 8px; }
-  .region-place-actions { flex-direction: column; align-items: flex-end; }
 }

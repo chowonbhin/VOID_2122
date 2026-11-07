@@ -92,7 +92,7 @@ test('records persist, can be edited and revisited, reject duplicate days, and d
   await expect(panel.getByText('다녀왔어요', { exact: true })).toHaveCount(2);
   await panel.getByLabel('방문일', { exact: true }).fill('2026-11-07');
   await expect(panel.getByRole('button', { name: '방문 기록', exact: true })).toBeDisabled();
-  await expect(panel.getByText(/이 날짜의 방문 기록이 있어요/)).toBeVisible();
+  await expect(panel.getByText('이미 기록한 날짜예요.', { exact: true })).toBeVisible();
 
   await panel.getByRole('button', { name: '2026-11-09 방문일 수정', exact: true }).click();
   await panel.getByLabel('수정할 방문일', { exact: true }).fill('2026-11-07');

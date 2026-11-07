@@ -61,9 +61,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
   return <section className="exploration-map ansan-map" aria-label="안산 탐험 지도">
     <div className="ansan-map-heading">
       <div>
-        <span className="score-map-kicker">ANSAN · MY NEIGHBORHOODS</span>
         <h2>나의 안산 지도</h2>
-        <p className="score-map-intro">색이 짙을수록 내가 좋아하는 동네예요.</p>
       </div>
       <svg className="ansan-overview" viewBox={wholeBox.join(' ')} aria-hidden="true">
         {dongs.map(d => <path key={d.code} d={pathOfDong(d)} fillRule="evenodd" />)}
@@ -100,11 +98,11 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
         </svg>
       </div>)}
     </div>
-    <p className="map-hover" aria-live="polite">{focus ? `${focus.region.name} · ${focus.status}` : '동네를 누르면 그 동네로 들어가요.'}</p>
+    <p className="map-hover" aria-live="polite">{focus ? `${focus.region.name} · ${focus.status}` : ''}</p>
     <ul className="ansan-legend" aria-label="지도 범례">
       {FAMILIARITY.map((item, level) => <li key={level}><i style={{ background: item.fill }} />{item.label}</li>)}
-      <li className="legend-recommend"><i />테라코타 테두리: 오늘의 추천</li>
-      <li className="legend-home"><i />빗금: 내 동네</li>
+      <li className="legend-recommend"><i />오늘의 추천</li>
+      <li className="legend-home"><i />내 동네</li>
     </ul>
   </section>;
 }

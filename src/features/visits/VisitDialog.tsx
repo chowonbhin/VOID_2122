@@ -20,7 +20,7 @@ export function VisitDialog({ place, onClose }: { place: Place; onClose: () => v
     onCancel={event => { event.preventDefault(); onClose(); }}
     onClick={event => { if (event.target === event.currentTarget) onClose(); }}>
     <div className="visit-dialog-body">
-      <div className="visit-dialog-heading"><div><p>나의 발걸음 남기기</p><h2>{place.name}</h2></div>
+      <div className="visit-dialog-heading"><h2>{place.name}</h2>
         <button type="button" className="visit-dialog-close" aria-label="방문 날짜 설정 닫기" onClick={onClose}>×</button></div>
       <VisitPanel placeId={place.id} />
     </div>

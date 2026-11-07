@@ -82,7 +82,6 @@ function PhotoEditor({ albums, initialPlaceId, onClose, onSaved }: {
   const [saving, setSaving] = useState(false);
   const pending = useRef(false);
   return <Sheet title="한 장의 추억 남기기" onClose={onClose} busy={saving}>
-    <p className="notebook-subtle">기억하고 싶은 동네의 순간을 골라보세요.</p>
     <form onSubmit={async event => {
       event.preventDefault();
       if (pending.current || !file || !date || !albums.some(album => album.place.id === placeId)) return;
@@ -106,8 +105,8 @@ function PhotoEditor({ albums, initialPlaceId, onClose, onSaved }: {
       {url && <span className="notebook-replace">다른 사진 고르기</span>}
     </label>
     {error && <p role="alert">{error}</p>}
-    <label className="notebook-field">어디에서 남긴 추억인가요?
-      <select required value={placeId} onChange={event => setPlaceId(event.target.value)}>{albums.map(({ place }) => <option key={place.id} value={place.id}>{place.name} · {regionById(place.regionId)?.name}</option>)}</select>
+    <label className="notebook-field">장소
+      <select aria-label="장소" required value={placeId} onChange={event => setPlaceId(event.target.value)}>{albums.map(({ place }) => <option key={place.id} value={place.id}>{place.name} · {regionById(place.regionId)?.name}</option>)}</select>
     </label>
     <label className="notebook-field">기억할 날짜
       <input type="date" required value={date} max={today} onChange={event => setDate(event.target.value)} />
@@ -199,13 +198,11 @@ export function NotebookPage() {
   return <section className="notebook">
     <a className="notebook-back" href="#/recommend"><span aria-hidden="true">←</span> 나의 안산 지도로</a>
     <header className="notebook-heading">
-      <div><p className="eyebrow">MY NEIGHBORHOOD JOURNAL</p><h1>나의 동네수첩<span className="notebook-title-dot">.</span></h1>
-        <p className="notebook-intro">지나온 동네, 오래 남겨둘 순간들.</p></div>
+      <h1>나의 동네수첩<span className="notebook-title-dot">.</span></h1>
       <button className="notebook-add" disabled={loading || !!loadError} onClick={() => openEditor()}><span aria-hidden="true">＋</span> 사진 남기기</button>
     </header>
     <div className="notebook-overview">
       <span><strong>{recordedCount}</strong> 기록한 장소</span><span><strong>{photos.length}</strong> 내 사진</span><span><strong>{MEMORY_PHOTOS.length}</strong> 사진 예시</span>
-      <span className="notebook-overview-caption">작은 발걸음이 한 권의 수첩이 되도록</span>
     </div>
     <div className="notebook-tools">
       <div className="notebook-tabs" role="group" aria-label="수첩 보기">
@@ -217,24 +214,24 @@ export function NotebookPage() {
     {loading && <p role="status" className="notebook-subtle">저장한 사진을 펼치고 있어요…</p>}
     {loadError && <div className="notebook-storage-error"><p role="alert">{loadError}</p><button onClick={() => setRevision(value => value + 1)}>다시 불러오기</button></div>}
     {notice && <p role="status" className="notebook-subtle">{notice}</p>}
-    <p className="notebook-section-label">{filter === 'visited' ? '내가 남긴 발걸음' : '사진으로 펼쳐보는 동네'} <span>{shown.length}</span></p>
+    <p className="notebook-section-label">장소 <span>{shown.length}</span></p>
     {shown.length ? <ul className="notebook-grid" aria-label="동네수첩 사진">
       {shown.map(album => <li key={album.place.id} className="notebook-photo-card">
         <button className="notebook-photo-open" onClick={() => setSelectedId(album.place.id)} aria-label={album.place.name + ' 추억 보기'}>
           <div className="notebook-photo-wrap">
             {album.saved.length && filter !== 'sample' ? <SavedImage key={album.saved[0].id} photo={album.saved[0]} /> : album.photo ? <img src={album.photo.src} alt={album.photo.alt} loading="lazy" width="576" height="432" />
-              : <div className="notebook-no-photo"><Camera /><span>사진으로 기억을 채워보세요</span></div>}
+              : <div className="notebook-no-photo"><Camera /><span>사진 없음</span></div>}
             {album.saved.length && filter !== 'sample' ? <span className="notebook-photo-badge">내 사진 {album.saved.length}장</span>
               : album.photo && <span className="notebook-photo-badge">간판 사진 예시</span>}
             <span className="notebook-expand" aria-hidden="true">↗</span>
           </div>
-          <div className="notebook-photo-caption"><p>{regionById(album.place.regionId)?.name}<span>{recentDate(album) ? dateLabel(recentDate(album)) : '예시로 담아둔 곳'}</span></p>
-            <h2>{album.place.name}</h2><p className="notebook-photo-note">{album.saved.length && filter !== 'sample' ? album.saved[0].memo || '사진으로 남겨둔 그날의 기억' : album.photo?.note ?? '그날의 발걸음을 사진으로 남겨보세요.'}</p>
+          <div className="notebook-photo-caption"><p>{regionById(album.place.regionId)?.name}{recentDate(album) && <span>{dateLabel(recentDate(album))}</span>}</p>
+            <h2>{album.place.name}</h2>{filter !== 'sample' && album.saved[0]?.memo && <p className="notebook-photo-note">{album.saved[0].memo}</p>}
           </div>
         </button>
       </li>)}
-      <li className="notebook-next"><button disabled={loading || !!loadError} onClick={() => openEditor()}><span className="notebook-next-symbol" aria-hidden="true">＋</span><strong>다음 추억은 어디일까요?</strong><span>내 사진으로 수첩을 채워보세요</span></button></li>
-    </ul> : <div className="notebook-empty"><Camera /><h2>아직 남긴 발걸음이 없어요</h2><p>다녀온 장소에서 방문을 기록하면<br />이 수첩에 한 곳씩 모여요.</p><a href="#/recommend">동네 둘러보기 →</a></div>}
+      <li className="notebook-next"><button disabled={loading || !!loadError} onClick={() => openEditor()}><span className="notebook-next-symbol" aria-hidden="true">＋</span><strong>사진 추가</strong></button></li>
+    </ul> : <div className="notebook-empty"><Camera /><h2>아직 남긴 발걸음이 없어요</h2><a href="#/recommend">동네 둘러보기 →</a></div>}
     <div className="notebook-end">안산에서, 한 장씩.</div>
     {selected && <AlbumDetail key={selected.place.id} album={selected} showSample={filter === 'sample'} canAdd={!loading && !loadError} onClose={() => setSelectedId(undefined)}
       onAdd={() => openEditor(selected.place.id)} onDeleted={id => { setPhotos(current => current.filter(photo => photo.id !== id)); setNotice('사진을 삭제했어요.'); }} />}

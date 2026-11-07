@@ -31,14 +31,13 @@ export function AppMenu() {
       <span>메뉴</span>
     </button>
     <nav id="app-menu-panel" className="app-menu-panel" aria-label="내 탐험 메뉴" hidden={!open}>
-      <p>나의 안산, 나의 기록</p>
       <a href="#/notebook" onClick={() => setOpen(false)}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5zM9 3v18M3 7h4M3 12h4M3 17h4M12 8h4M12 12h4" /></svg>
-        <span><strong>나의 동네수첩</strong><small>사진으로 모아보는 발걸음</small></span><span aria-hidden="true">↗</span>
+        <span><strong>나의 동네수첩</strong></span><span aria-hidden="true">↗</span>
       </a>
       <a href="#/onboarding" onClick={() => setOpen(false)}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16M9 4v6M15 14v6" /></svg>
-        <span><strong>다시 설정하기</strong><small>내 동네와 관심 활동 바꾸기</small></span><span aria-hidden="true">↗</span>
+        <span><strong>다시 설정하기</strong></span><span aria-hidden="true">↗</span>
       </a>
     </nav>
   </div>;

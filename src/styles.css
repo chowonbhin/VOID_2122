@@ -51,6 +51,7 @@ button.primary:hover { background: #2b5649; }
 /* Mobile web app: notch-safe padding, 44px touch targets, 16px inputs (iOS zooms on smaller). */
 .page { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
 .footer { padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+.footer details[open] { padding-bottom: 120px; }
 button, input, select, textarea { min-height: 44px; font-size: 16px; }
 img, svg, canvas { max-width: 100%; }
 @media (max-width: 600px) {

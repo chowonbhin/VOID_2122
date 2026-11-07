@@ -7,9 +7,9 @@ test('latest floating notice design shows actual data and provisional scoring, w
   const panel = page.getByRole('complementary', { name: '데이터와 점수 안내', exact: true });
   await expect(panel).toBeHidden();
   await chip.hover();
-  await expect(panel).toContainText('2,329곳');
-  await expect(panel).toContainText('추천에 표시한 20곳 모두');
-  await expect(panel).toContainText('공개 2차 출처');
+  await expect(panel).toContainText('네이버 검색 기준');
+  await expect(panel).toContainText('운영시간이 미확인인 장소');
+  await expect(panel).toContainText('방문 전 매장 정보를 확인');
   await chip.focus();
   await page.keyboard.press('Escape');
   await page.mouse.move(0, 0);

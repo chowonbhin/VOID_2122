@@ -2,16 +2,13 @@
 .notebook { padding: 0 14px; }
 .notebook-back { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 13px; text-decoration: none; color: var(--muted); }
 .notebook-heading { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin: 32px 0 28px; }
-.notebook-heading .eyebrow { font-size: 11px; letter-spacing: .2em; margin-bottom: 12px; }
 .notebook-heading h1 { font-size: clamp(32px, 4vw, 42px); letter-spacing: -.05em; margin-bottom: 10px; font-weight: 750; }
 .notebook-title-dot { color: var(--terracotta); }
-.notebook-intro { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.7; }
 .notebook-add { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--accent); color: white; border-color: var(--accent); padding: 12px 20px; border-radius: 12px; white-space: nowrap; font-size: 14px; box-shadow: 0 4px 10px #35685915; }
 .notebook-add:hover { background: #285342; }
 .notebook-add span { font-size: 22px; font-weight: 300; }
 .notebook-overview { display: flex; align-items: center; gap: 28px; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); font-size: 13px; }
 .notebook-overview strong { margin-right: 6px; font-size: 20px; font-weight: 550; color: var(--accent); }
-.notebook-overview-caption { margin-left: auto; font-size: 12px; }
 .notebook-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 28px 0 24px; }
 .notebook-tabs { display: flex; gap: 6px; }
 .notebook-tabs button { border: 0; background: transparent; color: var(--muted); border-radius: 24px; padding: 10px 16px; font-size: 13px; }
@@ -93,7 +90,6 @@
   .notebook-heading h1 { font-size: 32px; }
   .notebook-add { width: 100%; }
   .notebook-overview { gap: 16px; flex-wrap: wrap; font-size: 12px; }
-  .notebook-overview-caption { display: none; }
   .notebook-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .notebook-next { grid-column: 1 / -1; }
   .notebook-next button { min-height: 140px; }

@@ -23,7 +23,6 @@ export function Splash() {
       <p className="splash-brand">안산에 스며들다</p>
       <p className="splash-eyebrow">동네 발견</p>
       <p className="splash-title">오늘은 어느 동네에<br />마음을 남겨볼까요?</p>
-      <p className="splash-sub">나의 발자국 사이로, 새로운 발견 하나.</p>
       <div className="splash-progress" aria-hidden="true"><i style={{ animationDuration: `${SPLASH_MS}ms` }} /></div>
     </div>
   </div>;

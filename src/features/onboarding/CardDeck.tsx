@@ -30,7 +30,6 @@ export function CardDeck<T extends { id: string }>({ label, items, checked, onTo
             onClick={event => { event.stopPropagation(); onToggle(item.id); }}>
             <span aria-hidden="true">{on ? '✓' : '+'}</span> 여기 가봤어요
           </button>
-          <p className="deck-hint">{i < items.length - 1 ? '카드를 누르거나 옆으로 넘기면 다음 장' : '마지막 장이에요'}</p>
         </article>;
       })}
     </div>
