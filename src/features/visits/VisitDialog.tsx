@@ -13,7 +13,7 @@ export function VisitDialog({ place, onClose }: { place: Place; onClose: () => v
     return () => {
       element?.close();
       if (previousFocus.current?.isConnected) previousFocus.current.focus();
-      else document.querySelector<HTMLButtonElement>('.region-filters button[aria-pressed="true"]')?.focus();
+      else document.querySelector<HTMLHeadingElement>('.region-detail h1')?.focus();
     };
   }, []);
   return <dialog ref={dialog} className="visit-dialog" aria-label={`${place.name} 방문 날짜 설정`}

@@ -22,7 +22,12 @@ export async function closeVisit(page: Page) {
 export async function openVisit(page: Page, name: string) {
   if (!await page.getByRole('dialog', { name: `${name} 방문 날짜 설정`, exact: true }).isVisible()) {
     await closeVisit(page);
-    await page.getByRole('button', { name: `${name} 방문 날짜 설정`, exact: true }).click();
+    const trigger = page.getByRole('button', { name: `${name} 방문 날짜 설정`, exact: true });
+    if (!await trigger.isVisible()) {
+      await page.getByRole('region', { name: '이 동네의 추억' }).getByRole('button')
+        .filter({ has: page.getByText(name, { exact: true }) }).click();
+    }
+    await trigger.click();
   }
   return page.getByRole('region', { name: `${name} 방문 기록`, exact: true });
 }
