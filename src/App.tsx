@@ -21,6 +21,7 @@ export function App() {
       <header className="appbar">
         <div className="appbar-inner">
           <a className="appbar-brand" href="#/">안산에 스며들다</a>
+          <a className="appbar-link" href="#/onboarding">나의 동네 수첩</a>
         </div>
       </header>
       <main className={`page${discovering ? ' page-map' : ''}`}>

@@ -20,7 +20,8 @@ test('a resident under 6 months skips Q2/Q3 and lands on the main map as 초심�
   // No setup page and no bottom tab bar.
   await expect(page.getByRole('navigation', { name: '주요 화면' })).toHaveCount(0);
   await expect(page.getByRole('link', { name: '내 동네 설정' })).toHaveCount(0);
-  await expect(page.getByRole('link', { name: '나의 동네 수첩' })).toHaveCount(0);
+  // 나의 동네 수첩 in the app bar reopens onboarding (the old setup page is gone).
+  await expect(page.getByRole('link', { name: '나의 동네 수첩' })).toHaveAttribute('href', '#/onboarding');
   await expect(page.getByRole('contentinfo')).toHaveCount(1);
   const state = await stored(page, 'ansan-explore/v1');
   expect(state.profile.onboarding).toMatchObject({ residence: 'under_6m', visitedDongCodes: [], visitedPlaceIds: [] });
