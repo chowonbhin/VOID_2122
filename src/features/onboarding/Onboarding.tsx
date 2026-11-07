@@ -1,10 +1,11 @@
-// First-run onboarding: Q1 거주 시기 → (초심자면 바로 지도) → Q2 가본 동네 → Q3 지금 동네에서 가본 장소.
+// Onboarding: Q1 거주 시기 → (초심자면 바로 관심 활동) → Q2 가본 동네 → Q3 지금 동네에서 가본 장소 → 관심 활동.
+// Finishing also saves the search, so the main map opens without a separate setup page.
 import { useState } from 'react';
 import { useAppState } from '../../AppState';
 import { content, placesOfRegion } from '../../data/content';
-import { CATEGORY_LABELS } from '../../domain/policy';
+import { CATEGORY_LABELS, DEFAULT_MAX_DISTANCE_KM } from '../../domain/policy';
 import { distanceKm } from '../../domain/score';
-import type { OnboardingAnswers, Residence } from '../../domain/types';
+import type { Category, OnboardingAnswers, Residence, SearchContext } from '../../domain/types';
 import { go } from '../../route';
 import { centreLatLng, dongByCode, dongs, dongsOfRegion, mapAreas, pathOfDong, wholeBox } from '../map/ansanGeo';
 import { CardDeck } from './CardDeck';
@@ -19,15 +20,30 @@ const RESIDENCE: { value: Residence; label: string; hint: string }[] = [
   { value: 'over_2y', label: '2년 이상', hint: '오래 살았어요' },
 ];
 
-const toggle = (list: string[], id: string) => list.includes(id) ? list.filter(item => item !== id) : [...list, id];
+const toggle = <T extends string>(list: T[], id: T) => list.includes(id) ? list.filter(item => item !== id) : [...list, id];
+
+// The demo plans an afternoon outing: today's Korean date at 14:00.
+function demoWhen() {
+  const date = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+  return `${date}T14:00`;
+}
+
+// The trip starts from 내 동네: its region start point, else the dong's label point, else the default start.
+function startFrom(code: string) {
+  const dong = code ? dongByCode(code) : undefined;
+  if (!dong) return content.regions[0].start;
+  const region = content.regions.find(item => item.adminCode === dong.code);
+  return region?.start ?? { label: `${dong.name} (내 동네)`, lat: dong.labelPoint.lat, lng: dong.labelPoint.lng };
+}
 
 export function Onboarding() {
   const { state, update } = useAppState();
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [residence, setResidence] = useState<Residence>();
   const [home, setHome] = useState(state.profile.homeDongCode ?? '');
   const [visitedDongs, setVisitedDongs] = useState<string[]>([]);
   const [visitedPlaces, setVisitedPlaces] = useState<string[]>([]);
+  const [interests, setInterests] = useState<Category[]>(state.search?.interests ?? state.profile.interests);
   const [error, setError] = useState('');
 
   const homeDong = dongByCode(home);
@@ -51,9 +67,13 @@ export function Onboarding() {
       completedAt: new Date().toISOString(),
     };
     const payload = buildOnboardingPayload(answers, content);
+    const search: SearchContext = { origin: startFrom(home), when: demoWhen(), interests, maxDistanceKm: DEFAULT_MAX_DISTANCE_KM };
+    // Answers replace earlier familiarity, so 다시 설정하기 can also lower it. Visits are kept.
     const saved = update(previous => ({
       ...previous,
-      profile: { ...previous.profile, homeDongCode: answers.homeDongCode, onboarding: answers, initialLevels: { ...previous.profile.initialLevels, ...payload.initialLevels } },
+      needsDongLevelReview: false,
+      profile: { ...previous.profile, homeDongCode: answers.homeDongCode, onboarding: answers, interests, initialLevels: payload.initialLevels },
+      search,
     }));
     if (!saved) {
       setError('답변을 저장하지 못했어요. 브라우저 저장 공간을 확인하고 다시 시도해 주세요.');
@@ -63,9 +83,12 @@ export function Onboarding() {
     go({ name: 'recommend' });
   }
 
+  const beginner = !!residence && isBeginner(residence);
+  const steps = beginner ? [1, 4] : [1, 2, 3, 4];
+
   return <section className="onboarding">
     <ol className="onboarding-steps" aria-label="온보딩 단계">
-      {[1, 2, 3].map(n => <li key={n} aria-current={step === n ? 'step' : undefined} className={n <= step ? 'done' : ''}>Q{n}</li>)}
+      {steps.map((n, index) => <li key={n} aria-current={step === n ? 'step' : undefined} className={n <= step ? 'done' : ''}>Q{index + 1}</li>)}
     </ol>
 
     {step === 1 && <>
@@ -85,9 +108,7 @@ export function Onboarding() {
           {[...dongs].sort((a, b) => a.name.localeCompare(b.name, 'ko')).map(dong => <option key={dong.code} value={dong.code}>{dong.name}</option>)}
         </select>
       </label>}
-      {residence && (isBeginner(residence)
-        ? <button className="primary onboarding-next" onClick={() => finish(residence)}>탐험 시작</button>
-        : <button className="primary onboarding-next" onClick={() => setStep(2)}>다음</button>)}
+      {residence && <button className="primary onboarding-next" onClick={() => setStep(beginner ? 4 : 2)}>다음</button>}
     </>}
 
     {step === 2 && <>
@@ -117,10 +138,26 @@ export function Onboarding() {
           <h2>{place.name}</h2>
           <p className="deck-sub">{homeRegion?.name}</p>
         </>} />}
-      {error && <p role="alert" className="setup-error">{error}</p>}
       <div className="onboarding-actions">
         <button onClick={() => setStep(2)}>이전</button>
-        <button className="primary" onClick={() => residence && finish(residence)}>완료하고 지도 보기</button>
+        <button className="primary" onClick={() => setStep(4)}>다음 질문</button>
+      </div>
+    </>}
+
+    {step === 4 && <>
+      <p className="eyebrow">Q{steps.length} · 관심 활동</p>
+      <h1>어떤 활동을 좋아하나요?</h1>
+      <p className="lead">고른 활동 위주로 추천해요. 선택하지 않으면 모든 활동을 포함해요.</p>
+      <div className="onboarding-interests" role="group" aria-label="관심 활동">
+        {(Object.keys(CATEGORY_LABELS) as Category[]).map(category => <label key={category} className="onboarding-interest">
+          <input type="checkbox" checked={interests.includes(category)} onChange={() => setInterests(list => toggle(list, category))} />
+          {CATEGORY_LABELS[category]}
+        </label>)}
+      </div>
+      {error && <p role="alert" className="onboarding-error">{error}</p>}
+      <div className="onboarding-actions">
+        <button onClick={() => setStep(beginner ? 1 : 3)}>이전</button>
+        <button className="primary" onClick={() => residence && finish(residence)}>탐험 시작</button>
       </div>
     </>}
   </section>;

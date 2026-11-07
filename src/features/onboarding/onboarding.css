@@ -32,3 +32,9 @@
 .deck-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 14px; }
 .deck-nav button { width: 48px; padding: 0; }
 @media (max-width: 600px) { .onboarding h1 { font-size: 24px; } .deck-card { min-height: 300px; padding: 18px; } }
+.onboarding-interests { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 8px; }
+.onboarding-interest { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1.5px solid var(--line-strong); border-radius: 100px; background: var(--card); cursor: pointer; }
+.onboarding-interest:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+.onboarding-interest input { width: 18px; height: 18px; min-height: 0; margin: 0; accent-color: var(--accent); }
+.onboarding-interest:has(input:focus-visible) { outline: 3px solid var(--terracotta); outline-offset: 2px; }
+.onboarding-error { color: #9b2020; line-height: 1.6; }

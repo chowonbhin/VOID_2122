@@ -13,8 +13,8 @@ Unknown review counts remain missing and use a conservative penalty; no counts o
 Known and suspected chains and confirmed closed places remain excluded. Scores use a fixed 0–100 scale.
 Traffic penalty is relative to the fixed maximum source-dong total, capped at 15% for Lv.1 and 30% for Lv.2.
 
-1. Open the app → first-run residence onboarding; choose under 6 months and see 탐험 시작 (owner: Byeunghee02)
-2. Set date/time and distance → actual score map for 25 dongs; all 20 displayed places contribute; pending evidence is labelled (owner: chowonbhin)
+1. Open the app → first-run residence onboarding; choose under 6 months, press 다음 and see 관심 활동 with 탐험 시작 (owner: Byeunghee02)
+2. Press 탐험 시작 → onboarding saves the search (내 동네 start, today 14:00, 10 km; no setup page) → actual score map for 25 dongs; all 20 displayed places contribute; pending evidence is labelled (owner: chowonbhin)
 3. Click 본오1동 → 20 actual search places, measured review counts, linked markers and 20/20 scored places on a fixed 0–100 scale (owner: iwtkmn0219)
 4. Record 바바카멜 visit → real score recalculates; 자기 신고 and 지역 Lv.1 appear (owner: zT4ek)
 5. Return and reload → scores and visit persist; the full actual candidate pool remains available (owner: zT4ek)

@@ -3,8 +3,8 @@
  * Each owner edits only the demoStep(...) block of their own step.
  *
  * GOLDEN PATH (copied from .claude/state/golden-path.md, used for drift detection):
- * 1. Open the app → first-run residence onboarding; choose under 6 months and see 탐험 시작 (owner: Byeunghee02)
- * 2. Set date/time and distance → actual score map for 25 dongs; all 20 displayed places contribute; pending evidence is labelled (owner: chowonbhin)
+ * 1. Open the app → first-run residence onboarding; choose under 6 months, press 다음 and see 관심 활동 with 탐험 시작 (owner: Byeunghee02)
+ * 2. Press 탐험 시작 → onboarding saves the search (내 동네 start, today 14:00, 10 km; no setup page) → actual score map for 25 dongs; all 20 displayed places contribute; pending evidence is labelled (owner: chowonbhin)
  * 3. Click 본오1동 → 20 actual search places, measured review counts, linked markers and 20/20 scored places on a fixed 0–100 scale (owner: iwtkmn0219)
  * 4. Record 바바카멜 visit → real score recalculates; 자기 신고 and 지역 Lv.1 appear (owner: zT4ek)
  * 5. Return and reload → scores and visit persist; the full actual candidate pool remains available (owner: zT4ek)
@@ -12,7 +12,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
-import { DEFAULT_ORIGIN, submitSetup, writeSearch } from './setupSteps';
 
 const BASE_URL = process.env.BASE_URL ?? 'http://localhost:3000';
 const EVIDENCE_DIR = process.env.EVIDENCE_DIR ?? '.claude/state/evidence/manual';
@@ -77,15 +76,13 @@ test('golden path', async ({ page }) => {
       await page.goto(BASE_URL);
       await expect(page.getByRole('heading', { level: 1 })).toContainText('안산');
       await page.getByRole('radio', { name: /6개월이 안 됐어요/ }).click();
+      await page.getByRole('button', { name: '다음', exact: true }).click();
+      await expect(page.getByRole('group', { name: '관심 활동' })).toBeVisible();
       await expect(page.getByRole('button', { name: '탐험 시작' })).toBeVisible();
     }, { budgetMs: 3000 });
     await demoStep(page, '2. Set conditions → actual score and 25 administrative dongs', async () => {
+      // Onboarding saves the search itself: 내 동네 start (default 중앙역), today 14:00, 10 km.
       await page.getByRole('button', { name: '탐험 시작' }).click();
-      await page.getByRole('button', { name: '조건 설정' }).click();
-      // 날짜·최대 거리 are not setup inputs any more; seed them, then finish the 3-step setup.
-      await writeSearch(page, { origin: DEFAULT_ORIGIN, when: '2026-11-08T14:00', maxDistanceKm: 100 });
-      await page.reload();
-      await submitSetup(page);
       await expect(page.locator('[data-region-id]')).toHaveCount(25);
       beforeScore = Number(await mapScore().getAttribute('data-score'));
       expect(beforeScore).toBeGreaterThan(0);

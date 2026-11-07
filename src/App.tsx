@@ -1,7 +1,6 @@
 import { useAppState } from './AppState';
 import { useRoute } from './route';
 import { Onboarding } from './features/onboarding/Onboarding';
-import { SetupPage } from './features/setup/SetupPage';
 import { RecommendPage } from './features/recommend/RecommendPage';
 import { RegionPage } from './features/region/RegionPage';
 import { DongPage } from './features/region/DongPage';
@@ -11,8 +10,9 @@ import { Splash } from './features/splash/Splash';
 export function App() {
   const route = useRoute();
   const { state } = useAppState();
-  // First run only: nothing saved yet. Everyone else opens straight onto the main map.
-  const onboarding = route.name === 'landing' && !state.profile.onboarding && !state.search && state.visits.length === 0;
+  // First run (nothing saved yet) or 다시 설정하기. Everyone else opens straight onto the main map.
+  const onboarding = route.name === 'onboarding' ||
+    (route.name === 'landing' && !state.profile.onboarding && !state.search && state.visits.length === 0);
   const main = route.name === 'landing' && !onboarding;
   const discovering = main || route.name === 'recommend' || route.name === 'region' || route.name === 'dong';
   const showTabs = !onboarding;
@@ -22,13 +22,11 @@ export function App() {
       <header className="appbar">
         <div className="appbar-inner">
           <a className="appbar-brand" href="#/">안산에 스며들다</a>
-          <a className="appbar-link" href="#/setup">나의 동네 수첩</a>
         </div>
       </header>
       <main className={`page${discovering ? ' page-map' : ''}`}>
         {!onboarding && <DataNotice />}
         {onboarding && <Onboarding />}
-        {route.name === 'setup' && <SetupPage />}
         {(main || route.name === 'recommend') && <RecommendPage />}
         {route.name === 'region' && <RegionPage regionId={route.regionId} />}
         {route.name === 'dong' && <DongPage code={route.code} />}
@@ -38,7 +36,6 @@ export function App() {
       {showTabs && <nav className="tabbar" aria-label="주요 화면">
         <div className="tabbar-inner">
           <a href="#/recommend" aria-current={discovering ? 'page' : undefined}>동네 발견</a>
-          <a href="#/setup" aria-current={route.name === 'setup' ? 'page' : undefined}>내 동네 설정</a>
         </div>
       </nav>}
     </div>
