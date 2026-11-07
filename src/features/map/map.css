@@ -11,24 +11,24 @@
 .map-search-field { display: flex; align-items: center; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg); overflow: hidden; }
 .map-search-field:focus-within { outline: 2px solid var(--color-link); outline-offset: 2px; }
 .map-search-field input { width: 100%; min-width: 0; padding: 10px 8px; border: 0; border-radius: 0; background: transparent; color: var(--color-text); font: inherit; font-size: 16px; outline: none; box-shadow: none; }
-.map-search-field button { flex: 0 0 44px; width: 44px; min-height: 44px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 0; background: transparent; color: var(--color-link); }
+.map-search-field button { flex: 0 0 44px; width: 44px; min-height: 44px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 0; background: var(--color-action); color: var(--color-on-action); }
 .map-search-dropdown { position: absolute; top: calc(100% + 8px); right: 0; width: max(100%, 200px); max-width: calc(100vw - 56px); background: var(--color-surface); border: 1px solid var(--color-border-strong); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
 .map-search-dropdown ul { list-style: none; margin: 0; padding: 4px; max-height: 264px; overflow-y: auto; }
-.map-search-dropdown button { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 8px; text-align: left; background: transparent; }
+.map-search-dropdown button { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 44px; padding: 10px 12px; border: 0; border-radius: 8px; text-align: left; background: transparent; color: var(--color-text); }
 .map-search-dropdown button:hover, .map-search-dropdown button:focus-visible { background: var(--color-primary-subtle); }
 .map-search-dropdown span { color: var(--color-text-secondary); font-size: 12px; }
 .map-search-dropdown p { margin: 0; padding: 16px; font-size: 14px; }
 
 .ansan-map-stage { position: relative; margin-top: 16px; }
-.map-area-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; display: grid; place-items: center; width: 44px; min-height: 56px; padding: 0; border: 1px solid var(--color-map-frame); border-radius: 14px; background: var(--color-map-control); backdrop-filter: blur(4px); color: var(--color-map-accent); box-shadow: var(--shadow); }
+.map-area-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; display: grid; place-items: center; width: 44px; min-height: 56px; padding: 0; border: 1px solid var(--color-map-frame); border-radius: 14px; background: color-mix(in srgb, var(--color-action) 82%, transparent); backdrop-filter: blur(4px); color: var(--color-on-action); box-shadow: var(--shadow); }
 .map-area-arrow.previous { left: 8px; }
 .map-area-arrow.next { right: 8px; }
-.map-area-arrow:hover:not(:disabled) { background: var(--color-map-control); }
+.map-area-arrow:hover:not(:disabled) { background: var(--color-action); }
 .map-area-arrow:disabled { opacity: .25; cursor: default; box-shadow: none; }
 
 .ansan-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 12px; border: 1px solid var(--color-map-frame); overscroll-behavior-x: contain; }
 .ansan-slider::-webkit-scrollbar { display: none; }
-.ansan-slide { flex: 0 0 100%; scroll-snap-align: start; background-color: var(--color-map-bg); }
+.ansan-slide { overflow: hidden; flex: 0 0 100%; scroll-snap-align: start; background-color: var(--color-map-bg); }
 .ansan-svg { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; max-height: 640px; }
 .ansan-dong { stroke: var(--color-map-boundary); stroke-width: 2px; stroke-linejoin: round; }
 .ansan-region { cursor: pointer; outline: none; }
@@ -36,16 +36,16 @@
 .ansan-region-fill { stroke: var(--color-map-boundary); stroke-width: 1px; stroke-linejoin: round; vector-effect: non-scaling-stroke; transition: fill .25s, stroke-width .15s; }
 .ansan-region.recommended .ansan-region-fill { stroke: var(--color-map-accent); stroke-width: 2px; }
 .ansan-region:hover .ansan-region-fill { stroke: var(--color-map-accent); stroke-width: 2px; }
-.ansan-region:focus-visible .ansan-region-fill { stroke: var(--color-map-accent); stroke-width: 3px; stroke-dasharray: 6 4; }
-.ansan-region.search-selected .ansan-region-fill { stroke: var(--color-map-accent); stroke-width: 3px; stroke-dasharray: 6 4; }
+.ansan-region:focus-visible .ansan-region-fill { stroke: var(--color-map-selection); stroke-width: 3px; }
+.ansan-region.search-selected .ansan-region-fill { fill: var(--color-map-selection-fill); stroke: var(--color-map-selection); stroke-width: 3px; }
 .map-rank-leader { stroke: var(--color-map-accent); stroke-width: 1.5px; vector-effect: non-scaling-stroke; pointer-events: none; }
 .map-rank-anchor { fill: var(--color-map-accent); pointer-events: none; }
 .map-rank-pin { cursor: pointer; outline: none;  }
 .map-rank-hit { fill: transparent; }
-.map-rank-face { fill: var(--color-map-control); stroke: var(--color-map-accent); stroke-width: 2px; }
-.map-rank-pin text { fill: var(--color-map-accent); font-size: 16px; font-weight: var(--weight-semibold); pointer-events: none; }
-.map-rank-pin:hover .map-rank-face, .map-rank-pin:focus-visible .map-rank-face { fill: var(--color-map-accent-soft); }
-.map-rank-pin:hover text, .map-rank-pin:focus-visible text { fill: var(--color-map-accent); }
+.map-rank-face { fill: var(--color-action); stroke: var(--color-action); stroke-width: 2px; }
+.map-rank-pin text { fill: var(--color-on-action); font-size: 16px; font-weight: var(--weight-semibold); pointer-events: none; }
+.map-rank-pin:hover .map-rank-face, .map-rank-pin:focus-visible .map-rank-face { fill: var(--color-action-pressed); }
+.map-rank-pin:hover text, .map-rank-pin:focus-visible text { fill: var(--color-on-action); }
 .map-rank-pin:focus-visible .map-rank-face { stroke: var(--color-map-accent); stroke-width: 3px; }
 
 .ansan-legend { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--color-text-secondary); }
@@ -92,7 +92,7 @@
 .dong-pin.selected { background: var(--color-map-accent-soft); color: var(--color-map-accent); outline: 3px solid var(--color-map-control); z-index: 3; }
 .dong-pin.remembered { border-color: var(--color-map-accent); color: var(--color-map-accent); box-shadow: var(--shadow); }
 .dong-pin.remembered.selected { background: var(--color-map-accent-soft); color: var(--color-map-accent); }
-.dong-pin.kind-memory { width: 44px; height: 44px; min-height: 44px; background: var(--color-map-accent-soft); color: var(--color-map-accent); border-color: var(--color-map-accent); }
+.dong-pin.kind-memory { width: 44px; height: 44px; min-height: 44px; background: var(--color-primary); color: var(--color-on-primary); border-color: var(--color-primary); }
 .dong-pin.kind-memory.selected { outline: 3px solid var(--color-map-accent); outline-offset: 2px; }
 .dong-pin.kind-home { width: 44px; height: 44px; min-height: 44px; background: var(--color-map-ink); color: var(--color-map-control); border: 3px solid var(--color-map-control); box-shadow: var(--shadow); }
 .dong-pin:focus-visible { outline: 3px solid var(--color-map-accent); outline-offset: 3px; }
@@ -133,3 +133,11 @@
 .dong-pin.kind-place.selected:not(.has-image) { width: 52px; height: 52px; min-height: 52px; font-size: 18px; }
 .pin-heart { position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: var(--color-map-accent); color: var(--color-map-control); border: 2px solid var(--color-map-control); }
 .pin-heart svg { width: 12px; height: 12px; }
+
+/* Search remains distinct from recommendation outlines and is drawn above adjoining dongs. */
+.map-search-highlight { pointer-events: none; }
+.map-search-highlight path { fill: none; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.map-search-halo { stroke: var(--color-map-control); stroke-width: 7px; }
+.map-search-outline { stroke: var(--color-map-selection); stroke-width: 3px; }
+.ansan-map-stage.is-entering { pointer-events: none; }
+.ansan-map-stage.is-entering :is(.map-area-arrow, .map-hover) { opacity: 0; }

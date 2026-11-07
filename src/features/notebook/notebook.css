@@ -12,8 +12,8 @@
 .notebook-overview strong { margin-right: 6px; font-size: 22px; font-weight: var(--weight-regular); font-variant-numeric: tabular-nums; color: var(--color-link); }
 .notebook-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 28px 0 24px; }
 .notebook-tabs { display: flex; gap: 6px; }
-.notebook-tabs button { border: 0; background: transparent; color: var(--color-text-secondary); border-radius: 24px; padding: 10px 16px; font-size: 13px; }
-.notebook-tabs button[aria-pressed="true"] { background: var(--color-primary-subtle); color: var(--color-link); font-weight: 700; }
+.notebook-tabs button { border: 0; background: var(--color-action); color: var(--color-on-action); border-radius: 24px; padding: 10px 16px; font-size: 13px; }
+.notebook-tabs button[aria-pressed="true"] { background: var(--color-primary); color: var(--color-on-primary); font-weight: 700; }
 .notebook-tools select { color: var(--color-text-secondary); border: 0; background: transparent; font: inherit; font-size: 12px; cursor: pointer; padding: 8px 0 8px 8px; }
 .notebook-section-label { font-size: 13px; font-weight: 600; margin: 0 0 20px; }
 .notebook-section-label span { color: var(--color-link); margin-left: 5px; }
@@ -46,7 +46,7 @@
 .notebook-dialog-body { padding: 24px; }
 .notebook-dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .notebook-dialog-head h2 { margin: 0; font-size: 22px; }
-.notebook-close { min-width: 44px; padding: 4px; border: 0; background: transparent; font-size: 27px;  display: grid;  place-items: center; }
+.notebook-close { min-width: 44px; padding: 4px; border: 0; background: var(--color-action); color: var(--color-on-action); font-size: 27px;  display: grid;  place-items: center; }
 .notebook-subtle { font-size: 13px; color: var(--color-text-secondary); line-height: 1.8; }
 .notebook-upload { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; min-height: 190px; margin: 20px 0; padding: 22px; background: var(--color-surface-sunken); border: 1px dashed var(--color-border-strong); border-radius: 14px; cursor: pointer; overflow: hidden; }
 .notebook-upload > svg { width: 48px; height: 48px; margin-bottom: 12px; color: var(--color-link); }
@@ -81,7 +81,7 @@
 .notebook-photo-actions button, .notebook-delete-confirm button { font-size: 13px; }
 .notebook-delete { margin-left: auto; color: var(--color-error); border-color: transparent; background: transparent; }
 .notebook-delete-confirm, .notebook-storage-error { padding: 16px; margin-top: 16px; border: 1px solid var(--color-border-strong); border-radius: 12px; font-size: 13px; line-height: 1.7; }
-.notebook-delete-confirm button + button { margin-left: 8px; color: var(--color-error); }
+.notebook-delete-confirm button + button { margin-left: 8px; background: var(--color-error); color: var(--color-on-action); border-color: var(--color-error); }
 @media (max-width: 760px) {
   .notebook { padding: 0; }
   .notebook-heading { margin-top: 22px; gap: 16px; align-items: flex-start; flex-direction: column; }

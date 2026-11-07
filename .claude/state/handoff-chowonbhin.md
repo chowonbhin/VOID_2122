@@ -1,17 +1,16 @@
 # Handoff — chowonbhin
 - User override: ignore schedule/deadline; no clock-based phase transitions.
-- Branch chowonbhin/dong-map-fit; base main 6627bef.
-- Request: prevent mobile photo pins (especially 도니스커피) clipping; zoom the whole map out when needed and improve the home icon.
-- Reproduced at 320px: 도니스커피 photo/heart extended above the frame; old home marker was 34px wide with 44px minimum height.
-- DongMap now measures its width and expands the shared viewBox to fit actual coordinates plus photo/tail/heart margins, preserving the map frame aspect and size.
-- Marker separation uses visual rectangles and per-marker margins; coordinate dots/leaders remain accurate.
-- Home is now a 44px circle with green fill, white border and outlined house icon.
-- Build PASS; unit tests 154/154; map/region/photo/memory browser regressions 12/12 PASS.
-- New regression covers 320/390/768/1280px and resize back, frame-height stability, home proportions, pin containment and spacing for four real photo venues.
-- PC demo PASS 5/5: .claude/state/evidence/2026-11-08T06-38-33/.
-- Mobile demo PASS 5/5: .claude/state/evidence/2026-11-08T06-38-50-mobile/; no console errors/SLOW.
-- Visual evidence: .claude/state/evidence/dong-map-fit/; before-320.png, after-320-0.png, after-320-1.png and final-390-0/1.png inspected.
-- Local http://127.0.0.1:3011/ serves index-C6urobs0.js; not pushed/deployed.
-- Next 1: user inspects 사동 → 도니스커피 locally on a phone-width screen.
-- Next 2: on request integrate current main, verify and push.
-- Next 3: verify deployed PC/mobile after release.
+- Branch chowonbhin/map-navigation-polish; base main 64d84cb.
+- Approved scope: desktop header alignment; clicked-dong zoom; detail back button/fade; clear search outline; desaturated buttons with white text.
+- Header now shares the main map's 1240px container; back button replaces the eyebrow above the dong name.
+- Map clicks/Enter zoom toward the chosen dong and center it for 320ms; back fades for 200ms. Reduced motion skips animation; other navigation cancels pending transitions.
+- Search selection is a teal solid outline with white halo above neighbouring boundaries; clearing input removes it.
+- Actions use slate #52636B, primary/selected actions use muted rose #76656B, both with white text. Reading cards remain white. DESIGN_COLORS.md updated.
+- Build PASS; unit 154/154; full browser 64/64 PASS before final zoom centering adjustment; affected navigation/search 9/9 rechecked on final source.
+- Final PC demo PASS 5/5: .claude/state/evidence/2026-11-08T07-04-38/.
+- Final mobile demo PASS 5/5: .claude/state/evidence/2026-11-08T07-04-53-mobile/; no console errors/SLOW.
+- Visual evidence: .claude/state/evidence/navigation-polish/; desktop search/zoom, mobile detail, final onboarding and centered zoom inspected.
+- Regression covers header edges, solid outline/reset, action text contrast >=4.5:1, back position, zoom/fade, reduced motion, history and cancellation.
+- Local http://127.0.0.1:3011/ serves index-DF3MZjZA.js; no push/deployment for this task.
+- Next 1: user inspects main → 월피동 → 전체 지도로 돌아가기 locally.
+- Next 2: integrate current main and push only on request; verify public PC/mobile after deployment.

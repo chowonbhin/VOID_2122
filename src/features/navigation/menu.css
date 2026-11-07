@@ -1,6 +1,6 @@
 .app-menu { position: relative; flex-shrink: 0; }
-.app-menu-trigger { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid transparent; background: transparent; font-size: 14px; color: var(--color-link); }
-.app-menu-trigger[aria-expanded="true"] { background: var(--color-primary-subtle); border-color: var(--color-border-strong); }
+.app-menu-trigger { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--color-action); background: var(--color-action); font-size: 14px; color: var(--color-on-action); }
+.app-menu-trigger[aria-expanded="true"] { background: var(--color-action-pressed); border-color: var(--color-action-pressed); }
 .app-menu-panel { position: absolute; right: 0; top: calc(100% + 12px); width: min(300px, calc(100vw - 32px)); padding: 12px; border: 1px solid var(--color-border-strong); border-radius: var(--radius); background: var(--color-surface); box-shadow: var(--shadow); }
 .app-menu-panel[hidden] { display: none; }
 .app-menu-panel a { display: flex; align-items: center; gap: 12px; padding: 15px 10px; text-decoration: none; border-radius: 12px; }

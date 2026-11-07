@@ -23,7 +23,7 @@
 .visit-dialog-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
 .visit-dialog-heading h2 { font-size: 22px; margin: 4px 0 0; overflow-wrap: anywhere; }
 .visit-dialog-heading p { margin: 0; color: var(--color-text-secondary); font-size: 12px; }
-.visit-dialog-close { flex: 0 0 44px; min-height: 44px; padding: 4px; border: 0; background: transparent; font-size: 27px;  display: grid;  place-items: center; }
+.visit-dialog-close { flex: 0 0 44px; min-height: 44px; padding: 4px; border: 0; background: var(--color-action); color: var(--color-on-action); font-size: 27px;  display: grid;  place-items: center; }
 .visit-dialog .visit-panel { margin-top: 20px; padding-top: 20px; }
 @media (max-width: 480px) {
   .visit-dialog-body { padding: 18px; }

@@ -27,9 +27,9 @@
 @media (prefers-reduced-motion: reduce) { .recommend-link { transition: none; } }
 /* Demo notice floats over the UI: chip bottom-right, panel opens above it on hover/focus/tap. */
 .demo-float { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: calc(57px + env(safe-area-inset-bottom) + 14px); z-index: 1200; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-.demo-chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 100px; border: 1.5px solid var(--color-border-strong); background: var(--color-highlight); color: var(--color-on-highlight); font-size: 13px; font-weight: var(--weight-semibold); box-shadow: var(--shadow); }
+.demo-chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 100px; border: 1.5px solid var(--color-border-strong); background: var(--color-action); color: var(--color-on-action); font-size: 13px; font-weight: var(--weight-semibold); box-shadow: var(--shadow); }
 .demo-chip[aria-expanded="true"] { border-color: var(--color-link); }
-.demo-chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); }
+.demo-chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-on-action); }
 .demo-notice { width: min(340px, calc(100vw - 32px)); max-height: min(70vh, 460px); overflow-y: auto; padding: 1rem 1.2rem; border: 1px solid var(--color-border-strong); border-radius: 16px; background: var(--color-highlight); color: var(--color-on-highlight); font-size: .86rem; box-shadow: var(--shadow); animation: demo-pop .16s ease-out; }
 .demo-notice p { margin: .45rem 0; line-height: 1.65; }
 .demo-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .7rem; }

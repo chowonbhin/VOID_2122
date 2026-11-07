@@ -3,6 +3,7 @@ import { Icon } from '../../components/Icon';
 import type { Region, RegionRecommendation } from '../../domain/types';
 import { dongByCode, dongsOfRegion, mapAreas, pathOfDong, project } from './ansanGeo';
 import type { RecommendResult } from '../../domain/score';
+import { useExitTransition } from '../navigation/useExitTransition';
 import './map.css';
 
 interface Props {
@@ -38,6 +39,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
   const [mapWidth, setMapWidth] = useState(320);
   const regionElements = useRef(new Map<string, SVGGElement>());
   const pendingFocus = useRef<string | null>(null);
+  const { exit, pending } = useExitTransition();
   useEffect(() => {
     const element = slider.current;
     if (!element) return;
@@ -75,8 +77,24 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
     return [{ region, dong, recommended, rank, score, level, status, fill: FAMILIARITY[level].fill,
       label: `지도 ${region.name} · ${status}${recommended ? ` · 오늘의 추천 ${rank}순위` : ''}${home?.code === dong.code ? ' · 내 동네' : ''} · 동네로 들어가기` }];
   });
+  const enterRegion = (id: string) => {
+    const region = regionElements.current.get(id);
+    const svg = region?.ownerSVGElement;
+    let center = 'translate(0px, 0px)';
+    if (region && svg) {
+      const bounds = region.getBoundingClientRect(), frame = svg.getBoundingClientRect();
+      const x = bounds.x + bounds.width / 2 - frame.x, y = bounds.y + bounds.height / 2 - frame.y;
+      svg.style.transformOrigin = `${x}px ${y}px`;
+      center = `translate(${frame.width / 2 - x}px, ${frame.height / 2 - y}px)`;
+    }
+    exit(svg ?? null, [
+      { transform: 'translate(0px, 0px) scale(1)', opacity: 1 },
+      { transform: `${center} scale(2.1)`, opacity: 1, offset: .8 },
+      { transform: `${center} scale(2.4)`, opacity: 0 },
+    ], () => onRegionSelect(id), 320);
+  };
   const onKey = (event: KeyboardEvent, id: string) => {
-    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onRegionSelect(id); }
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); enterRegion(id); }
   };
   const focus = shapes.find(shape => shape.region.id === hovered);
   const normalizedQuery = query.replace(/\s/g, '').toLocaleLowerCase('ko-KR');
@@ -137,7 +155,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
         </div>}
       </form>
     </div>
-    <div className="ansan-map-stage" onMouseLeave={() => setHovered(undefined)}>
+    <div className={`ansan-map-stage${pending ? ' is-entering' : ''}`} aria-busy={pending} onMouseLeave={() => setHovered(undefined)}>
     <div className="ansan-slider" ref={element => {
       slider.current = element;
       if (element && initial && !positioned.current) { positioned.current = true; element.scrollLeft = initial * element.clientWidth; }
@@ -178,13 +196,18 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
               className={`ansan-region${shape.recommended && shape.rank <= 3 ? ' recommended' : ''}${shape.region.id === selected ? ' search-selected' : ''}`}
               onMouseEnter={() => setHovered(shape.region.id)} onFocus={() => setHovered(shape.region.id)}
               onMouseLeave={() => setHovered(undefined)} onBlur={() => setHovered(undefined)}
-              onClick={() => onRegionSelect(shape.region.id)} onKeyDown={event => onKey(event, shape.region.id)}>
+              onClick={() => enterRegion(shape.region.id)} onKeyDown={event => onKey(event, shape.region.id)}>
               <title>{`${shape.region.name} · ${shape.status}`}</title>
               <path className="ansan-region-fill" d={pathOfDong(shape.dong)} fillRule="evenodd" data-region-id={shape.region.id}
                 data-score={shape.score ?? 'unavailable'} data-level={shape.level} fill={shape.fill} />
             </g>)}
           {home && area.dongs.some(d => d.code === home.code) && <path className="ansan-home-hatch" d={pathOfDong(home)} fillRule="evenodd"
             fill={`url(#home-hatch-${area.id})`} role="img" aria-label={`내 동네 · ${home.name}`} />}
+          {shapes.filter(shape => shape.region.id === selected && area.dongs.some(d => d.code === shape.dong.code)).map(shape =>
+            <g key={shape.region.id} className="map-search-highlight" aria-hidden="true">
+              <path d={pathOfDong(shape.dong)} className="map-search-halo" />
+              <path d={pathOfDong(shape.dong)} className="map-search-outline" />
+            </g>)}
           {pins.map(pin => <g key={pin.shape.region.id} className="map-rank-marker">
             <line x1={pin.anchorX} y1={pin.anchorY} x2={pin.x} y2={pin.y} className="map-rank-leader" />
             <circle cx={pin.anchorX} cy={pin.anchorY} r={2.5 * unit} className="map-rank-anchor" />
@@ -192,7 +215,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
               transform={`translate(${pin.x} ${pin.y}) scale(${unit})`}
               onMouseEnter={() => setHovered(pin.shape.region.id)} onFocus={() => setHovered(pin.shape.region.id)}
               onMouseLeave={() => setHovered(undefined)} onBlur={() => setHovered(undefined)}
-              onClick={() => onRegionSelect(pin.shape.region.id)} onKeyDown={event => onKey(event, pin.shape.region.id)}>
+              onClick={() => enterRegion(pin.shape.region.id)} onKeyDown={event => onKey(event, pin.shape.region.id)}>
               <circle r="22" className="map-rank-hit" />
               <circle r="21" className="map-rank-face" />
               <text textAnchor="middle" dominantBaseline="central" aria-hidden="true">{pin.shape.rank}</text>

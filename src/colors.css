@@ -12,10 +12,15 @@
   --color-text-secondary: #59616D;
   --color-text-placeholder: #66707C;
 
-  /* Muted rose buttons; darker rose text remains legible on light surfaces. */
-  --color-primary: #C5968D;
-  --color-primary-pressed: #B98278;
-  --color-on-primary: #2A1513;
+  /* Low-saturation solid actions with white text; rose remains a restrained accent. */
+  --color-primary: #76656B;
+  --color-primary-pressed: #605158;
+  --color-on-primary: #FFFFFF;
+  --color-action: #52636B;
+  --color-action-pressed: #3E4D55;
+  --color-on-action: #FFFFFF;
+  --color-map-selection: #285C64;
+  --color-map-selection-fill: #BBD7D5;
   --color-link: #87594F;
   --color-primary-subtle: #F6EDEA;
   --color-highlight: var(--color-primary-subtle);
