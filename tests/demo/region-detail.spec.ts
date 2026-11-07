@@ -3,20 +3,22 @@ const base = process.env.BASE_URL ?? 'http://127.0.0.1:3000';
 const list = (page: Page) => page.getByRole('list', { name: '권역 장소 추천' }).locator(':scope > li');
 const markers = (page: Page) => page.getByRole('region', { name: '안산 탐험 지도' }).getByRole('button', { name: /지도에서 선택$/ });
 
-test('designed geographic map sits above cards and retains source attribution', async ({ page }) => {
+test('drawn real-outline map sits above cards and shows recorded memories', async ({ page }) => {
   await seed(page, false);
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
-  await expect(map.getByRole('link', { name: 'OpenStreetMap', exact: true })).toBeVisible();
+  await map.getByRole('button', { name: '중앙동 골목 첫 저녁 추억 보기', exact: true }).click();
+  await expect(page.getByText(/반찬을 더 주셨다/)).toBeVisible();
   const mapBox = await map.boundingBox();
   const cardBox = await list(page).first().boundingBox();
   expect(cardBox!.y).toBeGreaterThan(mapBox!.y + mapBox!.height);
   await expect(markers(page)).toHaveCount(5);
 });
 
-test('background tile failure preserves list and selectable markers', async ({ page }) => {
-  await page.route('https://tile.openstreetmap.org/**', route => route.abort());
+test('동네 map needs no external requests and keeps list and selectable markers', async ({ page }) => {
+  const external: string[] = [];
+  page.on('request', request => { if (!request.url().startsWith(base)) external.push(request.url()); });
   await seed(page, false);
-  await expect(page.getByText(/배경지도를 불러오지 못했어요/)).toBeVisible();
+  expect(external).toEqual([]);
   await expect(list(page)).toHaveCount(5);
   await page.getByRole('button', { name: '시연 작은 전시관 지도에서 선택', exact: true }).click();
   await expect(page.getByRole('button', { name: '시연 작은 전시관 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');

@@ -119,9 +119,9 @@ test('schematic uses no external map requests and excluded regions remain explor
   // Familiarity shading does not depend on whether the region can be recommended.
   await expect(map.locator('[data-region-id="region-a"]')).toHaveAttribute('data-level', '0');
   await expect(map.locator('[data-region-id="region-a"]')).toHaveAttribute('data-score', 'unavailable');
-  // The main map itself is drawn locally; only the 동네 screen loads OSM background tiles.
-  expect(external).toEqual([]);
   // The coloured real-outline region body opens the 동네 screen.
   await map.locator('[data-region-id="region-a"]').click();
   await expect(page.getByRole('list', { name: '권역 장소 추천' }).locator(':scope > li')).toHaveCount(5);
+  // Both maps are drawn locally: no tile or other external requests.
+  expect(external).toEqual([]);
 });

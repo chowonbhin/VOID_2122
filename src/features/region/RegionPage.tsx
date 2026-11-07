@@ -6,8 +6,10 @@ import { CATEGORY_LABELS } from '../../domain/policy';
 import { franchiseStatus } from '../../domain/placeEligibility';
 import { eventState, scorePlaces } from '../../domain/score';
 import { go } from '../../route';
-import { dongsOfRegion } from '../map/ansanGeo';
-import { koreanDate, RegionMap } from './RegionMap';
+import { memoriesInDong } from '../../data/sampleMemories';
+import { centreLatLng, dongsOfRegion } from '../map/ansanGeo';
+import { DongMap, type MapMarker } from '../map/DongMap';
+import { Memories, type MemoryItem } from './Memories';
 import { VisitPanel } from '../visits/VisitPanel';
 import './region.css';
 
@@ -23,6 +25,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
   const { state } = useAppState();
   const [filter, setFilter] = useState<'all' | 'visited' | 'recommended'>('all');
   const [selectedId, setSelectedId] = useState<string>();
+  const [memoryId, setMemoryId] = useState<string>();
   const cards = useRef<Record<string, HTMLLIElement | null>>({});
   const region = regionById(regionId);
   if (!region) return <section>
@@ -41,19 +44,29 @@ function RegionDetail({ regionId }: { regionId: string }) {
   const visiblePlaces = places.filter((place) => filter === 'all' || (filter === 'visited'
     ? visitedIds.has(place.id) : scores.some((score) => score.placeId === place.id && score.eligible)));
   const selectedPlaceId = visiblePlaces.some((place) => place.id === selectedId) ? selectedId : visiblePlaces[0]?.id;
-  const outline = dongsOfRegion(region).map((dong) => dong.ring.map(([lng, lat]) => [lat, lng] as [number, number]));
-  // Memories are the user's own visit records (not initial familiarity), newest first.
-  const memories: Record<string, string[]> = {};
-  for (const place of places) {
+  const regionDongs = dongsOfRegion(region);
+  // Memories: the user's own visit records (newest first) plus labelled demo memories in this 동네.
+  const visitMemories: MemoryItem[] = places.flatMap((place) => {
     const dates = state.visits.filter((visit) => visit.placeId === place.id).map((visit) => visit.date).sort().reverse();
-    if (dates.length) memories[place.id] = dates;
-  }
-  const memoryPlaces = places.filter((place) => memories[place.id]);
-  const select = (id: string) => {
+    return dates.length ? [{ id: place.id, title: place.name, dates }] : [];
+  });
+  const samples = regionDongs.flatMap((dong) => memoriesInDong(dong.code));
+  const memoryItems: MemoryItem[] = [...visitMemories, ...samples.map((memory) => ({ id: memory.id, title: memory.title, dates: [memory.date], memo: memory.memo, sample: true }))];
+  const home = regionDongs.find((dong) => dong.code === state.profile.homeDongCode);
+  const markers: MapMarker[] = [
+    { id: 'start', kind: 'start', ...region.start, label: region.start.label, text: 'S' },
+    ...(home ? [{ id: 'home', kind: 'home' as const, ...centreLatLng(home), label: `내 동네 · ${home.name}` }] : []),
+    ...visiblePlaces.map((place, index) => ({ id: place.id, kind: 'place' as const, ...place.location, text: String(index + 1),
+      label: `${place.name} 지도에서 선택`, pressed: place.id === selectedPlaceId, remembered: visitedIds.has(place.id) })),
+    ...samples.map((memory) => ({ id: memory.id, kind: 'memory' as const, ...memory.location, label: `${memory.title} 추억 보기`, pressed: memory.id === memoryId })),
+  ];
+  const selectPlace = (id: string) => {
     if (!visiblePlaces.some((place) => place.id === id)) setFilter('all');
     setSelectedId(id);
+    setMemoryId(id);
     requestAnimationFrame(() => cards.current[id]?.scrollIntoView({ behavior: 'instant', block: 'nearest' }));
   };
+  const selectMemory = (id: string) => samples.some((memory) => memory.id === id) ? setMemoryId(id) : selectPlace(id);
 
   return <section className="region-detail">
     <button className="region-back" onClick={() => go({ name: 'recommend' })}>추천으로 돌아가기</button>
@@ -78,20 +91,10 @@ function RegionDetail({ regionId }: { regionId: string }) {
       <button onClick={() => setFilter('all')}>전체 장소 보기</button>
     </div>}
     <div className="region-design-layout">
-      <RegionMap region={region} places={visiblePlaces} boundsPlaces={places} selectedId={selectedPlaceId ?? null}
-        outline={outline} memories={memories}
-        onSelect={(id) => { setSelectedId(id); cards.current[id]?.scrollIntoView({ behavior: 'instant', block: 'nearest' }); }} />
-      <div className="region-memories">
-        <h2>이 동네의 추억</h2>
-        {memoryPlaces.length ? <ul>
-          {memoryPlaces.map((place) => <li key={place.id}>
-            <button onClick={() => select(place.id)} aria-label={`${place.name} 추억 보기`}>
-              <strong>{place.name}</strong>
-              <span>추억 {memories[place.id].length}개 · 최근 {koreanDate(memories[place.id][0])}</span>
-            </button>
-          </li>)}
-        </ul> : <p className="region-note">아직 이 동네에 남긴 추억이 없어요. 장소를 다녀온 뒤 방문을 기록하면 지도에 추억 마커가 생겨요.</p>}
-      </div>
+      <DongMap target={regionDongs} markers={markers}
+        onSelect={(marker) => marker.kind === 'memory' ? setMemoryId(marker.id) : selectPlace(marker.id)} />
+      <p className="region-note">실제 좌표 기반 · 2013년 행정동 경계 · S: 권역 시작점 · 번호: 아래 장소 목록 순서 · 하트: 기록한 추억 · 점: 실제 위치</p>
+      <Memories items={memoryItems} selectedId={memoryId} onSelect={selectMemory} />
       <section className="region-recommend" aria-labelledby="region-recommend-title">
       <p className="region-recommend-kicker">동네 추천</p>
       <h2 className="region-list-heading" id="region-recommend-title">{filter === 'visited' ? '다시 떠올리는 발걸음' : '이 동네에서 발견하기'}</h2>

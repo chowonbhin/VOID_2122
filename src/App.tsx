@@ -3,10 +3,11 @@ import { Landing } from './features/landing/Landing';
 import { SetupPage } from './features/setup/SetupPage';
 import { RecommendPage } from './features/recommend/RecommendPage';
 import { RegionPage } from './features/region/RegionPage';
+import { DongPage } from './features/region/DongPage';
 
 export function App() {
   const route = useRoute();
-  const discovering = route.name === 'recommend' || route.name === 'region';
+  const discovering = route.name === 'recommend' || route.name === 'region' || route.name === 'dong';
   const showTabs = route.name !== 'landing';
   return (
     <div className={`app${showTabs ? ' has-tabbar' : ''}`}>
@@ -21,6 +22,7 @@ export function App() {
         {route.name === 'setup' && <SetupPage />}
         {route.name === 'recommend' && <RecommendPage />}
         {route.name === 'region' && <RegionPage regionId={route.regionId} />}
+        {route.name === 'dong' && <DongPage code={route.code} />}
       </main>
       <footer className="footer">실제 권역과 2026년 8월 상권 유동인구 자료를 사용합니다. 장소·행사·운영시간·인지도는 시연용 가상 데이터입니다. 역 위치: © OpenStreetMap contributors (ODbL).</footer>
       {showTabs && <nav className="tabbar" aria-label="주요 화면">

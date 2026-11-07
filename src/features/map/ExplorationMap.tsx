@@ -1,6 +1,8 @@
 import { useId, useRef, useState, type KeyboardEvent } from 'react';
+import { memoriesInDong } from '../../data/sampleMemories';
 import type { Region, RegionRecommendation } from '../../domain/types';
-import { centreOf, dongs, dongsOfRegion, geoSource, mapAreas, pathOf, wholeBox } from './ansanGeo';
+import { centreOf, dongByCode, dongs, dongsOfRegion, geoSource, mapAreas, pathOf, wholeBox } from './ansanGeo';
+import { HomeIcon } from './DongMap';
 import './map.css';
 
 interface Props {
@@ -8,7 +10,9 @@ interface Props {
   recommendations: RegionRecommendation[];
   /** Region Lv from the shared engine (initial familiarity combined with visits). */
   levels: Record<string, 0 | 1 | 2>;
+  homeDongCode?: string;
   onRegionSelect: (id: string) => void;
+  onDongSelect: (code: string) => void;
 }
 
 // Familiarity is shown as the fill of the real area; recommendation as a terracotta outline.
@@ -18,11 +22,16 @@ export const FAMILIARITY = [
   { label: '자주 가요', fill: '#82AE98' },
 ] as const;
 const LAND = '#EEE6D6';
+/** 동네 without exploration data: shade by recorded memories with the same 1–2 / 3+ steps as region Lv. */
+const memoryLevel = (count: number) => (count >= 3 ? 2 : count >= 1 ? 1 : null);
 
-export function ExplorationMap({ regions, recommendations, levels, onRegionSelect }: Props) {
+export function ExplorationMap({ regions, recommendations, levels, homeDongCode, onRegionSelect, onDongSelect }: Props) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
   const slider = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
+  const home = homeDongCode ? dongByCode(homeDongCode) : undefined;
+  const [active, setActive] = useState(home?.code === mapAreas[1].dongs[0]?.code ? 1 : 0);
+  const [initial] = useState(active);
+  const positioned = useRef(false);
 
   const show = (index: number) => {
     setActive(index);
@@ -38,32 +47,37 @@ export function ExplorationMap({ regions, recommendations, levels, onRegionSelec
     const rank = recommendations.findIndex(item => item.regionId === region.id) + 1;
     const score = recommendation?.score ?? null;
     const level = levels[region.id] ?? 0;
-    const shortName = region.name.replace(/^[A-Z]권역 · /, '');
     const scoreText = score === null ? '추천 조건 미충족' : score > 0 ? `${score.toFixed(1)}점 · ${rank}순위` : '추천 점수 0점';
-    const recommended = score !== null && score > 0;
     return {
-      region, level, score, rank, shortName, recommended, scoreText,
+      region, level, score, scoreText, recommended: score !== null && score > 0,
       path: regionDongs.map(d => pathOf(d.ring)).join(''),
-      centre: centreOf(regionDongs[0].ring),
       codes: regionDongs.map(d => d.code),
-      label: `지도 ${region.name} · 친밀도 ${FAMILIARITY[level].label} (Lv.${level}) · ${score === null ? '추천 조건 미충족' : `추천 점수 ${score.toFixed(1)} · ${rank}순위`} · 동네로 들어가기`,
+      label: `지도 ${region.name} · 친밀도 ${FAMILIARITY[level].label} (Lv.${level}) · ${score === null ? '추천 조건 미충족' : `추천 점수 ${score.toFixed(1)} · ${rank}순위`}${region.dongCodes?.includes(homeDongCode ?? '') ? ' · 내 동네' : ''} · 동네로 들어가기`,
     };
   });
   const regionCodes = new Set(shapes.flatMap(shape => shape.codes));
+  const others = dongs.filter(d => !regionCodes.has(d.code)).map(dong => {
+    const count = memoriesInDong(dong.code).length;
+    const level = memoryLevel(count);
+    return {
+      dong, level, fill: level === null ? LAND : FAMILIARITY[level].fill,
+      label: `지도 ${dong.name} · ${count ? `추억 ${count}개` : '아직 기록 없음'}${dong.code === homeDongCode ? ' · 내 동네' : ''} · 동네로 들어가기`,
+    };
+  });
 
-  const onKey = (event: KeyboardEvent, id: string) => {
+  const activate = (event: KeyboardEvent, open: () => void) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      onRegionSelect(id);
+      open();
     }
   };
+  const homeCentre = home ? centreOf(home.ring) : null;
 
   return <section className="exploration-map ansan-map" aria-label="안산 탐험 지도">
     <div className="ansan-map-heading">
       <div>
         <span className="score-map-kicker">ANSAN · MY NEIGHBORHOODS</span>
         <h2>나의 안산 지도</h2>
-        <p className="score-map-intro">동네를 누르면 그 동네로 들어가요. 색이 짙을수록 친한 동네예요.</p>
       </div>
       <svg className="ansan-overview" viewBox={wholeBox.join(' ')} aria-hidden="true">
         {dongs.map(d => <path key={d.code} d={pathOf(d.ring)} />)}
@@ -77,7 +91,12 @@ export function ExplorationMap({ regions, recommendations, levels, onRegionSelec
       </button>)}
     </div>
 
-    <div className="ansan-slider" ref={slider} aria-label="좌우로 넘기는 지역 지도"
+    <div className="ansan-slider" aria-label="좌우로 넘기는 지역 지도"
+      ref={element => {
+        slider.current = element;
+        // Start on 대부도 when it is 내 동네; only once, so scrolling back is never undone.
+        if (element && initial && !positioned.current) { positioned.current = true; element.scrollLeft = initial * element.clientWidth; }
+      }}
       onScroll={event => setActive(Math.round(event.currentTarget.scrollLeft / Math.max(1, event.currentTarget.clientWidth)))}>
       {mapAreas.map((area, index) => <div className="ansan-slide" role="group" aria-label={`${area.label} 지도 · ${index + 1} / ${mapAreas.length}`} key={area.id}>
         <svg viewBox={area.box.join(' ')} className="ansan-svg">
@@ -86,37 +105,38 @@ export function ExplorationMap({ regions, recommendations, levels, onRegionSelec
               <circle cx="2" cy="2" r="1" fill="#c9b99a" opacity=".55" />
             </pattern>
           </defs>
-          <g aria-hidden="true">
-            {area.dongs.filter(d => !regionCodes.has(d.code)).map(d => <path key={d.code} className="ansan-dong" d={pathOf(d.ring)} fill={LAND} />)}
-            {area.dongs.map(d => <path key={d.code} d={pathOf(d.ring)} fill={`url(#${uid}dots${index})`} pointerEvents="none" />)}
-          </g>
+          {others.filter(item => area.dongs.includes(item.dong)).map(item =>
+            <g key={item.dong.code} role="button" tabIndex={0} aria-label={item.label} className="ansan-region ansan-other"
+              onClick={() => onDongSelect(item.dong.code)} onKeyDown={event => activate(event, () => onDongSelect(item.dong.code))}>
+              <title>{item.label.replace(/^지도 /, '').replace(/ · 동네로 들어가기$/, '')}</title>
+              <path className="ansan-region-fill" d={pathOf(item.dong.ring)} data-dong-code={item.dong.code} fill={item.fill} />
+            </g>)}
           {shapes.filter(shape => area.dongs.some(d => shape.codes.includes(d.code))).map(shape =>
             <g key={shape.region.id} role="button" tabIndex={0} aria-label={shape.label}
               className={`ansan-region${shape.recommended ? ' recommended' : ''}`}
-              onClick={() => onRegionSelect(shape.region.id)} onKeyDown={event => onKey(event, shape.region.id)}>
+              onClick={() => onRegionSelect(shape.region.id)} onKeyDown={event => activate(event, () => onRegionSelect(shape.region.id))}>
               <title>{`${shape.region.name} · ${FAMILIARITY[shape.level].label} · ${shape.scoreText}`}</title>
               <path className="ansan-region-fill" d={shape.path} data-region-id={shape.region.id}
                 data-score={shape.score ?? 'unavailable'} data-level={shape.level} fill={FAMILIARITY[shape.level].fill} />
             </g>)}
-          {shapes.filter(shape => area.dongs.some(d => shape.codes.includes(d.code))).map(shape =>
-            <text key={shape.region.id} className="ansan-region-label" x={shape.centre[0]} y={shape.centre[1]} aria-hidden="true"
-              style={{ fontSize: area.box[2] * 0.042, strokeWidth: area.box[2] * 0.012 }}>
-              <tspan x={shape.centre[0]}>{shape.shortName}</tspan>
-              {shape.recommended && <tspan x={shape.centre[0]} dy="1.2em" className="ansan-region-rank">{shape.rank}순위</tspan>}
-            </text>)}
-          {area.id === 'island' && <text className="ansan-context" x={area.box[0] + area.box[2] / 2} y={area.box[1] + 28} aria-hidden="true">대부도 · 별도 배율</text>}
+          {area.dongs.map(d => <path key={d.code} d={pathOf(d.ring)} fill={`url(#${uid}dots${index})`} pointerEvents="none" aria-hidden="true" />)}
+          {home && homeCentre && area.dongs.includes(home) && <g className="ansan-home" role="img" aria-label={`내 동네 · ${home.name}`}
+            transform={`translate(${homeCentre[0]} ${homeCentre[1]}) scale(${area.box[2] / 420})`}>
+            <circle r="17" />
+            <path d="M0 -10 -11 -1h3v10h6v-6h4v6h6v-10h3z" />
+          </g>}
         </svg>
       </div>)}
     </div>
-    <p className="ansan-slide-caption">{mapAreas[active].label} · {active + 1} / {mapAreas.length} · 옆으로 넘기면 {mapAreas[1 - active].label}{active === 0 ? '가' : '이'} 보여요. 각 지역은 별도 배율로 확대했어요.</p>
 
-    <ul className="ansan-legend" aria-label="친밀도 색상 범례">
+    <ul className="ansan-legend" aria-label="지도 범례">
       {FAMILIARITY.map((item, level) => <li key={level}><i style={{ background: item.fill }} />{item.label} · Lv.{level}</li>)}
-      <li><i className="legend-land" />탐험 데이터 준비 중</li>
+      <li><i className="legend-land" />아직 기록 없음</li>
       <li className="legend-recommend"><i />테라코타 테두리: 추천 동네</li>
+      <li className="legend-home"><HomeIcon size={16} />내 동네</li>
     </ul>
     <p className="map-note">
-      실제 좌표 기반 · {geoSource.label.replace(/ ·.*/, '')} 2013년 행정경계(최신 경계 아님)로 그렸어요. 탐험권역은 그 권역이 속한 행정동 면으로 표시합니다.{' '}
+      실제 좌표 기반 2013년 행정경계(최신 경계 아님) · 탐험권역은 엔진 Lv, 다른 동네는 남긴 추억 수로 색칠해요 ·{' '}
       <a href={geoSource.url} target="_blank" rel="noreferrer">경계 데이터 출처</a>
     </p>
   </section>;

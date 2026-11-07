@@ -120,6 +120,8 @@ export interface Profile {
   initialLevels: Record<RegionId, 0 | 1 | 2>;
   interests: Category[];
   experiencedEventIds: EventId[];
+  /** 내 동네: KOSTAT 2013 행정동 code (src/data/ansan-dongs.json). Not the same as 출발지 or familiarity. */
+  homeDongCode?: string;
 }
 
 export interface Visit {

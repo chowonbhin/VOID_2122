@@ -5,6 +5,7 @@ import { content } from '../../data/content';
 import { CATEGORY_LABELS, DEFAULT_MAX_DISTANCE_KM, LEVEL_LABELS } from '../../domain/policy';
 import type { Category, Profile, SearchContext } from '../../domain/types';
 import { go } from '../../route';
+import { dongAt, dongs } from '../map/ansanGeo';
 import './setup.css';
 
 function localDateTime() {
@@ -26,6 +27,7 @@ export function SetupPage() {
   const [latitude, setLatitude] = useState(String(origin.lat));
   const [longitude, setLongitude] = useState(String(origin.lng));
   const [error, setError] = useState('');
+  const [homeDongCode, setHomeDongCode] = useState(state.profile.homeDongCode ?? dongAt(origin.lat, origin.lng)?.code ?? '');
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -48,7 +50,7 @@ export function SetupPage() {
     };
     const saved = update((previous) => ({
       ...previous,
-      profile: { ...previous.profile, initialLevels: levels, interests },
+      profile: { ...previous.profile, initialLevels: levels, interests, homeDongCode: homeDongCode || undefined },
       search,
     }));
     if (!saved) {
@@ -64,6 +66,17 @@ export function SetupPage() {
       <h1>탐험 조건</h1>
       <p className="lead">지역별 경험과 외출 조건을 알려주세요. 선택한 한국 시각의 운영정보로 추천합니다.</p>
       <form onSubmit={submit}>
+        <fieldset>
+          <legend>내 동네</legend>
+          <label>
+            내 동네 선택
+            <select value={homeDongCode} onChange={(event) => setHomeDongCode(event.target.value)}>
+              <option value="">선택 안 함</option>
+              {[...dongs].sort((a, b) => a.name.localeCompare(b.name, 'ko')).map((dong) => <option key={dong.code} value={dong.code}>{dong.name}</option>)}
+            </select>
+          </label>
+          <p className="setup-hint">지도에 집 모양으로 표시돼요. 출발지나 익숙함과는 별개이며, 2013년 행정동 기준입니다.</p>
+        </fieldset>
         <fieldset>
           <legend>지역별 익숙함</legend>
           <p className="setup-hint">새로 온 주민은 기본값인 신규로 시작하세요. 기존 주민은 익숙한 지역만 변경할 수 있습니다. 방문 기록은 유지됩니다.</p>

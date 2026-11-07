@@ -1,23 +1,26 @@
-// Hash routes: #/ landing, #/setup, #/recommend, #/region/<regionId>. Owner: Byeunghee02.
+// Hash routes: #/ landing, #/setup, #/recommend, #/region/<regionId>, #/dong/<KOSTAT code>. Owner: Byeunghee02.
 import { useEffect, useState } from 'react';
 
 export type Route =
   | { name: 'landing' }
   | { name: 'setup' }
   | { name: 'recommend' }
-  | { name: 'region'; regionId: string };
+  | { name: 'region'; regionId: string }
+  | { name: 'dong'; code: string };
 
 export function parseRoute(hash: string): Route {
   const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean);
   if (parts[0] === 'setup') return { name: 'setup' };
   if (parts[0] === 'recommend') return { name: 'recommend' };
   if (parts[0] === 'region' && parts[1]) return { name: 'region', regionId: decodeURIComponent(parts[1]) };
+  if (parts[0] === 'dong' && parts[1]) return { name: 'dong', code: decodeURIComponent(parts[1]) };
   return { name: 'landing' };
 }
 
 export function go(route: Route): void {
   if (route.name === 'landing') window.location.hash = '#/';
   else if (route.name === 'region') window.location.hash = '#/region/' + encodeURIComponent(route.regionId);
+  else if (route.name === 'dong') window.location.hash = '#/dong/' + encodeURIComponent(route.code);
   else window.location.hash = '#/' + route.name;
 }
 

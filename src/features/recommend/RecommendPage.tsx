@@ -45,7 +45,8 @@ export function RecommendPage() {
 
       <ExplorationMap regions={content.regions} recommendations={result.recommendations}
         levels={Object.fromEntries(content.regions.map((region) => [region.id, regionLevel(region.id, state.profile, state.visits, content.places)]))}
-        onRegionSelect={(regionId) => go({ name: 'region', regionId })} />
+        homeDongCode={state.profile.homeDongCode}
+        onRegionSelect={(regionId) => go({ name: 'region', regionId })} onDongSelect={(code) => go({ name: 'dong', code })} />
 
       {ranked.length > 0 && <div className="recommend-section-head">
         <h2>오늘은 이 동네 어때요?</h2>

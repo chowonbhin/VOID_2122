@@ -14,19 +14,13 @@
 @media (max-width: 480px) { .region-detail { padding: 4px 0 12px; border-radius: 0; } .region-detail h1 { font-size: 25px; } .region-filters { gap: 6px; } .region-filters button { padding: 10px 12px; font-size: 14px; } }
 .region-detail { max-width: 880px; margin: 0 auto; }
 .region-design-layout { display: block; }
-.region-map { height: 400px; width: 100%; border-radius: 18px; background: var(--sea); border: 1px solid #c9dbe0; }
-.region-pin { background: #356859; color: white; border: 2px solid white; border-radius: 50%; text-align: center; font: bold 16px/26px system-ui; box-shadow: 0 1px 5px #0005; }
-.region-start { background: #293E39; }
-.region-pin.selected { background: #293E39; outline: 3px solid #82AE98; z-index: 1000 !important; }
-.region-pin:focus-visible { outline: 3px solid #994B32; outline-offset: 3px; }
 .region-lead { color: #64736C; line-height: 1.7; }
 .region-list-heading { margin: 28px 0 20px; font-size: 21px; }
 .region-detail .region-place-list > li { padding: 24px; background: #FFFEFA; border: 1.5px solid var(--line-strong); border-radius: 18px; box-shadow: var(--shadow); }
 .region-detail .region-place-meta { color: #64736C; overflow-wrap: anywhere; }
 .region-detail .region-place-heading button { min-height: 44px; }
-@media (max-width: 480px) { .region-map { height: 330px; } .region-detail .region-place-list > li { padding: 16px; } }
+@media (max-width: 480px) { .region-detail .region-place-list > li { padding: 16px; } }
 /* Memories linked to real-location markers, then a separate recommendation block. */
-.region-pin.memory { background: #b75d3e; border-color: #fffefa; box-shadow: 0 0 0 3px #b75d3e55, 0 1px 5px #0005; }
 .region-memories { margin-top: 20px; padding: 16px; background: #FFFEFA; border: 1.5px solid var(--line-strong); border-radius: 18px; }
 .region-memories h2 { margin: 0 0 10px; font-size: 18px; }
 .region-memories ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity; }
@@ -38,10 +32,12 @@
 .region-recommend-kicker { margin: 0; color: #994B32; font-weight: 800; font-size: 13px; letter-spacing: .08em; }
 .region-recommend .region-list-heading { margin: 4px 0 4px; }
 .region-recommend > .region-note { margin: 0 0 16px; }
-.region-map-wrap { position: relative; }
-.region-inset { position: absolute; right: 10px; bottom: 26px; z-index: 450; width: 84px; height: 84px; padding: 4px; background: #fffefaee; border: 1px solid var(--line-strong); border-radius: 12px; pointer-events: none; }
-.region-inset path { fill: #82ae9833; stroke: #356859; stroke-width: 1.6px; stroke-linejoin: round; }
-.region-inset circle { fill: #b75d3e; }
-.region-map-views { display: flex; gap: 8px; margin: 16px 0 10px; }
-.region-map-views button { flex: 1; border-radius: 14px; font-size: 14px; color: var(--text-secondary); }
-.region-map-views button[aria-pressed="true"] { border: 1.5px solid var(--action-primary); color: var(--action-primary); font-weight: 800; background: #e4ede6; }
+.region-design-layout > .dong-map { margin-top: 16px; }
+.region-memory-count { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; margin-left: 4px; border-radius: 12px; background: #b75d3e; color: #fff; font-size: 13px; vertical-align: 2px; }
+.region-memories button[aria-pressed="true"] { border: 1.5px solid #b75d3e; background: #f6e3da; }
+.region-memory-card { margin: 12px 0 8px; padding: 14px 16px; border-left: 4px solid #b75d3e; background: #fbf1ec; border-radius: 4px 14px 14px 4px; }
+.region-memory-card figcaption { font-size: 14px; color: #994B32; }
+.region-memory-card p { margin: 6px 0 0; line-height: 1.7; }
+.region-recommend .cards { margin: 0; }
+.region-nearby { background: #FFFEFA; border: 1.5px solid var(--line-strong); }
+.region-nearby-link { margin-top: 8px; color: var(--action-primary); font-weight: 800; }
