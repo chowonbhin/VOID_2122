@@ -15,6 +15,7 @@ const EVIDENCE_DIR = process.env.VISIT_EVIDENCE_DIR ?? path.join(
 
 const initialState = (): UserState => ({
   profile: {
+    onboarding: { residence: 'under_6m', visitedDongCodes: [], visitedPlaceIds: [], completedAt: '2026-11-08T00:00:00+09:00' },
     initialLevels: { 'dong-4127354500': 2 },
     interests: ['nature', 'culture'],
     experiencedEventIds: ['e-b3-workshop'],

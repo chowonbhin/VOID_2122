@@ -19,6 +19,8 @@ export async function writeState(page: Page, patch: { search?: Partial<SearchCon
       { profile: { initialLevels: {}, interests: [], experiencedEventIds: [] }, visits: [], search: null };
     if (patch.search) state.search = { ...fallback, ...state.search, ...patch.search };
     if (patch.profile) state.profile = { ...state.profile, ...patch.profile };
+    // These fixtures intentionally bypass onboarding to test later screens.
+    state.profile.onboarding ??= { residence: 'under_6m', visitedDongCodes: [], visitedPlaceIds: [], completedAt: '2026-11-08T00:00:00+09:00' };
     localStorage.setItem(key, JSON.stringify(state));
   }, { patch, fallback: DEMO_SEARCH });
 }

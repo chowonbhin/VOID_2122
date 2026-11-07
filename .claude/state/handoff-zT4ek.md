@@ -1,7 +1,7 @@
 # Handoff: zT4ek
 
 phase: harden; 기존 가게 운영시간 조사·보완 (2026-11-08 KST)
-branch: zT4ek/expand-opening-hours; latest integrated origin/main 84f688a
+branch: zT4ek/expand-opening-hours; latest integrated origin/main 6aa133a
 authorization: 현재 가게를 교체하지 말고 실제 시간표를 찾아 반영하라는 사용자 지시. 기존 단위별 검증·게시 지시 유지.
 
 ## 최신: 기존 장소 운영시간 확대
@@ -78,6 +78,8 @@ authorization: 현재 가게를 교체하지 말고 실제 시간표를 찾아 �
 - 예: 중앙동 Lv.1, 출발 중앙동,14시 → 장소합계1260.62, 정규화57.30, 유동인구15%/8.60점 차감, 최종44.6.
 
 ## 검증
+
+main 업로드 직전 원격이6aa133a로 갱신되어 push가 거부됨. 작업 브랜치에서 최신 원격을 병합하고 온보딩 완료 필수/설명 정리/유동인구 출처를 보존했다. 통합본 build PASS, unit154 PASS, browser52 PASS, 모바일 golden5/5 PASS(.claude/state/evidence/2026-11-08T05-49-35-mobile), 콘솔 오류 없음. main/매장 시간표 스크린샷 재확인.
 
 2026-11-08 운영시간 확대: build PASS; unit151 PASS; 시간표 변환/동일 장소 보존/기존 import9 PASS; 기존 browser43 PASS + 새 시간표 browser1 PASS. 기존 assertion 변경 없음. 모바일 golden5/5 PASS, 콘솔 오류 없음: .claude/state/evidence/2026-11-08T05-46-56-mobile. opening-data/break-time.png, overnight.png, memory-shop.png에서 휴게시간·심야 두 구간·고정 추억 가게의 시간표를 직접 확인. 25개동 기본20곳, 방문 재계산/저장, 갤러리 보존 확인. 원본/최소 payload를 비교해 시간표와 출처 외 모든 필드가 동일함을 확인.
 
