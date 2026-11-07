@@ -1,8 +1,17 @@
 # Handoff: zT4ek
 
-phase: harden; 사용자에게 필요한 정보만 남기는 문구 정리 (2026-11-08 KST)
-branch: zT4ek/trim-ui-copy; latest integrated origin/main 32ddbce
-authorization: 사용자가 요청한 UI 변경을 기존 단위별 검증·게시 지시에 따라 반영한다. 앞선 날짜 설정 창/오늘 운영시간32ddbce는 main 배포 후 모바일 golden5/5 확인 완료.
+phase: harden; 기존 가게 운영시간 조사·보완 (2026-11-08 KST)
+branch: zT4ek/expand-opening-hours; latest integrated origin/main 84f688a
+authorization: 현재 가게를 교체하지 말고 실제 시간표를 찾아 반영하라는 사용자 지시. 기존 단위별 검증·게시 지시 유지.
+
+## 최신: 기존 장소 운영시간 확대
+
+- 1,199곳 ID·이름·주소·좌표·분류·별점·리뷰 등 시간표 이외 입력값 유지. 가게 추가/삭제/교체 없음. 디자인/화면 코드 변경 없음.
+- 기존 126곳 보완: 함께할개 시간표 복구17, 테이블링24, 오늘뭐먹지84, 고기집.com1. 시간표 보유204→327, 일요일 확인171→284. 신규123곳·부분 요일 확대3곳; 아직872곳 미확인.
+- research/opening-observations.json은 원 시간표/출처/확인일/관측일·동일 가게 대조 자료만 보존. 원문 HTML/리뷰/사진은 .local 조사 캐시에만 남김. 브라우저는 최소 런타임 자료만 사용.
+- 개별 요일 휴게시간을 뺀 구간과 자정 전후 달력 날짜 구간을 생성. 미확인 요일·불완전한 전날 심야 구간·격주/월별 휴무는 추정하지 않는다.
+- scripts/update-opening-hours.mjs로 원본/런타임 동시 갱신, NAVER importer도 보완 자료 보존. 자료를 연결할 때 ID·상호·도로명 건물 번호·60m 좌표를 검증하고 새로운 장소는 거부.
+- 단위검사에서 원본/런타임 비교가 새 운영정보를 반영하도록 조사 원본도 함께 갱신했다. 기존 assertion은 완화하지 않았다.
 
 ## 최신: 부가 설명 축소·모바일 가로 버튼·리뷰 수 표시 제거
 
@@ -69,6 +78,8 @@ authorization: 사용자가 요청한 UI 변경을 기존 단위별 검증·게�
 - 예: 중앙동 Lv.1, 출발 중앙동,14시 → 장소합계1260.62, 정규화57.30, 유동인구15%/8.60점 차감, 최종44.6.
 
 ## 검증
+
+2026-11-08 운영시간 확대: build PASS; unit151 PASS; 시간표 변환/동일 장소 보존/기존 import9 PASS; 기존 browser43 PASS + 새 시간표 browser1 PASS. 기존 assertion 변경 없음. 모바일 golden5/5 PASS, 콘솔 오류 없음: .claude/state/evidence/2026-11-08T05-46-56-mobile. opening-data/break-time.png, overnight.png, memory-shop.png에서 휴게시간·심야 두 구간·고정 추억 가게의 시간표를 직접 확인. 25개동 기본20곳, 방문 재계산/저장, 갤러리 보존 확인. 원본/최소 payload를 비교해 시간표와 출처 외 모든 필드가 동일함을 확인.
 
 2026-11-08 사용자 정보 정리: build PASS. 전체 브라우저43개 범위 실행에서 기존40개 통과, 삭제된 문구 기대값2개와 장소 선택 접근성 이름1개를 수정한 뒤 관련13개 재통과. 추가 리뷰 수 제거 후 영향 범위8개 통과. 최종 모바일 golden5/5 PASS, 콘솔 오류 없음: .claude/state/evidence/2026-11-08T05-30-23-mobile. copy-cleanup/ 설정·메인·출처, notebook-design/ 갤러리, visit-dialog-hours/ 320/390px 가로 버튼·리뷰 없는 카드 확인.
 
