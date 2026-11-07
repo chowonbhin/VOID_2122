@@ -1,13 +1,15 @@
 .setup form { display: grid; gap: 20px; }
-.setup fieldset { min-width: 0; margin: 0; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
-.setup legend { padding: 0 6px; font-weight: 700; }
+.setup fieldset { min-width: 0; margin: 0; padding: 18px; border: 1.5px solid var(--line-strong); border-radius: var(--radius); background: var(--card); box-shadow: var(--shadow); }
+.setup legend { padding: 0 10px; margin-left: -4px; font-weight: 800; color: var(--accent); background: var(--bg); border-radius: 8px; }
 .setup label { display: grid; gap: 8px; margin: 12px 0; font-size: 15px; }
-.setup input, .setup select { min-width: 0; width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--fg); background: var(--card); font: inherit; }
-.setup input:focus-visible, .setup select:focus-visible, .setup button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-.setup-hint { margin: 6px 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
-.setup-interests { display: flex; flex-wrap: wrap; gap: 8px 20px; }
-.setup label.setup-checkbox { display: flex; align-items: center; gap: 8px; }
-.setup-checkbox input { width: 18px; height: 18px; accent-color: var(--accent); }
+.setup input, .setup select { min-width: 0; width: 100%; padding: 12px 14px; border: 1.5px solid var(--line-strong); border-radius: 12px; color: var(--fg); background: var(--card); font: inherit; }
+.setup input:hover, .setup select:hover { border-color: #c2b190; }
+.setup input:focus-visible, .setup select:focus-visible, .setup button:focus-visible { outline: 3px solid var(--terracotta); outline-offset: 2px; }
+.setup-hint { margin: 6px 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.setup-interests { display: flex; flex-wrap: wrap; gap: 8px; }
+.setup label.setup-checkbox { display: flex; align-items: center; gap: 8px; margin: 0; min-height: 44px; padding: 0 14px; border: 1.5px solid var(--line-strong); border-radius: 100px; cursor: pointer; }
+.setup label.setup-checkbox:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+.setup-checkbox input { width: 18px; height: 18px; min-height: 0; padding: 0; accent-color: var(--accent); }
 .setup-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .setup-error { color: #9b2020; line-height: 1.6; }
 .setup .primary { justify-self: start; }

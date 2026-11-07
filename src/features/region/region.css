@@ -1,4 +1,4 @@
-.region-detail { --surface-page: #FBF8F1; --surface-card: #FFFEFA; --action-primary: #356859; --text-primary: #293E39; --text-secondary: #64736C; color: var(--text-primary); background: var(--surface-page); border-radius: 24px; padding: 24px; }
+.region-detail { --surface-page: #FBF8F1; --surface-card: #FFFEFA; --action-primary: #356859; --text-primary: #293E39; --text-secondary: #64736C; color: var(--text-primary); background: var(--surface-page); border-radius: 24px; padding: 8px 0 24px; }
 .region-detail h1 { overflow-wrap: anywhere; }
 .region-detail .place { background: var(--surface-card); border-radius: 18px; }
 .region-detail .place.selected-place { border-color: var(--action-primary); }
@@ -11,17 +11,17 @@
 .region-filters button:focus-visible, .region-detail .region-back:focus-visible { outline: 3px solid #994B32; outline-offset: 3px; }
 .region-category, .region-note { color: var(--text-secondary); font-size: 13px; }
 .region-empty { padding: 24px; background: var(--surface-card); border: 1px dashed #B6CFB5; border-radius: 18px; text-align: center; margin-bottom: 16px; }
-@media (max-width: 480px) { .region-detail { padding: 12px; border-radius: 16px; } .region-detail h1 { font-size: 25px; } .region-filters { gap: 6px; } .region-filters button { padding: 10px 12px; font-size: 14px; } }
+@media (max-width: 480px) { .region-detail { padding: 4px 0 12px; border-radius: 0; } .region-detail h1 { font-size: 25px; } .region-filters { gap: 6px; } .region-filters button { padding: 10px 12px; font-size: 14px; } }
 .region-detail { max-width: 880px; margin: 0 auto; }
 .region-design-layout { display: block; }
-.region-map { height: 400px; width: 100%; border-radius: 18px; background: #EEE6D6; }
+.region-map { height: 400px; width: 100%; border-radius: 18px; background: var(--sea); border: 1px solid #c9dbe0; }
 .region-pin { background: #356859; color: white; border: 2px solid white; border-radius: 50%; text-align: center; font: bold 16px/26px system-ui; box-shadow: 0 1px 5px #0005; }
 .region-start { background: #293E39; }
 .region-pin.selected { background: #293E39; outline: 3px solid #82AE98; z-index: 1000 !important; }
 .region-pin:focus-visible { outline: 3px solid #994B32; outline-offset: 3px; }
 .region-lead { color: #64736C; line-height: 1.7; }
 .region-list-heading { margin: 28px 0 20px; font-size: 21px; }
-.region-detail .region-place-list > li { padding: 24px; background: #FFFEFA; border-radius: 18px; }
+.region-detail .region-place-list > li { padding: 24px; background: #FFFEFA; border: 1.5px solid var(--line-strong); border-radius: 18px; box-shadow: var(--shadow); }
 .region-detail .region-place-meta { color: #64736C; overflow-wrap: anywhere; }
 .region-detail .region-place-heading button { min-height: 44px; }
 @media (max-width: 480px) { .region-map { height: 330px; } .region-detail .region-place-list > li { padding: 16px; } }

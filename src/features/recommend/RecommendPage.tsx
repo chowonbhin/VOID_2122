@@ -30,8 +30,10 @@ export function RecommendPage() {
 
   return (
     <section className="recommend">
-      <p className="eyebrow">다음 탐험을 골라보세요</p>
+      <p className="eyebrow">동네 발견</p>
       <h1>추천 권역</h1>
+      <p className="recommend-hero">오늘은 어느 동네에<br />마음을 남겨볼까요?</p>
+      <p className="recommend-sub">나의 발자국 사이로, 새로운 발견 하나.</p>
       <div className="recommend-summary" aria-label="현재 탐험 조건">
         <p>{search.origin.label} 출발 · 최대 직선거리 {search.maxDistanceKm} km</p>
         <p>{search.when.replace('T', ' ')} (한국 시간)</p>
@@ -44,6 +46,10 @@ export function RecommendPage() {
       <ExplorationMap regions={content.regions} recommendations={result.recommendations}
         onRegionSelect={(regionId) => go({ name: 'region', regionId })} />
 
+      {ranked.length > 0 && <div className="recommend-section-head">
+        <h2>오늘은 이 동네 어때요?</h2>
+        <span>낯선 동네의 발견</span>
+      </div>}
       {ranked.length > 0 ? (
         <ol className="cards" aria-label="추천 순위">
           {ranked.map((item, index) => {

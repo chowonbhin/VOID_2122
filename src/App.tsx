@@ -6,15 +6,29 @@ import { RegionPage } from './features/region/RegionPage';
 
 export function App() {
   const route = useRoute();
+  const discovering = route.name === 'recommend' || route.name === 'region';
+  const showTabs = route.name !== 'landing';
   return (
-    <div className="app">
-      <main className={`page${route.name === 'recommend' || route.name === 'region' ? ' page-map' : ''}`}>
+    <div className={`app${showTabs ? ' has-tabbar' : ''}`}>
+      <header className="appbar">
+        <div className="appbar-inner">
+          <a className="appbar-brand" href="#/">안산에 스며들다</a>
+          <a className="appbar-link" href="#/setup">나의 동네 수첩</a>
+        </div>
+      </header>
+      <main className={`page${discovering ? ' page-map' : ''}`}>
         {route.name === 'landing' && <Landing />}
         {route.name === 'setup' && <SetupPage />}
         {route.name === 'recommend' && <RecommendPage />}
         {route.name === 'region' && <RegionPage regionId={route.regionId} />}
       </main>
       <footer className="footer">실제 권역과 2026년 8월 상권 유동인구 자료를 사용합니다. 장소·행사·운영시간·인지도는 시연용 가상 데이터입니다. 역 위치: © OpenStreetMap contributors (ODbL).</footer>
+      {showTabs && <nav className="tabbar" aria-label="주요 화면">
+        <div className="tabbar-inner">
+          <a href="#/recommend" aria-current={discovering ? 'page' : undefined}>동네 발견</a>
+          <a href="#/setup" aria-current={route.name === 'setup' ? 'page' : undefined}>내 동네 설정</a>
+        </div>
+      </nav>}
     </div>
   );
 }
