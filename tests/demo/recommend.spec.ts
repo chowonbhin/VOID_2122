@@ -42,8 +42,12 @@ test('at night closed sources cannot be represented as open recommendations', as
   await expect(baba).toContainText('지금 조건에서는 추천하지 않지만 둘러볼 수 있어요.');
 });
 
-test('without conditions the map asks for conditions and still opens 20 real venues', async ({ page }) => {
+test('after onboarding, missing search conditions still allow exploring 20 real venues', async ({ page }) => {
   await page.goto(`${base}/#/recommend`);
+  // First-time users now enter onboarding; exercise the completed-user fallback.
+  await changeState(page, { profile: { onboarding: {
+    residence: 'under_6m', visitedDongCodes: [], visitedPlaceIds: [], completedAt: '2026-11-08T00:00:00+09:00',
+  } } });
   await expect(page.getByRole('button', { name: '시작 설정하기' })).toBeVisible();
   await page.getByRole('button', { name: /^지도 중앙동/ }).focus();
   await page.keyboard.press('Enter');

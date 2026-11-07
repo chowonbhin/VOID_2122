@@ -1,18 +1,19 @@
 # Handoff — chowonbhin
-- Phase: build · 2026-11-07 23:31 KST; work branch chowonbhin/recommendation; integration target main.
-- User explicitly requested pull then push this turn; normal push authorized for this integration.
-- Integrated remote 6a78a57 (PWA/mobile CSS/verify --mobile) with existing 30cce2a without conflicts or rewriting history.
-- No new feature implementation this turn; merge preserves input/recommendation and teammate visits.
-- Verification: typecheck, production build, unit 71/71 passed.
-- Desktop verify: .claude/state/evidence/2026-11-07T23-30-37/ — PARTIAL 3/5, exit 0.
-- Mobile verify: .claude/state/evidence/2026-11-07T23-30-47-mobile/ — PARTIAL 3/5, exit 0.
-- Both: steps 1,2,4 PASS; 3,5 PENDING; no console errors. Desktop recommendation and mobile recommendation/visits screenshots inspected.
-- Prior setup/recommend/visits browser suite: 14/14 on previous source; CSS change covered by desktop/mobile golden-path runs.
-- Scanned working/staged files, all-branch history, bundles and evidence logs for secret patterns: no matches.
-- Preview: http://127.0.0.1:3000/#/setup; temporary Node22 remains /private/tmp/void2122-runtime/node_modules/node/bin/node.
-- Next 1: verify normal push result and main/origin-main equality; do not force push if remote moves.
-- Next 2: zT4ek adds B-first assertion and removes step-5 PENDING (actual rank swap already observed).
-- Next 3: iwtkmn0219 completes step 3; captain coordinates full-path PASS.
+- User override: ignore schedule/deadline; no clock-based phase transitions.
+- User explicitly requested main push and then confirmed preserving latest main UI after conflict explanation.
+- Work branch chowonbhin/updates rebased onto origin/main 84f688a; verified application source commit 1ddd5e4.
+- Only rebase conflict: DemoNotice.tsx, resolved to exact origin/main content; old verbose notice was not restored.
+- App.tsx gates all entry routes on onboarding.completedAt; old search/visits do not bypass onboarding.
+- Existing records preserved; completed users keep direct access. Shared-file change explicitly user-authorized.
+- Build PASS; unit tests 154/154; entire browser suite 51/51 PASS on integrated source.
+- Local PC demo 5/5: .claude/state/evidence/2026-11-08T05-47-14/.
+- Local mobile demo 5/5: .claude/state/evidence/2026-11-08T05-47-23-mobile/; no console errors/SLOW.
+- Working files/history/staged diff/generated bundles/logs scanned; no secret patterns flagged.
+- Local preview: http://127.0.0.1:3011/; actual Chrome regular/private windows also showed onboarding.
+- Public URL: https://void-2122.vercel.app/; auto-deploy follows main push.
+- Remaining unpublished changes also include prior footfall source label/docs/regression and member records; user was informed.
+- Next 1: fast-forward local main, push without force, then confirm remote SHA.
+- Next 2: wait for matching public bundle and verify deployed first-entry plus PC/mobile golden path.
+- Next 3: preserve tested source; future main changes need affected checks.
 ## For captain
-- Full demo remains PARTIAL; allZero UI branch not separately verified with current demo data.
-- handoff skill missing; summary maintained inline. No deploy.
+- golden-path wording still contains historical visible-review/level claims; latest upstream UI/tests intentionally omit those labels.
