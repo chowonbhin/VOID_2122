@@ -1,8 +1,13 @@
 # Handoff: zT4ek
 
-phase: harden; 장소 상세 상단 선택 위젯 제거 (2026-11-08 KST)
-branch: zT4ek/remove-region-tabs; latest integrated origin/main 565113d
-authorization: ‘발견할 20곳·추천 장소·가본 장소·전체 후보’ 위젯 삭제 요청. 기존 단위별 검증·게시 지시 유지.
+phase: harden; 메인 최상단 조건 요약 박스 제거 (2026-11-08 KST)
+branch: zT4ek/remove-main-summary; latest integrated origin/main 1b344aa
+authorization: ‘사동 경계 내부 대표 지점…’으로 시작하는 메인 상단 박스 삭제 요청. 기존 단위별 검증·게시 지시 유지.
+
+## 최신: 메인 조건 요약 박스 제거
+
+- 출발지·최대 직선거리·선택 시각·관심 활동을 표시하던 recommend-summary 박스와 전용 CSS 제거. 메인 본문이 지도로 시작한다.
+- 저장된 조건/프로필/방문 기록과 추천 계산은 그대로 사용한다. 지도·장소 추천·설정 메뉴 디자인 유지.
 
 ## 최신: 장소 상세 상단 선택 위젯 제거
 
@@ -85,6 +90,8 @@ authorization: ‘발견할 20곳·추천 장소·가본 장소·전체 후보�
 - 예: 중앙동 Lv.1, 출발 중앙동,14시 → 장소합계1260.62, 정규화57.30, 유동인구15%/8.60점 차감, 최종44.6.
 
 ## 검증
+
+2026-11-08 메인 조건 요약 박스 제거: build PASS. 기존 desktop/mobile golden 각각5/5 PASS, 콘솔 오류 없음(.claude/state/evidence/2026-11-08T06-01-51, 2026-11-08T06-01-53-mobile). 사동 출발 조건으로 첫 화면을 별도 촬영한 main-summary-removed/top-1280.png·top-390.png 확인: 조건 박스0개, 지도부터 표시. 새 테스트나 기존 assertion 변경 없음.
 
 2026-11-08 상단 선택 영역 제거: build PASS, unit154 PASS. 전체 browser52 범위에서51 통과; 야간 재방문 테스트의 잘못된 저장소 fixture를 실제 UI 방문 기록 흐름으로 고친 뒤 관련4개 PASS. 기본20곳·추억을 통한 기록 재열기/수정/삭제·순위 밖 모달 닫기 포커스 검증 유지. 모바일 golden5/5 PASS(.claude/state/evidence/2026-11-08T05-57-57-mobile), 콘솔 오류 없음. region-tabs-removed/top-1280.png·top-390.png를 직접 확인해 네 버튼 제거와 지도/목록 배치 유지 확인.
 

@@ -48,12 +48,6 @@ export function RecommendPage() {
       {/* The welcome copy lives in the launch splash (Splash.tsx); this heading names the page. */}
       <h1 className="visually-hidden">추천 행정동</h1>
       {state.needsDongLevelReview && <p role="status">‘다시 설정하기’에서 동네 설정을 확인해 주세요. 방문 기록은 유지됩니다.</p>}
-      <div className="recommend-summary" aria-label="현재 탐험 조건">
-        <p>{search.origin.label} 출발 · 최대 직선거리 {search.maxDistanceKm} km</p>
-        <p>{search.when.replace('T', ' ')} (한국 시간)</p>
-        <p>관심 활동: {search.interests.length ? search.interests.map((category) => CATEGORY_LABELS[category]).join(', ') : '전체'}</p>
-      </div>
-
       <ExplorationMap regions={content.regions} recommendations={result.recommendations} exclusions={result.excluded} searchConfigured
         levels={Object.fromEntries(content.regions.map((region) => [region.id, regionLevel(region.id, state.profile, state.visits, content.places)]))}
         homeDongCode={state.profile.homeDongCode}
