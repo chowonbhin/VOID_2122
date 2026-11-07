@@ -40,8 +40,8 @@
 .region-place-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 16px; }
 .region-place-list > li { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; scroll-margin-top: 72px; }
 .region-place-list > li.selected-place { border: 2px solid var(--accent); background: #f7fbf5; }
-.region-place-heading { display: flex; align-items: flex-start; gap: 12px; justify-content: space-between; }
-.region-place-heading h2 { flex: 1; min-width: 0; margin: 0; padding-top: 10px; font-size: 18px; overflow-wrap: anywhere; }
+.region-place-heading { display: flex; align-items: center; gap: 12px; justify-content: space-between; flex-wrap: wrap; }
+.region-place-heading h2 { margin: 0; font-size: 18px; }
 .region-place-meta { font-size: 13px; color: var(--muted); margin: 10px 0; }
 .region-back { margin-bottom: 16px; }
 @media (prefers-reduced-motion: reduce) { .ansan-region-fill, .ansan-overview rect { transition: none; } }
