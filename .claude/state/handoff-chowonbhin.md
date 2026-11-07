@@ -1,18 +1,18 @@
 # Handoff — chowonbhin
-- Phase: build · 2026-11-07 23:26 KST; work branch: chowonbhin/recommendation; delivery: local main fast-forward, human push pending.
-- Step 2 implemented: stored inputs → shared recommend() → ranked cards/reasons/distance/open counts; empty state and direct exploration.
-- Existing resident, interests, distance, night time, persisted visit recalculation and mobile layouts verified.
-- Integrated origin/main 03f2b19 (visit feature); tested source: 69a25b9074709559d2af1532106d9210e71a0766.
-- Checks: unit 71/71, browser 14/14 (setup/recommend/visits), typecheck and production build passed.
-- Last demo-path-verify: PARTIAL 3/5; steps 1,2,4 PASS, steps 3,5 PENDING; exit 0; console errors none.
-- Evidence: .claude/state/evidence/2026-11-07T23-25-48/; step-02 and step-05 screenshots inspected (B first after actual visit).
-- Mobile evidence: .claude/state/evidence/recommend-2026-11-07T14-23-22-754Z/; ranked and empty layouts inspected.
-- allZero guidance exists; current demo data cannot reach that branch, so it was not separately verified.
-- Preview: http://127.0.0.1:3000/#/setup; Node22 runtime /private/tmp/void2122-runtime/node_modules/node/bin/node.
-- Demo inputs: 2026-11-08 14:00 KST, origin 37.3219/126.8309, 10 km, all activities, initial Lv0 → A then B.
-- Next 1: user runs git push origin main after local merge; stop until push confirmed.
-- Next 2: zT4ek adds B-first assertion and clears step-5 PENDING; actual visit-to-rank screenshot is available.
-- Next 3: iwtkmn0219 finishes step 3; captain coordinates full-path PASS.
+- Phase: build · 2026-11-07 23:31 KST; work branch chowonbhin/recommendation; integration target main.
+- User explicitly requested pull then push this turn; normal push authorized for this integration.
+- Integrated remote 6a78a57 (PWA/mobile CSS/verify --mobile) with existing 30cce2a without conflicts or rewriting history.
+- No new feature implementation this turn; merge preserves input/recommendation and teammate visits.
+- Verification: typecheck, production build, unit 71/71 passed.
+- Desktop verify: .claude/state/evidence/2026-11-07T23-30-37/ — PARTIAL 3/5, exit 0.
+- Mobile verify: .claude/state/evidence/2026-11-07T23-30-47-mobile/ — PARTIAL 3/5, exit 0.
+- Both: steps 1,2,4 PASS; 3,5 PENDING; no console errors. Desktop recommendation and mobile recommendation/visits screenshots inspected.
+- Prior setup/recommend/visits browser suite: 14/14 on previous source; CSS change covered by desktop/mobile golden-path runs.
+- Scanned working/staged files, all-branch history, bundles and evidence logs for secret patterns: no matches.
+- Preview: http://127.0.0.1:3000/#/setup; temporary Node22 remains /private/tmp/void2122-runtime/node_modules/node/bin/node.
+- Next 1: verify normal push result and main/origin-main equality; do not force push if remote moves.
+- Next 2: zT4ek adds B-first assertion and removes step-5 PENDING (actual rank swap already observed).
+- Next 3: iwtkmn0219 completes step 3; captain coordinates full-path PASS.
 ## For captain
-- Own recommendation/input files and step-2 demoStep only edited; shared scoring unchanged. Full demo is not yet PASS.
-- setup.spec.ts h1 selector clarified because empty-state h2 shares title words; handoff skill missing, maintained inline.
+- Full demo remains PARTIAL; allZero UI branch not separately verified with current demo data.
+- handoff skill missing; summary maintained inline. No deploy.

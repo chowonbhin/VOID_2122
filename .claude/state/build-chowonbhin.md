@@ -55,3 +55,8 @@ end to end. Work strictly in golden-path order.
 - Unit 71/71, browser 14/14, typecheck/build passed. Golden path PARTIAL 3/5 (1,2,4 PASS; 3,5 pending), exit 0, no console errors.
 - Real visit changed A→B to B→A in screenshot; step-5 owner must add rank assertion and remove pending.
 - Steps 6–8 await human push after local fast-forward merge; no further feature work in this turn.
+
+## Remote mobile integration — 2026-11-07 23:31 KST
+- User explicitly authorized pull then push; merged remote 6a78a57 into work branch without conflict, preserving existing local main history.
+- Typecheck/build/unit 71 passed. Desktop and mobile verify each PARTIAL 3/5 with exit 0 and no console errors; screenshots inspected.
+- Normal push is authorized for this integration; verify remote equality after push.
