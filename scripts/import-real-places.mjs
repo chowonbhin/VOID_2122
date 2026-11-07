@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { applyOpeningObservations } from './lib/opening-observations.mjs';
 import { categoryFor, chainConcern, matchedEvidence, normalizeName, distanceMeters, openingFromEvidence, ratingFromEvidence } from './lib/real-place-import.mjs';
 const args=process.argv.slice(2);
 if(args.length!==2) throw new Error('Usage: node scripts/import-real-places.mjs candidates.json evidence.json');
@@ -14,7 +15,7 @@ for(const candidate of snapshot.candidates){
  if(retained.some(p=>normalizeName(p.name)===normalizeName(candidate.name) && distanceMeters(p.location,candidate.location)<60)){duplicates++;continue;}
  retained.push({...candidate,category});
 }
-const places=retained.map(c=>{
+let places=retained.map(c=>{
  const e=matchedEvidence(c,evidence),review=reviews.find(r=>r.id===c.id);
  const previous=existing.find(p=>normalizeName(p.name)===normalizeName(c.name) && p.location && distanceMeters(p.location,c.location)<60);
  const excludedReason=review?.status==='non_franchise'?undefined:chainConcern(c.name);
@@ -30,6 +31,7 @@ const places=retained.map(c=>{
    source:{label:'함께할개가 기재한 네이버 방문자 리뷰 수 (2차 출처)',url:e.sourceUrl,checkedAt:e.checkedAt}}}:{}),
   opening:e?openingFromEvidence(e):previous?.opening??{status:'unknown'},source:source??previous?.source??null,isVirtual:false};
 });
+places=applyOpeningObservations(places,JSON.parse(fs.readFileSync('src/data/research/opening-observations.json')));
 const counts=regions.map(r=>({regionId:r.id,name:r.name,candidates:places.filter(p=>p.regionId===r.id).length,
  discoverable:places.filter(p=>p.regionId===r.id&&!p.discovery.excludedReason&&p.franchise.status!=='franchise').length,
  reviewCounts:places.filter(p=>p.regionId===r.id&&p.popularityEvidence).length}));

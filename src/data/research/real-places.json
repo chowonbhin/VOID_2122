@@ -1151,18 +1151,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "17:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "17:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "17:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "17:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "17:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "17:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "17:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -1608,9 +1670,77 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd13666de5f0698877ffd",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -2299,9 +2429,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": [
+        6
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%81%B0%EC%A7%91%EC%8B%9D%EB%8B%B9",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -3553,9 +3728,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd86d66de5f0698947bf3",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -3729,9 +3953,78 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "15:30"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca1066de5f06987a7394",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -3878,18 +4171,54 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
+      "status": "known",
+      "weekly": {
+        "2": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "17:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "17:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "17:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "17:00",
+            "close": "24:00"
+          }
+        ]
+      },
       "unknownDays": [
         0,
         1,
-        2,
-        3,
-        4,
-        5,
         6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      ]
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -4356,9 +4685,77 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [],
+        "1": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0b66de5f06987a6754",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -5414,9 +5811,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%A0%95%EC%9B%90%EC%98%A5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -6037,9 +6483,77 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0f66de5f06987a70b6",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -6168,9 +6682,78 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677ccb2466de5f06987cb44f",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -6773,9 +7356,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EC%98%A4%EC%8A%B9%EB%A0%AC%EC%8A%A4%EC%8B%9C",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -6978,9 +7610,53 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [],
+        "1": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca1266de5f06987a789d",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -7716,9 +8392,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "08:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "08:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "08:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "08:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "08:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "08:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "08:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%8D%94%EC%A7%84%EC%8B%AC",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -8821,9 +9546,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "13:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "14:00",
+            "close": "22:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "14:00",
+            "close": "22:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "13:30",
+            "close": "22:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "13:30",
+            "close": "22:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "13:30",
+            "close": "22:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "13:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "고기집.com 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://xn--299ayyj02d.com/%EB%A7%A4%EC%9E%A5/%EC%B4%88%EC%A7%80%EC%B0%B8%EC%88%AF%EB%B6%88%EA%B0%88%EB%B9%84",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -9652,18 +10426,63 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ]
+      },
       "unknownDays": [
-        0,
-        1,
-        2,
-        3,
         4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+        5
+      ]
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -9804,9 +10623,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0c66de5f06987a6a7a",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -11133,9 +12001,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:20",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:20",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:20",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:20",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:20",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:20",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:20",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%ED%86%A0%EC%A2%85%ED%95%9C%EC%9A%B0",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -11524,9 +12441,13 @@
     "opening": {
       "status": "known",
       "weekly": {
-        "2": [
+        "0": [
           {
-            "open": "17:00",
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "16:00",
             "close": "24:00"
           }
         ],
@@ -11541,15 +12462,28 @@
             "open": "17:00",
             "close": "24:00"
           }
+        ],
+        "5": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
         ]
       },
       "unknownDays": [
-        0,
         1,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+        2
+      ]
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -12692,9 +13626,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd1fb66de5f069888e485",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -13001,9 +13984,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "15:30",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        6
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%EA%B0%95%EB%82%A8%EC%88%AF%EB%B6%88%EB%8B%AD%EA%B0%88%EB%B9%84",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -13138,9 +14166,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%A4%91%EC%95%99%EA%B9%80%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -13304,9 +14381,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%A7%9B%EB%AF%B8%EC%A0%95%EA%B5%AD%EC%88%98",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -13510,9 +14636,86 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%B6%98%EC%B2%9C%EB%AA%85%EB%AC%BC%EB%8B%AD%EA%B0%88%EB%B9%84%EB%A7%89%EA%B5%AD%EC%88%98",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -13681,9 +14884,48 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [],
+        "1": [
+          {
+            "open": "10:30",
+            "close": "14:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:30",
+            "close": "14:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:30",
+            "close": "14:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:30",
+            "close": "14:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:30",
+            "close": "14:30"
+          }
+        ],
+        "6": []
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd62866de5f0698907cd8",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -13887,9 +15129,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd06566de5f069885fe39",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -14994,9 +16285,53 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [],
+        "3": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca1066de5f06987a7244",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -15393,9 +16728,53 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:30",
+            "close": "21:30"
+          }
+        ],
+        "1": [],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "18:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "19:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:30",
+            "close": "18:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "18:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:30",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd3d766de5f06988c4c27",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -15980,9 +17359,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EB%A9%B4%ED%8C%8C%ED%8C%8C",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -16359,18 +17787,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -16977,9 +18467,53 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd24466de5f0698896634",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -17487,9 +19021,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EC%A0%A0%EC%B0%A8%EC%9D%B4",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -17589,9 +19168,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:30",
+            "close": "23:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "23:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "23:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:30",
+            "close": "23:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "23:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:30",
+            "close": "23:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%82%BC%EC%82%AC%EC%98%A4",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -18245,9 +19869,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "1": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        0
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%99%8D%EA%B3%84%EC%88%AF%EB%B6%88%EB%8B%AD%EA%B0%88%EB%B9%84",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -19024,6 +20693,10 @@
       "weekly": {
         "0": [
           {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
             "open": "11:00",
             "close": "24:00"
           }
@@ -19051,13 +20724,25 @@
             "open": "11:00",
             "close": "24:00"
           }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
         ]
       },
-      "unknownDays": [
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -20872,9 +22557,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "12:00",
+            "close": "22:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "12:00",
+            "close": "22:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "12:00",
+            "close": "22:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "12:00",
+            "close": "22:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "12:00",
+            "close": "22:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "12:00",
+            "close": "22:30"
+          }
+        ]
+      },
+      "unknownDays": [
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%98%A4%EC%9D%B4%EC%8B%9C%EC%B4%88%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -21305,9 +23035,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EB%A7%88%EB%A7%88%EA%B5%90%EC%9E%90%EA%B4%80",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -23774,9 +25553,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EA%B0%9C%EB%AF%B8%EA%B9%80%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -24604,9 +26432,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "16:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sari/restaurant/%EC%99%95%EC%86%90",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -25941,9 +27814,53 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [],
+        "1": [
+          {
+            "open": "12:00",
+            "close": "23:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "12:00",
+            "close": "23:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "12:00",
+            "close": "23:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "12:00",
+            "close": "23:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "12:00",
+            "close": "23:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "12:00",
+            "close": "23:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0f66de5f06987a70c3",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -27547,9 +29464,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "1": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        0
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EA%B9%8C%EC%82%AC%EB%B6%80%EC%98%A4%EB%85%B8",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -27755,9 +29717,86 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%9D%B4%EC%96%B4%EB%8F%84",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -27961,9 +30000,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:30",
+            "close": "21:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:30",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:30",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:30",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%84%9D%EC%84%9D%EC%84%9D",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -28460,9 +30548,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "12:30",
+            "close": "23:40"
+          }
+        ],
+        "2": [
+          {
+            "open": "14:00",
+            "close": "23:40"
+          }
+        ],
+        "3": [
+          {
+            "open": "14:00",
+            "close": "23:40"
+          }
+        ],
+        "4": [
+          {
+            "open": "14:00",
+            "close": "23:40"
+          }
+        ],
+        "5": [
+          {
+            "open": "14:00",
+            "close": "23:40"
+          }
+        ],
+        "6": [
+          {
+            "open": "12:30",
+            "close": "23:40"
+          }
+        ]
+      },
+      "unknownDays": [
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EC%96%B4%EB%9E%8C%ED%9A%8C%EC%84%BC%ED%83%80",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -29032,9 +31165,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B9%80%EA%B8%88%ED%9D%AC%EA%B0%90%EC%9E%90%ED%83%95%EC%88%9C%EB%8C%80%EA%B5%AD",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -29943,9 +32125,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "1": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "08:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        0
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%EC%95%88%EC%82%B0%EA%B3%A0%EB%8C%80%EC%95%9E%EA%B0%80%EB%A7%88%EC%86%A5%EC%84%A4%EB%A0%81%ED%83%95",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -30011,9 +32238,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%B0%9C%EC%A7%91",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -32364,9 +34640,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "06:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "06:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "06:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "06:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "06:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "06:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%8C%80%ED%92%8D%EC%A7%84%EA%B5%AD%EC%88%9C%EB%8C%80",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -32901,9 +35226,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%96%B4%EB%A8%B8%EB%8B%88%EB%8A%94%EA%B3%A0%EB%93%B1%EC%96%B4%EB%A5%BC",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -33776,9 +36150,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "16:30",
+            "close": "23:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "16:30",
+            "close": "23:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "16:30",
+            "close": "23:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "16:30",
+            "close": "23:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "16:30",
+            "close": "23:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "16:30",
+            "close": "23:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "16:30",
+            "close": "23:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sari/restaurant/%EC%99%95%EB%9A%9C%EA%BB%91%EC%82%BC%EA%B2%B9%EC%82%B4",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -34215,9 +36638,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "22:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "22:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "22:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "22:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "22:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "22:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "22:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%98%B8%EA%B5%AC%ED%94%BC%EC%9E%90",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -35026,18 +37498,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "19:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "19:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "19:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "19:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "19:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "19:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "19:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -35560,9 +38094,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EB%B0%B1%EB%91%90%EC%82%B0%EC%83%9D%EA%B3%A0%EA%B8%B0",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -36207,9 +38790,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        4
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%ED%8F%AC%ED%9C%98%EC%97%94",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -36419,18 +39047,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -37426,9 +40116,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EC%82%AC%EB%9D%BC%EC%9D%B4%EB%8F%84%EB%84%A4%EB%A5%B4%EC%BC%80%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -38090,9 +40829,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EB%8D%95%EC%BF%A4",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -39315,18 +42099,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "00:30"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "00:30"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "00:30"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "00:30"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "00:30"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "00:30"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "00:30"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -39913,9 +42759,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%ED%8F%AC%ED%81%AC%EB%84%88",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -40335,9 +43230,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EC%97%B0%EA%B8%B8%EC%B4%88%EB%91%90%EB%B6%80",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -40465,9 +43409,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:30",
+            "close": "18:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "18:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EB%8B%B9%EB%8B%B9%EC%B4%88%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -40637,9 +43630,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "1": [
+          {
+            "open": "11:30",
+            "close": "19:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "19:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "19:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:30",
+            "close": "19:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "19:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:30",
+            "close": "19:30"
+          }
+        ]
+      },
+      "unknownDays": [
+        0
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EB%9D%BC%EB%A9%98%EC%BC%84%ED%81%90%EC%A1%B0",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -41083,9 +44121,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%83%A4%EB%B8%8C%EC%84%A4",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -41220,9 +44307,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "09:30",
+            "close": "22:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "09:30",
+            "close": "22:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "09:30",
+            "close": "22:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:30",
+            "close": "22:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:30",
+            "close": "22:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:30",
+            "close": "22:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:30",
+            "close": "22:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%9D%80%ED%8F%89%EA%B0%90%EC%9E%90%ED%83%95",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -42322,18 +45458,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "12:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -42406,9 +45604,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EB%8F%84%EA%B9%A8%EB%B9%84%EC%99%95%EA%B0%90%EC%9E%90%ED%83%95",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -43240,9 +46487,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "21:40"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "21:40"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "21:40"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "21:40"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "21:40"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "21:40"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "21:40"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%96%B4%EC%8D%B8%EB%A0%88%EC%8A%A4%ED%86%A0",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -43274,9 +46570,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "1": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "16:00",
+            "close": "23:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        0
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sari/restaurant/%EA%B3%B1%EC%B0%BD%EC%A3%BC%EC%9D%98%EB%B3%B4",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -44726,9 +48067,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0f66de5f06987a71a7",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -47431,9 +50821,77 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "1": [],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "20:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677ccd7266de5f0698810e45",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -48444,9 +51902,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "06:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "06:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "06:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "06:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "06:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "06:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "06:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cce0766de5f0698822610",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -48498,6 +52005,7 @@
             "close": "20:00"
           }
         ],
+        "1": [],
         "2": [
           {
             "open": "10:00",
@@ -48529,14 +52037,11 @@
           }
         ]
       },
-      "unknownDays": [
-        1
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "unknownDays": []
     },
     "source": {
-      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
-      "url": "https://hamgae.com/place/45031/%EC%8A%A4%ED%8B%B8%EB%A6%AC/",
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd36b66de5f06988b850e",
       "checkedAt": "2026-11-08"
     },
     "isVirtual": false
@@ -49884,9 +53389,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "1": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        0
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%EC%95%95%EA%B5%AC%EC%A0%95%EA%B2%BD%EC%96%91%EC%8B%9D",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -50479,9 +54029,82 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "09:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "09:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "09:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "09:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "09:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "09:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "09:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%86%8C%EB%AC%B8%EB%82%9C%EC%88%9C%EB%8C%80%EA%B5%AD",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -51362,9 +54985,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EB%B3%84%EB%AF%B8%EC%8B%9D%EB%8B%B9",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -52506,9 +56178,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "15:00",
+            "close": "23:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "15:00",
+            "close": "23:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "15:00",
+            "close": "23:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "15:00",
+            "close": "23:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "15:00",
+            "close": "23:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "15:00",
+            "close": "23:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "15:00",
+            "close": "23:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%9B%84%EB%8B%88%EB%84%A4%EB%83%89%EC%82%BC%EC%A7%91",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -53105,9 +56826,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "16:00",
+            "close": "22:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "16:00",
+            "close": "22:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "16:00",
+            "close": "22:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "16:00",
+            "close": "22:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "16:00",
+            "close": "22:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "16:00",
+            "close": "22:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "16:00",
+            "close": "22:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%EA%B3%A0%EC%9E%94%EB%83%89%EC%82%BC",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -54444,9 +58214,77 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:30",
+            "close": "15:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677ccd2466de5f0698807527",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -55861,9 +59699,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:30",
+            "close": "22:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:30",
+            "close": "22:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "22:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "22:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:30",
+            "close": "22:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "22:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:30",
+            "close": "22:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%9D%B4%EB%8F%99%EA%B3%A0%EA%B3%A0%EA%B0%88%EB%B9%84%EC%97%B0%ED%8F%89%EB%8F%84%EB%8C%80%EC%9E%A5%EA%B2%8C%EC%9E%A5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -56067,9 +59954,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%B0%B1%EB%B4%89",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -57244,9 +61176,86 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%98%81%EB%8F%99%EA%B3%B1%EC%B0%BD",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -57508,9 +61517,86 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "01:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%B6%98%EC%B0%B8%EC%B9%98",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -57845,9 +61931,49 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        1,
+        3
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B0%88%EB%B9%84%EC%9D%B4%EC%95%BC%EA%B8%B0",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -58022,9 +62148,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0c66de5f06987a6998",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -58285,9 +62460,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "20:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "20:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "20:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "20:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "20:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "20:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "20:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B0%95%EB%82%A8%EC%86%90%EC%B9%BC%EA%B5%AD%EC%88%98",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -58610,18 +62834,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -59517,9 +63803,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        2
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EB%B2%A0%ED%8A%B8%EB%82%A8%EA%B3%A0%ED%96%A5%EC%8B%9D%EB%8B%B9",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -59956,9 +64287,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B3%B1%EC%B0%BD%EB%A7%88%EC%9D%84",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -60122,9 +64502,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ]
+      },
+      "unknownDays": [
+        2
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%ED%8C%9F%ED%83%80%EC%9D%B4",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -60724,9 +65149,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "20:30"
+          }
+        ]
+      },
+      "unknownDays": [
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sari/restaurant/%EB%A7%9D%ED%96%A5%EC%8B%9D%EB%8B%B9",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -60992,9 +65462,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%B2%8C%EA%B5%90%EC%B6%94%EC%96%B4%ED%83%95",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -61912,9 +66431,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "12:00",
+            "close": "20:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "12:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "12:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "12:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "12:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "12:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "12:00",
+            "close": "18:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC%EA%B0%95%EB%B9%B5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -62248,9 +66816,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "1": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "20:30"
+          }
+        ]
+      },
+      "unknownDays": [
+        0
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%B9%B4%EB%8B%88%EB%A1%B1",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -62294,18 +66907,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:30",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:30",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:30",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:30",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:30",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:30",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "11:30",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -62550,9 +67225,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "1": [
+          {
+            "open": "11:10",
+            "close": "16:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:10",
+            "close": "16:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:10",
+            "close": "16:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:10",
+            "close": "16:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:10",
+            "close": "16:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:10",
+            "close": "16:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        0
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%B2%AD%ED%99%94%EC%A7%91",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -62688,9 +67408,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "19:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%A4%91%EC%95%99%ED%99%8D%EB%91%90%EA%B9%A8%EC%B9%BC%EA%B5%AD%EC%88%98",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -62887,9 +67656,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EA%B5%AD%EB%AF%BC%EC%B4%88%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -63607,9 +68425,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%95%9C%EC%8B%9D%EB%B7%94%ED%8E%98%EA%B0%95%EC%82%AC%EB%B6%80",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -63791,18 +68658,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "05:00"
+          },
+          {
+            "open": "15:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -64041,9 +68970,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "09:30",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "09:30",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "09:30",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:30",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:30",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:30",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:30",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%84%A0%EB%B6%80%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -64110,9 +69088,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%9D%B4%EC%A1%B0%EB%B0%A5%EC%83%81",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -66826,9 +71853,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "20:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EA%B0%95%EB%A6%89%EC%9B%90%EC%A1%B0%EA%B5%90%EB%8F%99%EC%A7%AC%EB%BD%95",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -67031,9 +72103,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "17:00",
+            "close": "23:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "17:00",
+            "close": "23:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "17:00",
+            "close": "23:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "17:00",
+            "close": "23:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "17:00",
+            "close": "23:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "17:00",
+            "close": "23:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%8B%A8%EC%9B%90%EC%86%8C%EA%B3%B1%EC%B0%BD",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -68655,18 +73772,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "14:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "19:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "18:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "18:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "18:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "18:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "14:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -68871,9 +74050,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:30",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "12:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%8A%98%EB%8B%B4%EC%86%8C",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -68929,18 +74157,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -69528,9 +74818,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%ED%95%9C%EC%B4%88%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -71062,9 +76401,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EB%AA%A9%ED%8F%AC%EB%BB%98%EB%82%99%EC%A7%80",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -72306,9 +77694,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B0%80%ED%99%94%EB%A7%8C%EC%82%AC%EC%84%B1",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -72478,9 +77915,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:30",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%8A%A4%EC%8B%9C%ED%85%90%EC%B9%B4%EC%9D%B4",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -73320,18 +78802,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "09:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "10:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "09:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -73403,9 +78947,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%99%95%EA%B3%B1",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -74396,18 +79989,80 @@
       }
     },
     "opening": {
-      "status": "unknown",
-      "weekly": {},
-      "unknownDays": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "entryCondition": "공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "03:00"
+          },
+          {
+            "open": "11:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
     "source": {
       "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
@@ -75005,9 +80660,69 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "2": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "02:00"
+          },
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        0,
+        1
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%8F%88%EC%A0%95",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -75632,9 +81347,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%B5%9C%EA%B0%80%EB%84%A4%EB%8F%88%EC%82%BC%EA%B2%B9",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -76653,9 +82417,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "09:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "09:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "09:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd15b66de5f069887c33b",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -77756,9 +83569,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:00",
+            "close": "21:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%8B%A0%EC%B0%BD%EB%A9%B4%EC%98%A5",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -77966,9 +83828,77 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "09:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:30"
+          }
+        ],
+        "1": [],
+        "2": [
+          {
+            "open": "09:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:00",
+            "close": "16:00"
+          },
+          {
+            "open": "17:00",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd58166de5f06988f5711",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -79743,9 +85673,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "23:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%A0%9C%EC%A3%BC%ED%95%B4%EC%96%91%EC%88%98%EC%82%B0",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -80616,9 +86595,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%83%91%EA%B5%AD%EC%88%98%EC%A7%91",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -80822,9 +86850,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B9%80%EC%84%9C%EB%B0%A9%EB%AA%85%ED%83%9C%EC%9D%B4%EC%95%BC%EA%B8%B0",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -81163,9 +87240,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "21:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%B3%B8%EA%B0%80%ED%95%B4%EB%AF%B8%EC%B2%AD",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -81197,9 +87323,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "10:30",
+            "close": "20:30"
+          }
+        ],
+        "1": [
+          {
+            "open": "10:30",
+            "close": "20:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:30",
+            "close": "20:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:30",
+            "close": "20:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:30",
+            "close": "20:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:30",
+            "close": "20:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:30",
+            "close": "20:30"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%98%9B%EB%82%A0%EC%99%95%EB%8F%88%EA%B9%8C%EC%8A%A4",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -81299,9 +87474,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "16:00",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd1cc66de5f0698889247",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -82835,9 +89059,54 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "1": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:30",
+            "close": "21:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:30",
+            "close": "15:00"
+          }
+        ]
+      },
+      "unknownDays": [
+        0
+      ]
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%9D%B4%EB%AA%A8%EB%84%A4%EC%83%9D%EC%84%A0%EA%B5%AC%EC%9D%B4",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -83546,9 +89815,86 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "00:00",
+            "close": "01:30"
+          },
+          {
+            "open": "15:30",
+            "close": "24:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "00:00",
+            "close": "01:30"
+          },
+          {
+            "open": "15:30",
+            "close": "24:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "00:00",
+            "close": "01:30"
+          },
+          {
+            "open": "15:30",
+            "close": "24:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "00:00",
+            "close": "01:30"
+          },
+          {
+            "open": "15:30",
+            "close": "24:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "00:00",
+            "close": "01:30"
+          },
+          {
+            "open": "15:30",
+            "close": "24:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "00:00",
+            "close": "01:30"
+          },
+          {
+            "open": "15:30",
+            "close": "24:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "00:00",
+            "close": "01:30"
+          },
+          {
+            "open": "15:30",
+            "close": "24:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%95%9C%EC%96%91%EA%B3%A8%EC%99%95%EA%B3%B1%EC%B0%BD",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {
@@ -84042,9 +90388,58 @@
     },
     "baseValue": 70,
     "opening": {
-      "status": "unknown"
+      "status": "known",
+      "weekly": {
+        "0": [
+          {
+            "open": "11:30",
+            "close": "22:00"
+          }
+        ],
+        "1": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "11:00",
+            "close": "22:00"
+          }
+        ]
+      },
+      "unknownDays": []
     },
-    "source": null,
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%8A%A4%EC%8B%9C%EC%9D%BC%EA%B8%B0",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   },
   {

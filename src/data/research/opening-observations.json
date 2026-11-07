@@ -1,0 +1,5782 @@
+[
+  {
+    "placeId": "naver-0526b6c3d6875d86db30",
+    "placeName": "미스터꼼장어막창",
+    "name": "미스터꼼장어막창",
+    "address": "경기 안산시 상록구 상록수로 48 112호",
+    "location": {
+      "lat": 37.30223,
+      "lng": 126.865137
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/47111/%EB%AF%B8%EC%8A%A4%ED%84%B0%EA%BC%BC%EC%9E%A5%EC%96%B4%EB%A7%89%EC%B0%BD/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "17:00 - 03:00 다음 날",
+      "화": "17:00 - 03:00 다음 날",
+      "수": "17:00 - 03:00 다음 날",
+      "목": "17:00 - 03:00 다음 날",
+      "금": "17:00 - 03:00 다음 날",
+      "토": "17:00 - 03:00 다음 날",
+      "일": "17:00 - 03:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-072760239b96589c2661",
+    "placeName": "여우카츠",
+    "name": "여우카츠",
+    "address": "경기 안산시 단원구 초지로 116",
+    "location": {
+      "lat": 37.309116414156826,
+      "lng": 126.81531999473974
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd13666de5f0698877ffd",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:35.281Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-09"
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 1
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-08c973edb87573299e59",
+    "placeName": "큰집식당",
+    "name": "큰집식당",
+    "address": "경기 안산시 상록구 양지편로 32",
+    "location": {
+      "lat": 37.30917503110757,
+      "lng": 126.85084603073052
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%81%B0%EC%A7%91%EC%8B%9D%EB%8B%B9",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~21:30",
+      "목": "11:00~21:30",
+      "금": "11:00~21:30",
+      "일": "11:00~21:30",
+      "월": "11:00~21:30",
+      "화": "11:00~21:30"
+    }
+  },
+  {
+    "placeId": "naver-0c0819154543841d158b",
+    "placeName": "코운즈",
+    "name": "코운즈",
+    "address": "경기 안산시 상록구 성안2길 16",
+    "location": {
+      "lat": 37.30188543001919,
+      "lng": 126.83862566707886
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd86d66de5f0698947bf3",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:38.287Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-0c557a3f76689897fee9",
+    "placeName": "북경",
+    "name": "북경",
+    "address": "경기 안산시 상록구 안산천동로4길 1",
+    "location": {
+      "lat": 37.335277405067885,
+      "lng": 126.8496048084382
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca1066de5f06987a7394",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:32.858Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:30",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:30",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:30",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:30",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:30",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-0cf4d22e6c78a0e45de6",
+    "placeName": "필링파인",
+    "name": "필링파인",
+    "address": "경기 안산시 상록구 학사4길 12 101호",
+    "location": {
+      "lat": 37.299664,
+      "lng": 126.839759
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/44959/%ED%95%84%EB%A7%81%ED%8C%8C%EC%9D%B8/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "17:00 - 02:00 다음 날",
+      "화": "17:00 - 02:00 다음 날",
+      "수": "17:00 - 02:00 다음 날",
+      "목": "17:00 - 02:00 다음 날",
+      "금": "17:00 - 02:00 다음 날",
+      "토": "정보 없음",
+      "일": "정보 없음"
+    }
+  },
+  {
+    "placeId": "naver-0ea8b2f0620950faf184",
+    "placeName": "니지스시",
+    "name": "니지스시",
+    "address": "경기 안산시 단원구 광덕대로 174",
+    "location": {
+      "lat": 37.312101752531106,
+      "lng": 126.83127511124115
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0b66de5f06987a6754",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:32.858Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-08"
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 0
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-1230ced34839cf8cfadc",
+    "placeName": "정원옥",
+    "name": "정원옥",
+    "address": "경기 안산시 상록구 송호1길 98",
+    "location": {
+      "lat": 37.3120206697011,
+      "lng": 126.84814769807
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%A0%95%EC%9B%90%EC%98%A5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~20:30",
+      "목": "11:00~20:30",
+      "금": "11:00~20:30",
+      "토": "11:00~20:30",
+      "일": "11:00~20:30",
+      "월": "11:00~20:30",
+      "화": "11:00~20:30"
+    }
+  },
+  {
+    "placeId": "naver-13fff32c41b4194bc223",
+    "placeName": "시골순대",
+    "name": "시골순대",
+    "address": "경기 안산시 상록구 용신로 351",
+    "location": {
+      "lat": 37.30205376811188,
+      "lng": 126.86118448037416
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0f66de5f06987a70b6",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:32.858Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-09"
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 1
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-1445ebc9f057a869fed2",
+    "placeName": "휘니치로",
+    "name": "휘니치로",
+    "address": "경기 안산시 단원구 고잔1길 69",
+    "location": {
+      "lat": 37.318240788020326,
+      "lng": 126.84141662696796
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677ccb2466de5f06987cb44f",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:33.287Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "16:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "16:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "16:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "16:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "16:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-15e853a551d09e8ccfa2",
+    "placeName": "오승렬스시",
+    "name": "오승렬스시",
+    "address": "경기 안산시 상록구 상록수로 16",
+    "location": {
+      "lat": 37.30240490687959,
+      "lng": 126.86143148794585
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EC%98%A4%EC%8A%B9%EB%A0%AC%EC%8A%A4%EC%8B%9C",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~22:00",
+      "목": "11:00~22:00",
+      "금": "11:00~22:00",
+      "토": "11:00~22:00",
+      "일": "11:00~22:00",
+      "월": "11:00~22:00",
+      "화": "11:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-1786e63320641e1acd97",
+    "placeName": "우리동네커피공장",
+    "name": "우리동네 커피공장",
+    "address": "경기 안산시 상록구 한양대학로 26-1",
+    "location": {
+      "lat": 37.30153246258011,
+      "lng": 126.8404419469096
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca1266de5f06987a789d",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:32.901Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-08"
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 0
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-1937e91d50cd2fbf894f",
+    "placeName": "더 진심",
+    "name": "더진심",
+    "address": "경기 안산시 단원구 선부광장북로 36",
+    "location": {
+      "lat": 37.337276991360824,
+      "lng": 126.81203158470416
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%8D%94%EC%A7%84%EC%8B%AC",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "08:00~24:00",
+      "목": "08:00~24:00",
+      "금": "08:00~24:00",
+      "토": "08:00~24:00",
+      "일": "08:00~24:00",
+      "월": "08:00~24:00",
+      "화": "08:00~24:00"
+    }
+  },
+  {
+    "placeId": "naver-1d7e281c7c50afba23e0",
+    "placeName": "초지참숯불갈비",
+    "name": "초지참숯불갈비",
+    "address": "경기 안산시 상록구 석호로 177",
+    "location": {
+      "lat": 37.2966207610225,
+      "lng": 126.851448278137
+    },
+    "provider": "gogi",
+    "source": {
+      "label": "고기집.com 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://xn--299ayyj02d.com/%EB%A7%A4%EC%9E%A5/%EC%B4%88%EC%A7%80%EC%B0%B8%EC%88%AF%EB%B6%88%EA%B0%88%EB%B9%84",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-10",
+    "hoursWeekly": {
+      "일": "13:00 - 22:00",
+      "월": "14:00 - 22:30",
+      "화": "14:00 - 22:30",
+      "수": "13:30 - 22:30",
+      "목": "13:30 - 22:30",
+      "금": "13:30 - 22:30",
+      "토": "13:00 - 22:00"
+    }
+  },
+  {
+    "placeId": "naver-1e91be1db879ebc761e4",
+    "placeName": "안산제천닭발",
+    "name": "안산제천닭발",
+    "address": "경기 안산시 상록구 샘골로 130 2층",
+    "location": {
+      "lat": 37.295383,
+      "lng": 126.863294
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/45138/%EC%95%88%EC%82%B0%EC%A0%9C%EC%B2%9C%EB%8B%AD%EB%B0%9C/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "16:00 - 02:00 다음 날",
+      "화": "16:00 - 02:00 다음 날",
+      "수": "16:00 - 02:00 다음 날",
+      "목": "정보 없음",
+      "금": "16:00 - 02:00 다음 날",
+      "토": "16:00 - 02:00 다음 날",
+      "일": "16:00 - 02:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-1edbec17be6ccc9506c6",
+    "placeName": "온새미로",
+    "name": "온새미로",
+    "address": "경기 안산시 단원구 중앙대로 421",
+    "location": {
+      "lat": 37.330025620219125,
+      "lng": 126.78650420811341
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0c66de5f06987a6a7a",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:32.858Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-24c7cfefe6746b3532d3",
+    "placeName": "토종한우",
+    "name": "토종한우",
+    "address": "경기 안산시 단원구 광덕3로 97",
+    "location": {
+      "lat": 37.3130388613452,
+      "lng": 126.8234856385825
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%ED%86%A0%EC%A2%85%ED%95%9C%EC%9A%B0",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:20~22:00",
+      "목": "11:20~22:00",
+      "금": "11:20~22:00",
+      "토": "11:20~22:00",
+      "일": "11:20~22:00",
+      "월": "11:20~22:00",
+      "화": "11:20~22:00"
+    }
+  },
+  {
+    "placeId": "naver-2592043704fb2d6c9f73",
+    "placeName": "쁘띠 비스트로",
+    "name": "쁘띠 비스트로",
+    "address": "경기 안산시 단원구 화랑로 122 상가 2동 109호",
+    "location": {
+      "lat": 37.32578,
+      "lng": 126.801634
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/63963/%EC%81%98%EB%9D%A0-%EB%B9%84%EC%8A%A4%ED%8A%B8%EB%A1%9C/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "정보 없음",
+      "화": "17:00 - 24:00",
+      "수": "17:00 - 24:00",
+      "목": "17:00 - 24:00",
+      "금": "16:00 - 01:00 다음 날",
+      "토": "16:00 - 01:00 다음 날",
+      "일": "16:00 - 01:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-293a2f71989444ac83f2",
+    "placeName": "9292양꼬치",
+    "name": "9292 양꼬치",
+    "address": "경기 안산시 단원구 화랑로 159",
+    "location": {
+      "lat": 37.32404592583177,
+      "lng": 126.8061962759478
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd1fb66de5f069888e485",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:35.516Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-2a51a0e8c0148c91b582",
+    "placeName": "강남숯불닭갈비",
+    "name": "강남숯불닭갈비",
+    "address": "경기 안산시 단원구 다리간1길 18",
+    "location": {
+      "lat": 37.3144446570018,
+      "lng": 126.823608699867
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%EA%B0%95%EB%82%A8%EC%88%AF%EB%B6%88%EB%8B%AD%EA%B0%88%EB%B9%84",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~22:00",
+      "목": "11:00~22:00",
+      "금": "11:00~22:00",
+      "일": "15:30~22:00",
+      "월": "11:00~22:00",
+      "화": "11:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-2aa0fb6caeab53c00eb0",
+    "placeName": "중앙김밥",
+    "name": "중앙김밥",
+    "address": "경기 안산시 단원구 고잔1길 54",
+    "location": {
+      "lat": 37.318010384000125,
+      "lng": 126.83968006907966
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%A4%91%EC%95%99%EA%B9%80%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-01",
+    "hoursWeekly": {
+      "일": "00:00~24:00",
+      "월": "00:00~24:00",
+      "화": "00:00~24:00",
+      "수": "00:00~24:00",
+      "목": "00:00~24:00",
+      "금": "00:00~24:00",
+      "토": "00:00~24:00"
+    }
+  },
+  {
+    "placeId": "naver-2afedac2c323e956b624",
+    "placeName": "맛미정국수",
+    "name": "맛미정국수",
+    "address": "경기 안산시 단원구 선부광장1로 62",
+    "location": {
+      "lat": 37.3362837957481,
+      "lng": 126.811301705009
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%A7%9B%EB%AF%B8%EC%A0%95%EA%B5%AD%EC%88%98",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-01",
+    "hoursWeekly": {
+      "일": "10:00~21:00",
+      "월": "10:00~21:00",
+      "화": "10:00~21:00",
+      "수": "10:00~21:00",
+      "목": "10:00~21:00",
+      "금": "10:00~21:00",
+      "토": "10:00~21:00"
+    }
+  },
+  {
+    "placeId": "naver-2bb53f8fb5bbdb209e47",
+    "placeName": "춘천명물닭갈비막국수",
+    "name": "춘천명물닭갈비막국수",
+    "address": "경기 안산시 단원구 고잔2길 38",
+    "location": {
+      "lat": 37.31757301932321,
+      "lng": 126.83547636004181
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%B6%98%EC%B2%9C%EB%AA%85%EB%AC%BC%EB%8B%AD%EA%B0%88%EB%B9%84%EB%A7%89%EA%B5%AD%EC%88%98",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~02:00",
+      "목": "11:00~02:00",
+      "금": "11:00~02:00",
+      "토": "11:00~02:00",
+      "일": "11:00~02:00",
+      "월": "11:00~02:00",
+      "화": "11:00~02:00"
+    }
+  },
+  {
+    "placeId": "naver-2d24956dd0d528dd61e5",
+    "placeName": "동태밥상",
+    "name": "동태밥상",
+    "address": "경기 안산시 상록구 석호공원로 63",
+    "location": {
+      "lat": 37.301648003870696,
+      "lng": 126.85033930458054
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd62866de5f0698907cd8",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:37.477Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "10:30",
+            "endTime": "14:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "10:30",
+            "endTime": "14:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "10:30",
+            "endTime": "14:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "10:30",
+            "endTime": "14:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "10:30",
+            "endTime": "14:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-14"
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-08"
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 0
+      },
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 6
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-2d97346c731e53775a0d",
+    "placeName": "마리나베이커리",
+    "name": "마리나 베이커리",
+    "address": "경기 안산시 단원구 부부로8길 19",
+    "location": {
+      "lat": 37.33937901456543,
+      "lng": 126.79488761349802
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd06566de5f069885fe39",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:35.016Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-2fc3a05067420a106e09",
+    "placeName": "금산식당",
+    "name": "금산식당",
+    "address": "경기 안산시 상록구 천문2길 70-1",
+    "location": {
+      "lat": 37.305538750997414,
+      "lng": 126.8463906964117
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca1066de5f06987a7244",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:32.858Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-10"
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 2
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-30728b522c27680bf063",
+    "placeName": "워크 안산",
+    "name": "워크 안산",
+    "address": "경기 안산시 상록구 수인로 921",
+    "location": {
+      "lat": 37.298359839412896,
+      "lng": 126.90705308448189
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd3d766de5f06988c4c27",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:36.353Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-09"
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "18:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "19:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "18:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "18:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 1
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-33105e71eceb9a58e362",
+    "placeName": "면파파",
+    "name": "면파파",
+    "address": "경기 안산시 단원구 신길로1길 10",
+    "location": {
+      "lat": 37.3307914480557,
+      "lng": 126.78607756831
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EB%A9%B4%ED%8C%8C%ED%8C%8C",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~22:00",
+      "목": "11:00~22:00",
+      "금": "11:00~22:00",
+      "토": "11:00~22:00",
+      "일": "11:00~22:00",
+      "월": "11:00~22:00",
+      "화": "11:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-346f3a833491587d94f6",
+    "placeName": "카포",
+    "name": "카포",
+    "address": "경기 안산시 단원구 광덕1로 195 11호 ㅋㅍ",
+    "location": {
+      "lat": 37.308148,
+      "lng": 126.831614
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/45041/%EC%B9%B4%ED%8F%AC/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "11:00 - 02:00 다음 날",
+      "화": "11:00 - 02:00 다음 날",
+      "수": "11:00 - 02:00 다음 날",
+      "목": "11:00 - 02:00 다음 날",
+      "금": "11:00 - 02:00 다음 날",
+      "토": "11:00 - 02:00 다음 날",
+      "일": "11:00 - 02:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-36a6713b44c1114c5129",
+    "placeName": "통나무숲",
+    "name": "통나무숲",
+    "address": "경기 안산시 상록구 서해로 2954",
+    "location": {
+      "lat": 37.314429056083355,
+      "lng": 126.9144381470228
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd24466de5f0698896634",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:35.817Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-09"
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 1
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-37a2685f769ea9b7e881",
+    "placeName": "젠차이",
+    "name": "젠차이",
+    "address": "경기 안산시 상록구 본삼로 39",
+    "location": {
+      "lat": 37.3011306109177,
+      "lng": 126.864342707943
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EC%A0%A0%EC%B0%A8%EC%9D%B4",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~22:00",
+      "목": "10:00~22:00",
+      "금": "10:00~22:00",
+      "토": "10:00~22:00",
+      "일": "10:00~22:00",
+      "화": "10:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-37fd4f1eadb0fc98c372",
+    "placeName": "삼사오",
+    "name": "삼사오",
+    "address": "경기 안산시 상록구 이동공원로 53",
+    "location": {
+      "lat": 37.30913990122941,
+      "lng": 126.85014108117457
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%82%BC%EC%82%AC%EC%98%A4",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:30~23:00",
+      "목": "11:30~23:00",
+      "금": "11:30~23:00",
+      "토": "11:30~23:00",
+      "일": "11:30~23:00",
+      "화": "11:30~23:00"
+    }
+  },
+  {
+    "placeId": "naver-3a9565e6fa438fe2ff2d",
+    "placeName": "홍계 숯불닭갈비",
+    "name": "홍계숯불닭갈비",
+    "address": "경기 안산시 상록구 양지편로 31",
+    "location": {
+      "lat": 37.309338600530644,
+      "lng": 126.85051406583094
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%99%8D%EA%B3%84%EC%88%AF%EB%B6%88%EB%8B%AD%EA%B0%88%EB%B9%84",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "16:00~23:00",
+      "목": "16:00~23:00",
+      "금": "16:00~23:00",
+      "토": "16:00~23:00",
+      "월": "16:00~23:00",
+      "화": "16:00~23:00"
+    }
+  },
+  {
+    "placeId": "naver-3c984d3308c81772664c",
+    "placeName": "BOSSS커피",
+    "name": "BOSSS커피",
+    "address": "경기 안산시 상록구 광덕1로 366 1층 108~109호",
+    "location": {
+      "lat": 37.307491,
+      "lng": 126.850516
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/45095/bosss%EC%BB%A4%ED%94%BC/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "11:00 - 24:00",
+      "화": "11:00 - 24:00",
+      "수": "11:00 - 24:00",
+      "목": "11:00 - 24:00",
+      "금": "11:00 - 02:00 다음 날",
+      "토": "11:00 - 02:00 다음 날",
+      "일": "11:00 - 24:00"
+    }
+  },
+  {
+    "placeId": "naver-42986fc7850d9f6623a1",
+    "placeName": "오이시초밥",
+    "name": "오이시초밥",
+    "address": "경기 안산시 단원구 선부광장로 27",
+    "location": {
+      "lat": 37.336222075978895,
+      "lng": 126.81045666191034
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%98%A4%EC%9D%B4%EC%8B%9C%EC%B4%88%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "12:00~22:30",
+      "목": "12:00~22:30",
+      "금": "12:00~22:30",
+      "토": "12:00~22:30",
+      "일": "12:00~22:30",
+      "화": "12:00~22:30"
+    }
+  },
+  {
+    "placeId": "naver-438511a3026ffb5693b6",
+    "placeName": "마마교자관",
+    "name": "마마교자관",
+    "address": "경기 안산시 단원구 원곡로 34",
+    "location": {
+      "lat": 37.33006835815704,
+      "lng": 126.7929072167607
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EB%A7%88%EB%A7%88%EA%B5%90%EC%9E%90%EA%B4%80",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "00:00~24:00",
+      "목": "00:00~24:00",
+      "금": "00:00~24:00",
+      "토": "00:00~24:00",
+      "일": "00:00~24:00",
+      "월": "00:00~24:00",
+      "화": "00:00~24:00"
+    }
+  },
+  {
+    "placeId": "naver-4acf66b8a46471323916",
+    "placeName": "개미김밥",
+    "name": "개미김밥",
+    "address": "경기 안산시 상록구 용신로 387",
+    "location": {
+      "lat": 37.30185335195901,
+      "lng": 126.86522795623809
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EA%B0%9C%EB%AF%B8%EA%B9%80%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~21:30",
+      "목": "10:00~21:30",
+      "금": "10:00~21:30",
+      "토": "10:00~21:30",
+      "일": "10:00~21:30",
+      "월": "10:00~21:30",
+      "화": "10:00~21:30"
+    }
+  },
+  {
+    "placeId": "naver-4cdf3dadf70dcaa2d1a9",
+    "placeName": "왕손",
+    "name": "왕손",
+    "address": "경기 안산시 상록구 감골1로 37",
+    "location": {
+      "lat": 37.2882733382039,
+      "lng": 126.851276360887
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sari/restaurant/%EC%99%95%EC%86%90",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:30~22:00",
+      "목": "11:30~22:00",
+      "금": "11:30~22:00",
+      "토": "16:00~22:00",
+      "일": "16:00~22:00",
+      "화": "11:30~22:00"
+    }
+  },
+  {
+    "placeId": "naver-518bed89d20cb773bdbf",
+    "placeName": "비금도횟집",
+    "name": "비금도횟집",
+    "address": "경기 안산시 상록구 본오로 26",
+    "location": {
+      "lat": 37.28727295492011,
+      "lng": 126.86636342961545
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0f66de5f06987a70c3",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:32.858Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "12:00",
+            "endTime": "23:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "12:00",
+            "endTime": "23:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "12:00",
+            "endTime": "23:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "12:00",
+            "endTime": "23:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "12:00",
+            "endTime": "23:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "12:00",
+            "endTime": "23:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-08"
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 0
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-565d05f11ea71d2a21d4",
+    "placeName": "까사부오노",
+    "name": "까사부오노",
+    "address": "경기 안산시 상록구 샘골동길 76",
+    "location": {
+      "lat": 37.3003912982202,
+      "lng": 126.863939119757
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EA%B9%8C%EC%82%AC%EB%B6%80%EC%98%A4%EB%85%B8",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~20:00",
+      "목": "11:00~20:00",
+      "금": "11:00~20:00",
+      "토": "11:00~20:00",
+      "월": "11:00~20:00",
+      "화": "11:00~20:00"
+    }
+  },
+  {
+    "placeId": "naver-573145ea0426cd2548fd",
+    "placeName": "이어도",
+    "name": "이어도",
+    "address": "경기 안산시 상록구 광덕1로 379",
+    "location": {
+      "lat": 37.3086502361551,
+      "lng": 126.851249771596
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%9D%B4%EC%96%B4%EB%8F%84",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~02:00",
+      "목": "10:00~02:00",
+      "금": "10:00~02:00",
+      "토": "10:00~02:00",
+      "일": "10:00~02:00",
+      "월": "10:00~02:00",
+      "화": "10:00~02:00"
+    }
+  },
+  {
+    "placeId": "naver-5783ee5679786eb54188",
+    "placeName": "석석석",
+    "name": "석석석",
+    "address": "경기 안산시 단원구 고잔2길 42",
+    "location": {
+      "lat": 37.3175817426227,
+      "lng": 126.835918578278
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%84%9D%EC%84%9D%EC%84%9D",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:30~21:30",
+      "목": "11:30~21:30",
+      "금": "11:30~21:30",
+      "토": "11:30~21:30",
+      "일": "11:30~21:30",
+      "월": "11:30~21:30",
+      "화": "11:30~21:30"
+    }
+  },
+  {
+    "placeId": "naver-58a3439b07f1a348546f",
+    "placeName": "어람회센타",
+    "name": "어람회센타",
+    "address": "경기 안산시 상록구 샘골로 189",
+    "location": {
+      "lat": 37.30063188461553,
+      "lng": 126.86316607252631
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EC%96%B4%EB%9E%8C%ED%9A%8C%EC%84%BC%ED%83%80",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "14:00~23:40",
+      "목": "14:00~23:40",
+      "금": "14:00~23:40",
+      "토": "12:30~23:40",
+      "일": "12:30~23:40",
+      "화": "14:00~23:40"
+    }
+  },
+  {
+    "placeId": "naver-5a06bfdb5566aad94f56",
+    "placeName": "김금희감자탕순대국",
+    "name": "김금희감자탕순대국",
+    "address": "경기 안산시 단원구 선부광장1로 108",
+    "location": {
+      "lat": 37.3332556328076,
+      "lng": 126.812560664295
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B9%80%EA%B8%88%ED%9D%AC%EA%B0%90%EC%9E%90%ED%83%95%EC%88%9C%EB%8C%80%EA%B5%AD",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~22:00",
+      "목": "10:00~22:00",
+      "금": "10:00~22:00",
+      "토": "10:00~22:00",
+      "일": "10:00~22:00",
+      "월": "10:00~22:00",
+      "화": "10:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-5cc62f40f42cdbd99c31",
+    "placeName": "안산고대앞가마솥설렁탕",
+    "name": "안산고대앞가마솥설렁탕",
+    "address": "경기 안산시 단원구 적금로 120",
+    "location": {
+      "lat": 37.31864467228361,
+      "lng": 126.82624783309986
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%EC%95%88%EC%82%B0%EA%B3%A0%EB%8C%80%EC%95%9E%EA%B0%80%EB%A7%88%EC%86%A5%EC%84%A4%EB%A0%81%ED%83%95",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "08:00~21:00",
+      "목": "08:00~21:00",
+      "금": "08:00~21:00",
+      "토": "08:00~21:00",
+      "월": "08:00~21:00",
+      "화": "08:00~21:00"
+    }
+  },
+  {
+    "placeId": "naver-5cca8c055fc7ce184098",
+    "placeName": "찜집",
+    "name": "찜집",
+    "address": "경기 안산시 상록구 석호로 9",
+    "location": {
+      "lat": 37.3104852130933,
+      "lng": 126.848074078811
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%B0%9C%EC%A7%91",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~22:00",
+      "목": "11:00~22:00",
+      "금": "11:00~22:00",
+      "토": "11:00~22:00",
+      "일": "11:00~22:00",
+      "월": "11:00~22:00",
+      "화": "11:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-63562c74f0d1bda8e82e",
+    "placeName": "대풍진국순대",
+    "name": "대풍진국순대",
+    "address": "경기 안산시 단원구 선부광장로 27",
+    "location": {
+      "lat": 37.336275745005125,
+      "lng": 126.81021165657953
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%8C%80%ED%92%8D%EC%A7%84%EA%B5%AD%EC%88%9C%EB%8C%80",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "06:00~24:00",
+      "목": "06:00~24:00",
+      "금": "06:00~24:00",
+      "토": "06:00~24:00",
+      "일": "06:00~24:00",
+      "월": "06:00~24:00",
+      "화": "00:00~24:00"
+    }
+  },
+  {
+    "placeId": "naver-646d5cf1a6c1563111f3",
+    "placeName": "어머니는고등어를",
+    "name": "어머니는고등어를",
+    "address": "경기 안산시 상록구 광덕4로 440",
+    "location": {
+      "lat": 37.3048111022138,
+      "lng": 126.855759045009
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%96%B4%EB%A8%B8%EB%8B%88%EB%8A%94%EA%B3%A0%EB%93%B1%EC%96%B4%EB%A5%BC",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~21:30",
+      "목": "11:00~21:30",
+      "금": "11:00~21:30",
+      "토": "11:00~21:30",
+      "일": "11:00~21:30",
+      "월": "11:00~21:30",
+      "화": "11:00~21:30"
+    }
+  },
+  {
+    "placeId": "naver-66b8ddbad7e9879217d4",
+    "placeName": "왕뚜껑삼겹살",
+    "name": "왕뚜껑삼겹살",
+    "address": "경기 안산시 상록구 오목로3안길 11",
+    "location": {
+      "lat": 37.2907454898514,
+      "lng": 126.859896570628
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sari/restaurant/%EC%99%95%EB%9A%9C%EA%BB%91%EC%82%BC%EA%B2%B9%EC%82%B4",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "16:30~23:00",
+      "목": "16:30~23:00",
+      "금": "16:30~23:00",
+      "토": "16:30~23:00",
+      "일": "16:30~23:00",
+      "월": "16:30~23:00",
+      "화": "16:30~23:00"
+    }
+  },
+  {
+    "placeId": "naver-68082cf962c75b386a22",
+    "placeName": "호구피자",
+    "name": "호구피자",
+    "address": "경기 안산시 상록구 이동공원로 51",
+    "location": {
+      "lat": 37.3092487917942,
+      "lng": 126.850034830057
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%98%B8%EA%B5%AC%ED%94%BC%EC%9E%90",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~22:30",
+      "목": "11:00~22:30",
+      "금": "11:00~22:30",
+      "토": "11:00~22:30",
+      "일": "11:00~22:30",
+      "월": "11:00~22:30",
+      "화": "11:00~22:30"
+    }
+  },
+  {
+    "placeId": "naver-6a7e0622f418ed308998",
+    "placeName": "홀덤잭",
+    "name": "홀덤잭",
+    "address": "경기 안산시 단원구 광덕대로 155 퍼스트빌 2층 206호",
+    "location": {
+      "lat": 37.310505,
+      "lng": 126.829072
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/45053/%ED%99%80%EB%8D%A4%EC%9E%AD/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "19:00 - 03:00 다음 날",
+      "화": "19:00 - 03:00 다음 날",
+      "수": "19:00 - 03:00 다음 날",
+      "목": "19:00 - 03:00 다음 날",
+      "금": "19:00 - 03:00 다음 날",
+      "토": "19:00 - 03:00 다음 날",
+      "일": "19:00 - 03:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-6c345f48c8d6b9aa55af",
+    "placeName": "백두산생고기",
+    "name": "백두산생고기",
+    "address": "경기 안산시 상록구 본삼로 45",
+    "location": {
+      "lat": 37.3011568411562,
+      "lng": 126.865219047885
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EB%B0%B1%EB%91%90%EC%82%B0%EC%83%9D%EA%B3%A0%EA%B8%B0",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "15:00~24:00",
+      "목": "15:00~24:00",
+      "금": "15:00~24:00",
+      "토": "15:00~24:00",
+      "일": "15:00~24:00",
+      "월": "15:00~24:00",
+      "화": "15:00~24:00"
+    }
+  },
+  {
+    "placeId": "naver-6e05193429f69f593a6b",
+    "placeName": "포휘엔",
+    "name": "포휘엔",
+    "address": "경기 안산시 상록구 샘골로 164",
+    "location": {
+      "lat": 37.2983453659881,
+      "lng": 126.863435263923
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%ED%8F%AC%ED%9C%98%EC%97%94",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~21:00",
+      "금": "10:00~21:00",
+      "토": "10:00~21:00",
+      "일": "10:00~21:00",
+      "월": "10:00~21:00",
+      "화": "10:00~21:00"
+    }
+  },
+  {
+    "placeId": "naver-6ecc5a5e4c4914d0b32a",
+    "placeName": "라라라운지",
+    "name": "라라라운지",
+    "address": "경기 안산시 단원구 예술대학로3길 1 1층",
+    "location": {
+      "lat": 37.330227,
+      "lng": 126.838996
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/45170/%EB%9D%BC%EB%9D%BC%EB%9D%BC%EC%9A%B4%EC%A7%80/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "11:00 - 03:00 다음 날",
+      "화": "11:00 - 03:00 다음 날",
+      "수": "11:00 - 03:00 다음 날",
+      "목": "11:00 - 03:00 다음 날",
+      "금": "11:00 - 03:00 다음 날",
+      "토": "10:00 - 03:00 다음 날",
+      "일": "10:00 - 03:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-71c6d226b458b6753590",
+    "placeName": "사라이도네르케밥",
+    "name": "사라이도네르케밥",
+    "address": "경기 안산시 단원구 원곡로 16-1",
+    "location": {
+      "lat": 37.3287692097443,
+      "lng": 126.791958478121
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EC%82%AC%EB%9D%BC%EC%9D%B4%EB%8F%84%EB%84%A4%EB%A5%B4%EC%BC%80%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~24:00",
+      "목": "10:00~24:00",
+      "금": "10:00~24:00",
+      "토": "10:00~24:00",
+      "일": "10:00~24:00",
+      "월": "10:00~24:00",
+      "화": "10:00~24:00"
+    }
+  },
+  {
+    "placeId": "naver-7398f8034dce1e9a346b",
+    "placeName": "덕쿤",
+    "name": "덕쿤",
+    "address": "경기 안산시 단원구 원일1길 11",
+    "location": {
+      "lat": 37.326209004488746,
+      "lng": 126.7938023839014
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EB%8D%95%EC%BF%A4",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~22:00",
+      "목": "11:00~22:00",
+      "금": "11:00~22:00",
+      "토": "11:00~22:00",
+      "일": "11:00~22:00",
+      "화": "11:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-778fc6282627cfcd53cd",
+    "placeName": "곱창매니아 한우곱창",
+    "name": "곱창매니아 한우곱창",
+    "address": "경기 안산시 단원구 신길로1길 33-2",
+    "location": {
+      "lat": 37.332853,
+      "lng": 126.787013
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/63975/%EA%B3%B1%EC%B0%BD%EB%A7%A4%EB%8B%88%EC%95%84-%ED%95%9C%EC%9A%B0%EA%B3%B1%EC%B0%BD/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "12:00 - 00:30 다음 날",
+      "화": "15:00 - 00:30 다음 날",
+      "수": "12:00 - 00:30 다음 날",
+      "목": "12:00 - 00:30 다음 날",
+      "금": "12:00 - 00:30 다음 날",
+      "토": "12:00 - 00:30 다음 날",
+      "일": "12:00 - 00:30 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-78da85b30beab3583ab4",
+    "placeName": "포크너",
+    "name": "포크너",
+    "address": "경기 안산시 단원구 예술대학로 11",
+    "location": {
+      "lat": 37.318116022177165,
+      "lng": 126.83654580436709
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%ED%8F%AC%ED%81%AC%EB%84%88",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-01",
+    "hoursWeekly": {
+      "일": "11:00~22:00",
+      "월": "11:00~22:00",
+      "화": "11:00~22:00",
+      "수": "11:00~22:00",
+      "목": "11:00~22:00",
+      "금": "11:00~22:00",
+      "토": "11:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-79a5a34f186d9c4baa35",
+    "placeName": "연길초두부",
+    "name": "연길초두부",
+    "address": "경기 안산시 단원구 원본로 10-1",
+    "location": {
+      "lat": 37.3310896132704,
+      "lng": 126.791077602839
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EC%97%B0%EA%B8%B8%EC%B4%88%EB%91%90%EB%B6%80",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-01",
+    "hoursWeekly": {
+      "일": "10:00~22:00",
+      "월": "10:00~22:00",
+      "화": "10:00~22:00",
+      "수": "10:00~22:00",
+      "목": "10:00~22:00",
+      "금": "10:00~22:00",
+      "토": "10:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-7a161a0940bd208d41c8",
+    "placeName": "당당초밥",
+    "name": "당당초밥",
+    "address": "경기 안산시 단원구 산단로 325",
+    "location": {
+      "lat": 37.323829407081966,
+      "lng": 126.78570354613613
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EB%8B%B9%EB%8B%B9%EC%B4%88%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~19:30",
+      "목": "11:00~19:30",
+      "금": "11:00~19:30",
+      "토": "11:00~18:30",
+      "일": "11:30~18:00",
+      "월": "11:00~19:30",
+      "화": "11:00~19:30"
+    }
+  },
+  {
+    "placeId": "naver-7addf13930b2eea20411",
+    "placeName": "라멘켄큐조",
+    "name": "라멘켄큐조",
+    "address": "경기 안산시 상록구 용신로 393",
+    "location": {
+      "lat": 37.30188566962315,
+      "lng": 126.86591593108884
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sangnoksu/restaurant/%EB%9D%BC%EB%A9%98%EC%BC%84%ED%81%90%EC%A1%B0",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:30~19:30",
+      "목": "11:30~19:30",
+      "금": "11:30~19:30",
+      "토": "11:30~19:30",
+      "월": "11:30~19:30",
+      "화": "11:30~19:30"
+    }
+  },
+  {
+    "placeId": "naver-7d02a9c18466aa8745bf",
+    "placeName": "샤브설",
+    "name": "샤브설",
+    "address": "경기 안산시 상록구 광덕1로 369",
+    "location": {
+      "lat": 37.3081365450914,
+      "lng": 126.85045440472
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%83%A4%EB%B8%8C%EC%84%A4",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-01",
+    "hoursWeekly": {
+      "일": "10:30~21:30",
+      "월": "10:30~21:30",
+      "화": "10:30~21:30",
+      "수": "10:30~21:30",
+      "목": "10:30~21:30",
+      "금": "10:30~21:30",
+      "토": "10:30~21:30"
+    }
+  },
+  {
+    "placeId": "naver-7d65ef3c4b37fd6f8722",
+    "placeName": "은평감자탕",
+    "name": "은평감자탕",
+    "address": "경기 안산시 단원구 고잔2길 38",
+    "location": {
+      "lat": 37.31750000763603,
+      "lng": 126.83545621238652
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%9D%80%ED%8F%89%EA%B0%90%EC%9E%90%ED%83%95",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "09:30~22:30",
+      "목": "09:30~22:30",
+      "금": "09:30~22:30",
+      "토": "09:30~22:30",
+      "일": "09:30~22:30",
+      "월": "09:30~22:30",
+      "화": "09:30~22:30"
+    }
+  },
+  {
+    "placeId": "naver-815a65d745f54a0d33bb",
+    "placeName": "무근지김치찜찌개",
+    "name": "무근지김치찜찌개",
+    "address": "경기 안산시 단원구 선부광장남로 109 상가 가동 1층 106호",
+    "location": {
+      "lat": 37.329153,
+      "lng": 126.812725
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/45071/%EB%AC%B4%EA%B7%BC%EC%A7%80%EA%B9%80%EC%B9%98%EC%B0%9C%EC%B0%8C%EA%B0%9C/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "12:00 - 02:00 다음 날",
+      "화": "12:00 - 02:00 다음 날",
+      "수": "12:00 - 02:00 다음 날",
+      "목": "12:00 - 02:00 다음 날",
+      "금": "12:00 - 02:00 다음 날",
+      "토": "12:00 - 02:00 다음 날",
+      "일": "12:00 - 02:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-81bcb801013ec17673b2",
+    "placeName": "도깨비왕감자탕",
+    "name": "도깨비왕감자탕",
+    "address": "경기 안산시 상록구 양지편로 28",
+    "location": {
+      "lat": 37.3088878948241,
+      "lng": 126.850364930586
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EB%8F%84%EA%B9%A8%EB%B9%84%EC%99%95%EA%B0%90%EC%9E%90%ED%83%95",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "00:00~24:00",
+      "목": "00:00~24:00",
+      "금": "00:00~24:00",
+      "토": "00:00~24:00",
+      "일": "00:00~24:00",
+      "월": "00:00~24:00",
+      "화": "00:00~24:00"
+    }
+  },
+  {
+    "placeId": "naver-84eefd472c088a9107e8",
+    "placeName": "어썸레스토",
+    "name": "어썸레스토",
+    "address": "경기 안산시 상록구 이동공원로 43-1",
+    "location": {
+      "lat": 37.3096870562184,
+      "lng": 126.849609817132
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%96%B4%EC%8D%B8%EB%A0%88%EC%8A%A4%ED%86%A0",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~21:40",
+      "목": "11:00~21:40",
+      "금": "11:00~21:40",
+      "토": "11:00~21:40",
+      "일": "11:00~21:40",
+      "월": "11:00~21:40",
+      "화": "11:00~21:40"
+    }
+  },
+  {
+    "placeId": "naver-84f8d4ec5754567a1ae2",
+    "placeName": "곱창주의보",
+    "name": "곱창주의보",
+    "address": "경기 안산시 상록구 충장로 86",
+    "location": {
+      "lat": 37.2894508155254,
+      "lng": 126.857728078594
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sari/restaurant/%EA%B3%B1%EC%B0%BD%EC%A3%BC%EC%9D%98%EB%B3%B4",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "16:00~23:00",
+      "목": "16:00~23:00",
+      "금": "16:00~23:00",
+      "토": "16:00~23:00",
+      "월": "16:00~23:00",
+      "화": "16:00~23:00"
+    }
+  },
+  {
+    "placeId": "naver-884275022840eb0683af",
+    "placeName": "시골순대",
+    "name": "시골순대",
+    "address": "경기 안산시 상록구 석호로 352",
+    "location": {
+      "lat": 37.29312509412695,
+      "lng": 126.86970072369205
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0f66de5f06987a71a7",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:32.858Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-91ad6d04737ebc2a20b5",
+    "placeName": "시랑면옥",
+    "name": "시랑면옥",
+    "address": "경기 안산시 상록구 시낭로 39",
+    "location": {
+      "lat": 37.33460658494702,
+      "lng": 126.8542077580943
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677ccd7266de5f0698810e45",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:34.093Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-09"
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "11:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 1
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-951359f22f63895613a0",
+    "placeName": "옛맛시골아주매순대",
+    "name": "옛맛 시골아주매 순대",
+    "address": "경기 안산시 상록구 시낭로 38",
+    "location": {
+      "lat": 37.33441370640282,
+      "lng": 126.85368003569813
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cce0766de5f0698822610",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:34.328Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "06:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "06:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "06:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "06:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "06:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "06:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "06:00",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-95224372719d11c354ed",
+    "placeName": "스틸리",
+    "name": "스틸리",
+    "address": "경기 안산시 상록구 이동공원로 45",
+    "location": {
+      "lat": 37.309575219091876,
+      "lng": 126.84970779997442
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd36b66de5f06988b850e",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:36.235Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-09"
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "10:00",
+            "endTime": "20:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 1
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-9a7e33387503e0274cbd",
+    "placeName": "압구정경양식",
+    "name": "압구정경양식",
+    "address": "경기 안산시 단원구 적금로 120",
+    "location": {
+      "lat": 37.3186223651089,
+      "lng": 126.826396803108
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%EC%95%95%EA%B5%AC%EC%A0%95%EA%B2%BD%EC%96%91%EC%8B%9D",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~21:00",
+      "목": "10:00~21:00",
+      "금": "10:00~21:00",
+      "토": "10:00~21:00",
+      "월": "10:00~21:00",
+      "화": "10:00~21:00"
+    }
+  },
+  {
+    "placeId": "naver-9c063d9f45f668de3dd3",
+    "placeName": "소문난순대국",
+    "name": "소문난순대국",
+    "address": "경기 안산시 단원구 선부광장1로 66",
+    "location": {
+      "lat": 37.335976105150635,
+      "lng": 126.81159135301677
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%86%8C%EB%AC%B8%EB%82%9C%EC%88%9C%EB%8C%80%EA%B5%AD",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-01",
+    "hoursWeekly": {
+      "일": "09:00~22:00",
+      "월": "09:00~01:00",
+      "화": "09:00~01:00",
+      "수": "09:00~01:00",
+      "목": "09:00~01:00",
+      "금": "09:00~01:00",
+      "토": "09:00~01:00"
+    }
+  },
+  {
+    "placeId": "naver-9db2e59921993a7fddfa",
+    "placeName": "별미식당",
+    "name": "별미식당",
+    "address": "경기 안산시 상록구 이동로 12",
+    "location": {
+      "lat": 37.3077411643183,
+      "lng": 126.858660328702
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EB%B3%84%EB%AF%B8%EC%8B%9D%EB%8B%B9",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~22:00",
+      "목": "11:00~22:00",
+      "금": "11:00~22:00",
+      "토": "11:00~22:00",
+      "일": "11:00~22:00",
+      "월": "11:00~22:00",
+      "화": "11:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-a26ce3b7a72bb3b5d090",
+    "placeName": "후니네냉삼집",
+    "name": "후니네냉삼집",
+    "address": "경기 안산시 상록구 양지편로 37",
+    "location": {
+      "lat": 37.3097538346689,
+      "lng": 126.851115616843
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%9B%84%EB%8B%88%EB%84%A4%EB%83%89%EC%82%BC%EC%A7%91",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "15:00~23:00",
+      "목": "15:00~23:00",
+      "금": "15:00~23:00",
+      "토": "15:00~23:00",
+      "일": "15:00~23:00",
+      "월": "15:00~23:00",
+      "화": "15:00~23:00"
+    }
+  },
+  {
+    "placeId": "naver-a427731a3dae56a5b534",
+    "placeName": "고잔냉삼",
+    "name": "고잔냉삼",
+    "address": "경기 안산시 단원구 광덕4로 102",
+    "location": {
+      "lat": 37.31515856698084,
+      "lng": 126.82380445272759
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%EA%B3%A0%EC%9E%94%EB%83%89%EC%82%BC",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "16:00~22:30",
+      "목": "16:00~22:30",
+      "금": "16:00~22:30",
+      "토": "16:00~22:30",
+      "일": "16:00~22:30",
+      "월": "16:00~22:30",
+      "화": "16:00~22:30"
+    }
+  },
+  {
+    "placeId": "naver-a7a780e2b10be7a3c5dc",
+    "placeName": "돈카츠석",
+    "name": "돈카츠 석",
+    "address": "경기 안산시 단원구 광덕2로 155-10",
+    "location": {
+      "lat": 37.310703062910065,
+      "lng": 126.82794986122308
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677ccd2466de5f0698807527",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:33.979Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-12"
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "11:30",
+            "endTime": "21:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 4
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-ac66e58b86d90fadb32b",
+    "placeName": "이동고고갈비 연평도대장게장",
+    "name": "이동고고갈비연평도대장게장",
+    "address": "경기 안산시 상록구 광덕1로 370",
+    "location": {
+      "lat": 37.307703737706674,
+      "lng": 126.85092225754826
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%9D%B4%EB%8F%99%EA%B3%A0%EA%B3%A0%EA%B0%88%EB%B9%84%EC%97%B0%ED%8F%89%EB%8F%84%EB%8C%80%EC%9E%A5%EA%B2%8C%EC%9E%A5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:30~22:30",
+      "목": "11:30~22:30",
+      "금": "11:30~22:30",
+      "토": "11:30~22:30",
+      "일": "11:30~22:30",
+      "월": "11:30~22:30",
+      "화": "11:30~22:30"
+    }
+  },
+  {
+    "placeId": "naver-ade9e221c2b5639d4750",
+    "placeName": "백봉",
+    "name": "백봉",
+    "address": "경기 안산시 단원구 선부광장1로 82",
+    "location": {
+      "lat": 37.335507137329344,
+      "lng": 126.81245351176838
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%B0%B1%EB%B4%89",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~23:00",
+      "목": "11:00~23:00",
+      "금": "11:00~23:00",
+      "토": "11:00~23:00",
+      "일": "11:00~22:00",
+      "화": "11:00~23:00"
+    }
+  },
+  {
+    "placeId": "naver-b169d91a405aa3e4a39a",
+    "placeName": "영동곱창",
+    "name": "영동곱창",
+    "address": "경기 안산시 단원구 고잔2길 73",
+    "location": {
+      "lat": 37.3175598061221,
+      "lng": 126.839634771669
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%98%81%EB%8F%99%EA%B3%B1%EC%B0%BD",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~05:00",
+      "목": "11:00~05:00",
+      "금": "11:00~05:00",
+      "토": "11:00~05:00",
+      "일": "11:00~05:00",
+      "월": "11:00~05:00",
+      "화": "11:00~05:00"
+    }
+  },
+  {
+    "placeId": "naver-b200985a0113d8350293",
+    "placeName": "춘참치",
+    "name": "춘참치",
+    "address": "경기 안산시 단원구 선부광장로 27",
+    "location": {
+      "lat": 37.3364632941794,
+      "lng": 126.810295817566
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%B6%98%EC%B0%B8%EC%B9%98",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "15:00~01:00",
+      "목": "15:00~01:00",
+      "금": "15:00~01:00",
+      "토": "15:00~01:00",
+      "일": "15:00~01:00",
+      "월": "15:00~01:00",
+      "화": "15:00~01:00"
+    }
+  },
+  {
+    "placeId": "naver-b2d81dc47b34eae56bbc",
+    "placeName": "갈비이야기",
+    "name": "갈비이야기",
+    "address": "경기 안산시 단원구 선부광장로 15",
+    "location": {
+      "lat": 37.3358046502502,
+      "lng": 126.808622886367
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B0%88%EB%B9%84%EC%9D%B4%EC%95%BC%EA%B8%B0",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "목": "11:00~22:00",
+      "금": "11:00~22:00",
+      "토": "11:00~22:00",
+      "일": "11:00~22:00",
+      "화": "11:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-b3191721ab425f2fee9d",
+    "placeName": "이조칼국수",
+    "name": "이조칼국수",
+    "address": "경기 안산시 단원구 선부광장1로 124 1층",
+    "location": {
+      "lat": 37.3326386,
+      "lng": 126.8116665
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cca0c66de5f06987a6998",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": null,
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "openTimeList": [
+          {
+            "startTime": "09:30",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "remoteWaitingTimeList": [],
+        "reservableTimeList": [],
+        "breakTimeList": [],
+        "nowReserveTimeList": [],
+        "date": "2026-11-09",
+        "dayStatus": "BUSINESS"
+      },
+      {
+        "dayOfWeek": 2,
+        "openTimeList": [
+          {
+            "startTime": "09:30",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "remoteWaitingTimeList": [],
+        "reservableTimeList": [],
+        "breakTimeList": [],
+        "nowReserveTimeList": [],
+        "date": "2026-11-10",
+        "dayStatus": "BUSINESS"
+      },
+      {
+        "dayOfWeek": 3,
+        "openTimeList": [
+          {
+            "startTime": "09:30",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "remoteWaitingTimeList": [],
+        "reservableTimeList": [],
+        "breakTimeList": [],
+        "nowReserveTimeList": [],
+        "date": "2026-11-11",
+        "dayStatus": "BUSINESS"
+      },
+      {
+        "dayOfWeek": 4,
+        "openTimeList": [
+          {
+            "startTime": "09:30",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "remoteWaitingTimeList": [],
+        "reservableTimeList": [],
+        "breakTimeList": [],
+        "nowReserveTimeList": [],
+        "date": "2026-11-12",
+        "dayStatus": "BUSINESS"
+      },
+      {
+        "dayOfWeek": 5,
+        "openTimeList": [
+          {
+            "startTime": "09:30",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "remoteWaitingTimeList": [],
+        "reservableTimeList": [],
+        "breakTimeList": [],
+        "nowReserveTimeList": [],
+        "date": "2026-11-13",
+        "dayStatus": "BUSINESS"
+      },
+      {
+        "dayOfWeek": 6,
+        "openTimeList": [
+          {
+            "startTime": "09:30",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "remoteWaitingTimeList": [],
+        "reservableTimeList": [],
+        "breakTimeList": [],
+        "nowReserveTimeList": [],
+        "date": "2026-11-14",
+        "dayStatus": "BUSINESS"
+      },
+      {
+        "dayOfWeek": 0,
+        "openTimeList": [
+          {
+            "startTime": "09:30",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "remoteWaitingTimeList": [],
+        "reservableTimeList": [],
+        "breakTimeList": [],
+        "nowReserveTimeList": [],
+        "date": "2026-11-08",
+        "dayStatus": "BUSINESS"
+      }
+    ],
+    "regularHolidays": [],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-b3d8cbb8421282dce16e",
+    "placeName": "강남손칼국수",
+    "name": "강남손칼국수",
+    "address": "경기 안산시 단원구 선부광장1로 10",
+    "location": {
+      "lat": 37.3355248423634,
+      "lng": 126.807211937708
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B0%95%EB%82%A8%EC%86%90%EC%B9%BC%EA%B5%AD%EC%88%98",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~20:00",
+      "목": "10:00~20:00",
+      "금": "10:00~20:00",
+      "토": "10:00~20:00",
+      "일": "10:00~20:00",
+      "월": "10:00~20:00",
+      "화": "10:00~20:00"
+    }
+  },
+  {
+    "placeId": "naver-b4720b3cc77a842e946b",
+    "placeName": "오적항",
+    "name": "오적항",
+    "address": "경기 안산시 상록구 상록수로 40 1층",
+    "location": {
+      "lat": 37.302182,
+      "lng": 126.864262
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/44988/%EC%98%A4%EC%A0%81%ED%95%AD/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "15:00 - 02:00 다음 날",
+      "화": "15:00 - 02:00 다음 날",
+      "수": "15:00 - 02:00 다음 날",
+      "목": "15:00 - 02:00 다음 날",
+      "금": "15:00 - 02:00 다음 날",
+      "토": "15:00 - 02:00 다음 날",
+      "일": "15:00 - 02:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-b63a06fb1d8f479de9f3",
+    "placeName": "베트남고향식당",
+    "name": "베트남고향식당",
+    "address": "경기 안산시 단원구 중앙대로 443",
+    "location": {
+      "lat": 37.32887984706607,
+      "lng": 126.78879999313604
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%EB%B2%A0%ED%8A%B8%EB%82%A8%EA%B3%A0%ED%96%A5%EC%8B%9D%EB%8B%B9",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~22:00",
+      "목": "10:00~22:00",
+      "금": "10:00~22:00",
+      "토": "10:00~22:00",
+      "일": "10:00~22:00",
+      "월": "10:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-b7cd260545172294fa5a",
+    "placeName": "곱창마을",
+    "name": "곱창마을",
+    "address": "경기 안산시 단원구 선부광장1로 66",
+    "location": {
+      "lat": 37.336021901115046,
+      "lng": 126.81149306508473
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B3%B1%EC%B0%BD%EB%A7%88%EC%9D%84",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-01",
+    "hoursWeekly": {
+      "일": "00:00~24:00",
+      "월": "00:00~24:00",
+      "화": "00:00~24:00",
+      "수": "00:00~24:00",
+      "목": "00:00~24:00",
+      "금": "00:00~24:00",
+      "토": "00:00~24:00"
+    }
+  },
+  {
+    "placeId": "naver-b866903ae7932e3e6ff5",
+    "placeName": "팟타이",
+    "name": "팟타이",
+    "address": "경기 안산시 단원구 부부로 4",
+    "location": {
+      "lat": 37.32906946175085,
+      "lng": 126.78851850891444
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanstation/restaurant/%ED%8C%9F%ED%83%80%EC%9D%B4",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~20:30",
+      "목": "10:00~20:30",
+      "금": "10:00~20:30",
+      "토": "10:00~20:30",
+      "일": "10:00~20:30",
+      "월": "10:00~20:30"
+    }
+  },
+  {
+    "placeId": "naver-b9e5539c8adf2333c862",
+    "placeName": "망향식당",
+    "name": "망향식당",
+    "address": "경기 안산시 상록구 충장로 110",
+    "location": {
+      "lat": 37.2913851746106,
+      "lng": 126.858339068345
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/sari/restaurant/%EB%A7%9D%ED%96%A5%EC%8B%9D%EB%8B%B9",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~20:30",
+      "목": "10:00~20:30",
+      "금": "10:00~20:30",
+      "토": "10:00~20:30",
+      "일": "10:00~20:30",
+      "화": "10:00~20:30"
+    }
+  },
+  {
+    "placeId": "naver-baa444cc0468fc72e70b",
+    "placeName": "벌교추어탕",
+    "name": "벌교추어탕",
+    "address": "경기 안산시 단원구 석수로 4",
+    "location": {
+      "lat": 37.3368785565075,
+      "lng": 126.808547941333
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%B2%8C%EA%B5%90%EC%B6%94%EC%96%B4%ED%83%95",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "09:30~21:30",
+      "목": "09:30~21:30",
+      "금": "09:30~21:30",
+      "토": "09:30~21:30",
+      "일": "09:30~21:30",
+      "월": "09:30~21:30",
+      "화": "09:30~21:30"
+    }
+  },
+  {
+    "placeId": "naver-bc1f09c3175e4a7a7ad5",
+    "placeName": "베이커리 강빵",
+    "name": "베이커리강빵",
+    "address": "경기 안산시 단원구 이삭1길 7",
+    "location": {
+      "lat": 37.31282647365423,
+      "lng": 126.83750372067638
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC%EA%B0%95%EB%B9%B5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "12:00~21:00",
+      "목": "12:00~21:00",
+      "금": "12:00~21:00",
+      "토": "12:00~18:00",
+      "일": "12:00~20:00",
+      "월": "12:00~21:00",
+      "화": "12:00~21:00"
+    }
+  },
+  {
+    "placeId": "naver-bdd74d418da4f1a82e6e",
+    "placeName": "카니롱",
+    "name": "카니롱",
+    "address": "경기 안산시 단원구 선부광장1로 10",
+    "location": {
+      "lat": 37.3355248405342,
+      "lng": 126.807210809287
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%B9%B4%EB%8B%88%EB%A1%B1",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~20:30",
+      "목": "11:00~20:30",
+      "금": "11:00~20:30",
+      "토": "11:00~20:30",
+      "월": "11:00~20:30",
+      "화": "11:00~20:30"
+    }
+  },
+  {
+    "placeId": "naver-bde94b8114e1c4069787",
+    "placeName": "원조마포생갈비",
+    "name": "원조마포생갈비",
+    "address": "경기 안산시 단원구 광덕2로 193-15 덕산주차타워",
+    "location": {
+      "lat": 37.311203,
+      "lng": 126.831918
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/45200/%EC%9B%90%EC%A1%B0%EB%A7%88%ED%8F%AC%EC%83%9D%EA%B0%88%EB%B9%84/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "11:30 - 02:00 다음 날",
+      "화": "11:30 - 02:00 다음 날",
+      "수": "11:30 - 02:00 다음 날",
+      "목": "11:30 - 02:00 다음 날",
+      "금": "11:30 - 02:00 다음 날",
+      "토": "11:30 - 02:00 다음 날",
+      "일": "11:30 - 02:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-befa82add6efa298a3ee",
+    "placeName": "청화집",
+    "name": "청화집",
+    "address": "경기 안산시 상록구 이동로 7",
+    "location": {
+      "lat": 37.3082312021251,
+      "lng": 126.858555633897
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%B2%AD%ED%99%94%EC%A7%91",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:10~16:00",
+      "목": "11:10~16:00",
+      "금": "11:10~16:00",
+      "토": "11:10~16:00",
+      "월": "11:10~16:00",
+      "화": "11:10~16:00"
+    }
+  },
+  {
+    "placeId": "naver-bf7fa818da54e243cb86",
+    "placeName": "중앙홍두깨 칼국수",
+    "name": "중앙홍두깨칼국수",
+    "address": "경기 안산시 단원구 예술대학로 9",
+    "location": {
+      "lat": 37.3178294587205,
+      "lng": 126.836520477225
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%A4%91%EC%95%99%ED%99%8D%EB%91%90%EA%B9%A8%EC%B9%BC%EA%B5%AD%EC%88%98",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-01",
+    "hoursWeekly": {
+      "일": "11:00~19:30",
+      "월": "11:00~19:30",
+      "화": "11:00~19:30",
+      "수": "11:00~19:30",
+      "목": "11:00~19:30",
+      "금": "11:00~19:30",
+      "토": "11:00~19:30"
+    }
+  },
+  {
+    "placeId": "naver-bff170ae3768bf301d95",
+    "placeName": "국민초밥",
+    "name": "국민초밥",
+    "address": "경기 안산시 상록구 광덕1로 365",
+    "location": {
+      "lat": 37.30776587695027,
+      "lng": 126.85018328845558
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EA%B5%AD%EB%AF%BC%EC%B4%88%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:30~21:30",
+      "목": "10:30~21:30",
+      "금": "10:30~21:30",
+      "토": "10:30~21:30",
+      "일": "10:30~21:30",
+      "월": "10:30~21:30",
+      "화": "10:30~21:30"
+    }
+  },
+  {
+    "placeId": "naver-c1e61ba5e716cbd059f4",
+    "placeName": "한식뷔페 강사부",
+    "name": "한식뷔페강사부",
+    "address": "경기 안산시 상록구 광덕1로 380",
+    "location": {
+      "lat": 37.3080976462792,
+      "lng": 126.851764106892
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%95%9C%EC%8B%9D%EB%B7%94%ED%8E%98%EA%B0%95%EC%82%AC%EB%B6%80",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~21:00",
+      "목": "11:00~21:00",
+      "금": "11:00~21:00",
+      "토": "11:00~21:00",
+      "일": "11:00~21:00",
+      "월": "11:00~21:00",
+      "화": "11:00~21:00"
+    }
+  },
+  {
+    "placeId": "naver-c281dcb62f2b71e3db14",
+    "placeName": "중앙황소곱창",
+    "name": "중앙황소곱창",
+    "address": "경기 안산시 단원구 고잔2길 73 삼일빌딩",
+    "location": {
+      "lat": 37.317655,
+      "lng": 126.839645
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/63958/%EC%A4%91%EC%95%99%ED%99%A9%EC%86%8C%EA%B3%B1%EC%B0%BD/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "15:00 - 05:00 다음 날",
+      "화": "15:00 - 05:00 다음 날",
+      "수": "15:00 - 05:00 다음 날",
+      "목": "15:00 - 05:00 다음 날",
+      "금": "15:00 - 05:00 다음 날",
+      "토": "15:00 - 05:00 다음 날",
+      "일": "15:00 - 05:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-c32ce453bfbe19d48c1a",
+    "placeName": "선부돼지국밥",
+    "name": "선부돼지국밥",
+    "address": "경기 안산시 단원구 선부광장1로 186",
+    "location": {
+      "lat": 37.3340648781553,
+      "lng": 126.807030610837
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%84%A0%EB%B6%80%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "09:30~22:00",
+      "목": "09:30~22:00",
+      "금": "09:30~22:00",
+      "토": "09:30~22:00",
+      "일": "09:30~22:00",
+      "월": "09:30~22:00",
+      "화": "09:30~22:00"
+    }
+  },
+  {
+    "placeId": "naver-c381a0f3942b22afb4a6",
+    "placeName": "이조밥상",
+    "name": "이조밥상",
+    "address": "경기 안산시 단원구 선부광장1로 124",
+    "location": {
+      "lat": 37.3326809522044,
+      "lng": 126.811537521609
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%9D%B4%EC%A1%B0%EB%B0%A5%EC%83%81",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~21:00",
+      "목": "10:00~21:00",
+      "금": "10:00~21:00",
+      "토": "10:00~21:00",
+      "일": "10:00~21:00",
+      "월": "10:00~21:00",
+      "화": "10:00~21:00"
+    }
+  },
+  {
+    "placeId": "naver-ccffda424833f4e33b94",
+    "placeName": "강릉원조교동짬뽕",
+    "name": "강릉원조교동짬뽕",
+    "address": "경기 안산시 상록구 충장로5길 6",
+    "location": {
+      "lat": 37.30660904895387,
+      "lng": 126.85831277000202
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EA%B0%95%EB%A6%89%EC%9B%90%EC%A1%B0%EA%B5%90%EB%8F%99%EC%A7%AC%EB%BD%95",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~20:00",
+      "목": "11:00~20:00",
+      "금": "11:00~20:00",
+      "토": "11:00~20:00",
+      "일": "11:00~20:00",
+      "화": "11:00~20:00"
+    }
+  },
+  {
+    "placeId": "naver-cd879a05206a5dfb1fa4",
+    "placeName": "단원소곱창",
+    "name": "단원소곱창",
+    "address": "경기 안산시 단원구 선부광장1로 173",
+    "location": {
+      "lat": 37.3327306423204,
+      "lng": 126.806595082951
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%8B%A8%EC%9B%90%EC%86%8C%EA%B3%B1%EC%B0%BD",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "17:00~23:00",
+      "목": "17:00~23:00",
+      "금": "17:00~23:00",
+      "토": "17:00~23:00",
+      "일": "17:00~23:00",
+      "화": "17:00~23:00"
+    }
+  },
+  {
+    "placeId": "naver-d1ddc9d796e7d76c2277",
+    "placeName": "토레토카페케이앤제이",
+    "name": "토레토카페케이앤제이",
+    "address": "경기 안산시 단원구 너비울길 19 1층",
+    "location": {
+      "lat": 37.350273,
+      "lng": 126.822835
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/45065/%ED%86%A0%EB%A0%88%ED%86%A0%EC%B9%B4%ED%8E%98%EC%BC%80%EC%9D%B4%EC%95%A4%EC%A0%9C%EC%9D%B4/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "19:00 - 02:00 다음 날",
+      "화": "18:00 - 02:00 다음 날",
+      "수": "18:00 - 02:00 다음 날",
+      "목": "18:00 - 02:00 다음 날",
+      "금": "18:00 - 02:00 다음 날",
+      "토": "14:00 - 02:00 다음 날",
+      "일": "14:00 - 02:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-d25c8b3a94003bb476a9",
+    "placeName": "늘담소",
+    "name": "늘담소",
+    "address": "경기 안산시 단원구 선부광장로 23",
+    "location": {
+      "lat": 37.3362449975856,
+      "lng": 126.809580938835
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%8A%98%EB%8B%B4%EC%86%8C",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "09:30~21:30",
+      "목": "09:30~21:30",
+      "금": "09:30~21:30",
+      "토": "12:00~21:00",
+      "일": "09:30~21:30",
+      "월": "09:30~21:30",
+      "화": "09:30~21:30"
+    }
+  },
+  {
+    "placeId": "naver-d291c930f9a3a74a66f7",
+    "placeName": "낭만쏘맥x가성비최고의치킨집",
+    "name": "낭만쏘맥x가성비최고의치킨집",
+    "address": "경기 안산시 상록구 광덕산안길 14 101호 낭만쏘맥x가성비최고의치킨집",
+    "location": {
+      "lat": 37.335044,
+      "lng": 126.844302
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/44949/%EB%82%AD%EB%A7%8C%EC%8F%98%EB%A7%A5x%EA%B0%80%EC%84%B1%EB%B9%84%EC%B5%9C%EA%B3%A0%EC%9D%98%EC%B9%98%ED%82%A8%EC%A7%91/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "16:00 - 03:00 다음 날",
+      "화": "16:00 - 03:00 다음 날",
+      "수": "16:00 - 03:00 다음 날",
+      "목": "16:00 - 03:00 다음 날",
+      "금": "16:00 - 03:00 다음 날",
+      "토": "16:00 - 03:00 다음 날",
+      "일": "16:00 - 03:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-d44b90334c66494ae38c",
+    "placeName": "한초밥",
+    "name": "한초밥",
+    "address": "경기 안산시 단원구 화랑로 358",
+    "location": {
+      "lat": 37.3209246867808,
+      "lng": 126.827755508708
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/gojan/restaurant/%ED%95%9C%EC%B4%88%EB%B0%A5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:30~22:00",
+      "목": "11:30~22:00",
+      "금": "11:30~22:00",
+      "토": "11:00~22:00",
+      "일": "11:30~22:00",
+      "월": "11:30~22:00",
+      "화": "11:30~22:00"
+    }
+  },
+  {
+    "placeId": "naver-d7e817cb22aa6dab0cca",
+    "placeName": "목포뻘낙지",
+    "name": "목포뻘낙지",
+    "address": "경기 안산시 단원구 고잔1길 67",
+    "location": {
+      "lat": 37.3182643700569,
+      "lng": 126.840937435296
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EB%AA%A9%ED%8F%AC%EB%BB%98%EB%82%99%EC%A7%80",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~22:00",
+      "목": "10:00~22:00",
+      "금": "10:00~22:00",
+      "토": "10:00~22:00",
+      "일": "10:00~22:00",
+      "월": "10:00~22:00",
+      "화": "10:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-dc276310202d30d18883",
+    "placeName": "가화만사성",
+    "name": "가화만사성",
+    "address": "경기 안산시 단원구 선부광장1로 56",
+    "location": {
+      "lat": 37.3364641704434,
+      "lng": 126.81084310788225
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B0%80%ED%99%94%EB%A7%8C%EC%82%AC%EC%84%B1",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "00:00~24:00",
+      "목": "00:00~24:00",
+      "금": "00:00~24:00",
+      "토": "00:00~24:00",
+      "일": "00:00~24:00",
+      "월": "00:00~24:00",
+      "화": "00:00~24:00"
+    }
+  },
+  {
+    "placeId": "naver-dccdc2544691ec930049",
+    "placeName": "스시텐카이",
+    "name": "스시텐카이",
+    "address": "경기 안산시 단원구 고잔1길 7",
+    "location": {
+      "lat": 37.318673128753744,
+      "lng": 126.83414835944711
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%8A%A4%EC%8B%9C%ED%85%90%EC%B9%B4%EC%9D%B4",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-01",
+    "hoursWeekly": {
+      "일": "11:30~21:00",
+      "화": "11:30~21:00",
+      "수": "11:30~21:00",
+      "목": "11:30~21:00",
+      "금": "11:30~21:00",
+      "토": "11:30~21:00"
+    }
+  },
+  {
+    "placeId": "naver-def5bd377224787c0f13",
+    "placeName": "하늘에바다에",
+    "name": "하늘에바다에",
+    "address": "경기 안산시 단원구 대부황금로 1467 하늘에바다에",
+    "location": {
+      "lat": 37.286124,
+      "lng": 126.57265
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/45202/%ED%95%98%EB%8A%98%EC%97%90%EB%B0%94%EB%8B%A4%EC%97%90/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "10:00 - 02:00 다음 날",
+      "화": "10:00 - 02:00 다음 날",
+      "수": "10:00 - 02:00 다음 날",
+      "목": "10:00 - 02:00 다음 날",
+      "금": "10:00 - 02:00 다음 날",
+      "토": "09:00 - 02:00 다음 날",
+      "일": "09:00 - 02:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-df1d4148c0ffd0ca602f",
+    "placeName": "왕곱",
+    "name": "왕곱",
+    "address": "경기 안산시 단원구 고잔1길 54",
+    "location": {
+      "lat": 37.3179525514007,
+      "lng": 126.839557222269
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%99%95%EA%B3%B1",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-01",
+    "hoursWeekly": {
+      "일": "00:00~24:00",
+      "월": "00:00~24:00",
+      "화": "00:00~24:00",
+      "수": "00:00~24:00",
+      "목": "00:00~24:00",
+      "금": "00:00~24:00",
+      "토": "00:00~24:00"
+    }
+  },
+  {
+    "placeId": "naver-e35a66f260abe071020f",
+    "placeName": "임마누엘치킨",
+    "name": "임마누엘치킨",
+    "address": "경기 안산시 단원구 돈지섬길 75-15",
+    "location": {
+      "lat": 37.266881,
+      "lng": 126.562773
+    },
+    "provider": "hamgae",
+    "source": {
+      "label": "함께할개 공개 매장 시간표 · 네이버 플레이스 재인용",
+      "url": "https://hamgae.com/place/44972/%EC%9E%84%EB%A7%88%EB%88%84%EC%97%98%EC%B9%98%ED%82%A8/",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-07",
+    "hoursWeekly": {
+      "월": "11:00 - 03:00 다음 날",
+      "화": "11:00 - 03:00 다음 날",
+      "수": "11:00 - 03:00 다음 날",
+      "목": "11:00 - 03:00 다음 날",
+      "금": "11:00 - 03:00 다음 날",
+      "토": "11:00 - 03:00 다음 날",
+      "일": "11:00 - 03:00 다음 날"
+    }
+  },
+  {
+    "placeId": "naver-e49ff02c1df0b87f0999",
+    "placeName": "돈정",
+    "name": "돈정",
+    "address": "경기 안산시 단원구 선부광장로 27",
+    "location": {
+      "lat": 37.3361307358963,
+      "lng": 126.81024700285
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%8F%88%EC%A0%95",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "16:00~02:00",
+      "목": "16:00~02:00",
+      "금": "16:00~02:00",
+      "토": "16:00~02:00",
+      "월": "16:00~02:00",
+      "화": "16:00~02:00"
+    }
+  },
+  {
+    "placeId": "naver-e6daad16c09b9e235062",
+    "placeName": "최가네돈삼겹",
+    "name": "최가네돈삼겹",
+    "address": "경기 안산시 단원구 선부광장1로 10",
+    "location": {
+      "lat": 37.3355248423634,
+      "lng": 126.807211937708
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%B5%9C%EA%B0%80%EB%84%A4%EB%8F%88%EC%82%BC%EA%B2%B9",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~22:00",
+      "목": "11:00~22:00",
+      "금": "11:00~22:00",
+      "토": "11:00~22:00",
+      "일": "11:00~22:00",
+      "월": "11:00~22:00",
+      "화": "11:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-e9416f4cf41c2f5865c5",
+    "placeName": "탑 국수집",
+    "name": "탑 국수집",
+    "address": "경기 안산시 단원구 광덕3로 175-3",
+    "location": {
+      "lat": 37.31280627101338,
+      "lng": 126.83209056486183
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd15b66de5f069887c33b",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:35.319Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "22:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-ec1955984cf87e859ce4",
+    "placeName": "신창면옥",
+    "name": "신창면옥",
+    "address": "경기 안산시 단원구 선부광장1로 182",
+    "location": {
+      "lat": 37.333648390411156,
+      "lng": 126.80690078225176
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%8B%A0%EC%B0%BD%EB%A9%B4%EC%98%A5",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "09:00~21:00",
+      "목": "09:00~21:00",
+      "금": "09:00~21:00",
+      "토": "09:00~21:00",
+      "일": "09:00~21:00",
+      "월": "09:00~21:00",
+      "화": "09:00~21:00"
+    }
+  },
+  {
+    "placeId": "naver-ecdef51b050e1f9f4455",
+    "placeName": "일동토종순대감자탕 본관",
+    "name": "일동 토종 순대 감자탕 본관",
+    "address": "경기 안산시 상록구 안산대학로 104",
+    "location": {
+      "lat": 37.3094204345077,
+      "lng": 126.86949074719712
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd58166de5f06988f5711",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:37.024Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "REGULAR_HOLIDAY",
+        "date": "2026-11-09"
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "09:00",
+            "endTime": "21:30",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ],
+        "breakTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "17:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": false
+          }
+        ]
+      }
+    ],
+    "regularHolidays": [
+      {
+        "criterion": "WEEK",
+        "weekNo": null,
+        "dayOfWeek": 1
+      }
+    ],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-f34e659f0e6b3accdd66",
+    "placeName": "제주해양수산",
+    "name": "제주해양수산",
+    "address": "경기 안산시 단원구 선부광장로 17",
+    "location": {
+      "lat": 37.3359963241997,
+      "lng": 126.8090286353
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%A0%9C%EC%A3%BC%ED%95%B4%EC%96%91%EC%88%98%EC%82%B0",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~23:00",
+      "목": "11:00~23:00",
+      "금": "11:00~23:00",
+      "토": "11:00~23:00",
+      "일": "11:00~23:00",
+      "월": "11:00~23:00",
+      "화": "11:00~23:00"
+    }
+  },
+  {
+    "placeId": "naver-f5a62dc9d08545582a6a",
+    "placeName": "탑국수집",
+    "name": "탑국수집",
+    "address": "경기 안산시 상록구 광덕1로 356",
+    "location": {
+      "lat": 37.306827855541286,
+      "lng": 126.84943841628795
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%83%91%EA%B5%AD%EC%88%98%EC%A7%91",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "00:00~24:00",
+      "목": "00:00~24:00",
+      "금": "00:00~24:00",
+      "토": "00:00~24:00",
+      "일": "00:00~24:00",
+      "월": "00:00~24:00",
+      "화": "00:00~24:00"
+    }
+  },
+  {
+    "placeId": "naver-f60ac98750084ad3dd0f",
+    "placeName": "김서방명태이야기",
+    "name": "김서방명태이야기",
+    "address": "경기 안산시 단원구 선부광장1로 70",
+    "location": {
+      "lat": 37.3359360993646,
+      "lng": 126.811931110461
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EA%B9%80%EC%84%9C%EB%B0%A9%EB%AA%85%ED%83%9C%EC%9D%B4%EC%95%BC%EA%B8%B0",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:00~22:00",
+      "목": "10:00~22:00",
+      "금": "10:00~22:00",
+      "토": "10:00~22:00",
+      "일": "10:00~22:00",
+      "월": "10:00~22:00",
+      "화": "10:00~22:00"
+    }
+  },
+  {
+    "placeId": "naver-f7411229b8deb18f20a2",
+    "placeName": "본가해미청",
+    "name": "본가해미청",
+    "address": "경기 안산시 단원구 선부광장로 67",
+    "location": {
+      "lat": 37.33308793758374,
+      "lng": 126.81136160481543
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EB%B3%B8%EA%B0%80%ED%95%B4%EB%AF%B8%EC%B2%AD",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~21:30",
+      "목": "11:00~21:30",
+      "금": "11:00~21:30",
+      "토": "11:00~21:30",
+      "일": "11:00~21:30",
+      "월": "11:00~21:30",
+      "화": "11:00~21:30"
+    }
+  },
+  {
+    "placeId": "naver-f766562eb6bb8ce4ec8c",
+    "placeName": "옛날왕돈까스",
+    "name": "옛날왕돈까스",
+    "address": "경기 안산시 단원구 선부광장1로 10",
+    "location": {
+      "lat": 37.33540586095,
+      "lng": 126.807184031229
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/seonbu/restaurant/%EC%98%9B%EB%82%A0%EC%99%95%EB%8F%88%EA%B9%8C%EC%8A%A4",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:30~20:30",
+      "목": "10:30~20:30",
+      "금": "10:30~20:30",
+      "토": "10:30~20:30",
+      "일": "10:30~20:30",
+      "월": "10:30~20:30",
+      "화": "10:30~20:30"
+    }
+  },
+  {
+    "placeId": "naver-f797fb1c882ce99e4f19",
+    "placeName": "바다회포차",
+    "name": "바다회포차",
+    "address": "경기 안산시 상록구 충장로 579",
+    "location": {
+      "lat": 37.330018240640065,
+      "lng": 126.85028053693485
+    },
+    "provider": "tabling",
+    "source": {
+      "label": "테이블링 공개 매장 영업시간",
+      "url": "https://www.tabling.co.kr/place/677cd1cc66de5f0698889247",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-10-12T06:10:35.474Z",
+    "restaurantTimes": [
+      {
+        "dayOfWeek": 1,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-09",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 2,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-10",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 3,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-11",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 4,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-12",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 5,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-13",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 6,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-14",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      },
+      {
+        "dayOfWeek": 0,
+        "dayStatus": "BUSINESS",
+        "date": "2026-11-08",
+        "openTimeList": [
+          {
+            "startTime": "16:00",
+            "endTime": "00:00",
+            "isStartTimeNextDay": false,
+            "isEndTimeNextDay": true
+          }
+        ],
+        "breakTimeList": []
+      }
+    ],
+    "regularHolidays": [],
+    "temporaryHolidays": []
+  },
+  {
+    "placeId": "naver-fc2dc75e3360ac41362b",
+    "placeName": "이모네생선구이",
+    "name": "이모네생선구이",
+    "address": "경기 안산시 상록구 광덕1로 380",
+    "location": {
+      "lat": 37.3080967523212,
+      "lng": 126.85176974872
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%EC%9D%B4%EB%AA%A8%EB%84%A4%EC%83%9D%EC%84%A0%EA%B5%AC%EC%9D%B4",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "10:30~21:30",
+      "목": "10:30~21:30",
+      "금": "10:30~21:30",
+      "토": "10:30~15:00",
+      "월": "10:30~21:30",
+      "화": "10:30~21:30"
+    }
+  },
+  {
+    "placeId": "naver-fcd15c5bac63da52c216",
+    "placeName": "한양골왕곱창",
+    "name": "한양골왕곱창",
+    "address": "경기 안산시 상록구 광덕1로 369",
+    "location": {
+      "lat": 37.308136545101284,
+      "lng": 126.85045440471949
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/handaeap/restaurant/%ED%95%9C%EC%96%91%EA%B3%A8%EC%99%95%EA%B3%B1%EC%B0%BD",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-11-01",
+    "hoursWeekly": {
+      "일": "15:30~01:30",
+      "월": "15:30~01:30",
+      "화": "15:30~01:30",
+      "수": "15:30~01:30",
+      "목": "15:30~01:30",
+      "금": "15:30~01:30",
+      "토": "15:30~01:30"
+    }
+  },
+  {
+    "placeId": "naver-fece8f738726e5b478be",
+    "placeName": "스시일기",
+    "name": "스시일기",
+    "address": "경기 안산시 단원구 고잔1길 69",
+    "location": {
+      "lat": 37.3181462513601,
+      "lng": 126.841546893182
+    },
+    "provider": "dinner",
+    "source": {
+      "label": "오늘뭐먹지 공개 매장 시간표 · 카카오맵 재인용",
+      "url": "https://dinner.ambitstock.com/ansanjungang/restaurant/%EC%8A%A4%EC%8B%9C%EC%9D%BC%EA%B8%B0",
+      "checkedAt": "2026-11-08"
+    },
+    "observedAt": "2026-09-30",
+    "hoursWeekly": {
+      "수": "11:00~22:00",
+      "목": "11:00~22:00",
+      "금": "11:00~22:00",
+      "토": "11:00~22:00",
+      "일": "11:30~22:00",
+      "월": "11:00~22:00",
+      "화": "11:00~22:00"
+    }
+  }
+]
