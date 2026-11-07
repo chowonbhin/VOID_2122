@@ -20,13 +20,13 @@ test('신규 주민 순위와 점수 표시, 기존 주민 경험 변경으로 �
   await setup(page);
   await page.getByRole('button', { name: '추천 받기' }).click();
   await expect(cards(page).first()).toHaveAccessibleName(/1순위 중앙동/);
-  await expect(cards(page).first()).toContainText('추천 점수 240.7');
-  await expect(cards(page).nth(1)).toContainText('추천 점수 146.4');
+  await expect(cards(page).nth(1)).toHaveAccessibleName(/2순위 원곡동/);
+  await expect(page.locator('.recommend')).not.toContainText('점수');
   await page.getByRole('button', { name: '조건 변경' }).click();
   await page.getByLabel('중앙동 익숙함').selectOption('2');
   await page.getByRole('button', { name: '추천 받기' }).click();
   await expect(cards(page).first()).toHaveAccessibleName(/1순위 중앙동/);
-  await expect(cards(page).first()).toContainText('지역 Lv.2');
+  await expect(cards(page).first()).toContainText('친밀도 자주 가요');
   await page.reload();
   await expect(cards(page).first()).toHaveAccessibleName(/1순위 중앙동/);
 });
@@ -37,9 +37,9 @@ test('관심 활동 필터와 직접 탐색, 최대 거리로 후보 없음 안�
   await page.getByRole('button', { name: '추천 받기' }).click();
   await expect(cards(page)).toHaveCount(1);
   await expect(cards(page).first()).toHaveAccessibleName(/중앙동/);
-  await expect(cards(page).first()).toContainText('운영 확인 장소 수 3곳 · 전체 점수 조건 충족 1곳');
+  await expect(cards(page).first()).toContainText('추천 이유');
   const explore = page.getByRole('region', { name: '직접 탐색' });
-  await expect(explore).toContainText('운영·관심 활동·인지도 자료 조건을 충족하는 장소가 없어요');
+  await expect(explore).toContainText('지금 시각·관심 활동에 맞는 장소가 없어요');
   await explore.getByRole('button', { name: /원곡동/ }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('원곡동');
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
@@ -84,8 +84,7 @@ test('저장된 방문 기록을 추천 계산에 전달하고 새로고침해�
   });
   await page.reload();
   await expect(cards(page).first()).toHaveAccessibleName(/중앙동/);
-  await expect(cards(page).first()).toContainText('지역 Lv.1');
-  await expect(cards(page).first()).toContainText('추천 점수 188.9');
+  await expect(cards(page).first()).toContainText('친밀도 가끔 가요');
   await page.reload();
   await expect(cards(page).first()).toHaveAccessibleName(/중앙동/);
 });

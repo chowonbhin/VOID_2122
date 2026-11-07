@@ -105,16 +105,14 @@ test('golden path', async ({ page }) => {
         await expect(page.locator('[data-region-id]')).toHaveCount(25);
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 중앙동/);
         await expect(cards.nth(1)).toHaveAccessibleName(/2순위 원곡동/);
-        await expect(cards.nth(0)).toContainText('지역 점수 합산 3/20개');
-        await expect(cards.nth(0)).toContainText('후보 부족 · 17개 부족');
-        await expect(cards.nth(1)).toContainText('지역 점수 합산 2/20개');
-        await expect(page.getByRole('button', { name: /^지도 중앙동/ })).toContainText('240.7점');
-        await expect(page.getByText('3,000+', { exact: true })).toBeVisible();
+        // Main map shows familiarity, not scores; the recommendation order is kept.
+        await expect(page.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/친밀도 잘 몰라요 · 오늘의 추천 1순위/);
+        await expect(page.getByText('테라코타 테두리: 오늘의 추천', { exact: true })).toBeVisible();
+        await expect(page.locator('.recommend')).not.toContainText('점수');
         for (const card of [cards.nth(0), cards.nth(1)]) {
           await expect(card).toContainText('추천 이유');
-          await expect(card).toContainText('시작점 직선거리');
-          await expect(card).toContainText('운영 확인 장소 수');
-          await expect(card).toContainText('운영정보 미확인 1곳');
+          await expect(card).toContainText('출발지에서 직선거리');
+          await expect(card).toContainText('친밀도 잘 몰라요');
         }
       },
     );
@@ -165,14 +163,13 @@ test('golden path', async ({ page }) => {
         await expect(cards).toHaveCount(3);
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 중앙동/);
         await expect(cards.nth(1)).toHaveAccessibleName(/2순위 원곡동/);
-        await expect(cards.first()).toContainText('지역 Lv.1');
-        await expect(cards.first()).toContainText('유동인구 감점 3.21점');
-        await expect(page.getByRole('button', { name: /^지도 중앙동/ })).toContainText('188.9점');
+        await expect(cards.first()).toContainText('친밀도 가끔 가요');
+        await expect(page.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/친밀도 가끔 가요/);
         await page.reload();
         await expect(page.getByRole('heading', { name: '추천 행정동' })).toBeVisible();
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 중앙동/);
         await expect(cards.nth(1)).toHaveAccessibleName(/2순위 원곡동/);
-        await expect(cards.first()).toContainText('지역 Lv.1');
+        await expect(cards.first()).toContainText('친밀도 가끔 가요');
         await page.getByRole('button', { name: /^지도 중앙동/ }).click();
         const visits = page.getByRole('region', { name: '시연 산책 공간 방문 기록', exact: true });
         await expect(visits.locator('time')).toHaveText(DEMO.date);
@@ -180,7 +177,7 @@ test('golden path', async ({ page }) => {
         await expect(visits.getByText('지역 Lv.1', { exact: true })).toBeVisible();
         await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 중앙동/);
-        await expect(page.getByText('3,000+', { exact: true })).toBeVisible();
+        await expect(page.getByText('테라코타 테두리: 오늘의 추천', { exact: true })).toBeVisible();
       },
     );
   } finally {

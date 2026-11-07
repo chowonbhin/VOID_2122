@@ -94,3 +94,6 @@
 .score-scale-ticks { grid-column: 1 / -1; display: flex; justify-content: space-between; font-size: 11px; }
 .score-no-data { display: flex; align-items: center; gap: 6px; }
 .score-no-data i { width: 12px; height: 12px; border-radius: 4px; background: #e3e7e3; border: 1px solid #b9c6bb; }
+/* 내 동네: hatching over the familiarity fill (no icon). */
+.ansan-home-hatch { pointer-events: none; stroke: #293e39; stroke-width: 2px; vector-effect: non-scaling-stroke; }
+.ansan-legend .legend-home i { background: repeating-linear-gradient(45deg, #293e39aa 0 2px, transparent 2px 5px), #eee6d6; }

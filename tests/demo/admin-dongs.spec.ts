@@ -13,7 +13,7 @@ test('all 25 dongs are reachable, including unresearched dongs; urban/island sli
   await expect(map.locator('[data-region-id]')).toHaveCount(25);
   await expect(map.locator('.dong-directory button')).toHaveCount(25);
   await expect(page.getByRole('list', { name: '추천 순위' }).getByRole('button')).toHaveCount(3);
-  await expect(map.getByRole('button', { name: /^지도 부곡동/ })).toHaveAccessibleName(/데이터 준비 중/);
+  await expect(map.getByRole('button', { name: /^지도 부곡동/ })).toHaveAccessibleName(/장소 준비 중/);
   await expect(map.getByRole('button', { name: /^지도 대부동/ })).toHaveCount(0);
   await map.getByRole('button', { name: '대부도 →', exact: true }).click();
   await expect(map.getByRole('button', { name: /^지도 대부동/ })).toBeVisible();
@@ -50,7 +50,7 @@ test('real venue supports visits but cannot be scored without measured popularit
   await page.getByRole('button', { name: '조건 변경' }).click();
   await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-14T14:00');
   await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(page.getByRole('button', { name: /^지도 일동 ·/ })).toHaveAccessibleName(/추천 조건 미충족/);
+  await expect(page.getByRole('button', { name: /^지도 일동 ·/ })).not.toHaveAccessibleName(/오늘의 추천/);
   await page.getByRole('button', { name: /^지도 일동 ·/ }).click();
   await expect(list).toContainText('운영정보 미확인');
   await expect(list).toContainText('운영정보 검토 기간 밖');
@@ -109,11 +109,10 @@ test('home dong survives reload, opens island memories, and samples never change
   await expect(map.getByRole('img', { name: '내 동네 · 대부동' })).toBeVisible();
   await expect(map.getByRole('button', { name: /^지도 대부동/ })).toBeVisible();
   await page.reload();
-  // The MultiPolygon bounding-box centre is sea. Tap the visible home pin inside the dong.
-  const home = map.getByRole('img', { name: '내 동네 · 대부동' });
-  await home.scrollIntoViewIfNeeded();
-  const box = await home.boundingBox();
-  await page.mouse.click(box!.x + box!.width / 2, box!.y + box!.height / 2);
+  // 내 동네 is hatched, not pinned. The MultiPolygon bounding-box centre is sea, so open it by keyboard.
+  await expect(map.getByRole('img', { name: '내 동네 · 대부동' })).toHaveCount(1);
+  await map.getByRole('button', { name: /^지도 대부동/ }).focus();
+  await page.keyboard.press('Enter');
   await page.getByRole('button', { name: '대부도 해솔길 바다 추억 보기', exact: true }).click();
   await expect(page.getByText(/구봉도 낙조가 최고/)).toBeVisible();
   await expect(page.getByText(/시연용 추억 예시/)).toBeVisible();

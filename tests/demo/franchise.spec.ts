@@ -33,11 +33,10 @@ test('franchise/unverified exclusions apply to scores, cards, markers and event 
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await setup(page);
-  await expect(page.getByText('프랜차이즈와 분류 미확인 장소는 추천·점수에서 제외합니다.', { exact: true })).toBeVisible();
+  // Score values are pinned in score.test.ts; the main screen shows only the resulting order.
   const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
-  await expect(cards.first()).toContainText('추천 점수 240.7');
-  await expect(cards.nth(1)).toContainText('추천 점수 146.4');
-  await expect(cards.first()).toContainText('운영 확인 장소 수 3곳');
+  await expect(cards.first()).toHaveAccessibleName(/1순위 중앙동/);
+  await expect(cards.nth(1)).toHaveAccessibleName(/2순위 원곡동/);
   await page.getByRole('button', { name: /^지도 중앙동/ }).click();
   await checkPlaces(page, 'A');
   await shot(page, 'excluded-franchise');
@@ -75,10 +74,10 @@ test('previously saved excluded visits remain stored but never alter Lv, scores 
   });
   await page.reload();
   const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
-  await expect(cards.first()).toContainText('지역 Lv.0');
-  await expect(cards.first()).toContainText('추천 점수 240.7');
-  await expect(cards.nth(1)).toContainText('지역 Lv.0');
-  await expect(cards.nth(1)).toContainText('추천 점수 146.4');
+  await expect(cards.first()).toHaveAccessibleName(/1순위 중앙동/);
+  await expect(cards.first()).toContainText('친밀도 잘 몰라요');
+  await expect(cards.nth(1)).toHaveAccessibleName(/2순위 원곡동/);
+  await expect(cards.nth(1)).toContainText('친밀도 잘 몰라요');
   await expect(page.locator('[data-region-id="dong-4127353200"]')).toHaveAttribute('fill', before!);
   expect(await page.evaluate(() => JSON.parse(localStorage.getItem('ansan-explore/v1')!).visits)).toHaveLength(2);
 });
