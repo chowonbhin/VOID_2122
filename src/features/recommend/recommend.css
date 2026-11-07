@@ -1,8 +1,5 @@
 .recommend { line-height: 1.6; }
 .recommend > h1 { font-size: 15px; font-weight: 700; color: var(--muted); letter-spacing: 0; margin: 0 0 6px; }
-.recommend-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
-.recommend-summary p { font-size: 14px; margin: 0; }
-.recommend-summary button { margin: 0 0 0 auto; }
 .recommend-note { color: var(--muted); font-size: 13px; }
 
 .recommend-section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin: 32px 0 4px; }
@@ -29,7 +26,6 @@
 .recommend button:focus-visible { outline: 3px solid var(--terracotta); outline-offset: 3px; }
 @media (max-width: 720px) {
   .recommend > .cards { grid-template-columns: minmax(0, 1fr); }
-  .recommend-summary button { margin-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .recommend-link { transition: none; } }
 /* Demo notice floats over the UI: chip bottom-right, panel opens above it on hover/focus/tap. */
