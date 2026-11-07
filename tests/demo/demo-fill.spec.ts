@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import fs from 'node:fs';
+import { setupStep, submitSetup } from './setupSteps';
 const base = process.env.BASE_URL ?? 'http://localhost:3000';
 const target = '시연 중앙동 체험 20';
 const regionId = 'dong-4127353200';
@@ -7,9 +8,11 @@ const list = (page: Page) => page.getByRole('list', { name: '행정동 장소 �
 const panel = (page: Page) => page.getByRole('region', { name: `${target} 방문 기록`, exact: true });
 async function start(page: Page) {
   await page.goto(`${base}/#/setup`);
+  await setupStep(page, '내 동네');
   await page.getByLabel('내 동네 선택').selectOption('4127353200');
+  await setupStep(page, '외출 조건');
   await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
-  await page.getByRole('button', { name: '추천 받기' }).click();
+  await submitSetup(page);
   await expect(page.getByRole('list', { name: '추천 순위' }).getByRole('button')).toHaveCount(25);
 }
 
@@ -41,11 +44,14 @@ test('twentieth visit, reload, mode switches and deletion keep the correct top 2
 
 test('filters still apply; the visible preset restores 25 full dongs including Daebu without erasing familiarity', async ({ page }) => {
   await page.goto(`${base}/#/setup`);
+  await setupStep(page, '지역별 익숙함');
   await page.getByLabel('중앙동 익숙함').selectOption('2');
+  await setupStep(page, '외출 조건');
   await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T02:00');
   await page.getByLabel('최대 거리 (km)').fill('1');
+  await setupStep(page, '관심 활동');
   await page.getByRole('checkbox', { name: '자연·산책' }).check();
-  await page.getByRole('button', { name: '추천 받기' }).click();
+  await submitSetup(page);
   const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
   await expect(cards.filter({ hasText: '중앙동' })).toContainText('지역 점수 합산 5/20개');
   await page.getByRole('button', { name: '25개 동 시연 조건 적용' }).click();

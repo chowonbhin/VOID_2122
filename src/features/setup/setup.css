@@ -12,7 +12,7 @@
 .setup-checkbox input { width: 18px; height: 18px; min-height: 0; padding: 0; accent-color: var(--accent); }
 .setup-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .setup-error { color: #9b2020; line-height: 1.6; }
-.setup .primary { justify-self: start; }
+
 @media (max-width: 560px) { .setup-grid { grid-template-columns: 1fr; gap: 0; } }
 .setup-dongs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .setup-dongs summary { cursor: pointer; font-weight: 600; padding: 8px 0; }
@@ -20,3 +20,19 @@
 .setup-dong-grid label { font-size: 13px; }
 .setup-dong-grid select { font-size: 12px; padding: 8px 2px; }
 @media (max-width: 560px) { .setup-dongs { grid-template-columns: 1fr; gap: 8px; } }
+.setup-steps { display: grid; gap: 10px; }
+.setup-progress { margin: 0; color: var(--muted); font-size: 13px; font-weight: 700; }
+.setup-steps ol { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
+.setup-steps button { display: grid; justify-items: center; gap: 6px; width: 100%; padding: 6px 2px; border: 0; background: transparent; color: var(--muted); font-size: 12px; line-height: 1.3; text-align: center; }
+.setup-step-dot { display: grid; place-items: center; width: 30px; height: 30px; border: 1.5px solid var(--line-strong); border-radius: 50%; background: var(--card); font-weight: 800; transition: background-color .2s, border-color .2s, color .2s; }
+.setup-steps button.done .setup-step-dot { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.setup-steps button[aria-current="step"] { color: var(--accent); font-weight: 800; }
+.setup-steps button[aria-current="step"] .setup-step-dot { border-color: var(--accent); background: var(--accent); color: #fff; }
+.setup-step-name { word-break: keep-all; }
+.setup-panel { animation: setup-step-in .22s ease-out; }
+.setup-panel:focus { outline: none; }
+.setup-actions { display: flex; gap: 12px; justify-content: flex-end; }
+.setup-actions .primary { margin-left: auto; }
+@keyframes setup-step-in { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .setup-panel { animation: none; } .setup-step-dot { transition: none; } }
+@media (max-width: 560px) { .setup-actions button { flex: 1; } }

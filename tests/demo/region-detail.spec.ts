@@ -1,4 +1,5 @@
 import { test, expect, type Page } from './baseline';
+import { setupStep, submitSetup } from './setupSteps';
 const base = process.env.BASE_URL ?? 'http://127.0.0.1:3000';
 const list = (page: Page) => page.getByRole('list', { name: '행정동 장소 추천' }).locator(':scope > li');
 const markers = (page: Page) => page.getByRole('region', { name: '안산 탐험 지도' }).getByRole('button', { name: /지도에서 선택$/ });
@@ -63,12 +64,14 @@ test('initial familiarity does not invent visits and empty state recovers', asyn
 
 test('recommended filter consumes real shared scores and excludes closed/unknown places', async ({ page }) => {
   await page.goto(`${base}/#/setup`);
+  await setupStep(page, '출발지');
   await page.getByLabel('출발지 이름').fill('시연 출발지');
   await page.getByLabel('위도', { exact: true }).fill('37.3219');
   await page.getByLabel('경도', { exact: true }).fill('126.8309');
+  await setupStep(page, '외출 조건');
   await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
   await page.getByLabel('최대 거리 (km)').fill('10');
-  await page.getByRole('button', { name: '추천 받기' }).click();
+  await submitSetup(page);
   await page.getByRole('button', { name: /^지도 중앙동/ }).click();
   await page.getByRole('button', { name: '추천 장소', exact: true }).click();
   await expect(list(page)).toHaveCount(3);

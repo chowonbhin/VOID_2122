@@ -1,15 +1,18 @@
 import { test, expect, type Page } from './baseline';
 import fs from 'node:fs';
+import { setupStep, submitSetup } from './setupSteps';
 const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:3001';
 const evidence = process.env.MAP_EVIDENCE_DIR ?? `.claude/state/evidence/map-footfall-${new Date().toISOString().replace(/[:.]/g, '-')}`;
 async function setup(page: Page) {
   await page.goto(`${baseURL}/#/setup`);
+  await setupStep(page, '출발지');
   await page.getByLabel('출발지 이름').fill('안산 시연 출발지');
   await page.getByLabel('위도', { exact: true }).fill('37.3219');
   await page.getByLabel('경도', { exact: true }).fill('126.8309');
+  await setupStep(page, '외출 조건');
   await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
   await page.getByLabel('최대 거리 (km)').fill('10');
-  await page.getByRole('button', { name: '추천 받기' }).click();
+  await submitSetup(page);
 }
 const rankCards = (page: Page) => page.getByRole('list', { name: '추천 순위' }).getByRole('button');
 async function shot(page: Page, name: string) {
@@ -75,9 +78,10 @@ test('same familiarity penalizes the busier region more, with mobile map and det
   await page.setViewportSize({ width: 390, height: 844 });
   await setup(page);
   await page.getByRole('button', { name: '조건 변경' }).click();
+  await setupStep(page, '지역별 익숙함');
   await page.getByLabel('중앙동 익숙함').selectOption('2');
   await page.getByLabel('원곡동 익숙함').selectOption('2');
-  await page.getByRole('button', { name: '추천 받기' }).click();
+  await submitSetup(page);
   const cards = rankCards(page);
   await expect(cards.filter({ hasText: '중앙동' })).toContainText('유동인구 감점 6.43점');
   await expect(cards.filter({ hasText: '원곡동' })).toContainText('유동인구 감점 2.81점');
@@ -111,8 +115,9 @@ test('schematic uses no external map requests and excluded regions remain explor
   await setup(page);
   await context.setOffline(true);
   await page.getByRole('button', { name: '조건 변경' }).click();
+  await setupStep(page, '외출 조건');
   await page.getByLabel('최대 거리 (km)').fill('0.1');
-  await page.getByRole('button', { name: '추천 받기' }).click();
+  await submitSetup(page);
   await expect(page.getByText('조건에 맞는 추천 행정동이 없어요', { exact: true })).toBeVisible();
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
   await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toContainText('조건 미충족');
