@@ -44,3 +44,12 @@
 .region-recommend .cards { margin: 0; }
 .region-nearby { background: #FFFEFA; border: 1.5px solid var(--line-strong); }
 .region-nearby-link { margin-top: 8px; color: var(--action-primary); font-weight: 800; }
+/* Photo space on each place card (replaces the '지도에서 강조' text button; tap = show on map). */
+.region-place-titles { flex: 1; min-width: 0; }
+.region-place-titles .region-category { margin: 0; }
+.region-detail .place-photo { flex: 0 0 84px; width: 84px; height: 84px; padding: 0; overflow: hidden; border-radius: 16px; border: 1.5px solid var(--line-strong); background: #EEE6D6; }
+.region-detail .place-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.region-detail .place-photo.empty { border-style: dashed; background: repeating-linear-gradient(45deg, #f3ecdd 0 6px, #efe6d4 6px 12px); }
+.place-photo-empty { display: grid; place-items: center; gap: 2px; height: 100%; color: #8a7a5c; font-size: 12px; font-weight: 700; }
+.region-detail .place-photo[aria-pressed="true"] { border: 3px solid var(--action-primary); }
+.region-detail .place-photo:focus-visible { outline: 3px solid #994B32; outline-offset: 3px; }

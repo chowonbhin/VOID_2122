@@ -13,6 +13,7 @@ import { DongMap, type MapMarker } from '../map/DongMap';
 import { Memories, type MemoryItem } from './Memories';
 import { loadSadongMemoryPreview, SADONG_ID, SADONG_MEMORY_KEY, type SadongMemoryPreview } from './sadongMemories';
 import { VisitPanel } from '../visits/VisitPanel';
+import { PlacePhoto, usePlaceThumbnails } from './PlacePhoto';
 import './region.css';
 
 const statusLabel = { open: '운영 중', closed: '휴무·이용 마감', unknown: '운영정보 미확인' };
@@ -56,6 +57,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
     ? loadSadongMemoryPreview(content.places)
     : { value: { enabled: false, placeIds: [] } as SadongMemoryPreview, error: '' });
   const cards = useRef<Record<string, HTMLLIElement | null>>({});
+  const thumbnails = usePlaceThumbnails();
   const region = regionById(regionId);
   if (!region) return <section>
     <h1>행정동을 찾을 수 없어요</h1>
@@ -166,11 +168,13 @@ function RegionDetail({ regionId }: { regionId: string }) {
           return <li key={place.id} ref={(element) => { cards.current[place.id] = element; }}
             className={`place${place.id === selectedPlaceId ? ' selected-place' : ''}`}
             data-rated={(scored?.rating ?? placeRating(place)).status === 'measured'}>
-            <p className="region-category">{visitedIds.has(place.id) ? '내가 다녀온 곳' : '아직 안 가본 곳'}</p>
             <div className="region-place-heading">
-              <h2>{index + 1}. {place.name}</h2>
-              <button aria-label={`${place.name} 카드에서 선택`} aria-pressed={place.id === selectedPlaceId}
-                onClick={() => { setSelectedId(place.id); setMapPage(Math.max(0, Math.floor(locatedPlaces.findIndex(item => item.id === place.id) / 8))); }}>지도에서 강조</button>
+              <div className="region-place-titles">
+                <p className="region-category">{visitedIds.has(place.id) ? '내가 다녀온 곳' : '아직 안 가본 곳'}</p>
+                <h2>{index + 1}. {place.name}</h2>
+              </div>
+              <PlacePhoto placeId={place.id} name={place.name} personalUrl={thumbnails[place.id]} pressed={place.id === selectedPlaceId}
+                onSelect={() => { setSelectedId(place.id); setMapPage(Math.max(0, Math.floor(locatedPlaces.findIndex(item => item.id === place.id) / 8))); }} />
             </div>
             <p>{CATEGORY_LABELS[place.category]} · {statusLabel[status.status]}</p>
             {!scored?.eligible && state.search && <p>지금 조건에서는 추천하지 않지만 둘러볼 수 있어요.</p>}
