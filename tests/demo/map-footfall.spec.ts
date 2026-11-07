@@ -11,7 +11,6 @@ async function setup(page: Page) {
   await page.getByLabel('최대 거리 (km)').fill('10');
   await page.getByRole('button', { name: '추천 받기' }).click();
 }
-const rankCards = (page: Page) => page.getByRole('list', { name: '추천 순위' }).getByRole('button');
 async function shot(page: Page, name: string) {
   await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toBeVisible();
   fs.mkdirSync(evidence, { recursive: true });
@@ -20,6 +19,10 @@ async function shot(page: Page, name: string) {
   console.log(`map evidence: ${evidence}/${name}.png`);
 }
 
+const dongOnMap = (page: Page, name: string) => page.getByRole('region', { name: '안산 탐험 지도' }).getByRole('button', { name: new RegExp(`^지도 ${name} ·`) });
+const recommendedDongs = (page: Page) => page.locator('.ansan-region.recommended');
+const placePicks = (page: Page) => page.getByRole('list', { name: '장소 추천' }).getByRole('button');
+
 test('Ansan schematic → places → visit changes score and shade, persistence and deletion restore', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -27,8 +30,8 @@ test('Ansan schematic → places → visit changes score and shade, persistence 
   await setup(page);
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
   // The map speaks in familiarity and recommendation order; score and footfall values live in unit tests.
-  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/친밀도 잘 몰라요 · 오늘의 추천 1순위/);
-  await expect(map.getByRole('button', { name: /^지도 원곡동/ })).toHaveAccessibleName(/친밀도 잘 몰라요 · 오늘의 추천 2순위/);
+  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/아직 낯선 동네 · 오늘의 추천 1순위/);
+  await expect(map.getByRole('button', { name: /^지도 원곡동/ })).toHaveAccessibleName(/아직 낯선 동네 · 오늘의 추천 2순위/);
   await expect(map.getByText('테라코타 테두리: 오늘의 추천', { exact: true })).toBeVisible();
   await shot(page, 'map-before-visit');
   const aFill = await map.locator('[data-region-id="dong-4127353200"]').getAttribute('fill');
@@ -51,12 +54,11 @@ test('Ansan schematic → places → visit changes score and shade, persistence 
   await visit.getByLabel('방문일', { exact: true }).fill('2026-11-08');
   await visit.getByRole('button', { name: '방문 기록', exact: true }).click();
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
-  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/친밀도 가끔 가요/);
-  await expect(rankCards(page).first()).toHaveAccessibleName(/중앙동/);
-  await expect(rankCards(page).first()).toContainText('친밀도 가끔 가요');
+  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/정이 드는 동네/);
+  await expect(placePicks(page).first()).toHaveAccessibleName(/중앙동 장소 보기/);
   await expect(map.getByRole('button', { name: /^지도 원곡동/ })).toHaveAccessibleName(/2순위/);
   await page.reload();
-  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/친밀도 가끔 가요 · 오늘의 추천 1순위/);
+  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/정이 드는 동네 · 오늘의 추천 1순위/);
   await expect(map.locator('[data-region-id="dong-4127353200"]')).not.toHaveAttribute('fill', aFill!);
   // Unchanged familiarity keeps exactly the same shade.
   await expect(map.locator('[data-region-id="dong-4127354500"]')).toHaveAttribute('fill', bFill!);
@@ -64,7 +66,7 @@ test('Ansan schematic → places → visit changes score and shade, persistence 
   await map.getByRole('button', { name: /^지도 중앙동/ }).click();
   await visit.getByRole('button', { name: '2026-11-08 방문 기록 삭제', exact: true }).click();
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
-  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/친밀도 잘 몰라요 · 오늘의 추천 1순위/);
+  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/아직 낯선 동네 · 오늘의 추천 1순위/);
   await expect(map.locator('[data-region-id="dong-4127353200"]')).toHaveAttribute('fill', aFill!);
   expect(errors).toEqual([]);
 });
@@ -76,9 +78,8 @@ test('same familiarity penalizes the busier region more, with mobile map and det
   await page.getByLabel('중앙동 익숙함').selectOption('2');
   await page.getByLabel('원곡동 익숙함').selectOption('2');
   await page.getByRole('button', { name: '추천 받기' }).click();
-  const cards = rankCards(page);
-  await expect(cards.filter({ hasText: '중앙동' })).toContainText('친밀도 자주 가요');
-  await expect(cards.filter({ hasText: '원곡동' })).toContainText('친밀도 자주 가요');
+  await expect(dongOnMap(page, '중앙동')).toHaveAccessibleName(/내가 좋아하는 동네/);
+  await expect(dongOnMap(page, '원곡동')).toHaveAccessibleName(/내가 좋아하는 동네/);
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
   await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toBeVisible();
   await expect(map.getByRole('button', { name: /^지도 원곡동/ })).toBeVisible();

@@ -29,14 +29,17 @@ async function shot(page: Page, name: string) {
   console.log(`franchise evidence: ${evidence}/${name}.png`);
 }
 
+const dongOnMap = (page: Page, name: string) => page.getByRole('region', { name: '안산 탐험 지도' }).getByRole('button', { name: new RegExp(`^지도 ${name} ·`) });
+const recommendedDongs = (page: Page) => page.locator('.ansan-region.recommended');
+const placePicks = (page: Page) => page.getByRole('list', { name: '장소 추천' }).getByRole('button');
+
 test('franchise/unverified exclusions apply to scores, cards, markers and event display', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await setup(page);
   // Score values are pinned in score.test.ts; the main screen shows only the resulting order.
-  const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
-  await expect(cards.first()).toHaveAccessibleName(/1순위 중앙동/);
-  await expect(cards.nth(1)).toHaveAccessibleName(/2순위 원곡동/);
+  await expect(dongOnMap(page, '중앙동')).toHaveAccessibleName(/오늘의 추천 1순위/);
+  await expect(dongOnMap(page, '원곡동')).toHaveAccessibleName(/오늘의 추천 2순위/);
   await page.getByRole('button', { name: /^지도 중앙동/ }).click();
   await checkPlaces(page, 'A');
   await shot(page, 'excluded-franchise');
@@ -73,11 +76,8 @@ test('previously saved excluded visits remain stored but never alter Lv, scores 
     localStorage.setItem('ansan-explore/v1', JSON.stringify(state));
   });
   await page.reload();
-  const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
-  await expect(cards.first()).toHaveAccessibleName(/1순위 중앙동/);
-  await expect(cards.first()).toContainText('친밀도 잘 몰라요');
-  await expect(cards.nth(1)).toHaveAccessibleName(/2순위 원곡동/);
-  await expect(cards.nth(1)).toContainText('친밀도 잘 몰라요');
+  await expect(dongOnMap(page, '중앙동')).toHaveAccessibleName(/아직 낯선 동네 · 오늘의 추천 1순위/);
+  await expect(dongOnMap(page, '원곡동')).toHaveAccessibleName(/아직 낯선 동네 · 오늘의 추천 2순위/);
   await expect(page.locator('[data-region-id="dong-4127353200"]')).toHaveAttribute('fill', before!);
   expect(await page.evaluate(() => JSON.parse(localStorage.getItem('ansan-explore/v1')!).visits)).toHaveLength(2);
 });

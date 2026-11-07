@@ -39,3 +39,12 @@
 .demo-notice p { margin: .45rem 0; line-height: 1.65; }
 .demo-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .7rem; }
 .demo-actions button { min-height: 44px; }
+
+/* 장소 추천: scrolls inside its own box so the page stays short. */
+.place-recommend-list { list-style: none; margin: 12px 0 0; padding: 4px 6px 4px 0; display: grid; gap: 10px; max-height: min(60vh, 520px); overflow-y: auto; overscroll-behavior: contain; border-radius: var(--radius); }
+.place-pick { width: 100%; display: grid; gap: 4px; text-align: left; padding: 14px 16px; background: var(--card); border: 1.5px solid var(--line-strong); }
+.place-pick:hover { border-color: var(--accent); }
+.place-pick strong { font-size: 18px; }
+.place-pick-kicker { color: var(--accent); font-weight: 700; font-size: 13px; }
+.place-pick-meta { color: var(--muted); font-size: 13px; }
+.recommend-explore .cards { max-height: min(50vh, 420px); overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; }

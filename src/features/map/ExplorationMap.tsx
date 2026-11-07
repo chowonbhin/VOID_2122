@@ -1,6 +1,6 @@
 import { useRef, useState, type KeyboardEvent } from 'react';
 import type { Region, RegionRecommendation } from '../../domain/types';
-import { dongByCode, dongs, dongsOfRegion, geoSource, mapAreas, pathOfDong, wholeBox } from './ansanGeo';
+import { dongByCode, dongs, dongsOfRegion, mapAreas, pathOfDong, wholeBox } from './ansanGeo';
 import './map.css';
 
 interface Props {
@@ -16,9 +16,9 @@ interface Props {
 // Fill shows how close the user is to each 동네 (region Lv from the shared engine), never a score.
 // Recommendation is only a terracotta outline; 내 동네 is hatched.
 export const FAMILIARITY = [
-  { label: '잘 몰라요', fill: '#E1EBDD' },
-  { label: '가끔 가요', fill: '#B6CFB5' },
-  { label: '자주 가요', fill: '#82AE98' },
+  { label: '아직 낯선 동네', fill: '#E1EBDD' },
+  { label: '정이 드는 동네', fill: '#B6CFB5' },
+  { label: '내가 좋아하는 동네', fill: '#82AE98' },
 ] as const;
 
 export function ExplorationMap({ regions, recommendations, levels, homeDongCode, onRegionSelect }: Props) {
@@ -43,7 +43,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
     const rank = recommendations.findIndex(item => item.regionId === region.id) + 1;
     const level = levels[region.id] ?? 0;
     const recommended = !!item && item.score > 0;
-    const familiarity = `친밀도 ${FAMILIARITY[level].label}`;
+    const familiarity = FAMILIARITY[level].label;
     const status = recommended ? `${familiarity} · 오늘의 추천 ${rank}순위` : region.placeIds.length ? familiarity : `${familiarity} · 장소 준비 중`;
     // data-score is a hidden test hook for recomputation; the score is never shown.
     return [{ region, dong, recommended, level, status, fill: FAMILIARITY[level].fill, score: item?.score ?? null,
@@ -59,7 +59,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
       <div>
         <span className="score-map-kicker">ANSAN · MY NEIGHBORHOODS</span>
         <h2>나의 안산 지도</h2>
-        <p className="score-map-intro">색이 짙을수록 나와 가까운 동네예요.</p>
+        <p className="score-map-intro">색이 짙을수록 내가 좋아하는 동네예요.</p>
       </div>
       <svg className="ansan-overview" viewBox={wholeBox.join(' ')} aria-hidden="true">
         {dongs.map(d => <path key={d.code} d={pathOfDong(d)} fillRule="evenodd" />)}
@@ -98,22 +98,11 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
         </svg>
       </div>)}
     </div>
-    <p className="map-hover" aria-live="polite">{focus ? `${focus.region.name} · ${focus.status}` : '작은 동은 아래 목록에서 고를 수 있어요.'}</p>
+    <p className="map-hover" aria-live="polite">{focus ? `${focus.region.name} · ${focus.status}` : '동네를 누르면 그 동네로 들어가요.'}</p>
     <ul className="ansan-legend" aria-label="지도 범례">
       {FAMILIARITY.map((item, level) => <li key={level}><i style={{ background: item.fill }} />{item.label}</li>)}
       <li className="legend-recommend"><i />테라코타 테두리: 오늘의 추천</li>
       <li className="legend-home"><i />빗금: 내 동네</li>
     </ul>
-    <div className="dong-directory" aria-label="25개 행정동 목록">
-      {(['단원구', '상록구'] as const).map(district => <details key={district} open>
-        <summary>{district} · {shapes.filter(s => s.region.district === district).length}개 동</summary>
-        <div className="dong-buttons">{shapes.filter(s => s.region.district === district).map(shape =>
-          <button key={shape.region.id} aria-label={`${shape.region.name} 행정동 선택 · ${shape.status}`} onClick={() => onRegionSelect(shape.region.id)}>
-            <i style={{ background: shape.fill }} /><span>{shape.region.name}</span>
-            <small>{FAMILIARITY[shape.level].label}{shape.dong.code === home?.code ? ' · 내 동네' : ''}</small>
-          </button>)}</div>
-      </details>)}
-    </div>
-    <p className="map-note">경계: SGIS 공공누리 제1유형 · <a href={geoSource.url} target="_blank" rel="noreferrer">vuski/admdongkor</a> 가공 · 2026-10-01 · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>. 탐색용 경계이며 오차가 있을 수 있습니다.</p>
   </section>;
 }

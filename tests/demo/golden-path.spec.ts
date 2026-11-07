@@ -84,10 +84,11 @@ test('golden path', async ({ page }) => {
       await page.getByRole('button', { name: '탐험 시작' }).click();
       await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toBeVisible();
       await expect(page.getByRole('complementary', { name: '시연 데이터 설정' })).toContainText('가상 후보 25곳');
-      const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
-      await expect(cards).toHaveCount(25);
-      // Scores stay off screen (data-score only); cards show familiarity and reasons.
-      expect((await cards.allTextContents()).every(text => text.includes('추천 이유') && text.includes('친밀도') && !text.includes('점수'))).toBe(true);
+      await expect(page.locator('.ansan-region.recommended')).toHaveCount(25);
+      // Scores stay off screen (data-score only); place picks say where and why, never a score.
+      const picks = page.getByRole('list', { name: '장소 추천' }).getByRole('button');
+      await expect(picks).toHaveCount(50);
+      expect((await picks.allTextContents()).every(text => text.includes('오늘의 추천') && !text.includes('점수'))).toBe(true);
       await expect(page.locator('[data-region-id]')).toHaveCount(25);
       beforeScore = Number(await mapScore().getAttribute('data-score'));
       expect(beforeScore).toBeGreaterThan(1000);
@@ -125,10 +126,8 @@ test('golden path', async ({ page }) => {
       expect(await others()).toEqual(otherScores);
       await page.reload();
       await expect(mapScore()).toHaveAttribute('data-score', String(afterScore));
-      const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
-      await expect(cards).toHaveCount(25);
-      await expect(cards.filter({ hasText: '중앙동' })).toContainText('친밀도 가끔 가요');
-      await expect(page.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/친밀도 가끔 가요/);
+      await expect(page.locator('.ansan-region.recommended')).toHaveCount(25);
+      await expect(page.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/정이 드는 동네/);
       await page.getByRole('button', { name: /^지도 중앙동/ }).click();
       await page.getByRole('button', { name: '가본 장소', exact: true }).click();
       const panel = page.getByRole('region', { name: `${VISITED} 방문 기록`, exact: true });

@@ -7,6 +7,8 @@ import { go } from '../../route';
 import { ExplorationMap, FAMILIARITY } from '../map/ExplorationMap';
 import './recommend.css';
 
+const PICKS_PER_DONG = 2;
+
 export function RecommendPage() {
   const { state } = useAppState();
   const { search } = state;
@@ -37,6 +39,15 @@ export function RecommendPage() {
     ? content.regions
     : content.regions.filter((region) => result.excluded.some((item) => item.regionId === region.id));
 
+  // 장소 추천: the top places (engine order) of each recommended 동네, in recommendation order.
+  const picks = ranked.flatMap((item, index) => {
+    const region = content.regions.find((candidate) => candidate.id === item.regionId)!;
+    return item.placeIds.slice(0, PICKS_PER_DONG).flatMap((id) => {
+      const place = content.places.find((candidate) => candidate.id === id);
+      return place ? [{ place, region, rank: index + 1, level: item.level }] : [];
+    });
+  });
+
   return (
     <section className="recommend">
       <p className="eyebrow">동네 발견</p>
@@ -56,32 +67,22 @@ export function RecommendPage() {
         homeDongCode={state.profile.homeDongCode}
         onRegionSelect={(regionId) => go({ name: 'region', regionId })} onDongSelect={(code) => go({ name: 'dong', code })} />
 
-      {ranked.length > 0 && <div className="recommend-section-head">
-        <h2>오늘은 이 동네 어때요?</h2>
-        <span>낯선 동네의 발견</span>
-      </div>}
-      {ranked.length > 0 ? (
-        <ol className="cards" aria-label="추천 순위">
-          {ranked.map((item, index) => {
-            const region = content.regions.find((candidate) => candidate.id === item.regionId)!;
-            return (
-              <li key={region.id}>
-                <button className="card recommend-card" aria-label={`${index + 1}순위 ${region.name} 상세 보기`} onClick={() => go({ name: 'region', regionId: region.id })}>
-                  <span className="recommend-rank">{index + 1}순위 · 친밀도 {FAMILIARITY[item.level].label}</span>
-                  <strong className="recommend-title">{region.name}</strong>
-                  <span>{region.features.join(' · ')}</span>
-                  {region.isVirtual && <span className="recommend-note">개발용 가상 데이터</span>}
-                  <span>출발지에서 직선거리 {item.distanceKm.toFixed(1)} km</span>
-                  <span className="recommend-reasons">
-                    <strong>추천 이유</strong>
-                    {item.reasons.filter((reason) => !reason.includes('합산')).map((reason, reasonIndex) => <span key={reasonIndex}>{reason}</span>)}
-                  </span>
-                  <span className="recommend-link">행정동 자세히 보기 →</span>
-                </button>
-              </li>
-            );
-          })}
-        </ol>
+      {picks.length > 0 ? (
+        <section className="place-recommend" aria-labelledby="place-recommend-title">
+          <div className="recommend-section-head">
+            <h2 id="place-recommend-title">장소 추천</h2>
+            <span>오늘의 추천 동네에서 골랐어요</span>
+          </div>
+          <ol className="place-recommend-list" aria-label="장소 추천">
+            {picks.map(({ place, region, rank, level }) => <li key={place.id}>
+              <button className="place-pick" aria-label={`${place.name} · ${region.name} 장소 보기`} onClick={() => go({ name: 'region', regionId: region.id })}>
+                <span className="place-pick-kicker">{CATEGORY_LABELS[place.category]} · {region.name}</span>
+                <strong>{place.name}</strong>
+                <span className="place-pick-meta">오늘의 추천 {rank}순위 동네 · {FAMILIARITY[level].label}{place.isVirtual ? ' · 시연용 장소' : ''}</span>
+              </button>
+            </li>)}
+          </ol>
+        </section>
       ) : (
         <div className="recommend-empty" role="status">
           <h2>{result.allZero ? '추천을 정하기 어려워요' : '조건에 맞는 추천 행정동이 없어요'}</h2>

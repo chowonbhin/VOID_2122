@@ -11,8 +11,7 @@ test('all 25 dongs are reachable, including unresearched dongs; urban/island sli
   await setup(page);
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
   await expect(map.locator('[data-region-id]')).toHaveCount(25);
-  await expect(map.locator('.dong-directory button')).toHaveCount(25);
-  await expect(page.getByRole('list', { name: '추천 순위' }).getByRole('button')).toHaveCount(3);
+  await expect(page.locator('.ansan-region.recommended')).toHaveCount(3);
   await expect(map.getByRole('button', { name: /^지도 부곡동/ })).toHaveAccessibleName(/장소 준비 중/);
   await expect(map.getByRole('button', { name: /^지도 대부동/ })).toHaveCount(0);
   await map.getByRole('button', { name: '대부도 →', exact: true }).click();
@@ -90,7 +89,9 @@ test('25-dong map and directory fit a 320px phone, and every directory target st
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
   await map.screenshot({ path: '.claude/state/evidence/admin-dongs/map-320.png' });
-  await map.locator('.dong-directory').getByRole('button', { name: /본오3동/ }).click();
+  // No dong list under the map any more: small dongs open from the map by keyboard too.
+  await map.getByRole('button', { name: /^지도 본오3동 ·/ }).focus();
+  await page.keyboard.press('Enter');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('본오3동');
   await expect(page.getByRole('list', { name: '행정동 장소 추천' })).toContainText('최용신기념관');
   await page.screenshot({ path: '.claude/state/evidence/admin-dongs/real-place-320.png', fullPage: true });
@@ -103,7 +104,7 @@ test('home dong survives reload, opens island memories, and samples never change
   await page.getByLabel('내 동네 선택').selectOption({ label: '대부동' });
   await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
   await page.getByRole('button', { name: '추천 받기' }).click();
-  const ranking = page.getByRole('list', { name: '추천 순위' });
+  const ranking = page.getByRole('list', { name: '장소 추천' });
   const before = await ranking.innerText();
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
   await expect(map.getByRole('img', { name: '내 동네 · 대부동' })).toBeVisible();

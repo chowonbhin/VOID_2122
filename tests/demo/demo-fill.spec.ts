@@ -10,7 +10,7 @@ async function start(page: Page) {
   await page.getByLabel('내 동네 선택').selectOption('4127353200');
   await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
   await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(page.getByRole('list', { name: '추천 순위' }).getByRole('button')).toHaveCount(25);
+  await expect(page.locator('.ansan-region.recommended')).toHaveCount(25);
 }
 
 test('twentieth visit, reload, mode switches and deletion keep the correct top 20', async ({ page }) => {
@@ -46,14 +46,15 @@ test('filters still apply; the visible preset restores 25 full dongs including D
   await page.getByLabel('최대 거리 (km)').fill('1');
   await page.getByRole('checkbox', { name: '자연·산책' }).check();
   await page.getByRole('button', { name: '추천 받기' }).click();
-  const cards = page.getByRole('list', { name: '추천 순위' }).getByRole('button');
+  const picks = page.getByRole('list', { name: '장소 추천' }).getByRole('button');
+  const jungang = page.getByRole('button', { name: /^지도 중앙동 ·/ });
   // Counts and scores stay off screen; the 20-place detail list is checked below.
-  await expect(cards.filter({ hasText: '중앙동' })).toContainText('친밀도 자주 가요');
+  await expect(jungang).toHaveAccessibleName(/내가 좋아하는 동네/);
   await page.getByRole('button', { name: '25개 동 시연 조건 적용' }).click();
-  await expect(cards).toHaveCount(25);
-  expect((await cards.allTextContents()).every(text => text.includes('친밀도') && !text.includes('점수'))).toBe(true);
-  await expect(cards.filter({ hasText: '중앙동' })).toContainText('친밀도 자주 가요');
-  await cards.filter({ hasText: '대부동' }).click();
+  await expect(page.locator('.ansan-region.recommended')).toHaveCount(25);
+  expect((await picks.allTextContents()).every(text => !text.includes('점수'))).toBe(true);
+  await expect(jungang).toHaveAccessibleName(/내가 좋아하는 동네/);
+  await picks.filter({ hasText: '대부동' }).first().click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('대부동');
   await expect(list(page).locator(':scope > li')).toHaveCount(20);
 });

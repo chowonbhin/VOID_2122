@@ -111,7 +111,6 @@ function RegionDetail({ regionId }: { regionId: string }) {
         <button disabled={currentMapPage + 1 >= mapPages} onClick={() => setMapPage(currentMapPage + 1)}>다음 지도 장소</button>
       </nav>}
       <p className="region-note">2026-10-01 실제 행정동 경계 · 시연 장소의 좌표는 가상 위치입니다. 번호: 아래 장소 목록 순서 · 하트: 기록한 추억 · 점: 장소 좌표</p>
-      <p className="region-note">경계: SGIS 공공누리 제1유형 · <a href="https://github.com/vuski/admdongkor" target="_blank" rel="noreferrer">vuski/admdongkor</a> 가공 · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a></p>
       {visiblePlaces.some(place => !place.location) && <p className="region-note">정밀 좌표 미확인 장소는 지도 마커 없이 목록에서 안내합니다.</p>}
       <Memories items={memoryItems} selectedId={memoryId} onSelect={selectMemory} />
       {places.length === 0 && <section className="region-recommend" aria-labelledby="nearby-title">
