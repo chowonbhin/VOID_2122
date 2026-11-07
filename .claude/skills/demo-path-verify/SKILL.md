@@ -72,6 +72,7 @@ harden ends.
 node scripts/verify.mjs                     # local, one run
 node scripts/verify.mjs --url https://...   # against the deployed app
 node scripts/verify.mjs --runs 3            # flakiness check (fix phase)
+node scripts/verify.mjs --mobile            # phone viewport (needs DEMO_MOBILE in playwright.config.ts)
 ```
 
 The script writes everything to `.claude/state/evidence/<timestamp>/`:

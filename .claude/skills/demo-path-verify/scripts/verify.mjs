@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Runs the golden-path test and writes evidence to .claude/state/evidence/<timestamp>/
 // Cross-platform (Windows / macOS / Linux). Start the app first. Usage:
-//   node scripts/verify.mjs [--url URL] [--runs N]
+//   node scripts/verify.mjs [--url URL] [--runs N] [--mobile]
 // Exit 0 only if every step listed in the spec header ran, none FAILED or was SLOW,
 // every screenshot was saved, and there were no unexpected console errors.
 // Steps marked `pending` are allowed (exit 0) but the headline then says PARTIAL, never PASS.
@@ -21,6 +21,7 @@ const opt = (name, def) => {
 };
 const URL = opt('--url', process.env.BASE_URL ?? 'http://localhost:3000');
 const RUNS = Number(opt('--runs', '1'));
+const MOBILE = args.includes('--mobile'); // phone viewport (playwright.config.ts reads DEMO_MOBILE)
 
 try {
   await fetch(URL);
@@ -35,7 +36,7 @@ const expected = [...header.matchAll(/^\s*\*\s*(\d+)\.\s/gm)].length;
 
 const d = new Date(), z = (n) => String(n).padStart(2, '0');
 const ts = `${d.getFullYear()}-${z(d.getMonth() + 1)}-${z(d.getDate())}T${z(d.getHours())}-${z(d.getMinutes())}-${z(d.getSeconds())}`; // local time
-const DIR = path.join('.claude', 'state', 'evidence', ts);
+const DIR = path.join('.claude', 'state', 'evidence', ts + (MOBILE ? '-mobile' : ''));
 fs.mkdirSync(DIR, { recursive: true });
 fs.writeFileSync(path.join(DIR, 'console-errors.txt'), '');
 
@@ -45,7 +46,7 @@ for (let i = 1; i <= RUNS; i++) {
     'npx',
     ['playwright', 'test', SPEC, '--retries=0', '--reporter=line'],
     {
-      env: { ...process.env, BASE_URL: URL, EVIDENCE_DIR: DIR, RUN_INDEX: String(i) },
+      env: { ...process.env, BASE_URL: URL, EVIDENCE_DIR: DIR, RUN_INDEX: String(i), DEMO_MOBILE: MOBILE ? '1' : '' },
       encoding: 'utf8',
       shell: process.platform === 'win32', // npx is npx.cmd on Windows
     },
@@ -91,7 +92,7 @@ const ok = problems.length === 0 && expected > 0;
 const headline = !ok ? 'FAIL' : pending ? 'PARTIAL' : 'PASS';
 const summary = [
   `# demo-path-verify ${headline} ${passed}/${expected}` + (pending ? ` (${pending} pending)` : ''),
-  `target: ${URL}, runs: ${RUNS}`,
+  `target: ${URL}, runs: ${RUNS}, device: ${MOBILE ? 'mobile' : 'desktop'}`,
   '',
   lines.join('\n') || '- no steps recorded (test crashed before step 1; see run1.log)',
   '',
