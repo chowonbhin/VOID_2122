@@ -21,21 +21,28 @@ end to end. Work strictly in golden-path order.
 - [x] Repeat from 1. At `build_start` + 2h, or when a step takes twice its estimate,
    stop: the captain runs `scope-cut`; a member writes the problem under
    "For captain" in `handoff-<you>.md` and tells the user to ping the captain.
-- [ ] When all your steps are real and pass, ask the user whether to help a
+- [x] When all your steps are real and pass, ask the user whether to help a
    teammate's step (only with that owner's OK) or take a stretch item the
    captain picks.
 
-## Current status — 2026-11-07 23:33 KST
-- Steps 1–5: own step 2 and required resident/empty states implemented; shared recommend() reused; no external API in own step.
-- Step 6: local merge and explicitly authorized push succeeded; fetch confirms main = origin/main = 3e6714c.
-- Step 7: no remaining assigned placeholder; no repeat needed. Scope checkpoint at 00:00 KST has not arrived.
-- Step 8: awaiting next assignment; teammate support requires that owner’s OK. Stretch is not eligible while required steps remain pending.
-- Existing valid evidence reused: desktop 2026-11-07T23-30-37 and mobile 2026-11-07T23-30-47-mobile; PARTIAL 3/5, own step 2 PASS.
-- No source changes or test reruns in this restart. Unit 71 passed on published source; build/typecheck passed.
+## Session — 2026-11-08 00:21 KST
+- Source af198d3 plus local documentation commit cc5b8ba; working branch chowonbhin/recommendation.
+- New golden path includes map-first recommendations and footfall penalty; reassessing current step 2 and delegated production verification.
+- Steps 1–3: source implementation already delivered by latest upstream; do not add new features during verification.
+- Step 4: inspect tile failure fallback. demo-safety skill missing; handle inline.
+- Step 5: run typecheck/unit/build and deployed desktop/mobile golden path.
+- Step 6: no source merge/deploy planned; evidence and handoff only unless own-step repair is needed.
+- Step 7: 00:00 scope checkpoint elapsed; captain review requested. scope-cut skill missing; member proposes in handoff, does not cut scope.
+- Step 8: decide next assignment after evidence.
 
-## Delegated deployment verification — 2026-11-07 23:47 KST
-- Pulled 2c8f300 and confirmed team.md delegation to chowonbhin. Existing local documentation edits preserved.
-- Ran verify on https://void-2122.vercel.app for desktop and --mobile: both PARTIAL 4/5, exit 0, no SLOW or console errors.
-- Steps 1,2,4,5 PASS; step 3 remains PENDING and the deployed detail page visibly shows its placeholder.
-- Evidence: 2026-11-07T23-46-36 and 2026-11-07T23-46-50-mobile. Screenshots inspected.
-- No main merge or deployment triggered. Future source integrations require verify before main because main auto-deploys.
+## Result — 2026-11-08 00:25 KST
+- Refreshed upstream to 82af56d during verification, preserving local documentation via stash/rebase/restore. No application/test assertions edited.
+- Initial deployed desktop attempt failed because af198d3 test text targeted the earlier tile map while upstream had deployed the schematic; retained evidence 2026-11-08T00-22-28.
+- Current source: cb430d9e5135e2fdd5ac5d0ed39474e36675c67f (application/spec identical to upstream 82af56d). Typecheck/build PASS, unit 86/86 PASS.
+- Deployed desktop PASS 5/5: 2026-11-08T00-23-36; mobile PASS 5/5: 2026-11-08T00-23-45-mobile; no SLOW/console errors.
+- Additional map/footfall browser checks 3/3 passed; includes score-shade stability, marker/card synchronization, keyboard control, offline navigation after loading and no external map requests.
+- Screenshots inspected: desktop recommendation, mobile detail, focused maps before/after visit and mobile markers.
+- Steps 1–3: no new implementation needed; current upstream meets own golden-path step. Step 4: latest schematic removes tile/API dependency, so timeout/fallback no longer applies.
+- Step 6: local evidence documentation checkpoint only; no main merge/push/deploy needed.
+- Step 7: captain scope review requested; M08/M09/M11 completion still requires owner evidence. No scope cuts made.
+- Step 8: user asked to select early fix or continued build because golden path passes before scheduled fix_start; phase remains build until response.

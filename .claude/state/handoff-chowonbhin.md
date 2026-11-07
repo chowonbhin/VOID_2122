@@ -1,19 +1,19 @@
 # Handoff — chowonbhin
-- Phase: build · 2026-11-07 23:47 KST; branch: chowonbhin/recommendation.
-- Pulled origin/main 2c8f300 with --no-rebase --ff-only; preserved own local handoff/checklist edits.
-- team.md delegates Vercel deploy to chowonbhin; demo-ready tag remains captain-only.
-- Public target: https://void-2122.vercel.app (user supplied #/setup; golden path starts at root).
-- Test-spec source: 2c8f30024278c839011fc3a6ac5f18614b6328e9; deployed commit identity was not independently queried.
-- Desktop: node scripts/verify.mjs --url https://void-2122.vercel.app → PARTIAL 4/5, exit 0.
-- Desktop evidence: .claude/state/evidence/2026-11-07T23-46-36/.
-- Mobile: same command + --mobile → PARTIAL 4/5, exit 0.
-- Mobile evidence: .claude/state/evidence/2026-11-07T23-46-50-mobile/.
-- Both: steps 1,2,4,5 PASS; step 3 PENDING (iwtkmn0219); no SLOW steps or console errors.
-- Inspected desktop step 3/5 and mobile step 2/5 screenshots: detail placeholder visible; A→B becomes B→A after visit/reload.
-- No application edits, main merge, push or redeploy for this verification. Evidence stays untracked.
-- Next 1: report deployed results and step-3 gap to user/captain.
-- Next 2: once step 3 arrives, verify integrated source before merging into main (auto-deploys).
-- Next 3: after deployment, rerun desktop/mobile checks on public URL and inspect screenshots.
+- Phase: build · 2026-11-08 00:25 KST; branch chowonbhin/recommendation; early-fix/build choice pending user response.
+- Upstream refreshed to 82af56d; source cb430d9e5135e2fdd5ac5d0ed39474e36675c67f adds local documentation only.
+- Target: https://void-2122.vercel.app; latest schematic and spec now aligned. No code/test assertions changed this session.
+- Initial FAIL: .claude/state/evidence/2026-11-08T00-22-28/ (old tile-map assertion vs newly deployed schematic).
+- Latest desktop PASS 5/5: .claude/state/evidence/2026-11-08T00-23-36/.
+- Latest mobile PASS 5/5: .claude/state/evidence/2026-11-08T00-23-45-mobile/.
+- Both: zero console errors, zero SLOW. All five demo steps now pass on public URL.
+- Typecheck/build PASS; unit 86/86; focused map/footfall browser 3/3 PASS.
+- Map evidence: .claude/state/evidence/map-footfall-2026-11-07T15-24-09-405Z/ (UTC folder name; run 00:24 KST).
+- Reviewed rank/score shade changes, mobile detail and marker layouts. Offline-after-load navigation works; no external map requests.
+- No application changes, main merge, push, deploy or demo-ready tag operation.
+- Next 1: user chooses early fix vs continued build; do not infer phase override from silence.
+- Next 2: captain reviews 00:00 scope checkpoint and assigns remaining MVP work (M08/M09/M11 evidence pending).
+- Next 3: verify any future integrated source before main and rerun desktop/mobile checks after auto-deploy.
 ## For captain
-- Public deployment is reachable; full demo is not yet PASS. Only step 3 remains pending.
-- deploy and handoff skills missing; performed equivalent verification/recording inline.
+- Golden path PASS is not proof of complete MVP: event-experience toggle, geolocation permissions and persona tests remain separately owned.
+- scope-cut/demo-safety/deploy/handoff skills missing; equivalent review/verification/recording performed inline. No cuts made.
+- Final deadline is still unknown; current schedule fixes at 02:00, freezes at 04:00 KST.
