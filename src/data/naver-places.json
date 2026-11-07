@@ -1,0 +1,266 @@
+[
+  {
+    "id": "seongho-museum",
+    "regionId": "dong-4127151000",
+    "name": "성호박물관",
+    "category": "culture",
+    "address": "안산시 상록구 성호로 131",
+    "location": {
+      "lat": 37.3150321,
+      "lng": 126.8596008
+    },
+    "regionSource": {
+      "label": "일동 공식 동 소개 · 시설 소재 확인",
+      "url": "https://ansan.go.kr/sangnokgu/common/cntnts/selectContents.do?cntnts_id=C0000869",
+      "checkedAt": "2026-11-08"
+    },
+    "baseValue": 70,
+    "franchise": {
+      "status": "non_franchise",
+      "source": {
+        "label": "공공 문화시설 운영기관 확인 · 관람시설만 포함 (부대매장 제외)",
+        "url": "https://www.ansan.go.kr/seongho/main/main.do",
+        "checkedAt": "2026-11-08"
+      }
+    },
+    "opening": {
+      "status": "known",
+      "verifiedPeriod": {
+        "from": "2026-11-08",
+        "through": "2026-11-13"
+      },
+      "weekly": {
+        "0": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ]
+      },
+      "entryCondition": "일반 전시 관람 기준 · 교육·단체·특별전 조건은 공식 안내 확인. 운영 검토 기간 2026-11-08~13; 기간 밖은 미확인 처리."
+    },
+    "source": {
+      "label": "성호박물관 공식 관람안내",
+      "url": "https://www.ansan.go.kr/seongho/main/main.do",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false,
+    "searchSource": {
+      "label": "네이버 지역검색 API · 후보 수집 (지도 화면 순위와 별개)",
+      "url": "https://map.naver.com/p/search/%EC%9D%BC%EB%8F%99%20%EC%84%B1%ED%98%B8%EB%B0%95%EB%AC%BC%EA%B4%80",
+      "checkedAt": "2026-11-08"
+    }
+  },
+  {
+    "id": "choi-memorial",
+    "regionId": "dong-4127156000",
+    "name": "최용신기념관",
+    "category": "culture",
+    "address": "안산시 상록구 샘골서길 64",
+    "location": {
+      "lat": 37.2996561,
+      "lng": 126.8627335
+    },
+    "regionSource": {
+      "label": "본오3동 공식 동 소개 · 시설 소재 확인",
+      "url": "https://www.ansan.go.kr/sangnokgu/common/cntnts/selectContents.do?cntnts_id=C0000846",
+      "checkedAt": "2026-11-08"
+    },
+    "baseValue": 70,
+    "franchise": {
+      "status": "non_franchise",
+      "source": {
+        "label": "공공 문화시설 운영기관 확인 · 관람시설만 포함 (부대매장 제외)",
+        "url": "https://www.ansan.go.kr/choiyongshin/main/main.do",
+        "checkedAt": "2026-11-08"
+      }
+    },
+    "opening": {
+      "status": "known",
+      "verifiedPeriod": {
+        "from": "2026-11-08",
+        "through": "2026-11-13"
+      },
+      "weekly": {
+        "0": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "2": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "3": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "4": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "5": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ],
+        "6": [
+          {
+            "open": "09:00",
+            "close": "18:00",
+            "lastEntry": "17:30"
+          }
+        ]
+      },
+      "entryCondition": "일반 전시 관람 기준 · 교육·단체·특별전 조건은 공식 안내 확인. 운영 검토 기간 2026-11-08~13; 기간 밖은 미확인 처리."
+    },
+    "source": {
+      "label": "최용신기념관 공식 관람안내",
+      "url": "https://www.ansan.go.kr/choiyongshin/main/main.do",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false,
+    "searchSource": {
+      "label": "네이버 지역검색 API · 후보 수집 (지도 화면 순위와 별개)",
+      "url": "https://map.naver.com/p/search/%EB%B3%B8%EC%98%A43%EB%8F%99%20%EC%B5%9C%EC%9A%A9%EC%8B%A0%EA%B8%B0%EB%85%90%EA%B4%80",
+      "checkedAt": "2026-11-08"
+    }
+  },
+  {
+    "id": "gyeonggi-museum",
+    "regionId": "dong-4127357000",
+    "name": "경기도미술관",
+    "category": "culture",
+    "address": "안산시 단원구 동산로 268",
+    "location": {
+      "lat": 37.3259057,
+      "lng": 126.8138991
+    },
+    "regionSource": {
+      "label": "초지동 공식 동 소개 · 시설 소재 확인",
+      "url": "https://ansan.go.kr/danwongu/common/cntnts/selectContents.do?cntnts_id=C0000913",
+      "checkedAt": "2026-11-08"
+    },
+    "baseValue": 70,
+    "franchise": {
+      "status": "non_franchise",
+      "source": {
+        "label": "공공 문화시설 운영기관 확인 · 관람시설만 포함 (부대매장 제외)",
+        "url": "https://www.ggcf.kr/pages/GyeonggiMuseumofModernArt",
+        "checkedAt": "2026-11-08"
+      }
+    },
+    "opening": {
+      "status": "known",
+      "verifiedPeriod": {
+        "from": "2026-11-08",
+        "through": "2026-11-13"
+      },
+      "weekly": {
+        "0": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:00"
+          }
+        ],
+        "2": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:00"
+          }
+        ],
+        "3": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:00"
+          }
+        ],
+        "4": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:00"
+          }
+        ],
+        "5": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:00"
+          }
+        ],
+        "6": [
+          {
+            "open": "10:00",
+            "close": "18:00",
+            "lastEntry": "17:00"
+          }
+        ]
+      },
+      "entryCondition": "일반 전시 관람 기준 · 교육·단체·특별전 조건은 공식 안내 확인. 운영 검토 기간 2026-11-08~13; 기간 밖은 미확인 처리."
+    },
+    "source": {
+      "label": "경기도미술관 공식 관람안내",
+      "url": "https://gmoma.ggcf.kr/pages/tour%20guide",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false,
+    "searchSource": {
+      "label": "네이버 지역검색 API · 후보 수집 (지도 화면 순위와 별개)",
+      "url": "https://map.naver.com/p/search/%EC%B4%88%EC%A7%80%EB%8F%99%20%EA%B2%BD%EA%B8%B0%EB%8F%84%EB%AF%B8%EC%88%A0%EA%B4%80",
+      "checkedAt": "2026-11-08"
+    }
+  }
+]

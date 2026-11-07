@@ -14,3 +14,9 @@
 .setup-error { color: #9b2020; line-height: 1.6; }
 .setup .primary { justify-self: start; }
 @media (max-width: 560px) { .setup-grid { grid-template-columns: 1fr; gap: 0; } }
+.setup-dongs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.setup-dongs summary { cursor: pointer; font-weight: 600; padding: 8px 0; }
+.setup-dong-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; max-height: 250px; overflow: auto; padding: 4px; }
+.setup-dong-grid label { font-size: 13px; }
+.setup-dong-grid select { font-size: 12px; padding: 8px 2px; }
+@media (max-width: 560px) { .setup-dongs { grid-template-columns: 1fr; gap: 8px; } }

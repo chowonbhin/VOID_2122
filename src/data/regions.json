@@ -1,30 +1,753 @@
 [
   {
-    "id": "region-a",
-    "name": "A권역 · 중앙동·중앙역",
-    "description": "중앙역에서 중앙동 로데오거리로 이어지는 탐험권역. 수집한 중앙동 대표 상권의 유동인구 지표를 사용합니다. 장소·행사·운영정보는 기능 시연용입니다.",
-    "features": ["중앙역", "중앙동 로데오거리", "음식·상점 골목"],
-    "start": { "lat": 37.3160302, "lng": 126.8385294, "label": "중앙역 (역 위치 기준)" },
-    "footfallMarketIds": ["ansan-samil"],
-    "boundary": [{ "lat": 37.3160, "lng": 126.8344 }, { "lat": 37.3227, "lng": 126.8344 }, { "lat": 37.3238, "lng": 126.8395 }, { "lat": 37.3205, "lng": 126.8423 }, { "lat": 37.3160, "lng": 126.8407 }],
-    "dongCodes": ["3109261"],
-    "source": { "label": "안산시 중앙동 맛거리 안내", "url": "https://food.ansan.go.kr/ASF/bbs/content.php?co_id=s235", "checkedAt": "2026-11-07" },
-    "startSource": { "label": "OpenStreetMap contributors · 중앙역", "url": "https://www.openstreetmap.org/node/5349743238", "checkedAt": "2026-11-07" },
-    "placeIds": ["a1", "a2", "a3", "a4", "a5", "a6-franchise"],
+    "id": "dong-4127353200",
+    "name": "중앙동",
+    "adminCode": "4127353200",
+    "district": "단원구",
+    "description": "안산시 단원구 중앙동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.3160302,
+      "lng": 126.8385294,
+      "label": "중앙역 (역 위치 기준)"
+    },
+    "placeIds": [
+      "a1",
+      "a2",
+      "a3",
+      "a4",
+      "a5",
+      "a6-franchise"
+    ],
+    "footfallMarketIds": [
+      "ansan-samil"
+    ],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "OpenStreetMap contributors · 중앙역",
+      "url": "https://www.openstreetmap.org/node/5349743238",
+      "checkedAt": "2026-11-07"
+    },
     "isVirtual": false
   },
   {
-    "id": "region-b",
-    "name": "B권역 · 안산역·다문화거리",
-    "description": "안산역과 원곡동 다문화거리를 함께 둘러보는 탐험권역. 수집한 안산역2번 출구·안산 다문화특구 상권 지표를 합산합니다. 장소·행사·운영정보는 기능 시연용입니다.",
-    "features": ["안산역", "다문화거리", "세계 음식·식료품"],
-    "start": { "lat": 37.3270474, "lng": 126.7887966, "label": "안산역 (역 위치 기준)" },
-    "footfallMarketIds": ["ansan-station-exit-2", "ansan-multicultural"],
-    "boundary": [{ "lat": 37.3264, "lng": 126.7845 }, { "lat": 37.3330, "lng": 126.7845 }, { "lat": 37.3340, "lng": 126.7918 }, { "lat": 37.3292, "lng": 126.7940 }, { "lat": 37.3264, "lng": 126.7916 }],
-    "dongCodes": ["3109263"],
-    "source": { "label": "안산시 문화관광 · 다문화거리", "url": "https://ansan.go.kr/tourinfo/common/cntnts/selectContents.do?cntnts_id=C0001976", "checkedAt": "2026-11-07" },
-    "startSource": { "label": "OpenStreetMap contributors · 안산역", "url": "https://www.openstreetmap.org/node/5911861706", "checkedAt": "2026-11-07" },
-    "placeIds": ["b1", "b2", "b3", "b4", "b5", "b6-unverified"],
+    "id": "dong-4127354500",
+    "name": "원곡동",
+    "adminCode": "4127354500",
+    "district": "단원구",
+    "description": "안산시 단원구 원곡동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.3270474,
+      "lng": 126.7887966,
+      "label": "안산역 (역 위치 기준)"
+    },
+    "placeIds": [
+      "b1",
+      "b2",
+      "b4",
+      "b5",
+      "b6-unverified"
+    ],
+    "footfallMarketIds": [
+      "ansan-station-exit-2",
+      "ansan-multicultural"
+    ],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "OpenStreetMap contributors · 안산역",
+      "url": "https://www.openstreetmap.org/node/5911861706",
+      "checkedAt": "2026-11-07"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127351000",
+    "name": "와동",
+    "adminCode": "4127351000",
+    "district": "단원구",
+    "description": "안산시 단원구 와동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.339473,
+      "lng": 126.826112,
+      "label": "와동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127352500",
+    "name": "고잔동",
+    "adminCode": "4127352500",
+    "district": "단원구",
+    "description": "안산시 단원구 고잔동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.325831,
+      "lng": 126.823532,
+      "label": "고잔동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127353500",
+    "name": "호수동",
+    "adminCode": "4127353500",
+    "district": "단원구",
+    "description": "안산시 단원구 호수동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.310186,
+      "lng": 126.831972,
+      "label": "호수동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127355500",
+    "name": "백운동",
+    "adminCode": "4127355500",
+    "district": "단원구",
+    "description": "안산시 단원구 백운동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.321996,
+      "lng": 126.799985,
+      "label": "백운동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127356500",
+    "name": "신길동",
+    "adminCode": "4127356500",
+    "district": "단원구",
+    "description": "안산시 단원구 신길동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.331294,
+      "lng": 126.774526,
+      "label": "신길동 경계 내부 대표 지점"
+    },
+    "placeIds": [
+      "b3"
+    ],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127357000",
+    "name": "초지동",
+    "adminCode": "4127357000",
+    "district": "단원구",
+    "description": "안산시 단원구 초지동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.30598,
+      "lng": 126.772548,
+      "label": "초지동 경계 내부 대표 지점"
+    },
+    "placeIds": [
+      "gyeonggi-museum"
+    ],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127358000",
+    "name": "선부1동",
+    "adminCode": "4127358000",
+    "district": "단원구",
+    "description": "안산시 단원구 선부1동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.331157,
+      "lng": 126.809667,
+      "label": "선부1동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127359000",
+    "name": "선부2동",
+    "adminCode": "4127359000",
+    "district": "단원구",
+    "description": "안산시 단원구 선부2동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.344388,
+      "lng": 126.800135,
+      "label": "선부2동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127360000",
+    "name": "선부3동",
+    "adminCode": "4127360000",
+    "district": "단원구",
+    "description": "안산시 단원구 선부3동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.355606,
+      "lng": 126.826749,
+      "label": "선부3동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127361000",
+    "name": "대부동",
+    "adminCode": "4127361000",
+    "district": "단원구",
+    "description": "안산시 단원구 대부동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "단원구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.244407,
+      "lng": 126.588857,
+      "label": "대부동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127151000",
+    "name": "일동",
+    "adminCode": "4127151000",
+    "district": "상록구",
+    "description": "안산시 상록구 일동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.313328,
+      "lng": 126.870397,
+      "label": "일동 경계 내부 대표 지점"
+    },
+    "placeIds": [
+      "seongho-museum"
+    ],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127151500",
+    "name": "이동",
+    "adminCode": "4127151500",
+    "district": "상록구",
+    "description": "안산시 상록구 이동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.311213,
+      "lng": 126.848337,
+      "label": "이동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127152500",
+    "name": "사동",
+    "adminCode": "4127152500",
+    "district": "상록구",
+    "description": "안산시 상록구 사동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.299914,
+      "lng": 126.85164,
+      "label": "사동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127153200",
+    "name": "사이동",
+    "adminCode": "4127153200",
+    "district": "상록구",
+    "description": "안산시 상록구 사이동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.283862,
+      "lng": 126.847161,
+      "label": "사이동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127153700",
+    "name": "해양동",
+    "adminCode": "4127153700",
+    "district": "상록구",
+    "description": "안산시 상록구 해양동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.296752,
+      "lng": 126.832909,
+      "label": "해양동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127154000",
+    "name": "본오1동",
+    "adminCode": "4127154000",
+    "district": "상록구",
+    "description": "안산시 상록구 본오1동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.283039,
+      "lng": 126.866777,
+      "label": "본오1동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127155000",
+    "name": "본오2동",
+    "adminCode": "4127155000",
+    "district": "상록구",
+    "description": "안산시 상록구 본오2동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.29357,
+      "lng": 126.875433,
+      "label": "본오2동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127156000",
+    "name": "본오3동",
+    "adminCode": "4127156000",
+    "district": "상록구",
+    "description": "안산시 상록구 본오3동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.299968,
+      "lng": 126.863019,
+      "label": "본오3동 경계 내부 대표 지점"
+    },
+    "placeIds": [
+      "choi-memorial"
+    ],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127157000",
+    "name": "부곡동",
+    "adminCode": "4127157000",
+    "district": "상록구",
+    "description": "안산시 상록구 부곡동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.338337,
+      "lng": 126.871508,
+      "label": "부곡동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127158000",
+    "name": "월피동",
+    "adminCode": "4127158000",
+    "district": "상록구",
+    "description": "안산시 상록구 월피동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.349747,
+      "lng": 126.844752,
+      "label": "월피동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127159000",
+    "name": "성포동",
+    "adminCode": "4127159000",
+    "district": "상록구",
+    "description": "안산시 상록구 성포동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.321946,
+      "lng": 126.848533,
+      "label": "성포동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127160000",
+    "name": "반월동",
+    "adminCode": "4127160000",
+    "district": "상록구",
+    "description": "안산시 상록구 반월동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.306969,
+      "lng": 126.899576,
+      "label": "반월동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
+    "isVirtual": false
+  },
+  {
+    "id": "dong-4127161000",
+    "name": "안산동",
+    "adminCode": "4127161000",
+    "district": "상록구",
+    "description": "안산시 상록구 안산동의 장소를 행정동 단위로 추천합니다.",
+    "features": [
+      "상록구",
+      "행정동"
+    ],
+    "start": {
+      "lat": 37.357974,
+      "lng": 126.880696,
+      "label": "안산동 경계 내부 대표 지점"
+    },
+    "placeIds": [],
+    "footfallMarketIds": [],
+    "source": {
+      "label": "안산시 행정구역 현황",
+      "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
+      "checkedAt": "2026-11-08"
+    },
+    "startSource": {
+      "label": "SGIS / vuski 2026-10-01 경계 내부 지점 (시설 입구 아님)",
+      "url": "https://github.com/vuski/admdongkor",
+      "checkedAt": "2026-11-08"
+    },
     "isVirtual": false
   }
 ]

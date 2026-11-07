@@ -14,7 +14,7 @@ const EVIDENCE_DIR = process.env.VISIT_EVIDENCE_DIR ?? path.join(
 
 const initialState = (): UserState => ({
   profile: {
-    initialLevels: { 'region-b': 2 },
+    initialLevels: { 'dong-4127354500': 2 },
     interests: ['nature', 'culture'],
     experiencedEventIds: ['e-b3-workshop'],
   },
@@ -33,7 +33,7 @@ async function openRegion(page: Page, state = initialState()): Promise<Locator> 
   await page.addInitScript(({ key, state }) => {
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(state));
   }, { key: KEY, state });
-  await page.goto(`${BASE_URL}/#/region/region-a`);
+  await page.goto(`${BASE_URL}/#/region/dong-4127353200`);
   return page.getByRole('region', { name: `${PLACE} 방문 기록`, exact: true });
 }
 
@@ -143,7 +143,7 @@ test('three distinct places raise regional Lv and removing the last record for e
 
 test('deleting visits preserves initial regional familiarity and unvisited places inherit its Lv', async ({ page }) => {
   const seed = initialState();
-  seed.profile.initialLevels['region-a'] = 2;
+  seed.profile.initialLevels['dong-4127353200'] = 2;
   seed.visits = [{ id: 'familiar-a1', placeId: 'a1', date: '2026-11-08', method: 'self_report' }];
   const panel = await openRegion(page, seed);
   const unvisited = page.getByRole('region', { name: '시연 작은 전시관 방문 기록', exact: true });
@@ -154,7 +154,7 @@ test('deleting visits preserves initial regional familiarity and unvisited place
   await expectProgress(unvisited, 2, 2, 0);
   await page.reload();
   await expectProgress(panel, 2, 2, 0);
-  expect((await persisted(page)).profile.initialLevels['region-a']).toBe(2);
+  expect((await persisted(page)).profile.initialLevels['dong-4127353200']).toBe(2);
 });
 
 test('an empty visit date shows an error and stores no visit', async ({ page }) => {
@@ -178,7 +178,7 @@ test('write failure preserves existing records and shows no successful add, edit
       return original.call(this, name, value);
     };
   }, { key: KEY, state: seed });
-  await page.goto(`${BASE_URL}/#/region/region-a`);
+  await page.goto(`${BASE_URL}/#/region/dong-4127353200`);
   const panel = page.getByRole('region', { name: `${PLACE} 방문 기록`, exact: true });
   const unvisited = page.getByRole('region', { name: '시연 작은 전시관 방문 기록', exact: true });
   const unchanged = async () => expect(await persisted(page)).toEqual(seed);

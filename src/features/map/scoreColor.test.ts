@@ -9,18 +9,18 @@ function luminance(hex: string) {
 
 describe('map score encoding', () => {
   it('gets darker as score rises, independent of recommendation rank', () => {
-    const scores = [0, 50, 100, 188.8980, 207.0125, 240.7024, 300];
+    const scores = [0, 50, 100, 146.4235, 188.8980, 240.7024, 500, 1000, 2000, 3000];
     const shades = scores.map(score => luminance(scoreColor(score).fill));
     shades.slice(1).forEach((shade, i) => expect(shade).toBeLessThan(shades[i]));
   });
-  it('distinguishes zero from unavailable data and saturates at the labelled 300+ endpoint', () => {
+  it('distinguishes zero from unavailable data and saturates at the labelled 3,000+ endpoint', () => {
     expect(scoreColor(0).fill).not.toBe(UNAVAILABLE_COLOR);
     expect(scoreColor(null).fill).toBe(UNAVAILABLE_COLOR);
     expect(scoreColor(NaN).fill).toBe(UNAVAILABLE_COLOR);
-    expect(scoreColor(500).fill).toBe(scoreColor(300).fill);
+    expect(scoreColor(5000).fill).toBe(scoreColor(3000).fill);
   });
   it('keeps the score labels readable across the whole scale', () => {
-    for (const score of [null, ...Array.from({ length: 301 }, (_, i) => i)]) {
+    for (const score of [null, ...Array.from({ length: 3001 }, (_, i) => i)]) {
       const { fill, text } = scoreColor(score);
       const a = luminance(fill), b = luminance(text);
       expect((Math.max(a, b) + .05) / (Math.min(a, b) + .05)).toBeGreaterThanOrEqual(4.5);

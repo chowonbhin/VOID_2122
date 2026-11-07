@@ -1,5 +1,6 @@
 /** Fixed visual scale only. The recommendation score itself is never capped or renormalized. */
-export const MAP_COLOR_MAX = 300;
+// 20 places × at most 110 × novelty 1.2 = 2640; fixed rounded visual endpoint.
+export const MAP_COLOR_MAX = 3000;
 const low = [235, 246, 239];
 const high = [15, 88, 65];
 export const UNAVAILABLE_COLOR = '#e3e7e3';

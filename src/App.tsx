@@ -24,7 +24,7 @@ export function App() {
         {route.name === 'region' && <RegionPage regionId={route.regionId} />}
         {route.name === 'dong' && <DongPage code={route.code} />}
       </main>
-      <footer className="footer">실제 권역과 2026년 8월 상권 유동인구 자료를 사용합니다. 장소·행사·운영시간·인지도는 시연용 가상 데이터입니다. 역 위치: © OpenStreetMap contributors (ODbL).</footer>
+      <footer className="footer">25개 행정동 · 현재 점수 상위 20개 장소 합산. 실제 장소 인지도는 출처가 있는 방문·리뷰 수로 계산합니다. 기본 가치와 시연 장소 인지도는 가상값입니다. 유동인구는 2026년 8월 수집 상권 자료입니다. 기존 역 시작점: © OpenStreetMap contributors (ODbL).</footer>
       {showTabs && <nav className="tabbar" aria-label="주요 화면">
         <div className="tabbar-inner">
           <a href="#/recommend" aria-current={discovering ? 'page' : undefined}>동네 발견</a>

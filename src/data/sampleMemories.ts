@@ -1,5 +1,6 @@
 // Demo-only memories a user might have recorded. Never counted as visits or in scores.
 import data from './sample-memories.json';
+import { dongAt, dongByCode } from '../features/map/ansanGeo';
 
 export interface Memory {
   id: string;
@@ -13,7 +14,7 @@ export interface Memory {
 }
 
 export const sampleMemoryNote = data.note;
-export const sampleMemories: Memory[] = data.memories.map(memory => ({ ...memory, sample: true }));
+export const sampleMemories: Memory[] = data.memories.map(memory => ({ ...memory, dongCode: dongAt(memory.location.lat, memory.location.lng)?.code ?? dongByCode(memory.dongCode)?.code ?? memory.dongCode, sample: true }));
 export const memoriesInDong = (code: string) => sampleMemories.filter(memory => memory.dongCode === code);
 
 export function koreanDate(date: string): string {

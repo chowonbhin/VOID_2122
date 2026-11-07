@@ -1,0 +1,187 @@
+{
+  "provider": "naver_api_hub_local",
+  "checkedAt": "2026-11-08",
+  "queriesPerDong": 12,
+  "totalRequests": 300,
+  "dongs": [
+    {
+      "regionId": "dong-4127151000",
+      "name": "일동",
+      "returned": 48,
+      "inDongBeforeDedup": 13,
+      "uniqueCandidates": 12
+    },
+    {
+      "regionId": "dong-4127152500",
+      "name": "사동",
+      "returned": 57,
+      "inDongBeforeDedup": 15,
+      "uniqueCandidates": 14
+    },
+    {
+      "regionId": "dong-4127153200",
+      "name": "사이동",
+      "returned": 42,
+      "inDongBeforeDedup": 5,
+      "uniqueCandidates": 5
+    },
+    {
+      "regionId": "dong-4127154000",
+      "name": "본오1동",
+      "returned": 39,
+      "inDongBeforeDedup": 9,
+      "uniqueCandidates": 8
+    },
+    {
+      "regionId": "dong-4127155000",
+      "name": "본오2동",
+      "returned": 34,
+      "inDongBeforeDedup": 9,
+      "uniqueCandidates": 8
+    },
+    {
+      "regionId": "dong-4127156000",
+      "name": "본오3동",
+      "returned": 37,
+      "inDongBeforeDedup": 13,
+      "uniqueCandidates": 13
+    },
+    {
+      "regionId": "dong-4127157000",
+      "name": "부곡동",
+      "returned": 47,
+      "inDongBeforeDedup": 7,
+      "uniqueCandidates": 7
+    },
+    {
+      "regionId": "dong-4127158000",
+      "name": "월피동",
+      "returned": 41,
+      "inDongBeforeDedup": 25,
+      "uniqueCandidates": 22
+    },
+    {
+      "regionId": "dong-4127159000",
+      "name": "성포동",
+      "returned": 50,
+      "inDongBeforeDedup": 32,
+      "uniqueCandidates": 28
+    },
+    {
+      "regionId": "dong-4127160000",
+      "name": "반월동",
+      "returned": 47,
+      "inDongBeforeDedup": 23,
+      "uniqueCandidates": 20
+    },
+    {
+      "regionId": "dong-4127161000",
+      "name": "안산동",
+      "returned": 45,
+      "inDongBeforeDedup": 27,
+      "uniqueCandidates": 23
+    },
+    {
+      "regionId": "dong-4127151500",
+      "name": "이동",
+      "returned": 53,
+      "inDongBeforeDedup": 28,
+      "uniqueCandidates": 27
+    },
+    {
+      "regionId": "dong-4127153700",
+      "name": "해양동",
+      "returned": 51,
+      "inDongBeforeDedup": 7,
+      "uniqueCandidates": 6
+    },
+    {
+      "regionId": "dong-4127351000",
+      "name": "와동",
+      "returned": 48,
+      "inDongBeforeDedup": 27,
+      "uniqueCandidates": 23
+    },
+    {
+      "regionId": "dong-4127352500",
+      "name": "고잔동",
+      "returned": 58,
+      "inDongBeforeDedup": 12,
+      "uniqueCandidates": 11
+    },
+    {
+      "regionId": "dong-4127353200",
+      "name": "중앙동",
+      "returned": 53,
+      "inDongBeforeDedup": 15,
+      "uniqueCandidates": 15
+    },
+    {
+      "regionId": "dong-4127356500",
+      "name": "신길동",
+      "returned": 44,
+      "inDongBeforeDedup": 24,
+      "uniqueCandidates": 18
+    },
+    {
+      "regionId": "dong-4127355500",
+      "name": "백운동",
+      "returned": 44,
+      "inDongBeforeDedup": 3,
+      "uniqueCandidates": 3
+    },
+    {
+      "regionId": "dong-4127354500",
+      "name": "원곡동",
+      "returned": 44,
+      "inDongBeforeDedup": 20,
+      "uniqueCandidates": 17
+    },
+    {
+      "regionId": "dong-4127357000",
+      "name": "초지동",
+      "returned": 54,
+      "inDongBeforeDedup": 45,
+      "uniqueCandidates": 41
+    },
+    {
+      "regionId": "dong-4127358000",
+      "name": "선부1동",
+      "returned": 47,
+      "inDongBeforeDedup": 7,
+      "uniqueCandidates": 7
+    },
+    {
+      "regionId": "dong-4127359000",
+      "name": "선부2동",
+      "returned": 41,
+      "inDongBeforeDedup": 13,
+      "uniqueCandidates": 13
+    },
+    {
+      "regionId": "dong-4127360000",
+      "name": "선부3동",
+      "returned": 43,
+      "inDongBeforeDedup": 7,
+      "uniqueCandidates": 7
+    },
+    {
+      "regionId": "dong-4127361000",
+      "name": "대부동",
+      "returned": 55,
+      "inDongBeforeDedup": 52,
+      "uniqueCandidates": 45
+    },
+    {
+      "regionId": "dong-4127353500",
+      "name": "호수동",
+      "returned": 57,
+      "inDongBeforeDedup": 21,
+      "uniqueCandidates": 20
+    }
+  ],
+  "candidateCount": 413,
+  "importedCount": 3,
+  "importedWithPopularityCount": 0,
+  "sourceUrl": "https://api.ncloud-docs.com/docs/naver-api-hub-search-local"
+}

@@ -9,6 +9,7 @@ import { go } from '../../route';
 import { centreLatLng, dongByCode, dongsOfRegion } from '../map/ansanGeo';
 import { DongMap, type MapMarker } from '../map/DongMap';
 import { Memories } from './Memories';
+import { RegionPage } from './RegionPage';
 import './region.css';
 
 export function DongPage({ code }: { code: string }) {
@@ -24,11 +25,8 @@ function DongDetail({ code }: { code: string }) {
     <button onClick={() => go({ name: 'recommend' })}>지도로 돌아가기</button>
   </section>;
   // The main map links exploration-area 동네 straight to their region screen; this covers old links.
-  const region = content.regions.find((item) => item.dongCodes?.includes(code));
-  if (region) return <section className="region-detail">
-    <h1>{dong.name}</h1>
-    <button className="primary" onClick={() => go({ name: 'region', regionId: region.id })}>{region.name} 둘러보기</button>
-  </section>;
+  const region = content.regions.find((item) => item.adminCode === dong.code);
+  if (region) return <RegionPage regionId={region.id} />;
   const centre = centreLatLng(dong);
   const memories = memoriesInDong(code);
   const isHome = state.profile.homeDongCode === code;
@@ -48,7 +46,7 @@ function DongDetail({ code }: { code: string }) {
     <p className="region-lead">{memories.length ? `이 동네에 남긴 추억 ${memories.length}개를 다시 꺼내 보세요.` : '아직 이 동네의 이야기가 비어 있어요. 첫 발걸음을 남겨보세요.'}</p>
     <div className="region-design-layout">
       <DongMap target={[dong]} markers={markers} onSelect={(marker) => setMemoryId(marker.id)} />
-      <p className="region-note">실제 좌표 기반 · 2013년 행정동 경계 · 하트: 기록한 추억 · 점: 실제 위치</p>
+      <p className="region-note">실제 좌표 기반 · 2026-10-01 행정동 경계 · 하트: 기록한 추억 · 점: 실제 위치</p>
       <Memories items={memories.map((memory) => ({ id: memory.id, title: memory.title, dates: [memory.date], memo: memory.memo, sample: true }))}
         selectedId={memoryId} onSelect={setMemoryId} />
       <section className="region-recommend" aria-labelledby="dong-recommend-title">
