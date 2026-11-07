@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import { MEMORY_PHOTOS } from '../../src/data/memoryPhotos';
 import { PLACE_PHOTOS } from '../../src/data/placePhotos';
 import { base, setup, list } from './real';
+import { changeState } from './setupSteps';
 
 const map = (page: Page) => page.getByRole('region', { name: '안산 탐험 지도' });
 // Place pins only (사동 also shows two '추억 예시' hearts, which are separate markers).
@@ -35,4 +36,45 @@ test('사동 store main photos appear in the chosen-place pin', async ({ page })
   await page.goto(`${base}/#/region/dong-4127152500`);
   await list(page).getByRole('button', { name: '레드지 카드에서 선택', exact: true }).click();
   await expect(map(page).locator('.dong-pin.selected img')).toHaveAttribute('src', '/places/redji.jpg');
+});
+
+test('mobile photo pins and home stay inside the map by zooming the whole map out', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 844 });
+  await setup(page);
+  await changeState(page, { profile: { homeDongCode: '4127152500' } });
+  await page.goto(`${base}/#/region/dong-4127152500`);
+  const drawing = map(page).locator('.dong-map-svg');
+  const initialWidth = await drawing.evaluate(node => (node as SVGSVGElement).viewBox.baseVal.width);
+  const initialHeight = await map(page).evaluate(node => node.getBoundingClientRect().height);
+  await list(page).getByRole('button', { name: '도니스커피 카드에서 선택', exact: true }).click();
+  await expect(map(page).locator('.dong-pin.selected img')).toBeVisible();
+  for (const width of [320, 390, 768, 1280, 320]) {
+    await page.setViewportSize({ width, height: 900 });
+    await expect.poll(() => map(page).evaluate(element => {
+      const bounds = element.getBoundingClientRect();
+      return [...element.querySelectorAll('.dong-pin, .pin-heart')].every(pin => {
+        const rect = pin.getBoundingClientRect();
+        return rect.left >= bounds.left + 4 && rect.right <= bounds.right - 4
+          && rect.top >= bounds.top + 4 && rect.bottom <= bounds.bottom - 4;
+      });
+    })).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+  expect(await drawing.evaluate(node => (node as SVGSVGElement).viewBox.baseVal.width)).toBeGreaterThan(initialWidth);
+  expect(await map(page).evaluate(node => node.getBoundingClientRect().height)).toBeCloseTo(initialHeight, 0);
+  const home = map(page).getByRole('img', { name: '내 동네 · 사동', exact: true });
+  await expect(home).toBeVisible();
+  const size = await home.boundingBox();
+  expect(size!.width).toBe(size!.height);
+  for (const name of ['초지참숯불갈비', '레드지', '레몬도커피']) {
+    await list(page).getByRole('button', { name: `${name} 카드에서 선택`, exact: true }).click();
+    await expect.poll(() => map(page).evaluate(element => {
+      const bounds = element.getBoundingClientRect();
+      const rects = [...element.querySelectorAll('.dong-pin')].map(pin => pin.getBoundingClientRect());
+      return rects.every((rect, index) => rect.left >= bounds.left + 4 && rect.right <= bounds.right - 4
+        && rect.top >= bounds.top + 4 && rect.bottom <= bounds.bottom - 4
+        && rects.every((other, j) => index === j || rect.right <= other.left || other.right <= rect.left
+          || rect.bottom <= other.top || other.bottom <= rect.top));
+    })).toBe(true);
+  }
 });
