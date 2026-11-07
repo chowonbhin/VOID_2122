@@ -5,7 +5,7 @@ import { content, eventsOfPlace, placesOfRegion, regionById } from '../../data/c
 import { CATEGORY_LABELS } from '../../domain/policy';
 import { distanceKm, eventState, placeStatus } from '../../domain/score';
 import { placePopularity, POPULARITY_LABELS } from '../../domain/popularity';
-import { placeRating, RATING_PROVIDERS } from '../../domain/rating';
+import { placeRating } from '../../domain/rating';
 import { go } from '../../route';
 import { discoverPlaces } from '../../domain/discovery';
 import { centreLatLng, dongByCode, dongsOfRegion } from '../map/ansanGeo';
@@ -17,6 +17,29 @@ import './region.css';
 
 const statusLabel = { open: '운영 중', closed: '휴무·이용 마감', unknown: '운영정보 미확인' };
 const eventLabel = { active: '진행 중', cancelled: '취소', ended: '종료', upcoming: '예정', not_now: '선택 시각 외', condition_unknown: '참여 조건 확인 필요' };
+/** Current time in Korea as 'YYYY-MM-DDTHH:MM', so opening info always reflects today. */
+function nowKst(): string {
+  const parts = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+  const get = (type: string) => parts.find((part) => part.type === type)?.value ?? '';
+  return `${get('year')}-${get('month')}-${get('day')}T${get('hour')}:${get('minute')}`;
+}
+/** Display-only wording for the engine's status notes (the engine strings stay unchanged). */
+function friendlyNote(note: string): string {
+  if (note === '운영정보 미확인') return '운영 시간을 아직 확인하지 못했어요. 가기 전에 한 번 확인해 주세요.';
+  if (note === '선택한 요일의 운영정보 미확인') return '오늘 요일의 운영 시간은 아직 확인하지 못했어요. 가기 전에 한 번 확인해 주세요.';
+  if (note.startsWith('운영정보 검토 기간 밖')) return '운영 정보가 오래됐어요. 가기 전에 공식 안내를 다시 확인해 주세요.';
+  if (note === '휴무일') return '오늘은 쉬는 날이에요.';
+  if (note === '운영 시간 아님') return '지금은 운영 시간이 아니에요.';
+  const cutoff = note.match(/^입장·주문 마감 (\d{2}:\d{2})$/);
+  if (cutoff) return `${cutoff[1]}에 입장·주문이 마감됐어요.`;
+  return note;
+}
+function friendlyEntry(condition: string): string {
+  if (condition.startsWith('공개 시간표 기준')) return '공개된 시간표 기준이에요. 쉬는 시간, 주문 마감, 임시 휴무는 매장 안내를 확인해 주세요.';
+  if (condition.startsWith('일반 전시 관람 기준')) return '일반 전시 관람 기준이에요. 교육·단체·특별전은 공식 안내를 확인해 주세요.';
+  return condition;
+}
+const todayLabel = new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
 const eventDate = new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', dateStyle: 'medium', timeStyle: 'short' });
 
 export function RegionPage({ regionId }: { regionId: string }) {
@@ -86,12 +109,12 @@ function RegionDetail({ regionId }: { regionId: string }) {
     }
   };
 
+  const now = nowKst();
+
   return <section className="region-detail">
-    <button className="region-back" onClick={() => go({ name: 'recommend' })}>추천으로 돌아가기</button>
     <p className="eyebrow">동네 둘러보기</p>
     <h1>{region.name}</h1>
     <p className="region-lead">이 동네의 새로운 곳과 나의 발걸음을 함께 살펴보세요.</p>
-    <div className="region-summary"><span>방문 기록이 있는 장소 {places.filter((place) => visitedIds.has(place.id)).length}곳</span></div>
     {places.length === 0 && <p role="status">이 동네의 장소는 준비 중이에요.</p>}
     <div className="region-filters" role="group" aria-label="동네 안 장소 필터">
       {([['all', '발견할 20곳'], ['recommended', '추천 장소'], ['visited', '가본 장소'], ['pool', '전체 후보']] as const).map(([value, label]) =>
@@ -134,41 +157,34 @@ function RegionDetail({ regionId }: { regionId: string }) {
       <section className="region-recommend" aria-labelledby="region-recommend-title">
       <p className="region-recommend-kicker">동네 추천</p>
       <h2 className="region-list-heading" id="region-recommend-title">{filter === 'visited' ? '다시 떠올리는 발걸음' : '이 동네에서 발견하기'}</h2>
-      <p className="region-note">관심 활동과 지금 시각에 맞는 곳부터 보여드려요. 운영정보가 확인되지 않은 곳은 방문 전에 확인해 주세요.</p>
+      <p className="region-note">관심 활동에 맞는 곳부터 보여드려요. 운영 정보는 오늘 {todayLabel.format(new Date())} 기준이에요.</p>
       <ul className="places region-place-list" aria-label="행정동 장소 추천">
+        {/* Opening status always follows today's Korean time, not the time saved with the search. */}
         {visiblePlaces.map((place, index) => {
           const scored = scores.find((score) => score.placeId === place.id);
-          const status = scored?.status ?? (state.search ? placeStatus(place, state.search.when) : null);
+          const status = placeStatus(place, now);
           const popularity = scored?.popularity ?? placePopularity(place, content.places);
-          const rating = scored?.rating ?? placeRating(place);
           const events = eventsOfPlace(place.id);
           return <li key={place.id} ref={(element) => { cards.current[place.id] = element; }}
-            className={`place${place.id === selectedPlaceId ? ' selected-place' : ''}`}>
+            className={`place${place.id === selectedPlaceId ? ' selected-place' : ''}`}
+            data-rated={(scored?.rating ?? placeRating(place)).status === 'measured'}>
             <p className="region-category">{visitedIds.has(place.id) ? '가본 장소 · 자기 신고' : '남긴 방문 기록 없음'}</p>
             <div className="region-place-heading">
               <h2>{index + 1}. {place.name}</h2>
               <button aria-label={`${place.name} 카드에서 선택`} aria-pressed={place.id === selectedPlaceId}
                 onClick={() => { setSelectedId(place.id); setMapPage(Math.max(0, Math.floor(locatedPlaces.findIndex(item => item.id === place.id) / 8))); }}>지도에서 강조</button>
             </div>
-            <p>{CATEGORY_LABELS[place.category]} · {status ? statusLabel[status.status] : '시각 미선택'}</p>
+            <p>{CATEGORY_LABELS[place.category]} · {statusLabel[status.status]}</p>
             {!scored?.eligible && state.search && <p>지금 조건에서는 추천하지 않지만 둘러볼 수 있어요.</p>}
-            {status?.note && <p className="region-place-meta">{status.note}</p>}
-            {place.opening.entryCondition && <p className="region-place-meta">{place.opening.entryCondition}</p>}
+            {status.note && <p className="region-place-meta">{friendlyNote(status.note)}</p>}
+            {/* When hours are unconfirmed the status note already says to check; don't repeat it. */}
+            {place.opening.entryCondition && status.status !== 'unknown' && <p className="region-place-meta">{friendlyEntry(place.opening.entryCondition)}</p>}
             {place.isVirtual && <p className="region-place-meta">시연용 가상 장소 · 위치와 운영정보도 가상입니다.</p>}
             {(place.address || place.searchSource) && <p className="region-place-meta">{place.address}{place.address && place.searchSource && ' · '}{place.searchSource && <a href={place.searchSource.url} target="_blank" rel="noreferrer">네이버에서 장소 보기</a>}</p>}
             {popularity.status === 'measured' && <p className="region-place-meta">{POPULARITY_LABELS[popularity.evidence.metric]} {popularity.evidence.count.toLocaleString('ko-KR')}건</p>}
-            <p className="region-place-meta">{rating.status === 'measured'
-              ? `${RATING_PROVIDERS[rating.evidence.provider]} 평균 별점 ★ ${rating.evidence.value.toFixed(2)} / 5`
-              : '외부 평균 별점 미확인'}</p>
-            {rating.status === 'measured' && <details className="region-place-meta">
-              <summary>별점 출처</summary>
-              <p><a href={rating.evidence.source.url} target="_blank" rel="noreferrer">{rating.evidence.source.label}</a>
-                {' '}· 확인 {rating.evidence.source.checkedAt}{rating.evidence.observedAt && ` · 출처 갱신 ${rating.evidence.observedAt}`}</p>
-              {rating.evidence.originalUrl && <a href={rating.evidence.originalUrl} target="_blank" rel="noreferrer">지도 원문 확인</a>}
-            </details>}
             {events.map((event) => <div className="region-place-meta" key={event.id}>
               <strong>{event.name}{event.isVirtual ? ' (시연용)' : ''}</strong>
-              <p>{state.search ? eventLabel[eventState(event, state.search.when)] : '시각 미선택'} · {event.condition.text ?? '참여 조건 확인 필요'}</p>
+              <p>{eventLabel[eventState(event, now)]} · {event.condition.text ?? '참여 조건 확인 필요'}</p>
               {event.sessions.map((session, n) => <p key={n}>{eventDate.format(new Date(session.start))} ~ {eventDate.format(new Date(session.end))} (한국 시간)</p>)}
             </div>)}
             <VisitPanel placeId={place.id} />

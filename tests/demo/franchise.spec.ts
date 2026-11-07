@@ -21,7 +21,7 @@ test('pending real-place visits update score and Lv while missing evidence stays
   await page.goto(`${base}/#/region/dong-4127353200`);
   // A highly rated place can remain in the top 20 after a visit. Exercise
   // replacement with an unrated candidate, rather than assuming rank 1 leaves.
-  const first = list(page).locator(':scope > li').filter({ hasText: '외부 평균 별점 미확인' }).first();
+  const first = list(page).locator(':scope > li[data-rated="false"]').first();
   const heading = await first.getByRole('heading').innerText();
   const name = heading.replace(/^\d+\. /, '');
   const panel = first.getByRole('region');
@@ -31,8 +31,9 @@ test('pending real-place visits update score and Lv while missing evidence stays
   await expect(list(page).getByRole('heading', { name: new RegExp(name) })).toHaveCount(0);
   await page.getByRole('button', { name: '가본 장소' }).click();
   await expect(list(page)).toContainText(name);
-  await expect(list(page)).toContainText('지역 Lv.1');
-  await expect(list(page)).toContainText('장소 Lv.2');
+  await expect(list(page).locator('[data-region-level="1"]').first()).toBeAttached();
+  await expect(list(page).locator('[data-place-level="2"]').first()).toBeAttached();
+  await expect(list(page)).not.toContainText('Lv.');
   await expect(list(page)).not.toContainText('장소 Lv 검토 대기');
   await page.reload();
   await page.getByRole('button', { name: '가본 장소' }).click();

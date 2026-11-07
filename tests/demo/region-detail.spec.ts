@@ -24,12 +24,15 @@ test('20 actual cards and three marker pages share selection on a 320px phone', 
 });
 
 test('real review sources and weekday uncertainty are visible without fabricated zero counts', async ({ page }) => {
+  // Opening info follows the real clock, so pin it to the seeded Sunday afternoon.
+  await page.clock.install({ time: new Date('2026-11-08T14:00:00+09:00') });
   await setup(page);
   await page.goto(`${base}/#/region/dong-4127353200`);
   await page.getByRole('button', { name: '전체 후보' }).click();
   const nuave = list(page).locator(':scope > li').filter({ has: page.getByRole('heading', { name: /누아베/ }) });
   await expect(nuave).toContainText('방문자 리뷰 수 12건');
-  await expect(nuave).toContainText('선택한 요일의 운영정보 미확인');
+  await expect(nuave).toContainText('오늘 요일의 운영 시간은 아직 확인하지 못했어요.');
+  await expect(page.locator('.region-detail')).toContainText('11월 8일 14:00 기준');
   // Unknown counts are simply not shown, never rendered as 0.
   await expect(list(page)).not.toContainText('리뷰 수 0건');
 });

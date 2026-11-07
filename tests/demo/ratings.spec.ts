@@ -1,33 +1,24 @@
 import { test, expect } from './baseline';
-import fs from 'node:fs';
 import { base, setup, list } from './real';
 
-test('external stars and sources remain separate from review counts and survive a visit', async ({ page }) => {
+// External star ratings still feed scoring (covered by unit tests) but are no longer shown on the 동네 page.
+test('external star ratings are not shown; review counts stay and a visit still works', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await setup(page);
   await page.goto(`${base}/#/region/dong-4127152500`);
   const places = list(page);
   await expect(places.locator(':scope > li')).toHaveCount(20);
   const rated = places.locator(':scope > li').filter({ has: page.getByRole('heading', { name: /^\d+\. 레드지$/ }) });
-  await expect(rated).toContainText('네이버 평균 별점 ★ 4.28 / 5');
-  await expect(rated).not.toContainText('점수');
+  await expect(rated).toHaveAttribute('data-rated', 'true');
   await expect(rated).toContainText('방문자 리뷰 수 357건');
-  await rated.getByText('별점 출처', { exact: true }).click();
-  await expect(rated.getByRole('link', { name: /네이버 평균 별점 \(2차 출처\)/ })).toHaveAttribute('href', /hamgae.com\/place\/45021/);
-  await expect(rated.getByRole('link', { name: '지도 원문 확인' })).toHaveAttribute('href', /1443028239/);
-  await expect(places).toContainText('외부 평균 별점 미확인');
-  const dir = process.env.EVIDENCE_DIR ?? '.claude/state/evidence/rating-preview';
-  fs.mkdirSync(dir, { recursive: true });
-  await rated.evaluate(el => el.scrollIntoView({ block: 'center' }));
-  await rated.screenshot({ path: `${dir}/rated-place.png` });
-  await page.reload();
-  await expect(rated).not.toContainText('점수');
+  await expect(places).not.toContainText('별점');
+  await expect(places).not.toContainText('점수');
   const panel = rated.getByRole('region', { name: '레드지 방문 기록', exact: true });
   await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
   await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
   await page.getByRole('button', { name: '가본 장소', exact: true }).click();
-  await expect(rated).toContainText('네이버 평균 별점 ★ 4.28 / 5');
-  await expect(panel.getByText('지역 Lv.1', { exact: true })).toBeVisible();
+  await expect(panel).toHaveAttribute('data-region-level', '1');
+  await expect(rated).not.toContainText('별점');
   await page.getByRole('button', { name: '발견할 20곳', exact: true }).click();
   await expect(places.locator(':scope > li')).toHaveCount(20);
 });

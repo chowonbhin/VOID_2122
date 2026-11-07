@@ -45,9 +45,10 @@ async function addVisit(panel: Locator, date: string): Promise<void> {
 }
 
 async function expectProgress(panel: Locator, regionLevel: number, placeLevel: number, count: number): Promise<void> {
-  await expect(panel.getByText(`지역 Lv.${regionLevel}`, { exact: true })).toBeVisible();
-  await expect(panel.getByText(`장소 Lv.${placeLevel}`, { exact: true })).toBeVisible();
-  await expect(panel.getByText(`이 권역에서 기록한 장소 ${count}곳`, { exact: true })).toBeVisible();
+  // Lv is not printed on the 동네 page; the visit panel exposes it as hidden data attributes.
+  await expect(panel).toHaveAttribute('data-region-level', String(regionLevel));
+  await expect(panel).toHaveAttribute('data-place-level', String(placeLevel));
+  await expect(panel).toHaveAttribute('data-visited-count', String(count));
 }
 
 async function persisted(page: Page): Promise<UserState> {

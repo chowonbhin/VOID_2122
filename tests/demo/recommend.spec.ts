@@ -31,6 +31,8 @@ test('interest and distance filters constrain the same displayed/scored set; the
 });
 
 test('at night closed sources cannot be represented as open recommendations', async ({ page }) => {
+  // The 동네 page shows opening info for the real current time; pin the clock to the same night.
+  await page.clock.install({ time: new Date('2026-11-08T23:00:00+09:00') });
   await setup(page, '2026-11-08T23:00');
   await expect(mapScore(page)).not.toHaveAttribute('data-score', 'unavailable');
   await page.goto(`${base}/#/region/dong-4127154000`);

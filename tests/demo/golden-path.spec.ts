@@ -111,12 +111,13 @@ test('golden path', async ({ page }) => {
       await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
       await expect(page.getByRole('list', { name: '행정동 장소 추천' }).locator(':scope > li')).toHaveCount(20);
       await page.getByRole('button', { name: '가본 장소', exact: true }).click();
-      await expect(panel.getByText('지역 Lv.1', { exact: true })).toBeVisible();
+      // Lv is no longer printed; the panel keeps it as a hidden data hook.
+      await expect(panel).toHaveAttribute('data-region-level', '1');
       await expect(panel.getByText('자기 신고', { exact: true })).toBeVisible();
       await expect(panel.locator('time')).toHaveText('2026-11-08');
     });
     await demoStep(page, '5. Return and reload → same real score, source counts and visit persist', async () => {
-      await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
+      await page.getByRole('link', { name: '안산에 스며들다' }).click();
       afterScore = Number(await mapScore().getAttribute('data-score'));
       expect(afterScore).toBeLessThan(beforeScore);
       expect(await others()).toEqual(otherScores);
@@ -127,8 +128,9 @@ test('golden path', async ({ page }) => {
       await page.getByRole('button', { name: '가본 장소', exact: true }).click();
       const panel = page.getByRole('region', { name: `${VISITED} 방문 기록`, exact: true });
       await expect(panel.locator('time')).toHaveText('2026-11-08');
-      await expect(panel.getByText('지역 Lv.1', { exact: true })).toBeVisible();
-      await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
+      // Lv is no longer printed; the panel keeps it as a hidden data hook.
+      await expect(panel).toHaveAttribute('data-region-level', '1');
+      await page.getByRole('link', { name: '안산에 스며들다' }).click();
       await expect(page.getByRole('heading', { name: '추천 행정동', exact: true })).toBeVisible();
       await page.getByRole('region', { name: '안산 탐험 지도' }).scrollIntoViewIfNeeded();
     });

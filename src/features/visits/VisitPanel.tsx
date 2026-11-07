@@ -101,12 +101,9 @@ export function VisitPanel({ placeId }: { placeId: string }) {
   }
 
   return (
-    <section className="visit-panel" aria-label={`${place.name} 방문 기록`} data-place={placeId}>
-      <div className="visit-progress" aria-live="polite" aria-atomic="true">
-        <span>지역 Lv.{progress.regionLevel}</span>
-        <span>{progress.placeLevel === null ? '장소 Lv 검토 대기' : `장소 Lv.${progress.placeLevel}`}</span>
-        <span className="visit-progress-count">이 권역에서 기록한 장소 {progress.distinctPlaceCount}곳</span>
-      </div>
+    // Lv is not shown to users; data-*-level are hidden hooks so tests can still check the Lv rules.
+    <section className="visit-panel" aria-label={`${place.name} 방문 기록`} data-place={placeId}
+      data-region-level={progress.regionLevel} data-place-level={progress.placeLevel ?? 'pending'} data-visited-count={progress.distinctPlaceCount}>
       <form className="visit-form" aria-label={`${place.name} 방문 추가`} onSubmit={addRecord} noValidate>
         <label htmlFor={`${formId}-date`}>방문일</label>
         <input
