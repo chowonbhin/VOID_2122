@@ -13,12 +13,12 @@ test('name-side visit button opens a focused date editor; cancel and Escape pres
   const card = list(page).locator(':scope > li').filter({ has: page.getByRole('heading', { name: /^\d+\. 바바카멜$/ }) });
   const trigger = card.getByRole('button', { name: '바바카멜 방문 날짜 설정', exact: true });
   await expect(trigger).toHaveAttribute('aria-haspopup', 'dialog');
-  await expect(card.getByRole('button', { name: '바바카멜 카드에서 선택' })).toBeVisible();
+  await expect(card.getByRole('button', { name: '바바카멜 지도에서 위치 보기' })).toBeVisible();
   fs.mkdirSync(out, { recursive: true });
   for (const width of [320, 390]) {
     await page.setViewportSize({ width, height: 844 });
     const visit = await trigger.boundingBox();
-    const map = await card.getByRole('button', { name: '바바카멜 카드에서 선택' }).boundingBox();
+    const map = await card.getByRole('button', { name: '바바카멜 지도에서 위치 보기' }).boundingBox();
     expect(visit).not.toBeNull(); expect(map).not.toBeNull();
     expect(Math.abs(visit!.y - map!.y)).toBeLessThan(1);
     expect(map!.x).toBeGreaterThanOrEqual(visit!.x + visit!.width);

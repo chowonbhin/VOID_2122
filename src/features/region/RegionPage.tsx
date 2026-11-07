@@ -6,6 +6,7 @@ import { CATEGORY_LABELS } from '../../domain/policy';
 import { distanceKm, eventState, placeStatus } from '../../domain/score';
 import { placeRating } from '../../domain/rating';
 import { openingOnDate } from '../../domain/opening';
+import type { Place } from '../../domain/types';
 import { go } from '../../route';
 import { discoverPlaces } from '../../domain/discovery';
 import { centreLatLng, dongByCode, dongsOfRegion } from '../map/ansanGeo';
@@ -25,6 +26,29 @@ function nowKst(): string {
 }
 const todayLabel = new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
 const eventDate = new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', dateStyle: 'medium', timeStyle: 'short' });
+
+const naverMapUrl = (place: Place) => place.searchSource?.url
+  ?? `https://map.naver.com/p/search/${encodeURIComponent(`${place.address ?? '안산시'} ${place.name}`)}`;
+
+function revealMapLocation(map: HTMLDivElement | null) {
+  if (!map) return;
+  const pin = map.querySelector<HTMLElement>('[aria-current="location"]');
+  // Keep keyboard navigation at the newly revealed place, without a second scroll.
+  (pin ?? map).focus({ preventScroll: true });
+  const inset = (document.querySelector('.appbar')?.getBoundingClientRect().height ?? 56) + 16;
+  const mapTop = map.getBoundingClientRect().top + window.scrollY;
+  let top = mapTop - inset;
+  if (pin) {
+    const bounds = pin.getBoundingClientRect();
+    const pinTop = bounds.top + window.scrollY;
+    // A tall district map can extend below the viewport. Keep the selected pin
+    // fully visible instead of stopping at the top with its location offscreen.
+    if (pinTop + bounds.height - top > window.innerHeight - 16) {
+      top = pinTop + bounds.height / 2 - (window.innerHeight + inset) / 2;
+    }
+  }
+  window.scrollTo({ top: Math.max(0, top), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+}
 
 export function RegionPage({ regionId }: { regionId: string }) {
   return <RegionDetail key={regionId} regionId={regionId} />;
@@ -48,6 +72,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
     ? loadSadongMemoryPreview(content.places)
     : { value: { enabled: false, placeIds: [] } as SadongMemoryPreview, error: '' });
   const cards = useRef<Record<string, HTMLLIElement | null>>({});
+  const mapRef = useRef<HTMLDivElement>(null);
   const region = regionById(regionId);
   if (!region) return <section>
     <h1>행정동을 찾을 수 없어요</h1>
@@ -78,10 +103,10 @@ function RegionDetail({ regionId }: { regionId: string }) {
   const markers: MapMarker[] = [
     ...(home ? [{ id: 'home', kind: 'home' as const, ...centreLatLng(home), label: `내 동네 · ${home.name}` }] : []),
     ...pagePlaces.filter(place => !exampleIds.has(place.id)).flatMap(place => place.location ? [{ id: place.id, kind: 'place' as const, ...place.location, text: String(visiblePlaces.indexOf(place) + 1),
-      label: `${place.name} 지도에서 선택`, pressed: place.id === selectedPlaceId, remembered: visitedIds.has(place.id) }] : []),
+      label: `${place.name} 네이버지도에서 보기 (새 탭)`, href: naverMapUrl(place), pressed: place.id === selectedPlaceId, remembered: visitedIds.has(place.id) }] : []),
     // Preview hearts remain visible across marker pages, once per actual place.
     ...examplePlaces.flatMap(place => place.location ? [{ id: place.id, kind: 'memory' as const, ...place.location,
-      label: `${place.name} 추억 예시 지도에서 선택`, pressed: place.id === selectedPlaceId }] : []),
+      label: `${place.name} 추억 예시 네이버지도에서 보기 (새 탭)`, href: naverMapUrl(place), pressed: place.id === selectedPlaceId }] : []),
   ];
   const selectPlace = (id: string, scrollToCard = true) => {
     const nextPlaces = visiblePlaces.some(place => place.id === id) ? visiblePlaces : places;
@@ -114,8 +139,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
       <p>선택한 조건에 맞는 추천 장소가 없어요.</p>
     </div>}
     <div className="region-design-layout">
-      <DongMap target={regionDongs} markers={markers}
-        onSelect={(marker) => selectPlace(marker.id, marker.kind !== 'memory')} />
+      <DongMap ref={mapRef} target={regionDongs} markers={markers} />
       {/* The map shows 8 places at a time; choosing a place card moves it to that place. */}
       <p className="region-note">번호: 장소 · {examplePlaces.length > 0 ? '하트: 추억 예시' : '하트: 추억'} · 점: 실제 위치</p>
       {visiblePlaces.some(place => !place.location) && <p className="region-note">위치 미확인 장소는 목록에만 표시돼요.</p>}
@@ -153,8 +177,12 @@ function RegionDetail({ regionId }: { regionId: string }) {
               <div className="region-place-actions">
               <button type="button" className="region-visit-trigger" aria-label={`${place.name} 방문 날짜 설정`} aria-haspopup="dialog"
                 onClick={() => setVisitPlaceId(place.id)}>방문 기록</button>
-              <button className="region-map-focus" aria-label={`${place.name} 카드에서 선택`} title="지도에서 강조" aria-pressed={place.id === selectedPlaceId}
-                onClick={() => { setSelectedId(place.id); setMapPage(Math.max(0, Math.floor(locatedPlaces.findIndex(item => item.id === place.id) / 8))); }}>
+              <button className="region-map-focus" aria-label={`${place.name} 지도에서 위치 보기`} title="지도에서 위치 보기" aria-pressed={place.id === selectedPlaceId}
+                disabled={!place.location}
+                onClick={() => {
+                  selectPlace(place.id, false);
+                  requestAnimationFrame(() => revealMapLocation(mapRef.current));
+                }}>
                 <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
                   <path d="M12 2.5a7 7 0 0 0-7 7c0 5 7 12 7 12s7-7 7-12a7 7 0 0 0-7-7zm0 9.6a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2z" fill="currentColor" />
                 </svg>

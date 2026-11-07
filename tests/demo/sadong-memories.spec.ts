@@ -16,7 +16,7 @@ test('Sadong alone shows two real memory examples; selection, fixed examples, hi
   const examples = memories.getByRole('list').getByRole('button');
   await expect(examples).toHaveCount(2);
   await expect(memories.getByText('추억 예시', { exact: true })).toHaveCount(2);
-  await expect(page.getByRole('button', { name: /추억 예시 지도에서 선택$/ })).toHaveCount(2);
+  await expect(page.getByRole('link', { name: /추억 예시 네이버지도에서 보기 \(새 탭\)$/ })).toHaveCount(2);
   const assertPinSpacing = async () => {
     const pins = await page.locator('.dong-pin').evaluateAll(nodes => nodes.map(node => {
       const r = node.getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
@@ -29,10 +29,10 @@ test('Sadong alone shows two real memory examples; selection, fixed examples, hi
   const firstName = await examples.first().locator('strong').innerText();
   await examples.first().click();
   await expect(memories.locator('figure')).toContainText(firstName);
-  const pin = page.getByRole('button', { name: `${firstName} 추억 예시 지도에서 선택`, exact: true });
-  await expect(pin).toHaveAttribute('aria-pressed', 'true');
+  const pin = page.getByRole('link', { name: `${firstName} 추억 예시 네이버지도에서 보기 (새 탭)`, exact: true });
+  await expect(pin).toHaveAttribute('aria-current', 'location');
   const card = list(page).locator(':scope > li').filter({ has: page.getByRole('heading', { name: new RegExp(firstName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) }) });
-  await expect(card.getByRole('button', { name: `${firstName} 카드에서 선택`, exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(card.getByRole('button', { name: `${firstName} 지도에서 위치 보기`, exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(card.getByRole('link', { name: '네이버에서 장소 보기', exact: true })).toHaveAttribute('href', /^https:\/\/map.naver.com\//);
   const originalIds = await page.evaluate(key => JSON.parse(localStorage.getItem(key)!).placeIds as string[], KEY);
   await page.reload();
@@ -47,7 +47,7 @@ test('Sadong alone shows two real memory examples; selection, fixed examples, hi
   const cards = page.getByRole('list', { name: '행정동 장소 추천' }).locator(':scope > li');
   const total = await cards.count();
   for (let i = 8; i < total; i += 8) {
-    await cards.nth(i).getByRole('button', { name: /카드에서 선택$/ }).click();
+    await cards.nth(i).getByRole('button', { name: /지도에서 위치 보기$/ }).click();
     await assertPinSpacing();
   }
 
@@ -60,7 +60,7 @@ test('Sadong alone shows two real memory examples; selection, fixed examples, hi
   await memories.screenshot({ path: `${dir}/sadong-memories.png` });
   await memories.getByRole('button', { name: '예시 숨기기', exact: true }).click();
   await expect(memories.getByRole('heading')).toHaveText('이 동네의 추억 0');
-  await expect(page.getByRole('button', { name: /추억 예시 지도에서 선택$/ })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: /추억 예시 네이버지도에서 보기 \(새 탭\)$/ })).toHaveCount(0);
   await page.reload();
   await expect(memories.getByRole('heading')).toHaveText('이 동네의 추억 0');
   await memories.getByRole('button', { name: '예시 보기', exact: true }).click();

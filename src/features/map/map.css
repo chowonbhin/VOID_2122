@@ -71,6 +71,7 @@
 .dong-pin.kind-memory.selected { outline: 3px solid #994b32; outline-offset: 2px; }
 .dong-pin.kind-home { width: 34px; height: 34px; background: #fffefa; color: var(--fg); border-color: var(--fg); }
 .dong-pin:focus-visible { outline: 3px solid #994b32; outline-offset: 3px; }
+.dong-map a.dong-pin { text-decoration: none; box-sizing: border-box; }
 .ansan-other .ansan-region-fill { stroke-width: 2px; }
 .ansan-home { pointer-events: none; }
 .ansan-home circle { fill: #fffefa; stroke: #293e39; stroke-width: 3px; }

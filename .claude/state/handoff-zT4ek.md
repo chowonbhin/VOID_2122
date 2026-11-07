@@ -1,8 +1,16 @@
 # Handoff: zT4ek
 
-phase: harden; 메인 최상단 조건 요약 박스 제거 (2026-11-08 KST)
-branch: zT4ek/remove-main-summary; latest integrated origin/main 1b344aa
-authorization: ‘사동 경계 내부 대표 지점…’으로 시작하는 메인 상단 박스 삭제 요청. 기존 단위별 검증·게시 지시 유지.
+phase: harden; 장소 아이콘 → 상단 위치 → 네이버지도 연결 (2026-11-08 KST)
+branch: zT4ek/map-navigation; latest integrated origin/main eead364
+authorization: 사용자 최신 지시로 바로 main에 올리지 않는다. 다른 곳에서 진행 중인 ‘지도 아이콘을 누른 장소만 표시’ 구현이 완료되면 통합·검증한 뒤 main에 올린다.
+
+## 최신: 장소 지도 이동 연결 (다른 지도 표시 변경 통합 대기)
+
+- 가게 옆 지도 아이콘을 누르면 선택 위치에 포커스를 옮기고 상단 지도로 스크롤한다. 고정 헤더 가림을 피하며, 지도가 화면보다 길면 선택 위치가 화면에 들어오는 지점으로 이동한다. 같은 장소를 다시 누른 경우도 동작하며 모션 감소 설정은 즉시 이동한다.
+- 지도의 가게 위치는 해당 장소의 기존 네이버지도 URL을 새 탭으로 여는 링크다. 주소가 있는 기존 실장소의 검색 URL을 보존하고, 검색 출처가 없으면 주소+이름으로 네이버지도 검색 링크를 만든다. 집 표시는 그대로 비대화형이다.
+- 장소 목록·후보·점수·방문 기록·사진·팀 디자인 보존. 다른 작업과 겹치지 않도록 현재 마커 개수/표시 조건은 변경하지 않았음. 마지막 원격 확인 시 해당 별도 작업은 아직 origin/main에 없음.
+- 브라우저 검증의 기존 ‘지도 핀 클릭→카드 선택’은 사용자 요청이 바뀌어 ‘카드 지도 아이콘→상단 위치→외부 지도 링크’로 변경했다. golden-path.md의 단계·담당은 변경하지 않음.
+- 검증: build PASS, browser52 PASS, 모바일 golden5/5 PASS(.claude/state/evidence/2026-11-08T06-10-49-mobile), 콘솔 오류 없음. map-navigation/selected-1280.png·selected-390.png 직접 확인. 320px·390px·PC에서 마지막20번 카드→핀 이동, 같은 카드 재선택, 실제 네이버지도 새 탭, 모션 감소, 사용자 저장 상태 불변 확인.
 
 ## 최신: 메인 조건 요약 박스 제거
 
@@ -133,7 +141,7 @@ visual: normalized-inspection/map-1280.png, central-lv1-390.png, picks-320.png. 
 
 ## 게시/남은 사항
 
-게시 절차: **사용자 main 반영 승인 완료.** 최신 디자인 확인·검증→커밋→main ff-only→push. 배포 상태는 해당 커밋의 Vercel 체크로 확인하고 공개 서비스 golden 검증을 남긴다.
+게시 절차: **이번 작업은 main 즉시 반영 금지.** 다른 작업의 선택 장소만 표시하는 구현을 먼저 통합한다. 통합 후 최신 디자인 확인·검증→커밋→main ff-only→push. 배포 상태는 해당 커밋의 Vercel 체크로 확인하고 공개 서비스 golden 검증을 남긴다.
 공개 서비스 확인: https://void-2122.vercel.app (배포 후 golden 검사 필요).
 HACKATHON.md/.env.local/.local/evidence는 Git 제외. 두 실제 자격증명이 변경 파일에 포함되지 않음을 확인.
 리뷰·영업시간·비프랜차이즈 조사 완료를 뜻하지 않음. 사실값·공개 출처를 계속 보완할 대상이다. 프랜차이즈 전수제외 보증 아님.

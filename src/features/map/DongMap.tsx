@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useId, type Ref } from 'react';
 import { dongs, fitBox, pathOfDong, project, type Dong } from './ansanGeo';
 import './map.css';
 
@@ -7,8 +7,10 @@ export interface MapMarker {
   kind: 'place' | 'memory' | 'home';
   lat: number;
   lng: number;
-  /** Accessible name; place markers end with "지도에서 선택". */
+  /** Accessible name describing the destination or selection action. */
   label: string;
+  /** External place map, opened only when the marker itself is activated. */
+  href?: string;
   text?: string;
   pressed?: boolean;
   /** Place with the user's own visit records. */
@@ -80,8 +82,8 @@ export const HomeIcon = ({ size = 18 }: { size?: number }) => <svg viewBox="0 0 
 </svg>;
 
 /** Single-동네 map in the same drawn style as the main map: real outline, neighbours for context. */
-export function DongMap({ target, markers, onSelect }: {
-  target: Dong[]; markers: MapMarker[]; onSelect?: (marker: MapMarker) => void;
+export function DongMap({ target, markers, onSelect, ref }: {
+  target: Dong[]; markers: MapMarker[]; onSelect?: (marker: MapMarker) => void; ref?: Ref<HTMLDivElement>;
 }) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
   const box = fitBox(target, 0.06 * Math.max(...target.map(d => fitBox([d], 0)[2])));
@@ -89,7 +91,7 @@ export function DongMap({ target, markers, onSelect }: {
   const placed = layout(markers, box);
   const pct = (x: number, y: number) => ({ left: `${((x - box[0]) / box[2]) * 100}%`, top: `${((y - box[1]) / box[3]) * 100}%` });
 
-  return <div className="dong-map" role="region" aria-label="안산 탐험 지도" style={{ aspectRatio: `${box[2]} / ${box[3]}` }}>
+  return <div ref={ref} className="dong-map" role="region" aria-label="안산 탐험 지도" tabIndex={-1} style={{ aspectRatio: `${box[2]} / ${box[3]}` }}>
     <svg viewBox={box.join(' ')} className="dong-map-svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
       <defs>
         <pattern id={`${uid}dots`} width={box[2] / 60} height={box[2] / 60} patternUnits="userSpaceOnUse">
@@ -109,6 +111,10 @@ export function DongMap({ target, markers, onSelect }: {
       if (marker.kind === 'home') return <span key={marker.id} role="img" aria-label={marker.label} className={className} style={style}>
         {marker.kind === 'home' ? <HomeIcon /> : marker.text}
       </span>;
+      if (marker.href) return <a key={marker.id} className={className} style={style} href={marker.href} target="_blank" rel="noreferrer"
+        aria-label={marker.label} title={marker.label} aria-current={marker.pressed ? 'location' : undefined}>
+        {marker.kind === 'memory' ? <Heart /> : marker.text}
+      </a>;
       return <button type="button" key={marker.id} className={className} style={style} aria-label={marker.label}
         aria-pressed={marker.pressed ?? false} onClick={() => onSelect?.(marker)}>
         {marker.kind === 'memory' ? <Heart /> : marker.text}
