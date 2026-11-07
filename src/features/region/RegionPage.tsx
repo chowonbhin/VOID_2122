@@ -12,6 +12,7 @@ import { discoverPlaces } from '../../domain/discovery';
 import { centreLatLng, dongByCode, dongsOfRegion } from '../map/ansanGeo';
 import { DongMap, type MapMarker } from '../map/DongMap';
 import { Memories, type MemoryItem } from './Memories';
+import { loadSadongMemoryPreview, pickSadongMemoryPlaces, SADONG_ID, SADONG_MEMORY_KEY, type SadongMemoryPreview } from './sadongMemories';
 import { VisitPanel } from '../visits/VisitPanel';
 import './region.css';
 
@@ -29,6 +30,9 @@ function RegionDetail({ regionId }: { regionId: string }) {
   const [mapPage, setMapPage] = useState(0);
   const [selectedId, setSelectedId] = useState<string>();
   const [memoryId, setMemoryId] = useState<string>();
+  const [preview, setPreview] = useState(() => regionId === SADONG_ID
+    ? loadSadongMemoryPreview(content.places)
+    : { value: { enabled: false, placeIds: [] } as SadongMemoryPreview, error: '' });
   const cards = useRef<Record<string, HTMLLIElement | null>>({});
   const region = regionById(regionId);
   if (!region) return <section>
@@ -50,22 +54,39 @@ function RegionDetail({ regionId }: { regionId: string }) {
     const dates = state.visits.filter((visit) => visit.placeId === place.id).map((visit) => visit.date).sort().reverse();
     return dates.length ? [{ id: place.id, title: place.name, dates }] : [];
   });
-  const memoryItems = visitMemories;
+  const examplePlaces = preview.value.enabled ? places.filter(place => preview.value.placeIds.includes(place.id) && !visitedIds.has(place.id)) : [];
+  const exampleIds = new Set(examplePlaces.map(place => place.id));
+  const memoryItems: MemoryItem[] = [...visitMemories, ...examplePlaces.map(place => ({
+    id: place.id, title: place.name, dates: [], memo: place.address, sample: true,
+  }))];
+  const pagePlaces = locatedPlaces.slice(currentMapPage * 8, (currentMapPage + 1) * 8);
   const home = regionDongs.find((dong) => dong.code === dongByCode(state.profile.homeDongCode ?? '')?.code);
   const markers: MapMarker[] = [
     ...(home ? [{ id: 'home', kind: 'home' as const, ...centreLatLng(home), label: `내 동네 · ${home.name}` }] : []),
-    ...locatedPlaces.slice(currentMapPage * 8, (currentMapPage + 1) * 8).flatMap(place => place.location ? [{ id: place.id, kind: 'place' as const, ...place.location, text: String(visiblePlaces.indexOf(place) + 1),
+    ...pagePlaces.filter(place => !exampleIds.has(place.id)).flatMap(place => place.location ? [{ id: place.id, kind: 'place' as const, ...place.location, text: String(visiblePlaces.indexOf(place) + 1),
       label: `${place.name} 지도에서 선택`, pressed: place.id === selectedPlaceId, remembered: visitedIds.has(place.id) }] : []),
+    // Preview hearts remain visible across marker pages, once per actual place.
+    ...examplePlaces.flatMap(place => place.location ? [{ id: place.id, kind: 'memory' as const, ...place.location,
+      label: `${place.name} 추억 예시 지도에서 선택`, pressed: place.id === selectedPlaceId }] : []),
   ];
-  const selectPlace = (id: string) => {
+  const selectPlace = (id: string, scrollToCard = true) => {
     const nextPlaces = visiblePlaces.some(place => place.id === id) ? visiblePlaces : places;
     if (nextPlaces !== visiblePlaces) setFilter('pool');
     setMapPage(Math.max(0, Math.floor(nextPlaces.filter(place => place.location).findIndex(place => place.id === id) / 8)));
     setSelectedId(id);
     setMemoryId(id);
-    requestAnimationFrame(() => cards.current[id]?.scrollIntoView({ behavior: 'instant', block: 'nearest' }));
+    if (scrollToCard) requestAnimationFrame(() => cards.current[id]?.scrollIntoView({ behavior: 'instant', block: 'nearest' }));
   };
-  const selectMemory = selectPlace;
+  const selectMemory = (id: string) => selectPlace(id, !exampleIds.has(id));
+  const changePreview = (value: SadongMemoryPreview) => {
+    try {
+      localStorage.setItem(SADONG_MEMORY_KEY, JSON.stringify(value));
+      setPreview({ value, error: '' });
+      setMemoryId(undefined);
+    } catch {
+      setPreview(previous => ({ ...previous, error: '추억 예시 설정을 저장하지 못했어요. 다시 시도해 주세요.' }));
+    }
+  };
   const selectedCount = scores.filter(score => score.selected).length;
   const eligibleCount = scores.filter(score => score.eligible).length;
   const level = regionLevel(region.id, state.profile, state.visits, content.places);
@@ -120,15 +141,22 @@ function RegionDetail({ regionId }: { regionId: string }) {
     </div>}
     <div className="region-design-layout">
       <DongMap target={regionDongs} markers={markers}
-        onSelect={(marker) => marker.kind === 'memory' ? setMemoryId(marker.id) : selectPlace(marker.id)} />
+        onSelect={(marker) => selectPlace(marker.id, marker.kind !== 'memory')} />
       {mapPages > 1 && <nav className="region-filters" aria-label="지도 장소 페이지">
         <button disabled={currentMapPage === 0} onClick={() => setMapPage(currentMapPage - 1)}>이전 지도 장소</button>
         <span>{currentMapPage + 1} / {mapPages} · 지도에 {currentMapPage * 8 + 1}–{Math.min((currentMapPage + 1) * 8, locatedPlaces.length)}번 표시</span>
         <button disabled={currentMapPage + 1 >= mapPages} onClick={() => setMapPage(currentMapPage + 1)}>다음 지도 장소</button>
       </nav>}
-      <p className="region-note">2026-10-01 실제 행정동 경계 · 네이버 검색 응답의 실제 장소 좌표입니다. 번호: 아래 장소 목록 순서 · 하트: 기록한 추억 · 점: 장소 좌표</p>
+      <p className="region-note">2026-10-01 실제 행정동 경계 · 네이버 검색 응답의 실제 장소 좌표입니다. 번호: 아래 장소 목록 순서 · {examplePlaces.length > 0 ? '하트: 추억 예시 (방문 기록 아님)' : '하트: 기록한 추억'} · 점: 장소 좌표</p>
       {visiblePlaces.some(place => !place.location) && <p className="region-note">정밀 좌표 미확인 장소는 지도 마커 없이 목록에서 안내합니다.</p>}
-      <Memories items={memoryItems} selectedId={memoryId} onSelect={selectMemory} />
+      <Memories items={memoryItems} selectedId={memoryId} onSelect={selectMemory} controls={regionId === SADONG_ID && <>
+        <div className="memory-preview-actions">
+          <button type="button" onClick={() => changePreview({ enabled: true, placeIds: pickSadongMemoryPlaces(content.places,
+            [...preview.value.placeIds, ...visitedIds]).map(place => place.id) })}>다른 예시 보기</button>
+          <button type="button" onClick={() => changePreview({ ...preview.value, enabled: !preview.value.enabled })}>{preview.value.enabled ? '예시 숨기기' : '예시 보기'}</button>
+        </div>
+        {preview.error && <p role="alert" className="region-note">{preview.error}</p>}
+      </>} />
       {places.length === 0 && <section className="region-recommend" aria-labelledby="nearby-title">
         <h2 id="nearby-title" className="region-list-heading">가까운 탐험 동네</h2>
         <p className="region-note">이 동의 장소 데이터는 준비 중이에요. 장소가 있는 주변 동네를 직접 둘러보세요.</p>

@@ -28,6 +28,9 @@
 .region-memories button { display: grid; gap: 2px; text-align: left; border-color: #d9b8a6; background: #fbf1ec; }
 .region-memories button span { font-size: 13px; color: #994B32; }
 .region-memories .region-note { margin: 0; }
+.memory-preview-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.memory-preview-actions button { min-height: 44px; font-size: 13px; }
+.region-memories .memory-preview-note { margin: 0 0 10px; }
 .region-recommend { margin-top: 28px; padding-top: 24px; border-top: 2px dashed var(--line-strong); }
 .region-recommend-kicker { margin: 0; color: #994B32; font-weight: 800; font-size: 13px; letter-spacing: .08em; }
 .region-recommend .region-list-heading { margin: 4px 0 4px; }
