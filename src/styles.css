@@ -29,12 +29,7 @@ a { color: var(--accent); text-underline-offset: 3px; }
 .appbar-brand { color: var(--accent); font-weight: 800; font-size: 18px; letter-spacing: -.02em; text-decoration: none; }
 .appbar-link { color: var(--fg); font-size: 14px; text-decoration: none; padding: 12px 4px; }
 .appbar-link:hover, .appbar-brand:hover { text-decoration: underline; }
-.tabbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1100; background: var(--card); border-top: 1px solid var(--line-strong); padding-bottom: env(safe-area-inset-bottom); }
-.tabbar-inner { max-width: 880px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; }
-.tabbar a { display: flex; align-items: center; justify-content: center; min-height: 56px; color: var(--muted); font-size: 15px; text-decoration: none; }
-.tabbar a[aria-current="page"] { color: var(--accent); font-weight: 800; }
-.app.has-tabbar { padding-bottom: calc(57px + env(safe-area-inset-bottom)); }
-.appbar a:focus-visible, .tabbar a:focus-visible { outline: 3px solid var(--terracotta); outline-offset: -3px; border-radius: 8px; }
+.appbar a:focus-visible { outline: 3px solid var(--terracotta); outline-offset: -3px; border-radius: 8px; }
 
 .page { flex: 1; width: 100%; max-width: 880px; margin: 0 auto; padding: 32px 16px; }
 .footer { padding: 16px; font-size: 12px; line-height: 1.6; color: var(--muted); text-align: center; border-top: 1px solid var(--line); }

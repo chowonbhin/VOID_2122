@@ -17,7 +17,8 @@ test('a resident under 6 months skips Q2/Q3 and lands on the main map as 초심�
   await page.getByRole('checkbox', { name: '자연·산책' }).check();
   await page.getByRole('button', { name: '탐험 시작' }).click();
   await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toBeVisible();
-  // No separate setup page: the tab bar keeps only 동네 발견.
+  // No setup page and no bottom tab bar.
+  await expect(page.getByRole('navigation', { name: '주요 화면' })).toHaveCount(0);
   await expect(page.getByRole('link', { name: '내 동네 설정' })).toHaveCount(0);
   await expect(page.getByRole('link', { name: '나의 동네 수첩' })).toHaveCount(0);
   await expect(page.getByRole('contentinfo')).toHaveCount(1);
