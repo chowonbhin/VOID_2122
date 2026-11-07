@@ -52,6 +52,8 @@ test('only the top three recommendations have readable, separated pins; empty re
   const pins = map.locator('.map-rank-pin');
   await expect(pins).toHaveCount(3);
   await expect(pins.locator('text')).toHaveText(['1', '2', '3']);
+  // Background dongs must not all compete with the three suggested destinations.
+  await expect(map.locator('.ansan-region.recommended')).toHaveCount(3);
   for (const width of [1280, 390, 320]) {
     await page.setViewportSize({ width, height: 900 });
     await expect.poll(async () => {
@@ -72,6 +74,7 @@ test('only the top three recommendations have readable, separated pins; empty re
   await page.getByRole('link', { name: '안산에 스며들다' }).click();
   await changeState(page, { search: { origin: { label: '먼 출발지', lat: 0, lng: 0 }, maxDistanceKm: .001 } });
   await expect(pins).toHaveCount(0);
+  await expect(map.locator('.ansan-region.recommended')).toHaveCount(0);
   await expect(page.getByRole('searchbox', { name: '지역 검색' })).toBeVisible();
 });
 

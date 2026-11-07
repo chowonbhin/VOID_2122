@@ -34,13 +34,19 @@
   --color-info-bg: #29343D;
   --color-info-text: #B4CBD9;
 
-  --color-map-bg: var(--color-bg);
-  --color-map-land: var(--color-surface-sunken);
-  --color-map-boundary: var(--color-text-placeholder);
-  --color-map-familiarity-0: var(--color-surface-sunken);
-  --color-map-familiarity-1: #473532;
-  --color-map-familiarity-2: #78564F;
-  --color-map-hatch: var(--color-text);
+  /* The original light map stays distinct from the dark notebook shell. */
+  --color-map-bg: #D6E6EA;
+  --color-map-land: #EEF1EE;
+  --color-map-boundary: #8FA08A;
+  --color-map-frame: #B9CED3;
+  --color-map-familiarity-0: #E1EBDD;
+  --color-map-familiarity-1: #B6CFB5;
+  --color-map-familiarity-2: #82AE98;
+  --color-map-hatch: #35524B;
+  --color-map-ink: #35524B;
+  --color-map-control: #FFFFFF;
+  --color-map-accent: #8E625A;
+  --color-map-accent-soft: #F2E8E4;
   --color-ink: #292B30;
   /* Image-export backing, not a UI surface: keep existing saved photos faithful. */
   --color-photo-paper: #FFFFFF;

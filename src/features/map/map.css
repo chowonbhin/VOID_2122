@@ -20,33 +20,33 @@
 .map-search-dropdown p { margin: 0; padding: 16px; font-size: 14px; }
 
 .ansan-map-stage { position: relative; margin-top: 16px; }
-.map-area-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; display: grid; place-items: center; width: 44px; min-height: 56px; padding: 0; border: 1px solid var(--color-border-strong); border-radius: 14px; background: var(--color-surface); backdrop-filter: blur(4px); color: var(--color-link); box-shadow: var(--shadow); }
+.map-area-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; display: grid; place-items: center; width: 44px; min-height: 56px; padding: 0; border: 1px solid var(--color-map-frame); border-radius: 14px; background: var(--color-map-control); backdrop-filter: blur(4px); color: var(--color-map-accent); box-shadow: var(--shadow); }
 .map-area-arrow.previous { left: 8px; }
 .map-area-arrow.next { right: 8px; }
-.map-area-arrow:hover:not(:disabled) { background: var(--color-surface); }
+.map-area-arrow:hover:not(:disabled) { background: var(--color-map-control); }
 .map-area-arrow:disabled { opacity: .25; cursor: default; box-shadow: none; }
 
-.ansan-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 12px; border: 1px solid var(--color-border-strong); overscroll-behavior-x: contain; }
+.ansan-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 12px; border: 1px solid var(--color-map-frame); overscroll-behavior-x: contain; }
 .ansan-slider::-webkit-scrollbar { display: none; }
 .ansan-slide { flex: 0 0 100%; scroll-snap-align: start; background-color: var(--color-map-bg); }
 .ansan-svg { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; max-height: 640px; }
 .ansan-dong { stroke: var(--color-map-boundary); stroke-width: 2px; stroke-linejoin: round; }
 .ansan-region { cursor: pointer; outline: none; }
-.ansan-region-label { pointer-events: none; font-weight: 700; paint-order: stroke; stroke: var(--color-surface); stroke-width: 1.5px; stroke-linejoin: round; }
-.ansan-region-fill { stroke: var(--color-map-boundary); stroke-width: 2.5px; stroke-linejoin: round; transition: fill .25s, stroke-width .15s; }
-.ansan-region.recommended .ansan-region-fill { stroke: var(--color-primary); stroke-width: 5px; }
-.ansan-region:hover .ansan-region-fill { stroke-width: 7px; }
-.ansan-region:focus-visible .ansan-region-fill { stroke: var(--color-link); stroke-width: 8px; stroke-dasharray: 10 6; }
-.ansan-region.search-selected .ansan-region-fill { stroke: var(--color-link); stroke-width: 8px; stroke-dasharray: 10 6; }
-.map-rank-leader { stroke: var(--color-link); stroke-width: 1.5px; vector-effect: non-scaling-stroke; pointer-events: none; }
-.map-rank-anchor { fill: var(--color-link); pointer-events: none; }
+.ansan-region-label { pointer-events: none; font-weight: 700; paint-order: stroke; stroke: var(--color-map-control); stroke-width: 1.5px; stroke-linejoin: round; }
+.ansan-region-fill { stroke: var(--color-map-boundary); stroke-width: 1px; stroke-linejoin: round; vector-effect: non-scaling-stroke; transition: fill .25s, stroke-width .15s; }
+.ansan-region.recommended .ansan-region-fill { stroke: var(--color-map-accent); stroke-width: 2px; }
+.ansan-region:hover .ansan-region-fill { stroke: var(--color-map-accent); stroke-width: 2px; }
+.ansan-region:focus-visible .ansan-region-fill { stroke: var(--color-map-accent); stroke-width: 3px; stroke-dasharray: 6 4; }
+.ansan-region.search-selected .ansan-region-fill { stroke: var(--color-map-accent); stroke-width: 3px; stroke-dasharray: 6 4; }
+.map-rank-leader { stroke: var(--color-map-accent); stroke-width: 1.5px; vector-effect: non-scaling-stroke; pointer-events: none; }
+.map-rank-anchor { fill: var(--color-map-accent); pointer-events: none; }
 .map-rank-pin { cursor: pointer; outline: none;  }
 .map-rank-hit { fill: transparent; }
-.map-rank-face { fill: var(--color-surface); stroke: var(--color-link); stroke-width: 2px; }
-.map-rank-pin text { fill: var(--color-link); font-size: 16px; font-weight: var(--weight-semibold); pointer-events: none; }
-.map-rank-pin:hover .map-rank-face, .map-rank-pin:focus-visible .map-rank-face { fill: var(--color-primary-subtle); }
-.map-rank-pin:hover text, .map-rank-pin:focus-visible text { fill: var(--color-link); }
-.map-rank-pin:focus-visible .map-rank-face { stroke: var(--color-link); stroke-width: 3px; }
+.map-rank-face { fill: var(--color-map-control); stroke: var(--color-map-accent); stroke-width: 2px; }
+.map-rank-pin text { fill: var(--color-map-accent); font-size: 16px; font-weight: var(--weight-semibold); pointer-events: none; }
+.map-rank-pin:hover .map-rank-face, .map-rank-pin:focus-visible .map-rank-face { fill: var(--color-map-accent-soft); }
+.map-rank-pin:hover text, .map-rank-pin:focus-visible text { fill: var(--color-map-accent); }
+.map-rank-pin:focus-visible .map-rank-face { stroke: var(--color-map-accent); stroke-width: 3px; }
 
 .ansan-legend { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--color-text-secondary); }
 .ansan-legend li { display: flex; align-items: center; gap: 6px; }
@@ -54,7 +54,7 @@
 .ansan-legend .legend-land { background: var(--color-surface-sunken); }
 .ansan-legend .legend-recommend { color: var(--color-link); }
 .ansan-legend .legend-home { color: var(--color-text); }
-.ansan-legend .legend-recommend i { background: transparent; border: 2.5px solid var(--color-primary); }
+.ansan-legend .legend-recommend i { background: var(--color-map-familiarity-0); border: 2px solid var(--color-map-accent); }
 .map-note { font-size: 12px; color: var(--color-text-secondary); margin: 12px 0 0; line-height: 1.6; }
 
 /* Shared by the region (동네) page list. */
@@ -80,29 +80,30 @@
   .ansan-map-heading h2 { font-size: 18px; }
   .map-search { max-width: 52%; }
 }
-.dong-map { position: relative; width: 100%; margin: 0 auto; border-radius: var(--radius); border: 1px solid var(--color-border-strong); overflow: hidden; background-color: var(--color-map-bg); }
+.dong-map { position: relative; width: 100%; margin: 0 auto; border-radius: var(--radius); border: 1px solid var(--color-map-frame); overflow: hidden; background-color: var(--color-map-bg); }
 .dong-map-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.dong-map-context { fill: var(--color-surface-sunken); stroke: var(--color-map-boundary); stroke-width: .5px; vector-effect: non-scaling-stroke; opacity: .75; }
-.dong-map-target { fill: var(--color-map-familiarity-0); stroke: var(--color-link); stroke-width: 3px; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
-.dong-map-leader { stroke: var(--color-text); opacity: .45; }
-.dong-map-dot { fill: var(--color-link); }
-.dong-map-dot.memory { fill: var(--color-primary); }
-.dong-map-dot.home { fill: var(--color-text); }
-.dong-pin { position: absolute; transform: translate(-50%, -50%); z-index: 2; width: 44px; height: 44px; min-height: 44px; padding: 0; border-radius: 50%; display: grid; place-items: center; font-weight: var(--weight-semibold); font-size: 16px; background: var(--color-surface); color: var(--color-link); border: 2px solid var(--color-link); box-shadow: var(--shadow); }
-.dong-pin.selected { background: var(--color-primary-subtle); color: var(--color-link); outline: 3px solid var(--color-surface); z-index: 3; }
-.dong-pin.remembered { border-color: var(--color-primary); color: var(--color-link); box-shadow: var(--shadow); }
-.dong-pin.remembered.selected { background: var(--color-primary-subtle); color: var(--color-link); }
-.dong-pin.kind-memory { width: 44px; height: 44px; min-height: 44px; background: var(--color-primary-subtle); color: var(--color-link); border-color: var(--color-primary); }
-.dong-pin.kind-memory.selected { outline: 3px solid var(--color-link); outline-offset: 2px; }
-.dong-pin.kind-home { width: 34px; height: 34px; background: var(--color-surface); color: var(--color-text); border-color: var(--color-text); }
-.dong-pin:focus-visible { outline: 3px solid var(--color-link); outline-offset: 3px; }
+.dong-map-context { fill: var(--color-map-land); stroke: var(--color-map-boundary); stroke-width: .5px; vector-effect: non-scaling-stroke; opacity: .75; }
+.dong-map-target { fill: var(--color-map-familiarity-0); stroke: var(--color-map-accent); stroke-width: 3px; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.dong-map-leader { stroke: var(--color-map-ink); opacity: .45; }
+.dong-map-dot { fill: var(--color-map-accent); }
+.dong-map-dot.memory { fill: var(--color-map-accent); }
+.dong-map-dot.home { fill: var(--color-map-ink); }
+.dong-pin { position: absolute; transform: translate(-50%, -50%); z-index: 2; width: 44px; height: 44px; min-height: 44px; padding: 0; border-radius: 50%; display: grid; place-items: center; font-weight: var(--weight-semibold); font-size: 16px; background: var(--color-map-control); color: var(--color-map-accent); border: 2px solid var(--color-map-accent); box-shadow: var(--shadow); }
+.dong-pin.selected { background: var(--color-map-accent-soft); color: var(--color-map-accent); outline: 3px solid var(--color-map-control); z-index: 3; }
+.dong-pin.remembered { border-color: var(--color-map-accent); color: var(--color-map-accent); box-shadow: var(--shadow); }
+.dong-pin.remembered.selected { background: var(--color-map-accent-soft); color: var(--color-map-accent); }
+.dong-pin.kind-memory { width: 44px; height: 44px; min-height: 44px; background: var(--color-map-accent-soft); color: var(--color-map-accent); border-color: var(--color-map-accent); }
+.dong-pin.kind-memory.selected { outline: 3px solid var(--color-map-accent); outline-offset: 2px; }
+.dong-pin.kind-home { width: 34px; height: 34px; background: var(--color-map-control); color: var(--color-map-ink); border-color: var(--color-map-ink); }
+.dong-pin:focus-visible { outline: 3px solid var(--color-map-accent); outline-offset: 3px; }
 .dong-map a.dong-pin { text-decoration: none; box-sizing: border-box; }
 .ansan-other .ansan-region-fill { stroke-width: 2px; }
 .ansan-home { pointer-events: none; }
-.ansan-home circle { fill: var(--color-surface); stroke: var(--color-text); stroke-width: 3px; }
-.ansan-home path { fill: var(--color-text); }
+.ansan-home circle { fill: var(--color-map-control); stroke: var(--color-map-ink); stroke-width: 3px; }
+.ansan-home path { fill: var(--color-map-ink); }
 .ansan-slider { margin-bottom: 4px; }
-.map-hover { min-height: 30px; margin: 12px 0 16px; text-align: center; color: var(--color-text); font-size: 20px; font-weight: 700; line-height: 1.5; }
+.map-hover { position: absolute; z-index: 3; left: 50%; bottom: 12px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 24px); margin: 0; padding: 8px 14px; border: 1px solid var(--color-map-frame); border-radius: 12px; text-align: center; color: var(--color-map-ink); background: var(--color-map-control); font-size: 20px; font-weight: var(--weight-semibold); line-height: 1.5; pointer-events: none; }
+.map-hover:empty { display: none; }
 .dong-directory { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
 .dong-directory summary { cursor: pointer; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
 .dong-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
@@ -114,21 +115,21 @@
   .dong-directory { grid-template-columns: 1fr; gap: 12px; }
   .dong-buttons { grid-template-columns: 1fr 1fr; }
   .dong-buttons button { font-size: 13px; padding: 11px 8px; }
-  .map-hover { min-height: 54px; font-size: 18px; }
+  .map-hover { font-size: 18px; }
 }
 
 /* 내 동네: hatching over the familiarity fill (no icon). */
-.ansan-home-hatch { pointer-events: none; stroke: var(--color-text); stroke-width: 2px; vector-effect: non-scaling-stroke; }
-.ansan-legend .legend-home i { background: var(--color-map-land); overflow: hidden; }
+.ansan-home-hatch { pointer-events: none; stroke: var(--color-map-ink); stroke-width: 1px; vector-effect: non-scaling-stroke; }
+.ansan-legend .legend-home i { background: var(--color-map-familiarity-0); overflow: hidden; }
 
 .ansan-legend .legend-home svg { display: block; width: 100%; height: 100%; stroke: var(--color-map-hatch); stroke-width: 1.4; }
 
 /* The selected store photo sits above its location, with a small memory badge. */
-.dong-pin.has-image { width: 64px; height: 64px; min-height: 64px; transform: translate(-50%, calc(-100% - 10px)); border: 3px solid var(--color-primary); background: var(--color-surface); box-shadow: var(--shadow); overflow: visible; }
+.dong-pin.has-image { width: 64px; height: 64px; min-height: 64px; transform: translate(-50%, calc(-100% - 10px)); border: 3px solid var(--color-map-accent); background: var(--color-map-control); box-shadow: var(--shadow); overflow: visible; }
 .dong-pin.has-image img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-.dong-pin.has-image::after { content: ''; position: absolute; left: 50%; bottom: -13px; transform: translateX(-50%); border: 8px solid transparent; border-top: 9px solid var(--color-primary); }
+.dong-pin.has-image::after { content: ''; position: absolute; left: 50%; bottom: -13px; transform: translateX(-50%); border: 8px solid transparent; border-top: 9px solid var(--color-map-accent); }
 .dong-pin.has-image.selected { outline: none; }
-.dong-pin.has-image:focus-visible { outline: 3px solid var(--color-link); outline-offset: 3px; }
+.dong-pin.has-image:focus-visible { outline: 3px solid var(--color-map-accent); outline-offset: 3px; }
 .dong-pin.kind-place.selected:not(.has-image) { width: 52px; height: 52px; min-height: 52px; font-size: 18px; }
-.pin-heart { position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: var(--color-primary); color: var(--color-on-primary); border: 2px solid var(--color-surface); }
+.pin-heart { position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: var(--color-map-accent); color: var(--color-map-control); border: 2px solid var(--color-map-control); }
 .pin-heart svg { width: 12px; height: 12px; }

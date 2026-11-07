@@ -16,8 +16,9 @@ interface Props {
   onRegionSelect: (id: string) => void;
 }
 
-// The main map speaks familiarity only (user decision): fill = region Lv, rose outline =
-// today's recommendation, hatching = 내 동네. Scores stay off screen; data-score is a hidden test hook.
+// Familiarity fills retain the original green scale. Only the top three picks
+// get an accent outline and a rank pin; the rest stay quiet geographic context.
+// Scores stay off screen; data-score is a hidden test hook.
 export const FAMILIARITY = [
   { label: '아직 낯선 동네', fill: 'var(--color-map-familiarity-0)' },
   { label: '정이 드는 동네', fill: 'var(--color-map-familiarity-1)' },
@@ -174,7 +175,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
           {shapes.filter(shape => area.dongs.some(d => d.code === shape.dong.code)).map(shape =>
             <g key={shape.region.id} role="button" tabIndex={0} aria-label={shape.label}
               ref={element => { if (element) regionElements.current.set(shape.region.id, element); else regionElements.current.delete(shape.region.id); }}
-              className={`ansan-region${shape.recommended ? ' recommended' : ''}${shape.region.id === selected ? ' search-selected' : ''}`}
+              className={`ansan-region${shape.recommended && shape.rank <= 3 ? ' recommended' : ''}${shape.region.id === selected ? ' search-selected' : ''}`}
               onMouseEnter={() => setHovered(shape.region.id)} onFocus={() => setHovered(shape.region.id)}
               onMouseLeave={() => setHovered(undefined)} onBlur={() => setHovered(undefined)}
               onClick={() => onRegionSelect(shape.region.id)} onKeyDown={event => onKey(event, shape.region.id)}>
@@ -208,8 +209,8 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
         disabled={active === mapAreas.length - 1} onClick={() => { setHovered(undefined); show(active + 1); }}>
         <Icon name="chevronRight" size={24} />
       </button>
+      <p className="map-hover" aria-live="polite">{focus ? `${focus.region.name} · ${focus.status}` : ''}</p>
     </div>
-    <p className="map-hover" aria-live="polite">{focus ? `${focus.region.name} · ${focus.status}` : ''}</p>
     <ul className="ansan-legend" aria-label="지도 범례">
       {FAMILIARITY.map((item, level) => <li key={level}><i style={{ background: item.fill }} />{item.label}</li>)}
       <li className="legend-recommend"><i />오늘의 추천</li>
