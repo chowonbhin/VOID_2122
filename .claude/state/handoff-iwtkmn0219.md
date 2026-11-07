@@ -1,18 +1,19 @@
 # Handoff: iwtkmn0219
-phase: build (2026-11-08 00:35 KST)
-branch: iwtkmn0219/region-detail; latest origin/main 18f928a integrated
-last verify: PASS 5/5 desktop and mobile; no console errors
- evidence: .claude/state/evidence/2026-11-08T00-33-59 and 2026-11-08T00-34-12-mobile
-verified: build; unit 91/91; browser 24/24; read-only review found no important regressions
-visual review: step-03 desktop/mobile inspected; no overlaps or clipping
-implemented: all/visited/recommended filters share map/list, real shared score eligibility, local palette, empty states
-preserved: latest schematic, actual region/footfall data, franchise exclusion, operating status, visits/recalculation
+phase: build (2026-11-08 00:59 KST)
+branch: iwtkmn0219/region-detail
+request: restore our pre-pull region detail design; keep current functional integration
+implemented: Leaflet/OSM coordinates, map above cards, palette, Korean event dates and event sources
+preserved: shared scoring/status, franchise exclusion, real persisted visits, all/visited/recommended filters
+verified: build; unit 91/91; relevant browser 14/14 including keyboard, mobile widths and tile outage
+last verify: desktop/mobile PASS 5/5; console errors none
+ evidence: .claude/state/evidence/2026-11-08T00-56-55 and 2026-11-08T00-57-33-mobile
+visual review: both step-03 screenshots inspected; map and cards match restored vertical layout
 next:
-1. Coordinate main integration with captain; this push targets member branch only.
-2. Implement assigned M08 event participation after integration; then M09 geolocation.
-3. Confirm scope of real boundaries, city/Daebu split, personal places/photos with respective owners.
+1. Review restored design locally before merging/deploying.
+2. Coordinate main-map and real-boundary UX separately with captain.
+3. Continue assigned M08/M09 after integration.
 ## For captain
-- Full golden path now passes locally. New broad UX handoff remains beyond this scoped integration.
-- User explicitly requested push this turn; exception to prior no-push preference, member branch only.
-- No shared scoring/map/storage changes. Existing untracked docs, HACKATHON.md, backups excluded from commit.
-- Pre-pull stash retained as backup. Node20 below declared >=22.12 remains despite local test passes.
+- Explicit user restoration overrides schematic choice for detail; official golden-path wording needs captain reconciliation.
+- Own step-3 assertion now verifies real map attribution; other owners' schematic/no-external-request tests not changed or claimed passing.
+- Main recommendation map unchanged; no new actual region-boundary dataset, city/Daebu split or photos added.
+- Current change not merged/pushed/deployed. Original pre-pull stash remains available.

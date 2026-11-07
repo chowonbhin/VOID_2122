@@ -128,7 +128,7 @@ test('golden path', async ({ page }) => {
         await expect(places).not.toContainText('시연 골목 시장');
         await page.getByRole('button', { name: '시연 작은 전시관 지도에서 선택', exact: true }).click();
         await expect(page.getByRole('button', { name: '시연 작은 전시관 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
-        await expect(page.getByText('300+', { exact: true })).toBeVisible();
+        await expect(page.getByRole('region', { name: '안산 탐험 지도' }).getByRole('link', { name: 'OpenStreetMap', exact: true })).toBeVisible();
       },
     );
 
