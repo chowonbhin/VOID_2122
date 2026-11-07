@@ -13,7 +13,7 @@ async function setup(page: Page) {
 }
 const rankCards = (page: Page) => page.getByRole('list', { name: '추천 순위' }).getByRole('button');
 async function shot(page: Page, name: string) {
-  await expect(page.locator('.map-canvas')).toHaveAttribute('aria-busy', 'false', { timeout: 15000 });
+  await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toBeVisible({ timeout: 15000 });
   fs.mkdirSync(evidence, { recursive: true });
   await page.screenshot({ path: `${evidence}/${name}.png`, fullPage: true });
   await page.getByRole('region', { name: '안산 탐험 지도' }).screenshot({ path: `${evidence}/${name}-map.png` });
@@ -31,7 +31,7 @@ test('Ansan schematic → places → visit changes score and shade, persistence 
   await expect(rankCards(page).first()).toContainText('150,039명');
   await expect(rankCards(page).nth(1)).toContainText('65,567명');
   await expect(rankCards(page).first()).toContainText('Lv.0 감점 없음');
-  await expect(map.getByText('300+', { exact: true })).toBeVisible();
+  await expect(map.getByText('테라코타 테두리: 추천 동네', { exact: true })).toBeVisible();
   await shot(page, 'map-before-visit');
   const aFill = await map.locator('[data-region-id="region-a"]').getAttribute('fill');
   const bFill = await map.locator('[data-region-id="region-b"]').getAttribute('fill');
@@ -52,8 +52,8 @@ test('Ansan schematic → places → visit changes score and shade, persistence 
   const visit = page.getByRole('region', { name: '시연 산책 공간 방문 기록', exact: true });
   await visit.getByLabel('방문일', { exact: true }).fill('2026-11-08');
   await visit.getByRole('button', { name: '방문 기록', exact: true }).click();
-  await expect(map.getByRole('button', { name: /^지도 A권역/ })).toContainText('188.9');
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
+  await expect(map.getByRole('button', { name: /^지도 A권역/ })).toContainText('188.9');
   await expect(rankCards(page).first()).toHaveAccessibleName(/B권역/);
   await expect(rankCards(page).nth(1)).toContainText('유동인구 감점 3.21점');
   await expect(map.getByRole('button', { name: /^지도 B권역/ })).toContainText('1순위');
@@ -85,7 +85,7 @@ test('same familiarity penalizes the busier region more, with mobile map and det
   await expect(map.getByRole('button', { name: /^지도 A권역/ })).toBeVisible();
   await expect(map.getByRole('button', { name: /^지도 B권역/ })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await expect(map.getByText('300+', { exact: true })).toBeVisible();
+  await expect(map.getByText('테라코타 테두리: 추천 동네', { exact: true })).toBeVisible();
   await shot(page, 'map-mobile');
   await map.getByRole('button', { name: /^지도 B권역/ }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('B권역 · 안산역·다문화거리');
@@ -116,10 +116,12 @@ test('schematic uses no external map requests and excluded regions remain explor
   await expect(page.getByText('조건에 맞는 추천 권역이 없어요', { exact: true })).toBeVisible();
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
   await expect(map.getByRole('button', { name: /^지도 A권역/ })).toContainText('조건 미충족');
-  await expect(map.locator('[data-region-id="region-a"]')).toHaveAttribute('fill', '#e3e7e3');
+  // Familiarity shading does not depend on whether the region can be recommended.
+  await expect(map.locator('[data-region-id="region-a"]')).toHaveAttribute('data-level', '0');
   await expect(map.locator('[data-region-id="region-a"]')).toHaveAttribute('data-score', 'unavailable');
-  // The coloured region body also opens its recommendations, beyond its text button.
-  await map.locator('[data-region-id="region-a"]').click({ position: { x: 35, y: 70 } });
-  await expect(page.getByRole('list', { name: '권역 장소 추천' }).locator(':scope > li')).toHaveCount(5);
+  // The main map itself is drawn locally; only the 동네 screen loads OSM background tiles.
   expect(external).toEqual([]);
+  // The coloured real-outline region body opens the 동네 screen.
+  await map.locator('[data-region-id="region-a"]').click();
+  await expect(page.getByRole('list', { name: '권역 장소 추천' }).locator(':scope > li')).toHaveCount(5);
 });

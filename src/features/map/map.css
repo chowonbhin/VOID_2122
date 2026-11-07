@@ -1,67 +1,54 @@
 .exploration-map { min-width: 0; position: relative; }
 .page.page-map { max-width: 1240px; }
-.score-map { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 22px; margin: 20px 0 24px; box-shadow: var(--shadow); }
-.score-map-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+
+/* Main map: real Ansan outline, familiarity fill, 도심/대부도 slides. */
+.ansan-map { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 20px; margin: 20px 0 24px; box-shadow: var(--shadow); }
+.ansan-map-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.ansan-map-heading h2 { margin: 4px 0 0; font-size: 22px; }
 .score-map-kicker { font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--accent); }
-.score-map-heading h2 { margin: 5px 0 0; font-size: 22px; color: var(--fg); }
-.score-map-city { padding: 6px 12px; background: var(--land); color: #5b4a30; border-radius: 100px; font-size: 13px; font-weight: 700; white-space: nowrap; }
-.score-map-intro { margin: 10px 0 14px; font-size: 14px; color: var(--muted); }
-.score-map-canvas { width: 100%; max-width: 800px; margin: 0 auto 18px; aspect-ratio: 760 / 500; position: relative; border-radius: 18px; border: 1px solid #c9dbe0; background-color: var(--sea); background-image: radial-gradient(#b5ccd3 1px, transparent 1.2px); background-size: 14px 14px; }
-.score-map-canvas-detail { aspect-ratio: 640 / 440; }
-.score-map-svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.city-silhouette, .city-island { fill: var(--land); stroke: var(--land-stroke); stroke-width: 2px; stroke-linejoin: round; }
-.city-connector { fill: none; stroke: var(--land-stroke); stroke-width: 2px; stroke-dasharray: 5 6; }
-.context-label { fill: #5d6f69; font-size: 17px; font-weight: 600; text-anchor: middle; }
-.context-small { font-size: 13px; font-weight: 400; }
-.north-arrow { fill: none; stroke: #5d6f69; stroke-width: 2px; stroke-linecap: round; stroke-linejoin: round; }
-.score-region { cursor: pointer; outline: none; }
-.score-region-fill { stroke: var(--land-stroke); stroke-width: 2.5px; stroke-linejoin: round; transition: fill .25s; }
-.score-region:hover .score-region-fill { stroke: var(--accent); stroke-width: 4px; }
-.score-area-label { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 5px; background: transparent; border: 0; border-radius: 12px; box-shadow: none; line-height: 1.2; cursor: pointer; }
-.score-area-label:hover { background: transparent; }
-.score-area-label:focus-visible { outline: 3px solid var(--terracotta); outline-offset: 3px; }
-.score-area-title { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 17px; font-weight: 600; white-space: nowrap; }
-.score-area-value { font-size: 34px; font-weight: 750; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
-.score-area-value small { font-size: 12px; font-weight: 500; letter-spacing: 0; margin-left: 3px; }
-.score-area-rank { font-size: 12px; }
-.score-detail-label { left: 50%; top: 9%; width: 90%; flex-direction: row; justify-content: center; gap: 10px; }
-.score-detail-label .score-area-title { flex-direction: row; font-size: 14px; gap: 5px; }
-.score-detail-label .score-area-value { font-size: 23px; }
-.map-place-marker { position: absolute; transform: translate(-50%, -50%); width: 44px; height: 44px; z-index: 2; border-radius: 50%; background: var(--card); color: var(--accent); border: 2px solid var(--accent); font-weight: 800; padding: 0; box-shadow: 0 2px 6px #0002; cursor: pointer; }
-.map-place-marker.active { background: var(--accent); color: white; outline: 3px solid #fff; }
-.map-place-marker:focus-visible { outline: 3px solid var(--terracotta); outline-offset: 3px; }
-.score-map-legend { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 28px; row-gap: 14px; font-size: 12px; color: var(--muted); }
-.score-scale { display: grid; width: 260px; max-width: 100%; grid-template-columns: 1fr 1fr; row-gap: 6px; }
-.score-scale > span:nth-child(2) { text-align: right; }
-.score-scale-gradient { grid-column: 1 / -1; height: 9px; border-radius: 100px; background: linear-gradient(90deg, #ebf6ef, #0f5841); border: 1px solid #163c2820; }
-.score-scale-ticks { grid-column: 1 / -1; display: flex; justify-content: space-between; font-size: 11px; }
-.score-no-data { display: flex; align-items: center; gap: 6px; }
-.score-no-data i { width: 12px; height: 12px; border-radius: 4px; background: #e3e7e3; border: 1px solid #b9c6bb; }
-.map-note { font-size: 12px; color: var(--muted); margin: 18px 0 0; line-height: 1.6; text-align: center; }
-.region-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, .85fr); gap: 24px; align-items: start; }
-.region-layout .exploration-map { position: sticky; top: 18px; }
+.score-map-intro { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
+.ansan-overview { flex: 0 0 auto; width: 92px; height: auto; background: var(--sea); border: 1px solid #c9dbe0; border-radius: 10px; }
+.ansan-overview path { fill: var(--land); stroke: var(--land-stroke); stroke-width: 3px; }
+.ansan-overview rect { fill: none; stroke: #b75d3e; stroke-width: 9px; transition: x .25s, y .25s, width .25s, height .25s; }
+
+.ansan-area-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 12px; }
+.ansan-area-tabs button { border-radius: 14px; color: var(--muted); }
+.ansan-area-tabs button[aria-pressed="true"] { border: 1.5px solid var(--accent); color: var(--accent); font-weight: 800; background: var(--accent-soft); }
+
+.ansan-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 18px; border: 1px solid #c9dbe0; overscroll-behavior-x: contain; }
+.ansan-slider::-webkit-scrollbar { display: none; }
+.ansan-slide { flex: 0 0 100%; scroll-snap-align: start; background-color: var(--sea); background-image: radial-gradient(#b5ccd3 1px, transparent 1.2px); background-size: 14px 14px; }
+.ansan-svg { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; }
+.ansan-dong { stroke: var(--land-stroke); stroke-width: 2px; stroke-linejoin: round; }
+.ansan-region { cursor: pointer; outline: none; }
+.ansan-region-fill { stroke: var(--land-stroke); stroke-width: 2.5px; stroke-linejoin: round; transition: fill .25s, stroke-width .15s; }
+.ansan-region.recommended .ansan-region-fill { stroke: #b75d3e; stroke-width: 5px; }
+.ansan-region:hover .ansan-region-fill { stroke-width: 7px; }
+.ansan-region:focus-visible .ansan-region-fill { stroke: #994b32; stroke-width: 8px; stroke-dasharray: 10 6; }
+.ansan-region-label { fill: var(--fg); font-size: 15px; font-weight: 800; text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: #fffefa; stroke-width: 4px; stroke-linejoin: round; }
+.ansan-region-rank { fill: #994b32; font-size: .8em; }
+.ansan-context { fill: #5d6f69; font-size: 16px; font-weight: 700; text-anchor: middle; }
+.ansan-slide-caption { margin: 10px 0 0; font-size: 13px; color: var(--muted); }
+
+.ansan-legend { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--fg); }
+.ansan-legend li { display: flex; align-items: center; gap: 6px; }
+.ansan-legend i { width: 14px; height: 14px; border-radius: 4px; border: 1px solid var(--land-stroke); }
+.ansan-legend .legend-land { background: #eee6d6; }
+.ansan-legend .legend-recommend { color: #994b32; }
+.ansan-legend .legend-recommend i { background: transparent; border: 2.5px solid #b75d3e; }
+.map-note { font-size: 12px; color: var(--muted); margin: 12px 0 0; line-height: 1.6; }
+
+/* Shared by the region (동네) page list. */
 .region-place-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 16px; }
-.region-place-list > li { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; scroll-margin-top: 20px; }
+.region-place-list > li { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; scroll-margin-top: 72px; }
 .region-place-list > li.selected-place { border: 2px solid var(--accent); background: #f7fbf5; }
 .region-place-heading { display: flex; align-items: center; gap: 12px; justify-content: space-between; flex-wrap: wrap; }
 .region-place-heading h2 { margin: 0; font-size: 18px; }
 .region-place-meta { font-size: 13px; color: var(--muted); margin: 10px 0; }
 .region-back { margin-bottom: 16px; }
-@media (prefers-reduced-motion: reduce) { .score-region-fill { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .ansan-region-fill, .ansan-overview rect { transition: none; } }
 @media (max-width: 720px) {
-  .score-map { padding: 18px 12px; border-radius: 20px; }
-  .score-map-canvas { border-radius: 14px; }
-  .score-map-heading h2 { font-size: 21px; }
-  .score-map-intro { font-size: 13px; }
-  .score-area-label { gap: 2px; padding: 2px; }
-  .score-area-title { font-size: clamp(10px, 2.8vw, 17px); }
-  .score-area-value { font-size: clamp(19px, 5.5vw, 32px); }
-  .score-area-value small { font-size: 10px; margin-left: 1px; }
-  .score-area-rank { font-size: 10px; }
-  .score-detail-label .score-area-title { font-size: 12px; }
-  .score-detail-label .score-area-value { font-size: 19px; }
-  .score-map-legend { font-size: 11px; }
-  .map-note { font-size: 11px; text-align: left; }
-  .region-layout { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .region-layout .exploration-map { position: static; }
+  .ansan-map { padding: 16px 12px; border-radius: 20px; }
+  .ansan-map-heading h2 { font-size: 20px; }
+  .ansan-overview { width: 72px; }
 }

@@ -1,108 +1,123 @@
-import { useId } from 'react';
-import type { Place, Region, RegionRecommendation } from '../../domain/types';
-import { scoreColor } from './scoreColor';
+import { useId, useRef, useState, type KeyboardEvent } from 'react';
+import type { Region, RegionRecommendation } from '../../domain/types';
+import { centreOf, dongs, dongsOfRegion, geoSource, mapAreas, pathOf, wholeBox } from './ansanGeo';
 import './map.css';
 
 interface Props {
   regions: Region[];
   recommendations: RegionRecommendation[];
-  selectedRegionId?: string;
-  places?: Place[];
-  selectedPlaceId?: string;
+  /** Region Lv from the shared engine (initial familiarity combined with visits). */
+  levels: Record<string, 0 | 1 | 2>;
   onRegionSelect: (id: string) => void;
-  onPlaceSelect?: (id: string) => void;
 }
 
-// Schematic, enlarged exploration areas; retain polygon edges and soften only the corners.
-function softenedPolygon(points: [number, number][], radius = 7) {
-  const corners = points.map((point, i) => {
-    const previous = points[(i + points.length - 1) % points.length];
-    const next = points[(i + 1) % points.length];
-    const approach = (other: [number, number]) => {
-      const distance = Math.hypot(other[0] - point[0], other[1] - point[1]);
-      const ratio = Math.min(radius / distance, 0.25);
-      return [point[0] + (other[0] - point[0]) * ratio, point[1] + (other[1] - point[1]) * ratio];
-    };
-    return { point, before: approach(previous), after: approach(next) };
-  });
-  return corners.map(({ point, before, after }, i) => `${i ? 'L' : 'M'}${before.join(' ')} Q${point.join(' ')} ${after.join(' ')}`).join(' ') + ' Z';
-}
-const areas: Record<string, { path: string; x: number; y: number }> = {
-  'region-b': { path: softenedPolygon([[232, 167], [351, 142], [408, 190], [426, 281], [374, 318], [249, 309], [231, 254]]), x: 326, y: 233 },
-  'region-a': { path: softenedPolygon([[435, 194], [537, 167], [591, 203], [624, 271], [586, 336], [473, 350], [445, 304]]), x: 529, y: 263 },
-};
-const mainland = softenedPolygon([[212, 187], [220, 142], [299, 91], [347, 76], [402, 105], [439, 90], [486, 54], [523, 70], [575, 112], [646, 96], [675, 125], [681, 166], [726, 196], [735, 222], [711, 285], [726, 338], [664, 392], [627, 407], [567, 400], [520, 443], [485, 440], [438, 412], [355, 429], [325, 408], [293, 372], [251, 359], [196, 372], [202, 314], [218, 284], [186, 238]]);
-const island = softenedPolygon([[78, 342], [101, 324], [151, 342], [183, 325], [216, 363], [218, 389], [183, 412], [191, 443], [145, 467], [111, 450], [100, 425], [58, 434], [46, 391], [64, 366]]);
-const detailShape = softenedPolygon([[91, 111], [280, 82], [386, 65], [499, 119], [551, 269], [466, 367], [297, 388], [148, 348], [86, 284]], 9);
+// Familiarity is shown as the fill of the real area; recommendation as a terracotta outline.
+export const FAMILIARITY = [
+  { label: '잘 몰라요', fill: '#E1EBDD' },
+  { label: '가끔 가요', fill: '#B6CFB5' },
+  { label: '자주 가요', fill: '#82AE98' },
+] as const;
+const LAND = '#EEE6D6';
 
-// Stable slots rather than geographic pins: every numbered place remains reachable on a phone.
-// Sorting by ID keeps a place in the same slot when recommendation order changes.
-const placeSlots = [[29, 38], [53, 34], [74, 52], [60, 75], [30, 72]];
-function placePosition(place: Place, places: Place[]) {
-  const index = [...places].sort((a, b) => a.id.localeCompare(b.id)).findIndex(item => item.id === place.id);
-  const [left, top] = placeSlots[index] ?? [25 + (index % 3) * 25, 38 + Math.floor(index / 3) * 20];
-  return { left: `${left}%`, top: `${top}%` };
-}
+export function ExplorationMap({ regions, recommendations, levels, onRegionSelect }: Props) {
+  const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
+  const slider = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
 
-export function ExplorationMap(props: Props) {
-  const titleId = useId();
-  const descriptionId = useId();
-  const selected = props.regions.find(region => region.id === props.selectedRegionId);
-  const visibleRegions = selected ? [selected] : props.regions.filter(region => areas[region.id]);
-  const labels = visibleRegions.map(region => {
-    const recommendation = props.recommendations.find(item => item.regionId === region.id);
-    const rank = props.recommendations.findIndex(item => item.regionId === region.id) + 1;
+  const show = (index: number) => {
+    setActive(index);
+    const element = slider.current;
+    if (!element) return;
+    const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    element.scrollTo({ left: index * element.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
+  };
+
+  const shapes = regions.filter(region => dongsOfRegion(region).length).map(region => {
+    const regionDongs = dongsOfRegion(region);
+    const recommendation = recommendations.find(item => item.regionId === region.id);
+    const rank = recommendations.findIndex(item => item.regionId === region.id) + 1;
     const score = recommendation?.score ?? null;
-    const color = scoreColor(score);
-    const layout = selected ? { path: detailShape, x: 320, y: 75 } : areas[region.id];
-    const label = `${region.name} · ${score === null ? '추천 조건 미충족' : `추천 점수 ${score.toFixed(1)} · ${rank}순위`} · 상세 보기`;
-    return { region, rank, score, color, layout, label };
+    const level = levels[region.id] ?? 0;
+    const shortName = region.name.replace(/^[A-Z]권역 · /, '');
+    const scoreText = score === null ? '추천 조건 미충족' : score > 0 ? `${score.toFixed(1)}점 · ${rank}순위` : '추천 점수 0점';
+    const recommended = score !== null && score > 0;
+    return {
+      region, level, score, rank, shortName, recommended, scoreText,
+      path: regionDongs.map(d => pathOf(d.ring)).join(''),
+      centre: centreOf(regionDongs[0].ring),
+      codes: regionDongs.map(d => d.code),
+      label: `지도 ${region.name} · 친밀도 ${FAMILIARITY[level].label} (Lv.${level}) · ${score === null ? '추천 조건 미충족' : `추천 점수 ${score.toFixed(1)} · ${rank}순위`} · 동네로 들어가기`,
+    };
   });
+  const regionCodes = new Set(shapes.flatMap(shape => shape.codes));
 
-  return <section className={`exploration-map score-map${selected ? ' score-map-detail' : ''}`} aria-label="안산 탐험 지도">
-    <div className="score-map-heading">
-      <div><span className="score-map-kicker">ANSAN · EXPLORE</span><h2 id={titleId}>{selected ? '이 권역의 탐험 장소' : '안산의 탐험 점수'}</h2></div>
-      <span className="score-map-city">안산시</span>
-    </div>
-    <p className="score-map-intro" id={descriptionId}>{selected ? '장소 번호를 누르면 해당 추천 카드를 볼 수 있어요.' : '마음이 가는 동네를 눌러보세요. 점수가 높을수록 색이 짙어요.'}</p>
-    <div className={`map-canvas score-map-canvas${selected ? ' score-map-canvas-detail' : ''}`} aria-busy="false">
-      <svg viewBox={selected ? '0 0 640 440' : '0 0 760 500'} className="score-map-svg" aria-labelledby={titleId} aria-describedby={descriptionId}>
-        {!selected && <g className="score-map-context" aria-hidden="true">
-          <path d={mainland} className="city-silhouette" />
-          <path d={island} className="city-island" />
-          <path d="M224 383 Q250 401 278 389" className="city-connector" />
-          <text x="469" y="127" className="context-label">그 외 안산 권역</text>
-          <text x="481" y="412" className="context-label context-small">추천 데이터 준비 중</text>
-          <text x="132" y="386" className="context-label">대부도</text>
-          <text x="133" y="408" className="context-label context-small">준비 중</text>
-          <path d="M690 50 L690 23 M682 32 L690 23 L698 32" className="north-arrow" />
-          <text x="690" y="71" className="context-label context-small">북</text>
-        </g>}
-        {labels.map(({ region, color, layout, label, score }) => <g key={region.id}
-          className="score-region" aria-hidden="true" onClick={() => props.onRegionSelect(region.id)}>
-          <title>{label}</title>
-          <path className="score-region-fill" data-region-id={region.id} data-score={score ?? 'unavailable'} d={layout.path} fill={color.fill} />
-        </g>)}
-      </svg>
-      {labels.map(({ region, color, layout, score, rank, label }) => <button type="button" key={region.id}
-        className={`score-area-label${selected ? ' score-detail-label' : ''}`}
-        style={selected ? { color: '#193e30' } : { left: `${layout.x / 760 * 100}%`, top: `${layout.y / 500 * 100}%`, color: color.text }}
-        aria-label={`지도 ${label}`} aria-pressed={selected?.id === region.id} onClick={() => props.onRegionSelect(region.id)}>
-        <span className="score-area-title">{region.name.replace(/^[AB]권역 · /, '').split('·').map((word, index) => <span key={index}>{word}</span>)}</span>
-        <strong className="score-area-value">{score === null ? '—' : score.toFixed(1)}<small>{score === null ? '' : '점'}</small></strong>
-        <span className="score-area-rank">{score === null ? '조건 미충족' : score > 0 ? `${rank}순위` : '추천 점수 0점'}</span>
-      </button>)}
-      {selected && (props.places ?? []).map((place, index) => <button type="button" key={place.id}
-        className={`map-place-marker${place.id === props.selectedPlaceId ? ' active' : ''}`}
-        style={placePosition(place, props.places ?? [])} aria-label={`${place.name} 지도에서 선택`}
-        aria-pressed={place.id === props.selectedPlaceId} onClick={() => props.onPlaceSelect?.(place.id)}>{index + 1}</button>)}
-    </div>
-    <div className="score-map-legend" aria-label="점수 색상 범례">
-      <div className="score-scale"><span>낮은 추천 점수</span><span>높은 추천 점수</span>
-        <div className="score-scale-gradient" /><div className="score-scale-ticks"><span>0</span><span>100</span><span>200</span><span>300+</span></div>
+  const onKey = (event: KeyboardEvent, id: string) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onRegionSelect(id);
+    }
+  };
+
+  return <section className="exploration-map ansan-map" aria-label="안산 탐험 지도">
+    <div className="ansan-map-heading">
+      <div>
+        <span className="score-map-kicker">ANSAN · MY NEIGHBORHOODS</span>
+        <h2>나의 안산 지도</h2>
+        <p className="score-map-intro">동네를 누르면 그 동네로 들어가요. 색이 짙을수록 친한 동네예요.</p>
       </div>
-      <span className="score-no-data"><i /> 회색 · 미제공 / 조건 미충족</span>
+      <svg className="ansan-overview" viewBox={wholeBox.join(' ')} aria-hidden="true">
+        {dongs.map(d => <path key={d.code} d={pathOf(d.ring)} />)}
+        <rect x={mapAreas[active].box[0]} y={mapAreas[active].box[1]} width={mapAreas[active].box[2]} height={mapAreas[active].box[3]} rx="8" />
+      </svg>
     </div>
-    <p className="map-note">{selected ? '장소 번호는 추천 목록과 연결되며 실제 위치·거리를 나타내지 않습니다.' : '안산의 위치·크기를 단순화한 탐험권역도입니다. 실제 행정 경계와 다르며, 회색 영역은 0점이 아닙니다.'}</p>
+
+    <div className="ansan-area-tabs" role="group" aria-label="지도 지역 선택">
+      {mapAreas.map((area, index) => <button type="button" key={area.id} aria-pressed={active === index} onClick={() => show(index)}>
+        {area.label}{index === 1 ? ' →' : ''}
+      </button>)}
+    </div>
+
+    <div className="ansan-slider" ref={slider} aria-label="좌우로 넘기는 지역 지도"
+      onScroll={event => setActive(Math.round(event.currentTarget.scrollLeft / Math.max(1, event.currentTarget.clientWidth)))}>
+      {mapAreas.map((area, index) => <div className="ansan-slide" role="group" aria-label={`${area.label} 지도 · ${index + 1} / ${mapAreas.length}`} key={area.id}>
+        <svg viewBox={area.box.join(' ')} className="ansan-svg">
+          <defs>
+            <pattern id={`${uid}dots${index}`} width="10" height="10" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="1" fill="#c9b99a" opacity=".55" />
+            </pattern>
+          </defs>
+          <g aria-hidden="true">
+            {area.dongs.filter(d => !regionCodes.has(d.code)).map(d => <path key={d.code} className="ansan-dong" d={pathOf(d.ring)} fill={LAND} />)}
+            {area.dongs.map(d => <path key={d.code} d={pathOf(d.ring)} fill={`url(#${uid}dots${index})`} pointerEvents="none" />)}
+          </g>
+          {shapes.filter(shape => area.dongs.some(d => shape.codes.includes(d.code))).map(shape =>
+            <g key={shape.region.id} role="button" tabIndex={0} aria-label={shape.label}
+              className={`ansan-region${shape.recommended ? ' recommended' : ''}`}
+              onClick={() => onRegionSelect(shape.region.id)} onKeyDown={event => onKey(event, shape.region.id)}>
+              <title>{`${shape.region.name} · ${FAMILIARITY[shape.level].label} · ${shape.scoreText}`}</title>
+              <path className="ansan-region-fill" d={shape.path} data-region-id={shape.region.id}
+                data-score={shape.score ?? 'unavailable'} data-level={shape.level} fill={FAMILIARITY[shape.level].fill} />
+            </g>)}
+          {shapes.filter(shape => area.dongs.some(d => shape.codes.includes(d.code))).map(shape =>
+            <text key={shape.region.id} className="ansan-region-label" x={shape.centre[0]} y={shape.centre[1]} aria-hidden="true"
+              style={{ fontSize: area.box[2] * 0.042, strokeWidth: area.box[2] * 0.012 }}>
+              <tspan x={shape.centre[0]}>{shape.shortName}</tspan>
+              {shape.recommended && <tspan x={shape.centre[0]} dy="1.2em" className="ansan-region-rank">{shape.rank}순위</tspan>}
+            </text>)}
+          {area.id === 'island' && <text className="ansan-context" x={area.box[0] + area.box[2] / 2} y={area.box[1] + 28} aria-hidden="true">대부도 · 별도 배율</text>}
+        </svg>
+      </div>)}
+    </div>
+    <p className="ansan-slide-caption">{mapAreas[active].label} · {active + 1} / {mapAreas.length} · 옆으로 넘기면 {mapAreas[1 - active].label}{active === 0 ? '가' : '이'} 보여요. 각 지역은 별도 배율로 확대했어요.</p>
+
+    <ul className="ansan-legend" aria-label="친밀도 색상 범례">
+      {FAMILIARITY.map((item, level) => <li key={level}><i style={{ background: item.fill }} />{item.label} · Lv.{level}</li>)}
+      <li><i className="legend-land" />탐험 데이터 준비 중</li>
+      <li className="legend-recommend"><i />테라코타 테두리: 추천 동네</li>
+    </ul>
+    <p className="map-note">
+      실제 좌표 기반 · {geoSource.label.replace(/ ·.*/, '')} 2013년 행정경계(최신 경계 아님)로 그렸어요. 탐험권역은 그 권역이 속한 행정동 면으로 표시합니다.{' '}
+      <a href={geoSource.url} target="_blank" rel="noreferrer">경계 데이터 출처</a>
+    </p>
   </section>;
 }

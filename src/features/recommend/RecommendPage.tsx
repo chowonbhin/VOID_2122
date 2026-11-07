@@ -2,7 +2,7 @@
 import { useAppState } from '../../AppState';
 import { content } from '../../data/content';
 import { CATEGORY_LABELS } from '../../domain/policy';
-import { recommend } from '../../domain/score';
+import { recommend, regionLevel } from '../../domain/score';
 import { go } from '../../route';
 import { ExplorationMap } from '../map/ExplorationMap';
 import './recommend.css';
@@ -44,6 +44,7 @@ export function RecommendPage() {
       <p className="recommend-note">프랜차이즈와 분류 미확인 장소는 추천·점수에서 제외합니다.</p>
 
       <ExplorationMap regions={content.regions} recommendations={result.recommendations}
+        levels={Object.fromEntries(content.regions.map((region) => [region.id, regionLevel(region.id, state.profile, state.visits, content.places)]))}
         onRegionSelect={(regionId) => go({ name: 'region', regionId })} />
 
       {ranked.length > 0 && <div className="recommend-section-head">

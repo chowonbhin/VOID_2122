@@ -25,3 +25,23 @@
 .region-detail .region-place-meta { color: #64736C; overflow-wrap: anywhere; }
 .region-detail .region-place-heading button { min-height: 44px; }
 @media (max-width: 480px) { .region-map { height: 330px; } .region-detail .region-place-list > li { padding: 16px; } }
+/* Memories linked to real-location markers, then a separate recommendation block. */
+.region-pin.memory { background: #b75d3e; border-color: #fffefa; box-shadow: 0 0 0 3px #b75d3e55, 0 1px 5px #0005; }
+.region-memories { margin-top: 20px; padding: 16px; background: #FFFEFA; border: 1.5px solid var(--line-strong); border-radius: 18px; }
+.region-memories h2 { margin: 0 0 10px; font-size: 18px; }
+.region-memories ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity; }
+.region-memories li { flex: 0 0 auto; scroll-snap-align: start; }
+.region-memories button { display: grid; gap: 2px; text-align: left; border-color: #d9b8a6; background: #fbf1ec; }
+.region-memories button span { font-size: 13px; color: #994B32; }
+.region-memories .region-note { margin: 0; }
+.region-recommend { margin-top: 28px; padding-top: 24px; border-top: 2px dashed var(--line-strong); }
+.region-recommend-kicker { margin: 0; color: #994B32; font-weight: 800; font-size: 13px; letter-spacing: .08em; }
+.region-recommend .region-list-heading { margin: 4px 0 4px; }
+.region-recommend > .region-note { margin: 0 0 16px; }
+.region-map-wrap { position: relative; }
+.region-inset { position: absolute; right: 10px; bottom: 26px; z-index: 450; width: 84px; height: 84px; padding: 4px; background: #fffefaee; border: 1px solid var(--line-strong); border-radius: 12px; pointer-events: none; }
+.region-inset path { fill: #82ae9833; stroke: #356859; stroke-width: 1.6px; stroke-linejoin: round; }
+.region-inset circle { fill: #b75d3e; }
+.region-map-views { display: flex; gap: 8px; margin: 16px 0 10px; }
+.region-map-views button { flex: 1; border-radius: 14px; font-size: 14px; color: var(--text-secondary); }
+.region-map-views button[aria-pressed="true"] { border: 1.5px solid var(--action-primary); color: var(--action-primary); font-weight: 800; background: #e4ede6; }

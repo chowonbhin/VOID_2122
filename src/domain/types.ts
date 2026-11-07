@@ -51,6 +51,8 @@ export interface Region {
   startSource?: Source;
   /** App-defined approximate exploration area, not an official boundary. */
   boundary?: LatLng[];
+  /** KOSTAT 2013 행정동 codes whose real outline this exploration area is drawn with (src/data/ansan-dongs.json). */
+  dongCodes?: string[];
   /** 개발용 가상 데이터면 true. 화면에 "가상 데이터"로 표시한다. */
   isVirtual: boolean;
 }

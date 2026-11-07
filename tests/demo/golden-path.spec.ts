@@ -101,7 +101,7 @@ test('golden path', async ({ page }) => {
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 A권역/);
         await expect(cards.nth(1)).toHaveAccessibleName(/2순위 B권역/);
         await expect(page.getByRole('button', { name: /^지도 A권역/ })).toContainText('240.7점');
-        await expect(page.getByText('300+', { exact: true })).toBeVisible();
+        await expect(page.getByText('테라코타 테두리: 추천 동네', { exact: true })).toBeVisible();
         for (const card of [cards.nth(0), cards.nth(1)]) {
           await expect(card).toContainText('추천 이유');
           await expect(card).toContainText('시작점 직선거리');
@@ -172,7 +172,7 @@ test('golden path', async ({ page }) => {
         await expect(visits.getByText('지역 Lv.1', { exact: true })).toBeVisible();
         await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
         await expect(cards.nth(0)).toHaveAccessibleName(/1순위 B권역/);
-        await expect(page.getByText('300+', { exact: true })).toBeVisible();
+        await expect(page.getByText('테라코타 테두리: 추천 동네', { exact: true })).toBeVisible();
       },
     );
   } finally {
