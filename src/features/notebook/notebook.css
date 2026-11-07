@@ -8,7 +8,7 @@
 .notebook-add:hover { background: var(--color-primary-pressed); }
 .notebook-save:hover:not(:disabled) { background: var(--color-primary-pressed); }
 .notebook-add span { font-size: 22px; font-weight: 300; }
-.notebook-overview { display: flex; align-items: center; gap: 28px; padding: 18px 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: 13px; }
+.notebook-overview { display: flex; align-items: center; gap: 28px; padding: 18px 20px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-primary-subtle); color: var(--color-text-secondary); font-size: 13px; }
 .notebook-overview strong { margin-right: 6px; font-size: 22px; font-weight: var(--weight-regular); font-variant-numeric: tabular-nums; color: var(--color-link); }
 .notebook-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 28px 0 24px; }
 .notebook-tabs { display: flex; gap: 6px; }

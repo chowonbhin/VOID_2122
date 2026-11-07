@@ -1,40 +1,41 @@
-/* DESIGN_COLORS.md: the dark notebook is the default across the app.
+/* DESIGN_COLORS.md: white notebook surfaces, muted rose and a light map.
    Role tokens only; map fills continue to encode familiarity, not score. */
 :root {
-  color-scheme: dark;
-  --color-bg: #1B1D20;
-  --color-surface: #24272B;
-  --color-surface-sunken: #2D3136;
-  --color-border: #393E45;
-  --color-border-strong: #555D68;
-  --color-text: #F4F5F6;
-  --color-text-secondary: #BFC4CC;
-  --color-text-placeholder: #898F98;
+  color-scheme: light;
+  --color-header: #FFFFFF;
+  --color-bg: #F8F9FA;
+  --color-surface: #FFFFFF;
+  --color-surface-sunken: #F0F2F4;
+  --color-border: #DFE2E6;
+  --color-border-strong: #858C98;
+  --color-text: #292B30;
+  --color-text-secondary: #59616D;
+  --color-text-placeholder: #66707C;
 
-  /* Same rose family, with less saturation than the earlier dark palette. */
+  /* Muted rose buttons; darker rose text remains legible on light surfaces. */
   --color-primary: #C5968D;
-  --color-primary-pressed: #D3ADA4;
+  --color-primary-pressed: #B98278;
   --color-on-primary: #2A1513;
-  --color-link: #D3ADA4;
-  --color-primary-subtle: #352A28;
+  --color-link: #87594F;
+  --color-primary-subtle: #F6EDEA;
   --color-highlight: var(--color-primary-subtle);
   --color-on-highlight: var(--color-link);
-  --color-accent: #EBB89A;
+  --color-accent: #DCAC91;
 
-  --color-success: #8FB08B;
-  --color-success-bg: #28352B;
-  --color-success-text: #B8D0B5;
-  --color-warning: #E0B05A;
-  --color-warning-bg: #3A3226;
-  --color-warning-text: #E0C08B;
-  --color-error: #E8828F;
-  --color-error-bg: #402B30;
-  --color-error-text: #EAB1BA;
-  --color-info: #8FAABB;
-  --color-info-bg: #29343D;
-  --color-info-text: #B4CBD9;
+  --color-success: #467344;
+  --color-success-bg: #EDF4EC;
+  --color-success-text: #365A35;
+  --color-warning: #986A21;
+  --color-warning-bg: #FBF5E9;
+  --color-warning-text: #775019;
+  --color-error: #AB394D;
+  --color-error-bg: #FBEFF1;
+  --color-error-text: #8E3041;
+  --color-info: #4E7186;
+  --color-info-bg: #EDF3F6;
+  --color-info-text: #3C5B70;
 
-  /* The original light map stays distinct from the dark notebook shell. */
+  /* Keep the original blue-gray map and green familiarity fills. */
   --color-map-bg: #D6E6EA;
   --color-map-land: #EEF1EE;
   --color-map-boundary: #8FA08A;
@@ -51,6 +52,6 @@
   /* Image-export backing, not a UI surface: keep existing saved photos faithful. */
   --color-photo-paper: #FFFFFF;
   --color-shadow: color-mix(in srgb, var(--color-ink) 8%, transparent);
-  --color-backdrop: color-mix(in srgb, var(--color-bg) 72%, transparent);
+  --color-backdrop: color-mix(in srgb, var(--color-ink) 38%, transparent);
   --shadow: 0 2px 8px var(--color-shadow);
 }

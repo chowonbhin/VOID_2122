@@ -1,8 +1,19 @@
 # Handoff: zT4ek
 
-phase: harden; 다크 수첩 스타일·낮은 채도의 로즈·SUIT 적용 (2026-11-08 KST)
-branch: zT4ek/rose-paper-theme; latest integrated origin/main 6627bef
-authorization: ‘선택 장소만 표시’ 구현을 먼저 통합·검증한 뒤 main에 올리라는 사용자 조건 충족. 아래 통합본을 main ff-only/push 대상으로 검증했다.
+phase: harden; 화이트 수첩·뮤트 로즈·최신 모바일 지도 통합 (2026-11-08 KST)
+branch: zT4ek/rose-paper-theme; latest integrated origin/main 5c49b4a
+authorization: 검증 후 단위별 커밋·main 반영은 기존 사용자 승인 범위. ‘선택 장소만 표시’ 구현 통합 조건 충족. 아래 검증본이 main ff-only/push 대상이다.
+
+## 최신: 화이트 모드 전환·원격 변경 우선 통합
+
+- 최종 사용자 지시: 중간톤 다크 시안은 칙칙하므로 전체를 화이트 모드로 바꾸고, 변경 전에 원격 레포 변경사항을 먼저 반영한다. 아래 다크·중간톤 관련 내용은 이전 단계 이력이며 최신 정책은 DESIGN_COLORS.md의 화이트 모드다.
+- origin/main 5c49b4a를 가져와 모바일 사진 핀 자동 맞춤을 통합했다. 실제 좌표와 핀 크기를 기준으로 전체 지도 viewBox를 확장하고 홈 핀44px·사진 핀64px을 보존한다. 기존 지도 아이콘→상단 지도 포커스/스크롤→네이버지도 링크와 공통 아이콘을 함께 유지했다. 0폭 측정은 무시한다.
+- 헤더·카드·모달은 FFFFFF, 본문 F8F9FA, 보조 영역 F0F2F4. 본문292B30·보조59616D·로즈 버튼C5968D·링크87594F·선택 배경F6EDEA. OS가 다크여도 color-scheme:light 유지. 크림색·그라데이션·강한 그림자 없음. 브라우저/PWA 테마색과 동일 SVG에서 생성한 앱 아이콘도 갱신했다.
+- SUIT Variable·수첩 사진 배치·모바일 가로 방문/지도 버튼은 유지. 수첩 요약·선택 탭·장소 태그에 옅은 로즈를 사용. 지도는 이전에 복원한 청회색/녹색 전용 팔레트 유지. 밝은 면의 지도 아이콘·입력 포커스는 어두운 로즈 link 역할을 사용한다.
+- 원격 사진 핀 테스트의 예전 ‘카드에서 선택’ 명칭만 실제 ‘지도에서 위치 보기’ 동작으로 맞추고, 모바일 지도 크기·핀 경계·간격 검증은 유지했다. golden-path.md 변경 없음. 팀원 handoff는 origin/main과 동일하다.
+- build PASS; 전체 browser60 PASS. 최종 아이콘/포커스 대비 조정 후 영향받는 지도/지역 browser6 PASS. unit154 PASS는 앞 단계 결과이며 이후 domain/점수/장소 데이터는 변경 없음.
+- demo-path-verify 모바일5/5 PASS, 콘솔 오류 없음: `.claude/state/evidence/2026-11-08T06-48-38-mobile`. step-02 직접 확인. 최종 `white-notebook/` PC1280·390·320px 및 OS light/dark 총30화면: SUIT 로드30/30, 배경248/249/250, 관측한 일반 HTML 텍스트 대비4.5:1 미만0, 가로 넘침0, 기록 변동/페이지 오류0. 전체 WCAG 감사는 아님.
+- 수첩PC/390px, 메인지도390px, 장소카드320px, 온보딩, 방문일 오류 모달과 `photo-pin-integration/selected-320.png` 직접 확인. 실제 사진·방문 저장·선택 장소 핀·네이버 지도 연결 보존. `.env.local`, HACKATHON.md, evidence/.local은 커밋 제외.
 
 ## 최신: 지도는 기존 밝은 표현으로 복원
 

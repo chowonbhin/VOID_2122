@@ -17,7 +17,7 @@ a { color: var(--color-link); text-underline-offset: 3px; }
 .app { min-height: 100vh; display: flex; flex-direction: column; }
 
 /* App bar + bottom tabs (mobile journal shell). */
-.appbar { position: sticky; top: 0; z-index: 1100; background: var(--color-surface); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); padding-top: env(safe-area-inset-top); }
+.appbar { position: sticky; top: 0; z-index: 1100; background: var(--color-header); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); padding-top: env(safe-area-inset-top); }
 .appbar-inner { max-width: 880px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left)); }
 .appbar-brand { color: var(--color-link); font-weight: var(--weight-semibold); font-size: 18px; letter-spacing: -.035em; text-decoration: none; }
 .appbar-link { color: var(--color-text); font-size: 14px; text-decoration: none; padding: 12px 4px; }
@@ -41,7 +41,7 @@ button:not(.primary):active { background-color: var(--color-surface-sunken); }
 button:disabled, button.primary:disabled { background: var(--color-surface-sunken); border-color: var(--color-border); color: var(--color-text-placeholder); cursor: not-allowed; }
 input, textarea, select { font-family: inherit; letter-spacing: inherit; accent-color: var(--color-primary); }
 input::placeholder, textarea::placeholder { color: var(--color-text-placeholder); opacity: 1; }
-:is(input, textarea, select):focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+:is(input, textarea, select):focus-visible { outline: 2px solid var(--color-link); outline-offset: 2px; }
 .ui-icon { display: inline-block; flex-shrink: 0; vertical-align: middle; }
 [role="alert"] { color: var(--color-error-text); background: var(--color-error-bg); border-radius: 10px; padding: 10px 12px; line-height: 1.6; }
 [role="alert"] > .ui-icon, .visit-message > .ui-icon, .notebook-notice > .ui-icon { margin-right: 8px; vertical-align: -3px; }

@@ -94,7 +94,7 @@
 .dong-pin.remembered.selected { background: var(--color-map-accent-soft); color: var(--color-map-accent); }
 .dong-pin.kind-memory { width: 44px; height: 44px; min-height: 44px; background: var(--color-map-accent-soft); color: var(--color-map-accent); border-color: var(--color-map-accent); }
 .dong-pin.kind-memory.selected { outline: 3px solid var(--color-map-accent); outline-offset: 2px; }
-.dong-pin.kind-home { width: 34px; height: 34px; background: var(--color-map-control); color: var(--color-map-ink); border-color: var(--color-map-ink); }
+.dong-pin.kind-home { width: 44px; height: 44px; min-height: 44px; background: var(--color-map-ink); color: var(--color-map-control); border: 3px solid var(--color-map-control); box-shadow: var(--shadow); }
 .dong-pin:focus-visible { outline: 3px solid var(--color-map-accent); outline-offset: 3px; }
 .dong-map a.dong-pin { text-decoration: none; box-sizing: border-box; }
 .ansan-other .ansan-region-fill { stroke-width: 2px; }

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <style>
     /* Standalone export of DESIGN_COLORS.md; the existing compass silhouette stays. */
-    svg { --color-surface: #24272B; --color-primary: #C5968D; --color-accent: #EBB89A; }
+    svg { --color-surface: #FFFFFF; --color-primary: #C5968D; --color-accent: #DCAC91; }
   </style>
   <rect width="512" height="512" rx="112" fill="var(--color-surface)"/>
   <circle cx="256" cy="256" r="150" fill="none" stroke="var(--color-primary)" stroke-width="20"/>

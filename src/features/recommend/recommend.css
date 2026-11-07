@@ -42,5 +42,5 @@
 .place-pick { width: 100%; display: grid; gap: 4px; text-align: left; padding: 18px 20px; background: var(--color-surface); border: 1px solid var(--color-border);  color: var(--color-text); }
 .place-pick:hover { border-color: var(--color-link); }
 .place-pick strong { font-size: 20px; line-height: 1.45; }
-.place-pick-kicker { color: var(--color-link); font-weight: var(--weight-medium); font-size: 12px; }
+.place-pick-kicker { justify-self: start; padding: 2px 8px; border-radius: 6px; background: var(--color-primary-subtle); color: var(--color-link); font-weight: var(--weight-medium); font-size: 12px; }
 .place-pick-meta { color: var(--color-text-secondary); font-size: 13px; }
