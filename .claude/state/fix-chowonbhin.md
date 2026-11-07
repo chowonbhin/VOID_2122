@@ -37,3 +37,10 @@ URL as well as locally.
 - Separate readiness-aware diagnosis restores 20 headings and original score through visit/reload/pool toggles/deletion. Evidence local-main-2026-11-08-0235; this does not turn the failed repository test into a PASS.
 - Typecheck/build PASS, unit 123/123. Step 4: inspected onboarding and 320px map screenshots. Step 5: no new runtime API/LLM requirement. Step 6: 03:00 scope review still upcoming.
 - Preview serves latest dist at http://127.0.0.1:3011/; opened in default browser. No application source changes or push.
+
+## Footfall omission fix — 2026-11-08 02:59 KST
+- User requested implementing the reviewed asset-based mapping; upstream 3e1ede8 already integrated.
+- Connected the 9 omitted source-labelled dongs; 18 markets / 11 dongs / 466765 total; 14 absent dongs still unavailable.
+- Added regression tests before fix (3 failures reproduced), then all 126 unit tests, typecheck and build passed. Source values/formula remain unchanged.
+- PC/mobile golden path each 3 runs PASS 5/5: 02-57-18 / 02-57-47-mobile, no console errors or SLOW. Screenshot hosu-lv1-map.png inspected.
+- Local preview updated; no main merge/push/deploy. No new API/LLM dependency. 03:00 captain scope checkpoint upcoming.

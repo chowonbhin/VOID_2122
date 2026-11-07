@@ -1,0 +1,133 @@
+{
+  "status": "applied_verified",
+  "basis": "Original asset sourceDong labels; a collected-market proxy, not full administrative-dong population",
+  "sourceAsset": "assets/안산/02_동별_유동인구_비중.png",
+  "period": "2026-08",
+  "referenceTotal": 466765,
+  "mappedDongCount": 11,
+  "uncoveredDongCount": 14,
+  "rows": [
+    {
+      "name": "중앙동",
+      "regionId": "dong-4127353200",
+      "dailyAverage": 150039,
+      "share": 0.32144440992790807,
+      "marketIds": [
+        "ansan-samil"
+      ],
+      "previouslyMapped": [
+        "ansan-samil"
+      ]
+    },
+    {
+      "name": "호수동",
+      "regionId": "dong-4127353500",
+      "dailyAverage": 111414,
+      "share": 0.238693989480788,
+      "marketIds": [
+        "ansan-hosu-post",
+        "star-plaza-terminal",
+        "songho-school",
+        "gojan-station-exit-2"
+      ],
+      "previouslyMapped": []
+    },
+    {
+      "name": "원곡동",
+      "regionId": "dong-4127354500",
+      "dailyAverage": 65567,
+      "share": 0.1404711150150504,
+      "marketIds": [
+        "ansan-station-exit-2",
+        "ansan-multicultural"
+      ],
+      "previouslyMapped": [
+        "ansan-station-exit-2",
+        "ansan-multicultural"
+      ]
+    },
+    {
+      "name": "사동",
+      "regionId": "dong-4127152500",
+      "dailyAverage": 30423,
+      "share": 0.06517840883528114,
+      "marketIds": [
+        "idong-police",
+        "gamgol-library-stop"
+      ],
+      "previouslyMapped": []
+    },
+    {
+      "name": "이동",
+      "regionId": "dong-4127151500",
+      "dailyAverage": 29834,
+      "share": 0.06391653187364091,
+      "marketIds": [
+        "rodeo-stop",
+        "ansan-wholesale-market"
+      ],
+      "previouslyMapped": []
+    },
+    {
+      "name": "초지동",
+      "regionId": "dong-4127357000",
+      "dailyAverage": 22902,
+      "share": 0.04906537551016036,
+      "marketIds": [
+        "ansan-choji-post",
+        "green-village-14-stop"
+      ],
+      "previouslyMapped": []
+    },
+    {
+      "name": "선부3동",
+      "regionId": "dong-4127360000",
+      "dailyAverage": 16427,
+      "share": 0.03519329855494735,
+      "marketIds": [
+        "seonbu-station-exit-1"
+      ],
+      "previouslyMapped": []
+    },
+    {
+      "name": "본오3동",
+      "regionId": "dong-4127156000",
+      "dailyAverage": 11545,
+      "share": 0.024734073891572846,
+      "marketIds": [
+        "sangnoksu-station-exit-3"
+      ],
+      "previouslyMapped": []
+    },
+    {
+      "name": "본오1동",
+      "regionId": "dong-4127154000",
+      "dailyAverage": 11360,
+      "share": 0.02433772883570962,
+      "marketIds": [
+        "ansan-sinan-post"
+      ],
+      "previouslyMapped": []
+    },
+    {
+      "name": "해양동",
+      "regionId": "dong-4127153700",
+      "dailyAverage": 10702,
+      "share": 0.022928025880260945,
+      "marketIds": [
+        "hanyang-stop"
+      ],
+      "previouslyMapped": []
+    },
+    {
+      "name": "월피동",
+      "regionId": "dong-4127158000",
+      "dailyAverage": 6552,
+      "share": 0.014037042194680407,
+      "marketIds": [
+        "seongpo-police"
+      ],
+      "previouslyMapped": []
+    }
+  ]
+}

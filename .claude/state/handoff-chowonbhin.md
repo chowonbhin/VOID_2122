@@ -1,19 +1,18 @@
 # Handoff — chowonbhin
-- Phase: fix · 2026-11-08 02:37 KST; branch chowonbhin/recommendation; freeze 04:00.
-- User requested latest main integration, tests and local execution; origin/main 4decbfe integrated, own documentation commits preserved.
-- Tested source: a420922aca6aec23647fa138a715b7e259e10f91. No application/test edits, remote push or new deploy this session.
-- Local preview running at http://127.0.0.1:3011/ (Vite PID 71299); opened using default browser. Build asset index-BSgzItyl.js.
-- Typecheck/build PASS; unit 123/123; full browser suite 36 PASS / 1 FAIL. Do not report all tests passing.
-- FAIL: tests/demo/demo-fill.spec.ts:37; initial originals captured as [] at line 21, restored actual list contains 20 headings; owner zT4ek.
-- Diagnosis with initial 20-heading wait: visits/reload/pool off-on/delete restore original top20 and score; separate run immediate count 20, supporting timing-dependent baseline capture.
-- Original test unchanged. Failure snapshot and diagnosis: .claude/state/evidence/local-main-2026-11-08-0235/.
-- Local desktop golden path PASS 5/5 ×3: .claude/state/evidence/2026-11-08T02-35-48/.
-- Local mobile golden path PASS 5/5 ×3: .claude/state/evidence/2026-11-08T02-36-05-mobile/; both zero SLOW and console errors.
-- Inspected desktop onboarding and 320px recommendation map screenshots; current first-run flow and labelled synthetic candidates visible.
-- Previous public verification was against earlier source at 02:09; not reused as proof of this revision's public deployment.
-- Next 1: zT4ek adds readiness assertion before capturing originals in demo-fill test, then reruns focused/full checks.
-- Next 2: user inspects local onboarding → map → visit flow; no new source merge or push prepared while test failure remains.
-- Next 3: captain reviews scope at 03:00; after future deployment, rerun public PC/mobile verification.
+- Phase: fix · 2026-11-08 02:59 KST; branch chowonbhin/updates; upstream 3e1ede8.
+- User explicitly requested fixing asset-backed footfall omitted from scoring; source-labelled mapping applied on this branch only.
+- Fixed: 18 markets now map once each to 11 dongs, adding 9 missing mappings. Total remains 466765; original source values/formula unchanged.
+- Mapping basis: assets/안산/02_동별_유동인구_비중.png and 03_상권_동_비중표_1.png site-labelled dong groups, not full administrative-dong population.
+- Absent 14 dongs remain unavailable, not measured zero; complete list and per-dong totals in src/data/README.md.
+- Tests added first reproduced all 3 failures; after data fix unit 126/126, typecheck and build PASS.
+- Regression checks all 11 totals, 18 unique market links, 14 missing dongs, final score adjustments and unchanged selected places; Lv.0 remains unpenalized.
+- Local desktop PASS 5/5 ×3: .claude/state/evidence/2026-11-08T02-57-18/.
+- Local mobile PASS 5/5 ×3: .claude/state/evidence/2026-11-08T02-57-47-mobile/; no console errors/SLOW.
+- Inspected hosu-lv1-map.png in desktop evidence; preview http://127.0.0.1:3011/ serves index-DqMB86ei.js.
+- No new main merge/push/deploy. Previous unrelated full-suite demo-fill timing failure not claimed fixed; full browser suite not rerun.
+- Next 1: user reviews local result; share missing-dong list for further source collection.
+- Next 2: obtain ignored Naver candidate originals or configure local API credentials; currently unavailable here.
+- Next 3: captain performs 03:00 scope review; verify public URL after any future deployment.
 ## For captain
-- Latest main includes onboarding and 625 labelled synthetic candidates; real-source completeness is unchanged.
-- scope-cut/demo-safety/deploy/handoff skills unavailable; inline checks/records used. Remaining M08/M09/M11 evidence belongs to existing owners.
+- User authorized this shared-data mapping correction; no new synthetic population values or scoring-policy changes.
+- Missing helper skills handled inline; no golden-path or scope-cut edits. Additional Naver/data work remains separate.
