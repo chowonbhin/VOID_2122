@@ -101,3 +101,12 @@
 /* 내 동네: hatching over the familiarity fill (no icon). */
 .ansan-home-hatch { pointer-events: none; stroke: #293e39; stroke-width: 2px; vector-effect: non-scaling-stroke; }
 .ansan-legend .legend-home i { background: repeating-linear-gradient(45deg, #293e39aa 0 2px, transparent 2px 5px), #eee6d6; }
+/* The single chosen place: a photo pin when an image exists, else the numbered pin. */
+.dong-pin.has-image { width: 60px; height: 60px; min-height: 60px; overflow: hidden; border: 3px solid var(--accent); background: var(--card); box-shadow: 0 4px 12px #0004; }
+.dong-pin.has-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.dong-pin.kind-place.selected:not(.has-image) { width: 52px; height: 52px; min-height: 52px; font-size: 18px; }
+/* Memory heart sits small at the photo's top-right instead of replacing the photo. */
+.dong-pin.has-image { overflow: visible; }
+.dong-pin.has-image img { border-radius: 50%; }
+.pin-heart { position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: #b75d3e; color: #fff; border: 2px solid #fffefa; }
+.pin-heart svg { width: 12px; height: 12px; }

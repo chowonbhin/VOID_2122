@@ -13,7 +13,7 @@ import { DongMap, type MapMarker } from '../map/DongMap';
 import { Memories, type MemoryItem } from './Memories';
 import { loadSadongMemoryPreview, SADONG_ID, SADONG_MEMORY_KEY, type SadongMemoryPreview } from './sadongMemories';
 import { VisitPanel } from '../visits/VisitPanel';
-import { PlacePhoto, usePlaceThumbnails } from './PlacePhoto';
+import { PlacePhoto, placeImage, usePlaceThumbnails } from './PlacePhoto';
 import './region.css';
 
 const statusLabel = { open: '운영 중', closed: '휴무·이용 마감', unknown: '운영정보 미확인' };
@@ -50,7 +50,6 @@ export function RegionPage({ regionId }: { regionId: string }) {
 function RegionDetail({ regionId }: { regionId: string }) {
   const { state } = useAppState();
   const [filter, setFilter] = useState<'all' | 'visited' | 'recommended' | 'pool'>('all');
-  const [mapPage, setMapPage] = useState(0);
   const [selectedId, setSelectedId] = useState<string>();
   const [memoryId, setMemoryId] = useState<string>();
   const [preview, setPreview] = useState(() => regionId === SADONG_ID
@@ -67,10 +66,9 @@ function RegionDetail({ regionId }: { regionId: string }) {
   const visitedIds = new Set(state.visits.map(visit => visit.placeId));
   const visiblePlaces = filter === 'all' ? displayed : places.filter(place => filter === 'pool' || (filter === 'visited'
     ? visitedIds.has(place.id) : scores.some(score => score.placeId === place.id && score.selected)));
-  const selectedPlaceId = visiblePlaces.some((place) => place.id === selectedId) ? selectedId : visiblePlaces[0]?.id;
+  // Nothing is pinned until the user picks a place; then only that place is pinned.
+  const selectedPlaceId = visiblePlaces.some((place) => place.id === selectedId) ? selectedId : undefined;
   const locatedPlaces = visiblePlaces.filter(place => place.location);
-  const mapPages = Math.ceil(locatedPlaces.length / 8);
-  const currentMapPage = Math.min(mapPage, Math.max(0, mapPages - 1));
   const regionDongs = dongsOfRegion(region);
   // Only the user's actual self-reported visit records (newest first).
   const visitMemories: MemoryItem[] = places.flatMap((place) => {
@@ -82,20 +80,20 @@ function RegionDetail({ regionId }: { regionId: string }) {
   const memoryItems: MemoryItem[] = [...visitMemories, ...examplePlaces.map(place => ({
     id: place.id, title: place.name, dates: [], memo: place.address, sample: true,
   }))];
-  const pagePlaces = locatedPlaces.slice(currentMapPage * 8, (currentMapPage + 1) * 8);
+  const shownPlace = locatedPlaces.find(place => place.id === selectedPlaceId && !exampleIds.has(place.id));
   const home = regionDongs.find((dong) => dong.code === dongByCode(state.profile.homeDongCode ?? '')?.code);
   const markers: MapMarker[] = [
     ...(home ? [{ id: 'home', kind: 'home' as const, ...centreLatLng(home), label: `내 동네 · ${home.name}` }] : []),
-    ...pagePlaces.filter(place => !exampleIds.has(place.id)).flatMap(place => place.location ? [{ id: place.id, kind: 'place' as const, ...place.location, text: String(visiblePlaces.indexOf(place) + 1),
-      label: `${place.name} 지도에서 선택`, pressed: place.id === selectedPlaceId, remembered: visitedIds.has(place.id) }] : []),
+    ...(shownPlace?.location ? [{ id: shownPlace.id, kind: 'place' as const, ...shownPlace.location, text: String(visiblePlaces.indexOf(shownPlace) + 1),
+      image: placeImage(shownPlace.id, thumbnails[shownPlace.id]), label: `${shownPlace.name} 지도에서 선택`, pressed: true, remembered: visitedIds.has(shownPlace.id) }] : []),
     // Preview hearts remain visible across marker pages, once per actual place.
     ...examplePlaces.flatMap(place => place.location ? [{ id: place.id, kind: 'memory' as const, ...place.location,
-      label: `${place.name} 추억 예시 지도에서 선택`, pressed: place.id === selectedPlaceId }] : []),
+      label: `${place.name} 추억 예시 지도에서 선택`, pressed: place.id === selectedPlaceId,
+      image: place.id === selectedPlaceId ? placeImage(place.id, thumbnails[place.id]) : undefined }] : []),
   ];
   const selectPlace = (id: string, scrollToCard = true) => {
     const nextPlaces = visiblePlaces.some(place => place.id === id) ? visiblePlaces : places;
     if (nextPlaces !== visiblePlaces) setFilter('pool');
-    setMapPage(Math.max(0, Math.floor(nextPlaces.filter(place => place.location).findIndex(place => place.id === id) / 8)));
     setSelectedId(id);
     setMemoryId(id);
     if (scrollToCard) requestAnimationFrame(() => cards.current[id]?.scrollIntoView({ behavior: 'instant', block: 'nearest' }));
@@ -121,7 +119,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
     <div className="region-filters" role="group" aria-label="동네 안 장소 필터">
       {([['all', '발견할 20곳'], ['recommended', '추천 장소'], ['visited', '가본 장소'], ['pool', '전체 후보']] as const).map(([value, label]) =>
         <button key={value} aria-pressed={filter === value} disabled={value === 'recommended' && !state.search}
-          onClick={() => { setFilter(value); setSelectedId(undefined); setMapPage(0); }}>{label}</button>)}
+          onClick={() => { setFilter(value); setSelectedId(undefined); }}>{label}</button>)}
     </div>
     {!state.search && <p className="region-note">조건을 설정하면 추천 장소를 골라볼 수 있어요.</p>}
     <p className="region-note" role="status">표시된 장소 {visiblePlaces.length}곳</p>
@@ -135,8 +133,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
     <div className="region-design-layout">
       <DongMap target={regionDongs} markers={markers}
         onSelect={(marker) => selectPlace(marker.id, marker.kind !== 'memory')} />
-      {/* The map shows 8 places at a time; choosing a place card moves it to that place. */}
-      <p className="region-note">번호: 아래 장소 목록 순서 · {examplePlaces.length > 0 ? '하트: 추억 예시 (방문 기록 아님)' : '하트: 기록한 추억'} · 점: 실제 위치</p>
+      <p className="region-note">장소 사진을 누르면 지도에 그 장소가 표시돼요 · {examplePlaces.length > 0 ? '하트: 추억 예시 (방문 기록 아님)' : '하트: 기록한 추억'} · 점: 실제 위치</p>
       {visiblePlaces.some(place => !place.location) && <p className="region-note">정밀 좌표 미확인 장소는 지도 마커 없이 목록에서 안내합니다.</p>}
       <Memories items={memoryItems} selectedId={memoryId} onSelect={selectMemory} controls={regionId === SADONG_ID && <>
         <div className="memory-preview-actions">
@@ -174,7 +171,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
                 <h2>{index + 1}. {place.name}</h2>
               </div>
               <PlacePhoto placeId={place.id} name={place.name} personalUrl={thumbnails[place.id]} pressed={place.id === selectedPlaceId}
-                onSelect={() => { setSelectedId(place.id); setMapPage(Math.max(0, Math.floor(locatedPlaces.findIndex(item => item.id === place.id) / 8))); }} />
+                memory={visitedIds.has(place.id) || exampleIds.has(place.id)} onSelect={() => setSelectedId(place.id)} />
             </div>
             <p>{CATEGORY_LABELS[place.category]} · {statusLabel[status.status]}</p>
             {!scored?.eligible && state.search && <p>지금 조건에서는 추천하지 않지만 둘러볼 수 있어요.</p>}

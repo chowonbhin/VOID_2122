@@ -101,7 +101,12 @@ test('golden path', async ({ page }) => {
       await expect(places).not.toContainText('시연용 가상');
       await expect(places).toContainText('방문자 리뷰 수 801건');
       await expect(places).not.toContainText('점수');
-      await page.getByRole('button', { name: '바바카멜 지도에서 선택', exact: true }).click();
+      // No pins until a place is chosen; choosing its photo pins only that place on the map.
+      const map = page.getByRole('region', { name: '안산 탐험 지도' });
+      await expect(map.getByRole('button', { name: /지도에서 선택$/ })).toHaveCount(0);
+      await page.getByRole('button', { name: '바바카멜 카드에서 선택', exact: true }).click();
+      await expect(map.getByRole('button', { name: /지도에서 선택$/ })).toHaveCount(1);
+      await expect(map.getByRole('button', { name: '바바카멜 지도에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
       await expect(page.getByRole('button', { name: '바바카멜 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
       await page.getByRole('region', { name: '안산 탐험 지도' }).scrollIntoViewIfNeeded();
     });

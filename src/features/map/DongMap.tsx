@@ -11,6 +11,8 @@ export interface MapMarker {
   label: string;
   text?: string;
   pressed?: boolean;
+  /** Photo of the place (personal or example); shown inside the pin instead of the number. */
+  image?: string;
   /** Place with the user's own visit records. */
   remembered?: boolean;
 }
@@ -105,13 +107,16 @@ export function DongMap({ target, markers, onSelect }: {
     </svg>
     {placed.map(({ marker, x, y }) => {
       const style = pct(x, y);
-      const className = `dong-pin kind-${marker.kind}${marker.remembered ? ' remembered' : ''}${marker.pressed ? ' selected' : ''}`;
+      const className = `dong-pin kind-${marker.kind}${marker.remembered ? ' remembered' : ''}${marker.pressed ? ' selected' : ''}${marker.image ? ' has-image' : ''}`;
       if (marker.kind === 'home') return <span key={marker.id} role="img" aria-label={marker.label} className={className} style={style}>
         {marker.kind === 'home' ? <HomeIcon /> : marker.text}
       </span>;
       return <button type="button" key={marker.id} className={className} style={style} aria-label={marker.label}
         aria-pressed={marker.pressed ?? false} onClick={() => onSelect?.(marker)}>
-        {marker.kind === 'memory' ? <Heart /> : marker.text}
+        {marker.image ? <>
+          <img src={marker.image} alt="" />
+          {(marker.kind === 'memory' || marker.remembered) && <span className="pin-heart" aria-hidden="true"><Heart /></span>}
+        </> : marker.kind === 'memory' ? <Heart /> : marker.text}
       </button>;
     })}
   </div>;
