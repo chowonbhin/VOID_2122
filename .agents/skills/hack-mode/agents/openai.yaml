@@ -1,0 +1,4 @@
+# Codex-only metadata. Claude Code ignores this file.
+# Same effect as `disable-model-invocation: true` in SKILL.md: run only when called with $hack-mode.
+policy:
+  allow_implicit_invocation: false
