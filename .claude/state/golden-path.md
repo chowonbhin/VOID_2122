@@ -6,17 +6,18 @@ After kickoff, only the captain (Byeunghee02) changes this file.
 
 Source: `mvp_implementation_plan.md` §7.2. Updated 2026-11-08 at the user's explicit request
 for 25 administrative dongs, source boundaries, top-20 reselection and individual visit/review-count penalties. Owners are unchanged.
-Temporary demo fill explicitly requested by the user on 2026-11-08: 25 synthetic candidates per dong (625 total).
-All synthetic names, positions, operation and popularity values are labelled. Existing real records and missing evidence remain intact.
-Default first-run search: all activities, 100 km, current Korean time. Existing search/visits are preserved; a visible preset applies these conditions.
-The top-20 sum, Lv/novelty/distance/footfall formulas and franchise exclusions are unchanged. Filters can still reduce eligible counts.
-The additional pool can be turned off in the app; baseline-data regression tests cover that shipped mode.
+Correction 2026-11-08: synthetic venues were an incorrect interpretation, not user-authorized content.
+Production uses actual NAVER search venues. Each dong shows 20 actual discovery places; scoring
+includes all 20 selected real candidates, with unknown evidence labelled provisional.
+Unknown review counts remain missing and use a conservative penalty; no counts or hours are fabricated.
+Known and suspected chains and confirmed closed places remain excluded. Scores use a fixed 0–100 scale.
+Traffic penalty is relative to the fixed maximum source-dong total, capped at 15% for Lv.1 and 30% for Lv.2.
 
 1. Open the app → first-run residence onboarding; choose under 6 months and see 탐험 시작 (owner: Byeunghee02)
-2. Press 탐험 시작 → 25-dong score map with 20/20 places per dong and an explicit demo-data notice; existing users can apply 25개 동 시연 조건 적용 (owner: chowonbhin)
-3. Click 중앙동 on the map → the team-designed detail map and 20 recommended demo places from at least 25 candidates; marker pages and cards stay linked (owner: iwtkmn0219)
-4. Record a visit to the twentieth place → reserves replace it in the top 20; 가본 장소 shows 자기 신고 and 지역 Lv.1 (owner: zT4ek)
-5. Return to recommendations and reload → recalculated region score, 20/20 selection, visits and Lv persist; other dong scores stay fixed (owner: zT4ek)
+2. Set date/time and distance → actual score map for 25 dongs; all 20 displayed places contribute; pending evidence is labelled (owner: chowonbhin)
+3. Click 본오1동 → 20 actual search places, measured review counts, linked markers and 20/20 scored places on a fixed 0–100 scale (owner: iwtkmn0219)
+4. Record 바바카멜 visit → real score recalculates; 자기 신고 and 지역 Lv.1 appear (owner: zT4ek)
+5. Return and reload → scores and visit persist; the full actual candidate pool remains available (owner: zT4ek)
 
 ## Shared modules (not a demo step; owner keeps them stable for everyone)
 - App shell, routing, `src/domain/types.ts`, `policy.ts`, content JSON, `src/storage.ts`, verify harness (owner: Byeunghee02)

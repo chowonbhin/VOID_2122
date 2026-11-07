@@ -22,12 +22,18 @@ export const POPULARITY_WEIGHT: Record<0 | 1 | 2 | 3, number> = { 0: 0, 1: 10, 2
 
 /** 제안: only the largest matching, not-yet-experienced event bonus counts, capped. */
 export const EVENT_BONUS_CAP = 10;
+export const PLACE_BASE_MAX = 100;
+export const PLACE_SCORE_MAX = PLACE_BASE_MAX + EVENT_BONUS_CAP;
+export const REGION_SCORE_MAX = 100;
+export const MAX_NOVELTY = Math.max(...Object.values(NOVELTY));
+/** Missing actual counts remain unknown. Use the maximum popularity penalty, never an invented count/zero. */
+export const UNKNOWN_POPULARITY_PENALTY = 1;
 
 /** User policy: reselect from all eligible candidates after each score change. */
 export const REGION_PLACE_LIMIT = 20;
 
-/** 기획 §8.4: α = -f(regionLv) * F. Initial tuning values, not measured coefficients. */
-export const FOOTFALL_PENALTY: Record<0 | 1 | 2, number> = { 0: 0, 1: 10, 2: 20 };
+/** 사용자 선택 (2026-11-08): 최대 동별 유동인구 대비 장소 합계 감점률. Lv.0 예외 유지. */
+export const FOOTFALL_MAX_PENALTY_RATE: Record<0 | 1 | 2, number> = { 0: 0, 1: 0.15, 2: 0.30 };
 
 /** 제안: W = 1 / (1 + d / DISTANCE_SCALE_KM). Max-distance filter applies first. */
 export const DISTANCE_SCALE_KM = 20;

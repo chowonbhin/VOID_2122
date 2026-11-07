@@ -1,5 +1,5 @@
 import type { Place } from './types';
-import { hasClassificationSource, isNonFranchisePlace } from './placeEligibility';
+import { hasClassificationSource, isRecommendationCandidate } from './placeEligibility';
 
 export const POPULARITY_LABELS = {
   visitor_reviews: '방문자 리뷰 수', blog_reviews: '블로그 리뷰 수', visits: '방문수',
@@ -26,7 +26,7 @@ export function validPopularityEvidence(e: Place['popularityEvidence']): e is No
 export function placePopularity(place: Place, allPlaces: Place[]): PopularityResult {
   const evidence = place.popularityEvidence;
   if (validPopularityEvidence(evidence)) {
-    const counts = allPlaces.filter(isNonFranchisePlace).flatMap(p => {
+    const counts = allPlaces.filter(isRecommendationCandidate).flatMap(p => {
       const e = p.popularityEvidence;
       return validPopularityEvidence(e) && e.provider === evidence.provider
         && e.metric === evidence.metric && e.period === evidence.period ? [e.count] : [];

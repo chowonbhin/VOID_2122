@@ -4,7 +4,8 @@
 //   regionLevel = max(initialLevel, levelFromDistinctVisitedPlaces)
 //   placeLevel  = min(3, regionLevel + (visited ? 1 : 0))
 //   placeScore  = max(0, B - w[placeLevel] * P) + E
-//   regionScore = max(0, sum(currentTop20PlaceScores) + alpha) * novelty * distanceWeight
+//   regionBase = sum(top20) / (20 * maxPlaceScore) * 100
+//   regionScore = regionBase * (1 - footfallRate) * (novelty / maxNovelty) * distanceWeight
 import type { Content } from '../data/content';
 import type { Event, LatLng, Place, PlaceStatus, Profile, Region, RegionRecommendation, SearchContext, TimeRange, Visit } from './types';
 import {
@@ -15,10 +16,14 @@ import {
   PLACE_VISIT_DELTA,
   POPULARITY_WEIGHT,
   REGION_PLACE_LIMIT,
+  PLACE_SCORE_MAX,
+  REGION_SCORE_MAX,
+  MAX_NOVELTY,
+  UNKNOWN_POPULARITY_PENALTY,
   levelFromDistinctVisits,
 } from './policy';
 import { footfallAdjustment } from './footfall';
-import { isNonFranchisePlace } from './placeEligibility';
+import { franchiseStatus, isRecommendationCandidate, isRealSearchPlace } from './placeEligibility';
 import { placePopularity, type PopularityResult } from './popularity';
 
 // ---------- time (selected time is always Asia/Seoul) ----------
@@ -66,6 +71,9 @@ export function placeStatus(place: Place, when: string): PlaceStatusResult {
     return { status: 'unknown', note: '운영정보 검토 기간 밖 · 공식 안내 재확인 필요' };
   }
   const exception = o.exceptions?.find((e) => e.date === t.date);
+  if (!exception && o.unknownDays?.includes(t.dayOfWeek)) {
+    return { status: 'unknown', note: '선택한 요일의 운영정보 미확인' };
+  }
   const ranges = exception ? exception.ranges : (o.weekly[t.dayOfWeek] ?? []);
   if (ranges.length === 0) return { status: 'closed', note: exception?.note ?? '휴무일' };
   if (ranges.some((r) => inRange(r, t.minutes))) return { status: 'open', note: exception?.note };
@@ -109,7 +117,7 @@ export function eventBonus(placeId: string, events: Event[], ctx: SearchContext,
 
 /** Distinct places visited in the region. Repeat visits to one place count once. */
 export function distinctVisitedPlaces(regionId: string, visits: Visit[], places: Place[]): string[] {
-  const inRegion = new Set(places.filter((p) => p.regionId === regionId && isNonFranchisePlace(p)).map((p) => p.id));
+  const inRegion = new Set(places.filter((p) => p.regionId === regionId && isRecommendationCandidate(p)).map((p) => p.id));
   return [...new Set(visits.map((v) => v.placeId).filter((id) => inRegion.has(id)))];
 }
 
@@ -142,8 +150,9 @@ export interface PlaceScore {
   placeId: string;
   status: PlaceStatusResult;
   level: 0 | 1 | 2 | 3;
-  /** Passes opening, interest and popularity evidence filters; may fall outside the current top 20. */
+  /** Candidate matches interest and is not confirmed closed; unknown evidence is provisional. */
   eligible: boolean;
+  provisional: boolean;
   selected: boolean;
   /** Rank among eligible candidates, including those below 20. */
   rank?: number;
@@ -155,20 +164,23 @@ export interface PlaceScore {
 export function scorePlaces(region: Region, content: Content, profile: Profile, visits: Visit[], ctx: SearchContext): PlaceScore[] {
   const regionLv = regionLevel(region.id, profile, visits, content.places);
   const scored = content.places
-    .filter((p) => p.regionId === region.id && isNonFranchisePlace(p))
+    .filter((p) => p.regionId === region.id && isRecommendationCandidate(p))
     .map((p) => {
       const status = placeStatus(p, ctx.when);
       const level = placeLevel(p.id, regionLv, visits);
       const popularity = placePopularity(p, content.places);
-      const eligible = status.status === 'open' && matchesInterest([p.category], ctx.interests) && popularity.status !== 'unknown';
+      const provisionalAllowed = isRealSearchPlace(p);
+      const eligible = (status.status === 'open' || (status.status === 'unknown' && provisionalAllowed))
+        && matchesInterest([p.category], ctx.interests) && (popularity.status !== 'unknown' || provisionalAllowed);
+      const provisional = status.status === 'unknown' || popularity.status === 'unknown' || franchiseStatus(p) === 'unknown';
       const { bonus, event } = eventBonus(p.id, content.events, ctx, profile);
-      const score = eligible ? Math.max(0, p.baseValue - POPULARITY_WEIGHT[level] * popularity.value!) + bonus : 0;
-      return { placeId: p.id, status, level, popularity, eligible, score, event: eligible ? event : undefined };
+      const score = eligible ? Math.max(0, p.baseValue - POPULARITY_WEIGHT[level] * (popularity.value ?? UNKNOWN_POPULARITY_PENALTY)) + bonus : 0;
+      return { placeId: p.id, status, level, popularity, eligible, provisional, score, event: eligible ? event : undefined };
     });
   // Rebuild from the complete candidate pool every time, not the previously selected 20.
   // Stable ID tie-break preserves equal-score membership through reloads and source reorder.
   const ranked = scored.filter(place => place.eligible).sort((a, b) =>
-    b.score - a.score || (a.placeId < b.placeId ? -1 : a.placeId > b.placeId ? 1 : 0));
+    b.score - a.score || Number(a.provisional) - Number(b.provisional) || (a.placeId < b.placeId ? -1 : a.placeId > b.placeId ? 1 : 0));
   const ranks = new Map(ranked.map((place, index) => [place.placeId, index + 1]));
   return scored.map(place => ({ ...place, rank: ranks.get(place.placeId),
     selected: (ranks.get(place.placeId) ?? Infinity) <= REGION_PLACE_LIMIT }));
@@ -182,6 +194,12 @@ export interface RecommendResult {
   excluded: { regionId: string; reason: ExclusionReason; distanceKm: number }[];
   /** Every remaining candidate scored 0: show 조건 변경 안내 + 직접 탐색. */
   allZero: boolean;
+}
+
+/** Fixed 20-place denominator, independent of other regions or the current result set. */
+export function normalizeRegionBase(placeScoreSum: number): number {
+  if (!Number.isFinite(placeScoreSum)) return 0;
+  return Math.min(REGION_SCORE_MAX, Math.max(0, placeScoreSum) / (REGION_PLACE_LIMIT * PLACE_SCORE_MAX) * REGION_SCORE_MAX);
 }
 
 export function recommend(content: Content, profile: Profile, visits: Visit[], ctx: SearchContext): RecommendResult {
@@ -207,8 +225,9 @@ export function recommend(content: Content, profile: Profile, visits: Visit[], c
     const level = regionLevel(region.id, profile, visits, content.places);
     const selected = places.filter(p => p.selected).sort((a, b) => a.rank! - b.rank!);
     const sum = selected.reduce((s, p) => s + p.score, 0);
-    const footfall = footfallAdjustment(region, level, content.footfall);
-    const score = Math.max(0, sum + footfall.adjustment) * NOVELTY[level] * distanceWeight(km);
+    const normalizedBaseScore = normalizeRegionBase(sum);
+    const footfall = footfallAdjustment(region, level, content.footfall, normalizedBaseScore);
+    const score = Math.max(0, normalizedBaseScore + footfall.adjustment) * (NOVELTY[level] / MAX_NOVELTY) * distanceWeight(km);
 
     const reasons: string[] = [];
     const visited = distinctVisitedPlaces(region.id, visits, content.places).length;
@@ -220,6 +239,9 @@ export function recommend(content: Content, profile: Profile, visits: Visit[], c
     recommendations.push({
       regionId: region.id,
       score,
+      normalizedBaseScore,
+      placeScoreSum: sum,
+      provisionalPlaceCount: selected.filter(place => place.provisional).length,
       reasons,
       distanceKm: km,
       level,

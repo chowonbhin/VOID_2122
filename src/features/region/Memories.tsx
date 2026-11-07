@@ -1,4 +1,4 @@
-import { koreanDate, sampleMemoryNote } from '../../data/sampleMemories';
+const koreanDate = (date: string) => { const [year, month, day] = date.split('-').map(Number); return `${year}년 ${month}월 ${day}일`; };
 
 export interface MemoryItem {
   id: string;
@@ -29,7 +29,6 @@ export function Memories({ items, selectedId, onSelect }: {
         <figcaption><strong>{selected.title}</strong> · {koreanDate(selected.dates[0])}</figcaption>
         <p>{selected.memo}</p>
       </figure>}
-      {items.some(item => item.sample) && <p className="region-note">{sampleMemoryNote}</p>}
     </> : <p className="region-note">아직 이 동네에 남긴 추억이 없어요. 장소를 다녀온 뒤 방문을 기록하면 지도에 추억이 생겨요.</p>}
   </div>;
 }

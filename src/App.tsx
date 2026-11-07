@@ -5,7 +5,7 @@ import { SetupPage } from './features/setup/SetupPage';
 import { RecommendPage } from './features/recommend/RecommendPage';
 import { RegionPage } from './features/region/RegionPage';
 import { DongPage } from './features/region/DongPage';
-import { DemoNotice } from './features/recommend/DemoNotice';
+import { DataNotice } from './features/recommend/DemoNotice';
 
 export function App() {
   const route = useRoute();
@@ -24,14 +24,14 @@ export function App() {
         </div>
       </header>
       <main className={`page${discovering ? ' page-map' : ''}`}>
-        {!onboarding && <DemoNotice />}
+        {!onboarding && <DataNotice />}
         {onboarding && <Onboarding />}
         {route.name === 'setup' && <SetupPage />}
         {(main || route.name === 'recommend') && <RecommendPage />}
         {route.name === 'region' && <RegionPage regionId={route.regionId} />}
         {route.name === 'dong' && <DongPage code={route.code} />}
       </main>
-      {!onboarding && <footer className="footer">25개 행정동 · 현재 점수 상위 20개 장소 합산. 실제 장소 인지도는 출처가 있는 방문·리뷰 수로 계산합니다. 기본 가치와 시연 장소 인지도는 가상값입니다. 유동인구는 2026년 8월 수집 상권 자료입니다. 기존 역 시작점: © OpenStreetMap contributors (ODbL).<br />
+      {!onboarding && <footer className="footer">25개 행정동 · 실제 장소 상위 20개로 계산한 0~100점. 미확인 정보가 포함된 잠정 추천입니다. 방문·리뷰 수와 운영정보의 출처·확인일을 장소별로 표시합니다. 유동인구는 2026년 8월 수집 상권 자료입니다. 기존 역 시작점: © OpenStreetMap contributors (ODbL).<br />
         경계: SGIS 공공누리 제1유형 · <a href="https://github.com/vuski/admdongkor" target="_blank" rel="noreferrer">vuski/admdongkor</a> 가공 · 2026-10-01 · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>. 탐색용 경계이며 오차가 있을 수 있습니다.</footer>}
       {showTabs && <nav className="tabbar" aria-label="주요 화면">
         <div className="tabbar-inner">

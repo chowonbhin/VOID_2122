@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { baseContent as content, placesOfRegion, validateContent } from './content';
+import { baseContent as content } from './testContent';
+import { placesOfRegion, validateContent } from './content';
 import type { Place } from '../domain/types';
 
 describe('content', () => {

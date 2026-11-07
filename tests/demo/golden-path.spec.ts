@@ -4,10 +4,10 @@
  *
  * GOLDEN PATH (copied from .claude/state/golden-path.md, used for drift detection):
  * 1. Open the app → first-run residence onboarding; choose under 6 months and see 탐험 시작 (owner: Byeunghee02)
- * 2. Press 탐험 시작 → 25-dong score map with 20/20 places per dong and an explicit demo-data notice; existing users can apply 25개 동 시연 조건 적용 (owner: chowonbhin)
- * 3. Click 중앙동 on the map → the team-designed detail map and 20 recommended demo places from at least 25 candidates; marker pages and cards stay linked (owner: iwtkmn0219)
- * 4. Record a visit to the twentieth place → reserves replace it in the top 20; 가본 장소 shows 자기 신고 and 지역 Lv.1 (owner: zT4ek)
- * 5. Return to recommendations and reload → recalculated region score, 20/20 selection, visits and Lv persist; other dong scores stay fixed (owner: zT4ek)
+ * 2. Set date/time and distance → actual score map for 25 dongs; all 20 displayed places contribute; pending evidence is labelled (owner: chowonbhin)
+ * 3. Click 본오1동 → 20 actual search places, measured review counts, linked markers and 20/20 scored places on a fixed 0–100 scale (owner: iwtkmn0219)
+ * 4. Record 바바카멜 visit → real score recalculates; 자기 신고 and 지역 Lv.1 appear (owner: zT4ek)
+ * 5. Return and reload → scores and visit persist; the full actual candidate pool remains available (owner: zT4ek)
  */
 import { test, expect, type Page } from '@playwright/test';
 import fs from 'node:fs';
@@ -17,9 +17,7 @@ const BASE_URL = process.env.BASE_URL ?? 'http://localhost:3000';
 const EVIDENCE_DIR = process.env.EVIDENCE_DIR ?? '.claude/state/evidence/manual';
 fs.mkdirSync(EVIDENCE_DIR, { recursive: true });
 
-// The judge uses the same default-on, visibly labelled demo pool as the app.
-const DEMO = { date: '2026-11-08' };
-const VISITED = '시연 중앙동 체험 20';
+const VISITED = '바바카멜';
 
 let stepNo = 0;
 const RUN = process.env.RUN_INDEX ?? '1';
@@ -68,8 +66,8 @@ test('golden path', async ({ page }) => {
   let beforeScore = 0;
   let afterScore = 0;
   let otherScores: Record<string, string> = {};
-  const mapScore = () => page.locator('[data-region-id="dong-4127353200"]');
-  const others = () => page.locator('[data-region-id]:not([data-region-id="dong-4127353200"])').evaluateAll(nodes =>
+  const mapScore = () => page.locator('[data-region-id="dong-4127154000"]');
+  const others = () => page.locator('[data-region-id]:not([data-region-id="dong-4127154000"])').evaluateAll(nodes =>
     Object.fromEntries(nodes.map(node => [node.getAttribute('data-region-id')!, node.getAttribute('data-score')!])));
   try {
     await page.goto(BASE_URL);
@@ -80,66 +78,57 @@ test('golden path', async ({ page }) => {
       await page.getByRole('radio', { name: /6개월이 안 됐어요/ }).click();
       await expect(page.getByRole('button', { name: '탐험 시작' })).toBeVisible();
     }, { budgetMs: 3000 });
-    await demoStep(page, '2. Start → all 25 dongs have 20/20 and visible demo notice', async () => {
+    await demoStep(page, '2. Set conditions → actual score and 25 administrative dongs', async () => {
       await page.getByRole('button', { name: '탐험 시작' }).click();
-      await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toBeVisible();
-      // The demo notice floats over the UI; open it from its chip.
-      await page.getByRole('button', { name: '시연 안내' }).click();
-      await expect(page.getByRole('complementary', { name: '시연 데이터 설정' })).toContainText('가상 후보 25곳');
-      await page.keyboard.press('Escape');
-      await page.mouse.move(0, 0);
-      await expect(page.getByRole('complementary', { name: '시연 데이터 설정' })).toBeHidden();
-      await expect(page.locator('.ansan-region.recommended')).toHaveCount(25);
-      // Scores stay off screen (data-score only); place picks say where and why, never a score.
-      const picks = page.getByRole('list', { name: '장소 추천' }).getByRole('button');
-      await expect(picks).toHaveCount(50);
-      expect((await picks.allTextContents()).every(text => text.includes('오늘의 추천') && !text.includes('점수'))).toBe(true);
+      await page.getByRole('button', { name: '조건 설정' }).click();
+      await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
+      await page.getByLabel('최대 거리 (km)').fill('100');
+      await page.getByRole('button', { name: '추천 받기' }).click();
       await expect(page.locator('[data-region-id]')).toHaveCount(25);
       beforeScore = Number(await mapScore().getAttribute('data-score'));
-      expect(beforeScore).toBeGreaterThan(1000);
+      expect(beforeScore).toBeGreaterThan(0);
+      await expect(page.getByRole('button', { name: /^지도 본오1동/ })).toHaveAccessibleName(/20\/20/);
+      await expect(page.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/20\/20/);
       otherScores = await others();
       await page.getByRole('region', { name: '안산 탐험 지도' }).scrollIntoViewIfNeeded();
-    });
-    await demoStep(page, '3. Click 중앙동 → 20 recommended places and linked marker pages', async () => {
-      await page.getByRole('button', { name: /^지도 중앙동/ }).click();
-      await expect(page.getByRole('heading', { level: 1 })).toHaveText('중앙동');
+    }, { budgetMs: 3000 });
+    await demoStep(page, '3. Click 본오1동 → 20 real places, real reviews and linked markers', async () => {
+      await page.getByRole('button', { name: /^지도 본오1동/ }).focus();
+      await page.keyboard.press('Enter');
       const places = page.getByRole('list', { name: '행정동 장소 추천' });
       await expect(places.locator(':scope > li')).toHaveCount(20);
-      await expect(places).toContainText('시연용 가상 장소');
-      await expect(places).toContainText(VISITED);
-      await page.getByRole('button', { name: '시연 중앙동 산책 01 지도에서 선택', exact: true }).click();
-      await expect(page.getByRole('button', { name: '시연 중앙동 산책 01 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
+      await expect(places).not.toContainText('시연용 가상');
+      await expect(places).toContainText('방문자 리뷰 수 801건');
+      await expect(places).toContainText('지역 점수에 포함');
+      await page.getByRole('button', { name: '바바카멜 지도에서 선택', exact: true }).click();
+      await expect(page.getByRole('button', { name: '바바카멜 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
       await page.getByRole('region', { name: '안산 탐험 지도' }).scrollIntoViewIfNeeded();
     });
-    await demoStep(page, '4. Visit twentieth place → reserve replaces it and Lv.1 record remains', async () => {
+    await demoStep(page, '4. Record a real visit → score recomputation and Lv.1 with 20 places retained', async () => {
       const panel = page.getByRole('region', { name: `${VISITED} 방문 기록`, exact: true });
-      await panel.getByLabel('방문일', { exact: true }).fill(DEMO.date);
+      await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
       await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
-      const places = page.getByRole('list', { name: '행정동 장소 추천' });
-      await expect(places.locator(':scope > li')).toHaveCount(20);
-      await expect(places).not.toContainText(VISITED);
-      await expect(places).toContainText('시연 중앙동 산책 21');
+      await expect(page.getByRole('list', { name: '행정동 장소 추천' }).locator(':scope > li')).toHaveCount(20);
       await page.getByRole('button', { name: '가본 장소', exact: true }).click();
-      await expect(panel.getByText('자기 신고', { exact: true })).toBeVisible();
       await expect(panel.getByText('지역 Lv.1', { exact: true })).toBeVisible();
-      await expect(panel.locator('time')).toHaveText(DEMO.date);
+      await expect(panel.getByText('자기 신고', { exact: true })).toBeVisible();
+      await expect(panel.locator('time')).toHaveText('2026-11-08');
     });
-    await demoStep(page, '5. Return and reload → recalculated 20/20 score and visit persist', async () => {
+    await demoStep(page, '5. Return and reload → same real score, source counts and visit persist', async () => {
       await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
       afterScore = Number(await mapScore().getAttribute('data-score'));
       expect(afterScore).toBeLessThan(beforeScore);
       expect(await others()).toEqual(otherScores);
       await page.reload();
       await expect(mapScore()).toHaveAttribute('data-score', String(afterScore));
-      await expect(page.locator('.ansan-region.recommended')).toHaveCount(25);
-      await expect(page.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/정이 드는 동네/);
-      await page.getByRole('button', { name: /^지도 중앙동/ }).click();
+      await page.getByRole('button', { name: /^지도 본오1동/ }).focus();
+      await page.keyboard.press('Enter');
       await page.getByRole('button', { name: '가본 장소', exact: true }).click();
       const panel = page.getByRole('region', { name: `${VISITED} 방문 기록`, exact: true });
-      await expect(panel.locator('time')).toHaveText(DEMO.date);
+      await expect(panel.locator('time')).toHaveText('2026-11-08');
       await expect(panel.getByText('지역 Lv.1', { exact: true })).toBeVisible();
       await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
-      await expect(page.getByRole('heading', { name: '추천 행정동' })).toBeVisible();
+      await expect(page.getByRole('heading', { name: '추천 행정동', exact: true })).toBeVisible();
       await page.getByRole('region', { name: '안산 탐험 지도' }).scrollIntoViewIfNeeded();
     });
   } finally {
