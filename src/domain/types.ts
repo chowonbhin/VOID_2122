@@ -104,6 +104,16 @@ export interface Place {
   discovery?: { category: string; excludedReason?: string };
   /** 기본 가치 B, 0~100. Not a star rating. */
   baseValue: number;
+  /** External map average, never inferred from review quantity or personal visits. */
+  ratingEvidence?: {
+    provider: 'naver_place' | 'kakao_map' | 'google_maps';
+    value: number;
+    scale: 5;
+    source: Source;
+    /** Original map URL when our observation comes from a secondary publisher. */
+    originalUrl?: string;
+    observedAt?: DateString;
+  };
   /** Legacy simulated P, accepted only for explicitly virtual places. */
   popularity?: number;
   popularityEvidence?: {

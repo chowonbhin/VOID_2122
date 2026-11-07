@@ -47,7 +47,8 @@ describe('production: real 20-place discovery', () => {
   it('scores all 20 displayed real candidates, labels unknown classification, and replaces visited low scorers', () => {
     const region = content.regions[0];
     const before = discoverPlaces(region, content, profile, [], search);
-    const target = before.displayed.find(p => !isNonFranchisePlace(p))!;
+    // Choose an unrated low scorer; a highly rated visited venue may correctly stay in the top 20.
+    const target = before.displayed.find(p => !isNonFranchisePlace(p) && !p.ratingEvidence)!;
     const visits = [{ id: 'real-visit', placeId: target.id, date: '2026-11-08', method: 'self_report' as const }];
     const after = discoverPlaces(region, content, profile, visits, search);
     expect(after.displayed).toHaveLength(20);

@@ -26,7 +26,7 @@ for (const key of ['franchise', 'regionSource', 'baseValue', 'opening', 'source'
 }
 const { url: unusedUrl, ...searchSource } = places[0].searchSource;
 const runtimeFields = ['id', 'regionId', 'name', 'category', 'location', 'address', 'franchise',
-  'regionSource', 'searchSource', 'baseValue', 'popularityEvidence', 'opening', 'source', 'isVirtual'];
+  'regionSource', 'searchSource', 'baseValue', 'ratingEvidence', 'popularityEvidence', 'opening', 'source', 'isVirtual'];
 const records = places.map(place => {
   const record = Object.fromEntries(runtimeFields.filter(key => Object.hasOwn(place, key)).map(key => [key, place[key]]));
   for (const key of Object.keys(defaults)) {

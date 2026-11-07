@@ -3,7 +3,7 @@
 //
 //   regionLevel = max(initialLevel, levelFromDistinctVisitedPlaces)
 //   placeLevel  = min(3, regionLevel + (visited ? 1 : 0))
-//   placeScore  = max(0, B - w[placeLevel] * P) + E
+//   placeScore  = max(0, B + ratingBonus - w[placeLevel] * P) + E
 //   regionBase = sum(top20) / (20 * maxPlaceScore) * 100
 //   regionScore = regionBase * (1 - footfallRate) * (novelty / maxNovelty) * distanceWeight
 import type { Content } from '../data/content';
@@ -25,6 +25,7 @@ import {
 import { footfallAdjustment } from './footfall';
 import { franchiseStatus, isRecommendationCandidate, isRealSearchPlace } from './placeEligibility';
 import { createPopularityResolver, type PopularityResult } from './popularity';
+import { placeRating, type RatingResult } from './rating';
 
 // ---------- time (selected time is always Asia/Seoul) ----------
 
@@ -157,6 +158,7 @@ export interface PlaceScore {
   /** Rank among eligible candidates, including those below 20. */
   rank?: number;
   popularity: PopularityResult;
+  rating: RatingResult;
   score: number;
   event?: Event;
 }
@@ -170,13 +172,14 @@ export function scorePlaces(region: Region, content: Content, profile: Profile, 
       const status = placeStatus(p, ctx.when);
       const level = placeLevel(p.id, regionLv, visits);
       const popularity = popularityOf(p);
+      const rating = placeRating(p);
       const provisionalAllowed = isRealSearchPlace(p);
       const eligible = (status.status === 'open' || (status.status === 'unknown' && provisionalAllowed))
         && matchesInterest([p.category], ctx.interests) && (popularity.status !== 'unknown' || provisionalAllowed);
       const provisional = status.status === 'unknown' || popularity.status === 'unknown' || franchiseStatus(p) === 'unknown';
       const { bonus, event } = eventBonus(p.id, content.events, ctx, profile);
-      const score = eligible ? Math.max(0, p.baseValue - POPULARITY_WEIGHT[level] * (popularity.value ?? UNKNOWN_POPULARITY_PENALTY)) + bonus : 0;
-      return { placeId: p.id, status, level, popularity, eligible, provisional, score, event: eligible ? event : undefined };
+      const score = eligible ? Math.max(0, p.baseValue + rating.bonus - POPULARITY_WEIGHT[level] * (popularity.value ?? UNKNOWN_POPULARITY_PENALTY)) + bonus : 0;
+      return { placeId: p.id, status, level, popularity, rating, eligible, provisional, score, event: eligible ? event : undefined };
     });
   // Rebuild from the complete candidate pool every time, not the previously selected 20.
   // Stable ID tie-break preserves equal-score membership through reloads and source reorder.

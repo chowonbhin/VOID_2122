@@ -284,6 +284,18 @@
         "lng": 126.8651369
       },
       "address": "경기도 안산시 상록구 상록수로 48 112호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 5,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/47111/%EB%AF%B8%EC%8A%A4%ED%84%B0%EA%BC%BC%EC%9E%A5%EC%96%B4%EB%A7%89%EC%B0%BD/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2033524306/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -917,6 +929,18 @@
         "lng": 126.5684999
       },
       "address": "경기도 안산시 단원구 서위매봉길 40",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.17,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44970/%EC%B6%A9%EB%AC%B4%EA%B3%B5%EC%9D%B4%EC%88%9C%EC%8B%A0%ED%9A%9F%EC%A7%91/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/11877501/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -1285,6 +1309,18 @@
         "lng": 126.6099333
       },
       "address": "경기도 안산시 단원구 작은상재미길 133",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.75,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45030/%EB%9F%AC%EB%B8%8C%EC%8D%B8%ED%8C%9C-%EC%85%80%ED%94%84%EB%B0%94%EB%B2%A0%ED%81%90-%EC%B9%B4%ED%8E%98/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1496300852/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -2027,6 +2063,18 @@
         "lng": 126.8023445
       },
       "address": "경기도 안산시 단원구 라성안길 17 베스트프라자 113호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.7,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45104/%EB%8C%80%EC%A4%91%EC%99%95%EC%96%91%EA%BC%AC%EC%B9%98/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1872878491/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -2543,6 +2591,18 @@
         "lng": 126.5634665
       },
       "address": "경기도 안산시 단원구 대부해안로 256",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.84,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/40288/%EB%B9%9B%ED%96%A5/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1991906317/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -2708,6 +2768,18 @@
         "lng": 126.8632964
       },
       "address": "경기도 안산시 상록구 샘골로 130 2층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.91,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45138/%EC%95%88%EC%82%B0%EC%A0%9C%EC%B2%9C%EB%8B%AD%EB%B0%9C/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2019922414/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -3196,6 +3268,18 @@
         "lng": 126.8016336
       },
       "address": "경기도 안산시 단원구 화랑로 122 상가 2동 109호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.75,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/63963/%EC%81%98%EB%9D%A0-%EB%B9%84%EC%8A%A4%ED%8A%B8%EB%A1%9C/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2021718205/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -3265,6 +3349,18 @@
         "lng": 126.8211424
       },
       "address": "경기도 안산시 단원구 와동공원로 125",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 5,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45069/%EC%BB%A4%ED%94%BC%EB%8B%A4/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1731997777/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -4005,6 +4101,17 @@
         "lng": 126.8341056
       },
       "address": "경기도 안산시 상록구 해양5로 11 111호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.86,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45070/%ED%8D%BC%EB%A9%98%ED%8A%B8%EB%B8%8C%EB%A0%88%EB%93%9C/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1732556644/home"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -4342,6 +4449,18 @@
         "lng": 126.886965
       },
       "address": "경기도 안산시 상록구 소학1길 6-1 잠시커피",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.88,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45067/%EC%9E%A0%EC%8B%9C%EC%BB%A4%ED%94%BC/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1721051973/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -4463,6 +4582,18 @@
         "lng": 126.6452286
       },
       "address": "경기도 안산시 단원구 대부황금로 17-34 1, 2층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 5,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45163/%EC%B9%B4%ED%8E%98%ED%83%84%EB%8F%84/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2044111026/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -4981,6 +5112,18 @@
         "lng": 126.8612682
       },
       "address": "경기도 안산시 상록구 본삼로 11 1층 안녕펠트cafe",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.88,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45128/%EC%95%88%EB%85%95%ED%8E%A0%ED%8A%B8cafe/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://map.naver.com/p/entry/place/2006135161",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -5219,6 +5362,18 @@
         "lng": 126.5682356
       },
       "address": "경기도 안산시 단원구 서위매봉길 50 110호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.76,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44978/%ED%8C%8C%EB%8F%84%EB%A7%88%EB%A3%A8/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1228117012/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -5417,6 +5572,18 @@
         "lng": 126.850516
       },
       "address": "경기도 안산시 상록구 광덕1로 366 1층 108~109호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.41,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45095/bosss%EC%BB%A4%ED%94%BC/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1823632793/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -5529,6 +5696,18 @@
         "lng": 126.8279433
       },
       "address": "경기도 안산시 상록구 해양3로 15 219호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.94,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45145/%EC%88%98%EC%A0%9C%EB%8F%88%EA%B9%8C%EC%8A%A4%EC%97%B0%EA%B5%AC%EC%86%8C/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2024912536/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -6005,6 +6184,18 @@
         "lng": 126.828581
       },
       "address": "경기도 안산시 단원구 광덕2로 163-5 110호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.77,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44948/%EC%98%A4%EB%B3%B5%EB%8B%B9/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1116410520/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -6478,6 +6669,18 @@
         "lng": 126.821679
       },
       "address": "경기도 안산시 단원구 화랑로 312 예당카페",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.54,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45034/%EC%98%88%EB%8B%B9%EC%B9%B4%ED%8E%98/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1513941462/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -6843,6 +7046,18 @@
         "lng": 126.8285062
       },
       "address": "경기도 안산시 단원구 광덕2로 163-15 보성프라자 101호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 5,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/63941/%EC%B9%B4%ED%8E%98%EC%9D%B4%EC%9C%A0/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1241597895/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -7033,6 +7248,18 @@
         "lng": 126.829011
       },
       "address": "경기도 안산시 단원구 광덕대로 161 105호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.9,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/63955/%EB%8D%94%EC%A0%B8%EB%8B%88/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1715529317/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -8667,6 +8894,18 @@
         "lng": 126.8415296
       },
       "address": "경기도 안산시 상록구 예술대학로 205 1층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.93,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45060/%EB%8D%B0%EC%9D%B4%EB%93%9C%EB%A6%AC%EB%B0%8D/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1669238625/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -8874,6 +9113,18 @@
         "lng": 126.5448623
       },
       "address": "경기도 안산시 단원구 쪽박섬길 102",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 5,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45062/%EC%AA%BD%EB%B0%95%EC%84%AC%ED%9A%9F%EC%A7%91/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1698693283/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -8962,6 +9213,18 @@
         "lng": 126.8243704
       },
       "address": "경기도 안산시 단원구 적금로 93 기차카페 (세라티 익스프레스)",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.87,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45171/%EC%84%B8%EB%9D%BC%ED%8B%B0/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2065790724/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -9305,6 +9568,18 @@
         "lng": 126.8385483
       },
       "address": "경기도 안산시 상록구 학사2길 2-1 1층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.81,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45000/%EC%BD%94%EC%A7%80%ED%99%80%EB%A6%AC%EB%8D%B0%EC%9D%B4/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1306686118/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -9382,6 +9657,18 @@
         "lng": 126.5740063
       },
       "address": "경기도 안산시 단원구 대선로 377 1층 대부매콤명태조림",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.83,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/63971/%EB%8C%80%EB%B6%80%EB%A7%A4%EC%BD%A4%EB%AA%85%ED%83%9C%EC%A1%B0%EB%A6%BC/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/238464874/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -9990,6 +10277,18 @@
         "lng": 126.8759049
       },
       "address": "경기도 안산시 상록구 본이로 83 솥단지남원추어탕",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.33,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/47107/%EC%86%A5%EB%8B%A8%EC%A7%80%EB%82%A8%EC%9B%90%EC%B6%94%EC%96%B4%ED%83%95/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1413400552/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -10184,6 +10483,18 @@
         "lng": 126.8290718
       },
       "address": "경기도 안산시 단원구 광덕대로 155 퍼스트빌 2층 206호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.9,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45053/%ED%99%80%EB%8D%A4%EC%9E%AD/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1635569716/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -10431,6 +10742,18 @@
         "lng": 126.5743222
       },
       "address": "경기도 안산시 단원구 대부황금로 1480-8 카페단소금",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.88,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45020/%EC%B9%B4%ED%8E%98%EB%8B%A8%EC%86%8C%EA%B8%88/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1437821766/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -10755,6 +11078,18 @@
         "lng": 126.5741402
       },
       "address": "경기도 안산시 단원구 아랫동심길 40 투투새우 1,2층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.84,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44961/%EB%8C%80%EB%B6%80%EB%8F%84-%ED%88%AC%ED%88%AC%EC%83%88%EC%9A%B0%EC%88%98%EC%82%B0/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1156561314/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -11224,6 +11559,18 @@
         "lng": 126.8281335
       },
       "address": "경기도 안산시 단원구 광덕3로 135-14 1층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 5,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45024/%EB%89%B4%ED%83%AD/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://map.naver.com/p/entry/place/1472706383",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -11345,6 +11692,18 @@
         "lng": 126.8292983
       },
       "address": "경기도 안산시 단원구 광덕대로 161 206호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.66,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44954/%EA%B0%9C%EB%8D%94%EB%A7%81/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/place/1140417173/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -11429,6 +11788,18 @@
         "lng": 126.5980154
       },
       "address": "경기도 안산시 단원구 수영목길 27-35",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.66,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45059/%EB%B0%B1%ED%99%94%EC%96%91%EC%8B%9D%EC%9E%A5/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1665507687/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -11757,6 +12128,18 @@
         "lng": 126.6107819
       },
       "address": "경기도 안산시 단원구 대부황금로 746 3층 1호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.94,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44938/%EC%B9%B4%ED%8E%98%EC%91%B4%EB%82%A8/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1055984578/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -12364,6 +12747,18 @@
         "lng": 126.834729
       },
       "address": "경기도 안산시 단원구 중앙대로 885 101동 102호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.96,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45187/%EB%88%84%EC%95%84%EB%B2%A0/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://map.naver.com/p/entry/place/2080749209",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -12509,6 +12904,18 @@
         "lng": 126.5635355
       },
       "address": "경기도 안산시 단원구 대부해안로 218 1층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.92,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/40286/%EC%B9%B4%ED%8E%98%EB%82%98%EB%A3%A8/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1677359368/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -12731,6 +13138,18 @@
         "lng": 126.5723278
       },
       "address": "경기도 안산시 단원구 대부황금로 1265 소담",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.66,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45039/%EC%86%8C%EB%8B%B4-%EC%A7%AC%EB%BD%95%EC%88%9C%EB%91%90%EB%B6%80/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1532647281/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -13303,6 +13722,18 @@
         "lng": 126.5760148
       },
       "address": "경기도 안산시 단원구 흘곶길 5 2층 카페물",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.5,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45078/%EC%B9%B4%ED%8E%98%EB%AC%BC/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1780736461/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -13519,6 +13950,18 @@
         "lng": 126.8580918
       },
       "address": "경기도 안산시 상록구 도매시장로1길 15 101호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.98,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/68171/%EB%84%A4-%EC%BB%A4%ED%94%BC/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://map.naver.com/p/entry/place/1933681219",
+        "observedAt": "2026-11-08"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -13831,6 +14274,18 @@
         "lng": 126.8272674
       },
       "address": "경기도 안산시 단원구 광덕서로 62 고잔법조빌딩105호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.67,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/63947/%EB%94%94%EC%BC%80%EC%9D%98-%EB%9C%B0/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1364526881/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -14340,6 +14795,18 @@
         "lng": 126.8929163
       },
       "address": "경기도 안산시 상록구 능앞길 45-1 Dacha (대야가든 옆)",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.49,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45208/%EB%B0%98%EC%9B%94%EB%8B%A4%EC%B0%A8-%EC%B9%B4%ED%8E%98/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/36174641/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -14783,6 +15250,18 @@
         "lng": 126.7860233
       },
       "address": "경기도 안산시 단원구 산단로 325 2층 C-271호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.91,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/68170/%EC%8B%A0%EC%A7%AC%EB%BD%95/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1710855951/home",
+        "observedAt": "2026-11-08"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -14900,6 +15379,18 @@
         "lng": 126.8567498
       },
       "address": "경기도 안산시 상록구 충장로 312",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.4,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44968/%EA%B0%95%EC%9B%90%EC%88%98%EC%82%B0/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/11871621/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -14988,6 +15479,18 @@
         "lng": 126.5750835
       },
       "address": "경기도 안산시 단원구 대부황금로 1495 허니비치카페",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.9,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44958/%ED%97%88%EB%8B%88%EB%B9%84%EC%B9%98%EC%B9%B4%ED%8E%98/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1147562220/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -15916,6 +16419,18 @@
         "lng": 126.7893528
       },
       "address": "경기도 안산시 단원구 풍전로 37-9 트리플렉스 에이단지 309동 101호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.78,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44941/%EC%BB%A4%ED%94%BC%EC%BA%A3/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1075951644/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -16011,6 +16526,18 @@
         "lng": 126.8160271
       },
       "address": "경기도 안산시 단원구 초지2로 67 1층 103호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.92,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44977/%EC%95%88%EC%82%B0%EC%B4%88%EC%A7%80%EC%96%91%EA%B3%B1%EC%B0%BD/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1226261432/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -16110,6 +16637,17 @@
         "lng": 126.8160484
       },
       "address": "경기도 안산시 단원구 광덕2로 50-13 108호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.49,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45123/%ED%98%B8%EB%9E%91%EC%9D%B4%EC%B9%B4%ED%8E%98/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://map.naver.com/p/entry/place/1995577053"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -17476,6 +18014,18 @@
         "lng": 126.5718583
       },
       "address": "경기도 안산시 단원구 대부황금로 1459 1층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.49,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45092/%ED%8C%8C%EB%8F%84%ED%9A%9F%EC%A7%91/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/18192680/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -17782,6 +18332,18 @@
         "lng": 126.8642617
       },
       "address": "경기도 안산시 상록구 상록수로 40 1층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.66,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44988/%EC%98%A4%EC%A0%81%ED%95%AD/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1263847709/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -17824,6 +18386,18 @@
         "lng": 126.8274681
       },
       "address": "경기도 안산시 단원구 광덕서로 52 1층 110호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.75,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45084/%EC%B9%B4%ED%8E%98%EC%B2%AD%EB%8B%B4/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1803351227/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -18055,6 +18629,18 @@
         "lng": 126.8463992
       },
       "address": "경기도 안산시 상록구 송호3길 18 1층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.92,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45100/%EC%95%88%EC%82%B0%EC%84%A4%ED%99%94%EA%B0%88%EB%B9%84/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1844016631/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -18767,6 +19353,18 @@
         "lng": 126.8230371
       },
       "address": "경기도 안산시 단원구 광덕3로 93 1층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.91,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/67445/%EB%8B%AC%EB%9D%BC%EC%BB%A4%ED%94%BC/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1005059581/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -18840,6 +19438,18 @@
         "lng": 126.8219574
       },
       "address": "경기도 안산시 단원구 꽃우물1길 16-4 1층 카페유일",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.71,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45114/%EC%B9%B4%ED%8E%98%EC%9C%A0%EC%9D%BC/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1920134321/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -19454,6 +20064,18 @@
         "lng": 126.5683233
       },
       "address": "경기도 안산시 단원구 서위매봉길 50 108호, 109~110호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.85,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45162/%EB%B0%94%EB%9D%BC%EB%B3%B4%EB%A7%A4/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2043470627/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -19549,6 +20171,18 @@
         "lng": 126.576976
       },
       "address": "경기도 안산시 단원구 대부중앙로 10 1층 일부호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.86,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45198/%EC%9E%A5%EC%96%B4%EB%AA%85%EA%B0%80/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/21406814/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -19804,6 +20438,18 @@
           "checkedAt": "2026-11-08"
         }
       },
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.9,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44973/%EB%B3%B4%EB%85%B8%EB%8B%A4%EB%B0%A9/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1197343401/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -19991,6 +20637,18 @@
         "lng": 126.5527826
       },
       "address": "경기도 안산시 단원구 구봉타운길 51 1층 카페아셀",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.79,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/40284/%EC%B9%B4%ED%8E%98%EC%95%84%EC%85%80/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1264319509/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -20295,6 +20953,18 @@
         "lng": 126.5727765
       },
       "address": "경기도 안산시 단원구 대부황금로 1469 대부도 카페 가",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.62,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45006/%EB%8C%80%EB%B6%80%EB%8F%84-%EC%B9%B4%ED%8E%98%EA%B0%80/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1347583109/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -20570,6 +21240,18 @@
         "lng": 126.8460111
       },
       "address": "경기도 안산시 상록구 천문2길 60-11 1층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.28,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45021/%EB%A0%88%EB%93%9C%EC%A7%80/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1443028239/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -20949,6 +21631,18 @@
         "lng": 126.8443021
       },
       "address": "경기도 안산시 상록구 광덕산안길 14 101호 낭만쏘맥x가성비최고의치킨집",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.56,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44949/%EB%82%AD%EB%A7%8C%EC%8F%98%EB%A7%A5x%EA%B0%80%EC%84%B1%EB%B9%84%EC%B5%9C%EA%B3%A0%EC%9D%98%EC%B9%98%ED%82%A8%EC%A7%91/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1121240544/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -21002,6 +21696,18 @@
         "lng": 126.8442343
       },
       "address": "경기도 안산시 상록구 예술광장로 1 3층 376호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.98,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45174/%EC%98%A4%EC%85%94%EC%9C%A0-%EB%96%A1%EB%B3%B6%EC%9D%B4/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2069151061/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -21317,6 +22023,18 @@
         "lng": 126.8288439
       },
       "address": "경기도 안산시 단원구 광덕대로 145 1층 102호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.94,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/63961/%EC%83%9D%EC%84%A0%EB%B3%B4%EA%B0%90/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2014257966/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -21555,6 +22273,18 @@
         "lng": 126.8156382
       },
       "address": "경기도 안산시 단원구 초지2로 59 1층 106호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.63,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/68169/%EC%B4%88%EC%A7%80%ED%99%94%EA%B3%BC%EC%99%95/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1219462378/home",
+        "observedAt": "2026-11-08"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -22199,6 +22929,18 @@
         "lng": 126.8708543
       },
       "address": "경기도 안산시 상록구 안산대학로 120 1층 101호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 5,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/47104/%EC%8A%B9%EC%A7%84%EA%BC%AC%EB%A7%88%EA%B9%80%EB%B0%A5/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1151583112/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -22393,6 +23135,18 @@
         "lng": 126.8274161
       },
       "address": "경기도 안산시 단원구 광덕서로 48 양지주차타워 1층 111호 그레코",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.87,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45220/%EC%B9%B4%ED%8E%98%EA%B7%B8%EB%A0%88%EC%BD%94/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/40560195/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -22488,6 +23242,18 @@
         "lng": 126.5755229
       },
       "address": "경기도 안산시 단원구 대부황금로 1501 1~2층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.5,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45077/%EB%B2%84%EA%B1%B0%EB%B9%84%EC%B9%98/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1762131495/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -22653,6 +23419,18 @@
         "lng": 126.5726497
       },
       "address": "경기도 안산시 단원구 대부황금로 1467 하늘에바다에",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.3,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45202/%ED%95%98%EB%8A%98%EC%97%90%EB%B0%94%EB%8B%A4%EC%97%90/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/32137483/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -23001,6 +23779,18 @@
         "lng": 126.8276321
       },
       "address": "경기도 안산시 단원구 광덕서로 96 209호 일부",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 5,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45167/%EC%B9%B4%ED%8E%98%EC%98%A4%EC%9D%80/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2050696239/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -23373,6 +24163,18 @@
         "lng": 126.5756047
       },
       "address": "경기도 안산시 단원구 대부황금로 1501-1 카캉스",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.72,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44994/%EC%B9%B4%EC%BA%89%EC%8A%A4/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1282588311/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -23549,6 +24351,18 @@
         "lng": 126.8401932
       },
       "address": "경기도 안산시 단원구 고잔1길 63 205-1호, CAFE' TOFF",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.99,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45176/%EC%B9%B4%ED%8E%98-%ED%86%A0%ED%94%84/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2071387317/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -24058,6 +24872,18 @@
         "lng": 126.8390289
       },
       "address": "경기도 안산시 단원구 고잔로 116 2층 207호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.89,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/67458/%ED%8C%8C%EC%8A%A4%ED%83%80%EB%A6%AC%EC%95%88/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1856535148/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -24190,6 +25016,18 @@
         "lng": 126.8353625
       },
       "address": "경기도 안산시 단원구 중앙대로 885 힐스테이트에코 103동 134호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.93,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45196/%EC%87%BC%EC%BD%9C%EB%9D%BC%EC%97%94%EB%B0%94%EB%8B%90%EB%9D%BC/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2098970383/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -24307,6 +25145,17 @@
         "lng": 126.8315638
       },
       "address": "경기도 안산시 단원구 광덕대로 268 1층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.75,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/67447/%EB%82%98%EC%9D%B8%EC%8A%A4%ED%83%80%EC%BB%A4%ED%94%BC/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1073653836/home"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -24537,6 +25386,18 @@
         "lng": 126.5716098
       },
       "address": "경기도 안산시 단원구 대선로 7 1층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.69,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44980/%EC%9E%A5%EB%B3%B4%ED%99%94%EC%86%90%EC%B9%BC%EA%B5%AD%EC%88%98%EC%A7%91/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1232682108/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -25674,6 +26535,18 @@
         "lng": 126.8276025
       },
       "address": "경기도 안산시 단원구 광덕서로 66 104-4호",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 5,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/44950/%EC%8B%9C%EC%9A%B0%ED%82%A4%EC%B9%9C/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1122183418/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -26340,6 +27213,18 @@
         "lng": 126.8214751
       },
       "address": "경기도 안산시 단원구 꽃우물길 27 1 2층",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.3,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45037/%EA%BD%83%EC%9A%B0%EB%AC%BC%EC%8B%9D%EB%AC%BC%EC%9B%90%EC%B9%B4%ED%8E%98/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/1526870264/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",
@@ -26567,6 +27452,18 @@
         "lng": 126.8285472
       },
       "address": "경기도 안산시 단원구 광덕2로 163-5 도로가 1층 코카콜라 자판기",
+      "ratingEvidence": {
+        "provider": "naver_place",
+        "value": 4.81,
+        "scale": 5,
+        "source": {
+          "label": "함께할개가 기재한 네이버 평균 별점 (2차 출처)",
+          "url": "https://hamgae.com/place/45149/%EC%BD%94%EC%9D%B4%EC%95%84%EC%9D%B4/",
+          "checkedAt": "2026-11-08"
+        },
+        "originalUrl": "https://pcmap.place.naver.com/restaurant/2026940141/home",
+        "observedAt": "2026-11-07"
+      },
       "popularityEvidence": {
         "provider": "naver_place",
         "metric": "visitor_reviews",

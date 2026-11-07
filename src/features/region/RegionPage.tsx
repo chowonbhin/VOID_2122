@@ -5,6 +5,7 @@ import { content, eventsOfPlace, placesOfRegion, regionById } from '../../data/c
 import { CATEGORY_LABELS } from '../../domain/policy';
 import { distanceKm, eventState, placeStatus } from '../../domain/score';
 import { placePopularity, POPULARITY_LABELS } from '../../domain/popularity';
+import { placeRating, RATING_PROVIDERS } from '../../domain/rating';
 import { go } from '../../route';
 import { discoverPlaces } from '../../domain/discovery';
 import { centreLatLng, dongByCode, dongsOfRegion } from '../map/ansanGeo';
@@ -139,6 +140,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
           const scored = scores.find((score) => score.placeId === place.id);
           const status = scored?.status ?? (state.search ? placeStatus(place, state.search.when) : null);
           const popularity = scored?.popularity ?? placePopularity(place, content.places);
+          const rating = scored?.rating ?? placeRating(place);
           const events = eventsOfPlace(place.id);
           return <li key={place.id} ref={(element) => { cards.current[place.id] = element; }}
             className={`place${place.id === selectedPlaceId ? ' selected-place' : ''}`}>
@@ -155,6 +157,15 @@ function RegionDetail({ regionId }: { regionId: string }) {
             {place.isVirtual && <p className="region-place-meta">시연용 가상 장소 · 위치와 운영정보도 가상입니다.</p>}
             {(place.address || place.searchSource) && <p className="region-place-meta">{place.address}{place.address && place.searchSource && ' · '}{place.searchSource && <a href={place.searchSource.url} target="_blank" rel="noreferrer">네이버에서 장소 보기</a>}</p>}
             {popularity.status === 'measured' && <p className="region-place-meta">{POPULARITY_LABELS[popularity.evidence.metric]} {popularity.evidence.count.toLocaleString('ko-KR')}건</p>}
+            <p className="region-place-meta">{rating.status === 'measured'
+              ? `${RATING_PROVIDERS[rating.evidence.provider]} 평균 별점 ★ ${rating.evidence.value.toFixed(2)} / 5`
+              : '외부 평균 별점 미확인'}</p>
+            {rating.status === 'measured' && <details className="region-place-meta">
+              <summary>별점 출처</summary>
+              <p><a href={rating.evidence.source.url} target="_blank" rel="noreferrer">{rating.evidence.source.label}</a>
+                {' '}· 확인 {rating.evidence.source.checkedAt}{rating.evidence.observedAt && ` · 출처 갱신 ${rating.evidence.observedAt}`}</p>
+              {rating.evidence.originalUrl && <a href={rating.evidence.originalUrl} target="_blank" rel="noreferrer">지도 원문 확인</a>}
+            </details>}
             {events.map((event) => <div className="region-place-meta" key={event.id}>
               <strong>{event.name}{event.isVirtual ? ' (시연용)' : ''}</strong>
               <p>{state.search ? eventLabel[eventState(event, state.search.when)] : '시각 미선택'} · {event.condition.text ?? '참여 조건 확인 필요'}</p>

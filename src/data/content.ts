@@ -6,6 +6,7 @@ import regionsJson from './regions.json';
 import footfallJson from './footfall.json';
 import geography from './geography/admin-dongs.json';
 import { validPopularityEvidence } from '../domain/popularity';
+import { validRatingEvidence } from '../domain/rating';
 import realCollection from './real-collection.json';
 import placePayload from './places.runtime.json';
 import { expandPlacePayload, type PlacePayload } from './placePayload';
@@ -55,6 +56,7 @@ export function validateContent(c: Content): string[] {
     if (!p.opening) problems.push(`place ${p.id}: missing opening`);
     else if (p.opening.status === 'known' && !p.opening.weekly) problems.push(`place ${p.id}: known opening without weekly hours`);
     if (p.popularityEvidence && !validPopularityEvidence(p.popularityEvidence)) problems.push(`place ${p.id}: invalid popularity evidence`);
+    if (p.ratingEvidence && !validRatingEvidence(p.ratingEvidence)) problems.push(`place ${p.id}: invalid rating evidence`);
     if (p.opening?.status === 'known' && !p.source) problems.push(`place ${p.id}: known opening without source`);
   }
   for (const r of c.regions) {

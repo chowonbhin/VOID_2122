@@ -23,6 +23,8 @@ export const POPULARITY_WEIGHT: Record<0 | 1 | 2 | 3, number> = { 0: 0, 1: 10, 2
 /** 제안: only the largest matching, not-yet-experienced event bonus counts, capped. */
 export const EVENT_BONUS_CAP = 10;
 export const PLACE_BASE_MAX = 100;
+/** External average stars / 5 × 30, independent of user Lv. Quality total stays within 100. */
+export const RATING_BONUS_CAP = 30;
 export const PLACE_SCORE_MAX = PLACE_BASE_MAX + EVENT_BONUS_CAP;
 export const REGION_SCORE_MAX = 100;
 export const MAX_NOVELTY = Math.max(...Object.values(NOVELTY));

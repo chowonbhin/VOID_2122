@@ -87,7 +87,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1116410520/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44948/%EC%98%A4%EB%B3%B5%EB%8B%B9/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.77
   },
   {
     "name": "바르바커피 타워360",
@@ -117,7 +118,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1187167154/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44969/%EB%B0%94%EB%A5%B4%EB%B0%94%EC%BB%A4%ED%94%BC-%ED%83%80%EC%9B%8C360/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.7
   },
   {
     "name": "남월 쌀국수 안산한양대 본점",
@@ -147,7 +149,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/33232907/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45204/%EB%82%A8%EC%9B%94-%EC%8C%80%EA%B5%AD%EC%88%98-%EC%95%88%EC%82%B0%ED%95%9C%EC%96%91%EB%8C%80-%EB%B3%B8%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.82
   },
   {
     "name": "더라탄",
@@ -207,7 +210,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1228117012/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44978/%ED%8C%8C%EB%8F%84%EB%A7%88%EB%A3%A8/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.76
   },
   {
     "name": "부드럽소 안산고잔본점",
@@ -267,7 +271,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1920134321/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45114/%EC%B9%B4%ED%8E%98%EC%9C%A0%EC%9D%BC/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.71
   },
   {
     "name": "다이너 안산중앙점",
@@ -297,7 +302,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1752024635/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45075/%EB%8B%A4%EC%9D%B4%EB%84%88-%EC%95%88%EC%82%B0%EC%A4%91%EC%95%99%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.89
   },
   {
     "name": "모더스브레드",
@@ -357,7 +363,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1437821766/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45020/%EC%B9%B4%ED%8E%98%EB%8B%A8%EC%86%8C%EA%B8%88/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.88
   },
   {
     "name": "젠젠 안산중앙점",
@@ -567,7 +574,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1264319509/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/40284/%EC%B9%B4%ED%8E%98%EC%95%84%EC%85%80/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.79
   },
   {
     "name": "천안옛날호두과자 안산대부도점",
@@ -597,7 +605,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/18192928/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45094/%EC%B2%9C%EC%95%88%EC%98%9B%EB%82%A0%ED%98%B8%EB%91%90%EA%B3%BC%EC%9E%90-%EC%95%88%EC%82%B0%EB%8C%80%EB%B6%80%EB%8F%84%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.62
   },
   {
     "name": "은미네칼국수",
@@ -687,7 +696,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1147562220/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44958/%ED%97%88%EB%8B%88%EB%B9%84%EC%B9%98%EC%B9%B4%ED%8E%98/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.9
   },
   {
     "name": "파스타리안",
@@ -717,7 +727,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1856535148/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/67458/%ED%8C%8C%EC%8A%A4%ED%83%80%EB%A6%AC%EC%95%88/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.89
   },
   {
     "name": "카캉스",
@@ -747,7 +758,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1282588311/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44994/%EC%B9%B4%EC%BA%89%EC%8A%A4/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.72
   },
   {
     "name": "페퍼로니버튼 본점",
@@ -777,7 +789,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1793336537/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45080/%ED%8E%98%ED%8D%BC%EB%A1%9C%EB%8B%88%EB%B2%84%ED%8A%BC-%EB%B3%B8%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.9
   },
   {
     "name": "더져니",
@@ -807,7 +820,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1715529317/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63955/%EB%8D%94%EC%A0%B8%EB%8B%88/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.9
   },
   {
     "name": "불란서찐빵 핑크점",
@@ -867,7 +881,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1232682108/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44980/%EC%9E%A5%EB%B3%B4%ED%99%94%EC%86%90%EC%B9%BC%EA%B5%AD%EC%88%98%EC%A7%91/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.69
   },
   {
     "name": "꽃우물식물원카페",
@@ -897,7 +912,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1526870264/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45037/%EA%BD%83%EC%9A%B0%EB%AC%BC%EC%8B%9D%EB%AC%BC%EC%9B%90%EC%B9%B4%ED%8E%98/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.3
   },
   {
     "name": "11호남도할머니칼국수",
@@ -957,7 +973,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1347583109/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45006/%EB%8C%80%EB%B6%80%EB%8F%84-%EC%B9%B4%ED%8E%98%EA%B0%80/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.62
   },
   {
     "name": "멜커피 안산중앙점",
@@ -987,7 +1004,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1090326457/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44943/%EB%A9%9C%EC%BB%A4%ED%94%BC-%EC%95%88%EC%82%B0%EC%A4%91%EC%95%99%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.98
   },
   {
     "name": "숙성재 안산점",
@@ -1017,7 +1035,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2020948995/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45141/%EC%88%99%EC%84%B1%EC%9E%AC-%EC%95%88%EC%82%B0%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.86
   },
   {
     "name": "하늘에바다에",
@@ -1047,7 +1066,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/32137483/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45202/%ED%95%98%EB%8A%98%EC%97%90%EB%B0%94%EB%8B%A4%EC%97%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.3
   },
   {
     "name": "뜯갈비 안산중앙점",
@@ -1107,7 +1127,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/18192680/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45092/%ED%8C%8C%EB%8F%84%ED%9A%9F%EC%A7%91/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.49
   },
   {
     "name": "그릴리언",
@@ -1137,7 +1158,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1830726953/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45097/%EA%B7%B8%EB%A6%B4%EB%A6%AC%EC%96%B8/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.88
   },
   {
     "name": "오썬",
@@ -1197,7 +1219,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/11877501/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44970/%EC%B6%A9%EB%AC%B4%EA%B3%B5%EC%9D%B4%EC%88%9C%EC%8B%A0%ED%9A%9F%EC%A7%91/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.17
   },
   {
     "name": "카페그레코",
@@ -1227,7 +1250,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/40560195/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45220/%EC%B9%B4%ED%8E%98%EA%B7%B8%EB%A0%88%EC%BD%94/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.87
   },
   {
     "name": "고기싸롱 안산초지점",
@@ -1257,7 +1281,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1947156774/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45116/%EA%B3%A0%EA%B8%B0%EC%8B%B8%EB%A1%B1-%EC%95%88%EC%82%B0%EC%B4%88%EC%A7%80%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.61
   },
   {
     "name": "백합칼국수 삐쭉이대부본점",
@@ -1287,7 +1312,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/18192130/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45091/%EB%B0%B1%ED%95%A9%EC%B9%BC%EA%B5%AD%EC%88%98-%EC%82%90%EC%AD%89%EC%9D%B4%EB%8C%80%EB%B6%80%EB%B3%B8%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.26
   },
   {
     "name": "엄지척까투리할매손칼국수",
@@ -1407,7 +1433,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1991906317/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/40288/%EB%B9%9B%ED%96%A5/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.84
   },
   {
     "name": "투썸플레이스 안산그랑시티자이점",
@@ -1467,7 +1494,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1513941462/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45034/%EC%98%88%EB%8B%B9%EC%B9%B4%ED%8E%98/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.54
   },
   {
     "name": "오타코 에리카 본점",
@@ -1497,7 +1525,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2056014518/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63969/%EC%98%A4%ED%83%80%EC%BD%94-%EC%97%90%EB%A6%AC%EC%B9%B4-%EB%B3%B8%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.91
   },
   {
     "name": "코이아이",
@@ -1527,7 +1556,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2026940141/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45149/%EC%BD%94%EC%9D%B4%EC%95%84%EC%9D%B4/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.81
   },
   {
     "name": "설문동본갈비 상록구점",
@@ -1587,7 +1617,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2055827677/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63968/%EB%82%A8%EC%96%91%ED%99%A9%EC%86%8C%EA%B3%B1%EC%B0%BD-%EC%95%88%EC%82%B0%EB%B3%B8%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.93
   },
   {
     "name": "우미양 갈비 키즈놀이방/룸 완비",
@@ -1617,7 +1648,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2015204504/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45136/%EC%9A%B0%EB%AF%B8%EC%96%91-%EA%B0%88%EB%B9%84-%ED%82%A4%EC%A6%88%EB%86%80%EC%9D%B4%EB%B0%A9%EB%A3%B8-%EC%99%84%EB%B9%84/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.9
   },
   {
     "name": "곤지암한우소머리국밥 대부도점",
@@ -1729,7 +1761,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1762131495/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45077/%EB%B2%84%EA%B1%B0%EB%B9%84%EC%B9%98/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.5
   },
   {
     "name": "둥이상회",
@@ -1879,7 +1912,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2084604990/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45191/%EC%82%BC%EA%B2%B9%EC%97%B0%EA%B5%AC%EC%86%8C-%EB%B3%B8%EC%98%A4%EB%B3%B8%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.94
   },
   {
     "name": "차가네",
@@ -2029,7 +2063,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1492208567/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45029/%ED%92%8D%EB%B0%94%EC%98%A4-%EC%95%88%EC%82%B0%EC%A4%91%EC%95%99%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.89
   },
   {
     "name": "머스트픽 상록수본점",
@@ -2059,7 +2094,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1094402998/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44945/%EB%A8%B8%EC%8A%A4%ED%8A%B8%ED%94%BD-%EC%83%81%EB%A1%9D%EC%88%98%EB%B3%B8%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.92
   },
   {
     "name": "대부매콤명태조림",
@@ -2089,7 +2125,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/238464874/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63971/%EB%8C%80%EB%B6%80%EB%A7%A4%EC%BD%A4%EB%AA%85%ED%83%9C%EC%A1%B0%EB%A6%BC/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.83
   },
   {
     "name": "엉클짱 왕해물탕찜 초지점",
@@ -2269,7 +2306,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1156561314/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44961/%EB%8C%80%EB%B6%80%EB%8F%84-%ED%88%AC%ED%88%AC%EC%83%88%EC%9A%B0%EC%88%98%EC%82%B0/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.84
   },
   {
     "name": "늘포레 with 그라츠커피랩",
@@ -2321,7 +2359,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1226261432/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44977/%EC%95%88%EC%82%B0%EC%B4%88%EC%A7%80%EC%96%91%EA%B3%B1%EC%B0%BD/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.92
   },
   {
     "name": "GVO 안산본점",
@@ -2411,7 +2450,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1237181846/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44982/%EC%98%A8%EB%8B%A4-%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC-%EC%A0%A4%EB%9D%BC%EB%98%90-%EB%B3%B8%EC%98%A4%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.94
   },
   {
     "name": "하나마토 안산초지",
@@ -2441,7 +2481,8 @@
     "naverUrl": "https://map.naver.com/p/entry/place/1071459339",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63939/%ED%95%98%EB%82%98%EB%A7%88%ED%86%A0-%EC%95%88%EC%82%B0%EC%B4%88%EC%A7%80/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.74
   },
   {
     "name": "88노가리 안산중앙점",
@@ -2531,7 +2572,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/21406814/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45198/%EC%9E%A5%EC%96%B4%EB%AA%85%EA%B0%80/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.86
   },
   {
     "name": "식물원앞카페",
@@ -2711,7 +2753,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1804174459/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45085/%EB%A1%9C%EB%B0%94%ED%83%80%EC%B9%B4%EC%9D%B4-%EC%8B%AC%EC%95%BC%EC%8B%9D%EB%8B%B9/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.9
   },
   {
     "name": "에바돈가츠 안산본오점",
@@ -2801,7 +2844,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1263356001/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44987/%EC%9C%A1%ED%97%A4%EC%9D%B4/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.93
   },
   {
     "name": "시요땅",
@@ -2831,7 +2875,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1133542587/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44952/%EC%8B%9C%EC%9A%94%EB%95%85/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.93
   },
   {
     "name": "깡우동 고잔점",
@@ -2861,7 +2906,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1423390019/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63949/%EA%B9%A1%EC%9A%B0%EB%8F%99-%EA%B3%A0%EC%9E%94%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.88
   },
   {
     "name": "경성찹쌀꽈배기 상록수역점",
@@ -3011,7 +3057,8 @@
     "naverUrl": "https://map.naver.com/p/entry/place/1995577053",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45123/%ED%98%B8%EB%9E%91%EC%9D%B4%EC%B9%B4%ED%8E%98/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.49
   },
   {
     "name": "스미카츠 안산고잔본점",
@@ -3131,7 +3178,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1532647281/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45039/%EC%86%8C%EB%8B%B4-%EC%A7%AC%EB%BD%95%EC%88%9C%EB%91%90%EB%B6%80/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.66
   },
   {
     "name": "문다방",
@@ -3191,7 +3239,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1197343401/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44973/%EB%B3%B4%EB%85%B8%EB%8B%A4%EB%B0%A9/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.9
   },
   {
     "name": "안산설화갈비",
@@ -3221,7 +3270,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1844016631/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45100/%EC%95%88%EC%82%B0%EC%84%A4%ED%99%94%EA%B0%88%EB%B9%84/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.92
   },
   {
     "name": "도니스커피",
@@ -3281,7 +3331,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1306686118/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45000/%EC%BD%94%EC%A7%80%ED%99%80%EB%A6%AC%EB%8D%B0%EC%9D%B4/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.81
   },
   {
     "name": "골목집",
@@ -3461,7 +3512,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1879699027/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45106/%EA%B3%B5%EC%9D%BC%EC%9D%BC/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.94
   },
   {
     "name": "롱텀베이커리",
@@ -3551,7 +3603,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1721051973/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45067/%EC%9E%A0%EC%8B%9C%EC%BB%A4%ED%94%BC/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.88
   },
   {
     "name": "또또와닭발 안산본점",
@@ -3581,7 +3634,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2042625683/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63966/%EB%98%90%EB%98%90%EC%99%80%EB%8B%AD%EB%B0%9C-%EC%95%88%EC%82%B0%EB%B3%B8%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.94
   },
   {
     "name": "강원수산",
@@ -3611,7 +3665,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/11871621/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44968/%EA%B0%95%EC%9B%90%EC%88%98%EC%82%B0/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.4
   },
   {
     "name": "만선집동태탕 본오점",
@@ -3671,7 +3726,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1710855951/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/68170/%EC%8B%A0%EC%A7%AC%EB%BD%95/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.91
   },
   {
     "name": "해모닉 대게 킹크랩 전문점 안산점",
@@ -3701,7 +3757,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1336657201/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63945/%ED%95%B4%EB%AA%A8%EB%8B%89-%EB%8C%80%EA%B2%8C-%ED%82%B9%ED%81%AC%EB%9E%A9-%EC%A0%84%EB%AC%B8%EC%A0%90-%EC%95%88%EC%82%B0%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.89
   },
   {
     "name": "백스비어 상록수역점",
@@ -3791,7 +3848,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2019211876/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45137/%ED%99%94%EA%B3%84-%EC%95%88%EC%82%B0%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.97
   },
   {
     "name": "레드지",
@@ -3821,7 +3879,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1443028239/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45021/%EB%A0%88%EB%93%9C%EC%A7%80/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.28
   },
   {
     "name": "대부쭈돈찬가",
@@ -4091,7 +4150,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/36801290/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45211/%EA%B5%BD%EA%B0%84-%ED%8C%94%EA%B3%A1%EB%B3%B8%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.88
   },
   {
     "name": "노군꼬치 고잔점",
@@ -4211,7 +4271,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1732556644/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45070/%ED%8D%BC%EB%A9%98%ED%8A%B8%EB%B8%8C%EB%A0%88%EB%93%9C/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.86
   },
   {
     "name": "지니베이커리",
@@ -4301,7 +4362,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2014257966/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63961/%EC%83%9D%EC%84%A0%EB%B3%B4%EA%B0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.94
   },
   {
     "name": "토레토카페케이앤제이",
@@ -4391,7 +4453,8 @@
     "naverUrl": "https://map.naver.com/p/entry/place/1472706383",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45024/%EB%89%B4%ED%83%AD/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "데이드리밍",
@@ -4421,7 +4484,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1669238625/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45060/%EB%8D%B0%EC%9D%B4%EB%93%9C%EB%A6%AC%EB%B0%8D/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.93
   },
   {
     "name": "리아 드 소포라",
@@ -4481,7 +4545,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1813654087/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/67457/%EC%B2%A0%EA%B8%B8%EB%B6%80%EC%82%B0%EC%A7%91-%EC%95%88%EC%82%B0%EC%B4%88%EC%A7%80%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.86
   },
   {
     "name": "네 커피",
@@ -4511,7 +4576,8 @@
     "naverUrl": "https://map.naver.com/p/entry/place/1933681219",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/68171/%EB%84%A4-%EC%BB%A4%ED%94%BC/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.98
   },
   {
     "name": "코알라집",
@@ -4691,7 +4757,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1364526881/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63947/%EB%94%94%EC%BC%80%EC%9D%98-%EB%9C%B0/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.67
   },
   {
     "name": "대부도왕새우구이",
@@ -4871,7 +4938,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1872878491/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45104/%EB%8C%80%EC%A4%91%EC%99%95%EC%96%91%EA%BC%AC%EC%B9%98/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.7
   },
   {
     "name": "바라보매",
@@ -4901,7 +4969,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2043470627/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45162/%EB%B0%94%EB%9D%BC%EB%B3%B4%EB%A7%A4/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.85
   },
   {
     "name": "카페월화",
@@ -4991,7 +5060,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2068521422/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45173/%EC%8B%B9%EC%93%B0%EB%A6%AC%EC%86%A5%EB%9A%9C%EA%BB%91%EA%B9%80%EC%B9%98%EC%82%BC%EA%B2%B9%EC%82%B4-%EC%83%81%EB%A1%9D%EC%88%98%EC%97%AD%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.87
   },
   {
     "name": "안산제천닭발",
@@ -5021,7 +5091,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2019922414/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45138/%EC%95%88%EC%82%B0%EC%A0%9C%EC%B2%9C%EB%8B%AD%EB%B0%9C/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.91
   },
   {
     "name": "본심",
@@ -5171,7 +5242,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2077273144/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63970/1%EB%B2%88%EC%A7%80%ED%86%B5%EB%8B%AD-%EC%95%88%EC%82%B0%EC%A4%91%EC%95%99%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.97
   },
   {
     "name": "풀박스",
@@ -5253,7 +5325,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1665507687/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45059/%EB%B0%B1%ED%99%94%EC%96%91%EC%8B%9D%EC%9E%A5/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.66
   },
   {
     "name": "오마카세",
@@ -5283,7 +5356,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/36630126/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45210/%EC%98%A4%EB%A7%88%EC%B9%B4%EC%84%B8/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.34
   },
   {
     "name": "왕진물칼국수",
@@ -5343,7 +5417,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2098970383/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45196/%EC%87%BC%EC%BD%9C%EB%9D%BC%EC%97%94%EB%B0%94%EB%8B%90%EB%9D%BC/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.93
   },
   {
     "name": "초지화과왕",
@@ -5373,7 +5448,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1219462378/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/68169/%EC%B4%88%EC%A7%80%ED%99%94%EA%B3%BC%EC%99%95/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.63
   },
   {
     "name": "역전할머니맥주 안산신길점",
@@ -5433,7 +5509,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1121240544/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44949/%EB%82%AD%EB%A7%8C%EC%8F%98%EB%A7%A5x%EA%B0%80%EC%84%B1%EB%B9%84%EC%B5%9C%EA%B3%A0%EC%9D%98%EC%B9%98%ED%82%A8%EC%A7%91/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.56
   },
   {
     "name": "중앙돈 중앙역점",
@@ -5463,7 +5540,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1855795163/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45101/%EC%A4%91%EC%95%99%EB%8F%88-%EC%A4%91%EC%95%99%EC%97%AD%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "커피가든",
@@ -5537,7 +5615,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1496300852/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45030/%EB%9F%AC%EB%B8%8C%EC%8D%B8%ED%8C%9C-%EC%85%80%ED%94%84%EB%B0%94%EB%B2%A0%ED%81%90-%EC%B9%B4%ED%8E%98/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.75
   },
   {
     "name": "티스테드",
@@ -5597,7 +5676,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1823632793/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45095/bosss%EC%BB%A4%ED%94%BC/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.41
   },
   {
     "name": "UP플레이스",
@@ -5627,7 +5707,8 @@
     "naverUrl": "https://map.naver.com/p/entry/place/1629845763",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45051/up%ED%94%8C%EB%A0%88%EC%9D%B4%EC%8A%A4/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.52
   },
   {
     "name": "카페나루",
@@ -5657,7 +5738,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1677359368/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/40286/%EC%B9%B4%ED%8E%98%EB%82%98%EB%A3%A8/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.92
   },
   {
     "name": "우몽블랙 안산 고잔점",
@@ -5687,7 +5769,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2081756697/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45188/%EC%9A%B0%EB%AA%BD%EB%B8%94%EB%9E%99-%EC%95%88%EC%82%B0-%EA%B3%A0%EC%9E%94%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.87
   },
   {
     "name": "몽화원",
@@ -5807,7 +5890,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1241597895/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63941/%EC%B9%B4%ED%8E%98%EC%9D%B4%EC%9C%A0/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "부엉이부엌 부대찌개",
@@ -5919,7 +6003,8 @@
     "naverUrl": "https://map.naver.com/p/entry/place/1157094396",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44962/%EC%99%80%EB%93%9C%EC%BB%A4%ED%94%BC-%EC%95%88%EC%82%B0%EA%B3%A0%EC%9E%94%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.41
   },
   {
     "name": "월피동카페닐스 서울예대점",
@@ -5979,7 +6064,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1070657071/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44940/%EC%88%A0%EC%A7%91%EC%9D%BC%EB%A3%A8/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.89
   },
   {
     "name": "고기굽는 풍경",
@@ -6069,7 +6155,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/36174641/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45208/%EB%B0%98%EC%9B%94%EB%8B%A4%EC%B0%A8-%EC%B9%B4%ED%8E%98/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.49
   },
   {
     "name": "착한벌교꼬막 고잔점",
@@ -6129,7 +6216,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1803351227/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45084/%EC%B9%B4%ED%8E%98%EC%B2%AD%EB%8B%B4/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.75
   },
   {
     "name": "초가원",
@@ -6189,7 +6277,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2024912536/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45145/%EC%88%98%EC%A0%9C%EB%8F%88%EA%B9%8C%EC%8A%A4%EC%97%B0%EA%B5%AC%EC%86%8C/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.94
   },
   {
     "name": "러너펍 안산점",
@@ -6369,7 +6458,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2041311372/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45161/%EC%84%9C%EC%BC%A0%EC%98%A5/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.96
   },
   {
     "name": "우다미",
@@ -6429,7 +6519,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2065790724/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45171/%EC%84%B8%EB%9D%BC%ED%8B%B0/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.87
   },
   {
     "name": "카페물",
@@ -6459,7 +6550,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1780736461/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45078/%EC%B9%B4%ED%8E%98%EB%AC%BC/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.5
   },
   {
     "name": "NOOKA COFFEE 누카 커피",
@@ -6519,7 +6611,8 @@
     "naverUrl": "https://pcmap.place.naver.com/place/1140417173/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44954/%EA%B0%9C%EB%8D%94%EB%A7%81/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.66
   },
   {
     "name": "효자동솥뚜껑 안산초지점",
@@ -6639,7 +6732,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1263847709/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44988/%EC%98%A4%EC%A0%81%ED%95%AD/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.66
   },
   {
     "name": "마린보이코다리1번가 반달섬점",
@@ -6759,7 +6853,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1660351716/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45057/%EB%B0%94%EB%A5%B4%EB%B0%94%EC%BB%A4%ED%94%BC-%EC%84%9C%EC%9A%B8%EC%98%88%EB%8C%80%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.83
   },
   {
     "name": "카페마리스",
@@ -6849,7 +6944,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1122183418/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44950/%EC%8B%9C%EC%9A%B0%ED%82%A4%EC%B9%9C/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "라라라운지",
@@ -6969,7 +7065,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1413400552/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/47107/%EC%86%A5%EB%8B%A8%EC%A7%80%EB%82%A8%EC%9B%90%EC%B6%94%EC%96%B4%ED%83%95/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.33
   },
   {
     "name": "안산혼술바 이리",
@@ -7119,7 +7216,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1303907206/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/67448/%EC%8B%9C%EC%84%A0-%EC%95%88%EC%82%B0%EB%B0%98%EB%8B%AC%EC%84%AC%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "JinHall",
@@ -7179,7 +7277,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2069151061/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45174/%EC%98%A4%EC%85%94%EC%9C%A0-%EB%96%A1%EB%B3%B6%EC%9D%B4/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.98
   },
   {
     "name": "카페쑴남",
@@ -7209,7 +7308,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1055984578/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44938/%EC%B9%B4%ED%8E%98%EC%91%B4%EB%82%A8/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.94
   },
   {
     "name": "나인스타커피",
@@ -7239,7 +7339,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1073653836/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/67447/%EB%82%98%EC%9D%B8%EC%8A%A4%ED%83%80%EC%BB%A4%ED%94%BC/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.75
   },
   {
     "name": "카페 버드스팟",
@@ -7299,7 +7400,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1005059581/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/67445/%EB%8B%AC%EB%9D%BC%EC%BB%A4%ED%94%BC/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.91
   },
   {
     "name": "레몬도커피",
@@ -7449,7 +7551,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2028779829/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45151/%EC%B9%B4%ED%8E%98%EC%9D%B824-%EA%B3%A0%EC%9E%94%EB%A1%AF%EB%8D%B0%EC%BA%90%EC%8A%AC%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.88
   },
   {
     "name": "홀덤잭",
@@ -7479,7 +7582,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1635569716/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45053/%ED%99%80%EB%8D%A4%EC%9E%AD/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.9
   },
   {
     "name": "완수포차",
@@ -7509,7 +7613,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/38412179/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63976/%EC%99%84%EC%88%98%ED%8F%AC%EC%B0%A8/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.72
   },
   {
     "name": "심술",
@@ -7959,7 +8064,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1731997777/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45069/%EC%BB%A4%ED%94%BC%EB%8B%A4/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "감성커피 안산사리역점",
@@ -8049,7 +8155,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2006418949/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45130/%ED%87%B4%EA%B7%BC%EC%99%84%EB%A3%8C/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "라페르마타",
@@ -8109,7 +8216,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2044111026/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45163/%EC%B9%B4%ED%8E%98%ED%83%84%EB%8F%84/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "노모어피자 안산본오점",
@@ -8229,7 +8337,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2071387317/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45176/%EC%B9%B4%ED%8E%98-%ED%86%A0%ED%94%84/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.99
   },
   {
     "name": "커피캣",
@@ -8259,7 +8368,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1075951644/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44941/%EC%BB%A4%ED%94%BC%EC%BA%A3/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.78
   },
   {
     "name": "동구리제과",
@@ -8341,7 +8451,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1265565622/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/44990/%ED%98%B8%EB%9E%AD%EC%9D%B4%EC%84%9C%EC%96%91%EC%88%A0%EC%A7%91/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.88
   },
   {
     "name": "근본돈",
@@ -8371,7 +8482,8 @@
     "naverUrl": "https://map.naver.com/p/entry/place/2093591836",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45195/%EA%B7%BC%EB%B3%B8%EB%8F%88/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.77
   },
   {
     "name": "낙지대가",
@@ -8551,7 +8663,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1151583112/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/47104/%EC%8A%B9%EC%A7%84%EA%BC%AC%EB%A7%88%EA%B9%80%EB%B0%A5/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "느낌표커피",
@@ -8611,7 +8724,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2021718205/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/63963/%EC%81%98%EB%9D%A0-%EB%B9%84%EC%8A%A4%ED%8A%B8%EB%A1%9C/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.75
   },
   {
     "name": "AL LIBERTE 고잔점",
@@ -8731,7 +8845,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/1698693283/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45062/%EC%AA%BD%EB%B0%95%EC%84%AC%ED%9A%9F%EC%A7%91/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "카페 제이앤비",
@@ -8821,7 +8936,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2014478352/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45135/%EB%9A%B1%ED%8F%AC%EC%B0%A8/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.94
   },
   {
     "name": "이티커피 대부도점",
@@ -9121,7 +9237,8 @@
     "naverUrl": "https://map.naver.com/p/entry/place/2080749209",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45187/%EB%88%84%EC%95%84%EB%B2%A0/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.96
   },
   {
     "name": "만원족발",
@@ -9421,7 +9538,8 @@
     "naverUrl": "https://map.naver.com/p/entry/place/2006135161",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45128/%EC%95%88%EB%85%95%ED%8E%A0%ED%8A%B8cafe/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 4.88
   },
   {
     "name": "타코비",
@@ -9541,7 +9659,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2050696239/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45167/%EC%B9%B4%ED%8E%98%EC%98%A4%EC%9D%80/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "스윗드립커피",
@@ -9691,7 +9810,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2033524306/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/47111/%EB%AF%B8%EC%8A%A4%ED%84%B0%EA%BC%BC%EC%9E%A5%EC%96%B4%EB%A7%89%EC%B0%BD/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "낭만포차",
@@ -10177,7 +10297,8 @@
     "naverUrl": "https://pcmap.place.naver.com/restaurant/2004887993/home",
     "checkedAt": "2026-11-08",
     "sourceUrl": "https://hamgae.com/place/45127/24%EC%8B%9C-%EC%B9%B4%ED%8E%98-%EB%A7%8C%EC%9B%94%EA%B2%BD-%EC%95%88%EC%82%B0%EC%B4%88%EC%A7%80%EC%A0%90/",
-    "complexHours": false
+    "complexHours": false,
+    "naverRating": 5
   },
   {
     "name": "웃는하루",

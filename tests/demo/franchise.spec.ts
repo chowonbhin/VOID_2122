@@ -19,7 +19,9 @@ test('known and suspected chains stay outside cards, markers and scores; pending
 test('pending real-place visits update score and Lv while missing evidence stays explicitly provisional', async ({ page }) => {
   await setup(page);
   await page.goto(`${base}/#/region/dong-4127353200`);
-  const first = list(page).locator(':scope > li').first();
+  // A highly rated place can remain in the top 20 after a visit. Exercise
+  // replacement with an unrated candidate, rather than assuming rank 1 leaves.
+  const first = list(page).locator(':scope > li').filter({ hasText: '외부 평균 별점 미확인' }).first();
   const heading = await first.getByRole('heading').innerText();
   const name = heading.replace(/^\d+\. /, '');
   const panel = first.getByRole('region');

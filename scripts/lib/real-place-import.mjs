@@ -40,3 +40,21 @@ export function openingFromEvidence(evidence) {
   return { status: Object.keys(weekly).length ? 'known' : 'unknown', weekly, unknownDays,
     entryCondition: '공개 시간표 기준 · 휴게시간·주문 마감·임시휴무는 매장 안내 확인' };
 }
+
+/** Keep map-average stars separate from visitor-review quantity and local visits. */
+export function ratingFromEvidence(e) {
+  if (!e || !Number.isFinite(e.naverRating) || e.naverRating < 1 || e.naverRating > 5 || !e.sourceUrl || !e.naverUrl) return undefined;
+  return { provider: 'naver_place', value: e.naverRating, scale: 5,
+    source: { label: '함께할개가 기재한 네이버 평균 별점 (2차 출처)', url: e.sourceUrl, checkedAt: e.checkedAt },
+    originalUrl: e.naverUrl, ...(e.updatedAt ? { observedAt: e.updatedAt } : {}) };
+}
+
+export function extractNaverAverageRating(html) {
+  // Scope to the publisher's explicitly NAVER-labelled average-rating anchor.
+  const anchor = html.match(/<a\b[^>]*class=["'][^"']*\brv-score\b[^"']*\bis-naver\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i)?.[0];
+  if (!anchor) return undefined;
+  const text = anchor.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
+  const raw = /평점\s+([0-9]+(?:\.[0-9]+)?)\b/.exec(text)?.[1];
+  const value = raw === undefined ? NaN : Number(raw);
+  return Number.isFinite(value) && value >= 1 && value <= 5 ? value : undefined;
+}

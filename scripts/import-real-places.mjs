@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import { categoryFor, chainConcern, matchedEvidence, normalizeName, distanceMeters, openingFromEvidence } from './lib/real-place-import.mjs';
+import { categoryFor, chainConcern, matchedEvidence, normalizeName, distanceMeters, openingFromEvidence, ratingFromEvidence } from './lib/real-place-import.mjs';
 const args=process.argv.slice(2);
 if(args.length!==2) throw new Error('Usage: node scripts/import-real-places.mjs candidates.json evidence.json');
 const snapshot=JSON.parse(fs.readFileSync(args[0]));
@@ -25,6 +25,7 @@ const places=retained.map(c=>{
   regionSource:{label:'네이버 응답 좌표와 SGIS 2026-10-01 행정동 경계 대조',url:'https://github.com/vuski/admdongkor',checkedAt:snapshot.checkedAt},
   searchSource:c.searchSource,discovery:{category:c.naverCategory,...(excludedReason?{excludedReason}:{})},
   baseValue:70,
+  ...(ratingFromEvidence(e) ? { ratingEvidence: ratingFromEvidence(e) } : {}),
   ...(e&&Number.isSafeInteger(e.visitorReviews)&&e.visitorReviews>=0?{popularityEvidence:{provider:'naver_place',metric:'visitor_reviews',count:e.visitorReviews,period:'cumulative',observedAt:e.updatedAt??undefined,
    source:{label:'함께할개가 기재한 네이버 방문자 리뷰 수 (2차 출처)',url:e.sourceUrl,checkedAt:e.checkedAt}}}:{}),
   opening:e?openingFromEvidence(e):previous?.opening??{status:'unknown'},source:source??previous?.source??null,isVirtual:false};

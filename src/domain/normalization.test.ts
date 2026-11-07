@@ -28,7 +28,9 @@ describe('fixed 100-point regional scale and proportional traffic penalty', () =
     const narrowed = recommend(content, profile, [], { ...search, maxDistanceKm: 0.1 }).recommendations[0];
     expect(narrowed.score).toBe(all.score);
     expect(all.placeIds).toHaveLength(20);
-    expect(all.normalizedBaseScore).toBeCloseTo(63.63636);
+    // External stars now add quality at Lv.0; the fixed denominator remains 2,200.
+    expect(all.normalizedBaseScore).toBeCloseTo(all.placeScoreSum / 2200 * 100);
+    expect(all.normalizedBaseScore).toBeGreaterThan(63.63636);
     expect(all.provisionalPlaceCount).toBe(20);
   });
 
