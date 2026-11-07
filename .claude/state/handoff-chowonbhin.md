@@ -1,19 +1,19 @@
 # Handoff — chowonbhin
 - User override: ignore schedule/deadline; no clock-based phase transitions.
-- User explicitly requested main push and then confirmed preserving latest main UI after conflict explanation.
-- Work branch chowonbhin/updates rebased onto origin/main 84f688a; verified application source commit 1ddd5e4.
-- Only rebase conflict: DemoNotice.tsx, resolved to exact origin/main content; old verbose notice was not restored.
-- App.tsx gates all entry routes on onboarding.completedAt; old search/visits do not bypass onboarding.
-- Existing records preserved; completed users keep direct access. Shared-file change explicitly user-authorized.
-- Build PASS; unit tests 154/154; entire browser suite 51/51 PASS on integrated source.
-- Local PC demo 5/5: .claude/state/evidence/2026-11-08T05-47-14/.
-- Local mobile demo 5/5: .claude/state/evidence/2026-11-08T05-47-23-mobile/; no console errors/SLOW.
-- Working files/history/staged diff/generated bundles/logs scanned; no secret patterns flagged.
-- Local preview: http://127.0.0.1:3011/; actual Chrome regular/private windows also showed onboarding.
-- Public URL: https://void-2122.vercel.app/; auto-deploy follows main push.
-- Remaining unpublished changes also include prior footfall source label/docs/regression and member records; user was informed.
-- Next 1: fast-forward local main, push without force, then confirm remote SHA.
-- Next 2: wait for matching public bundle and verify deployed first-entry plus PC/mobile golden path.
-- Next 3: preserve tested source; future main changes need affected checks.
+- Branch chowonbhin/map-readability, created from main 565113d after previous branch deletion.
+- User request: five main-page place recommendations, remove administrative-dong direct-explore section, enlarge map hover caption.
+- RecommendPage keeps existing ordering/two picks per dong, caps final list at five; no score or region-detail candidate changes.
+- Removed direct-explore markup and its CSS. Empty state points users to the map, whose dong navigation remains available.
+- Map caption: desktop 20px, mobile 18px, weight 700; larger line height and reserved mobile height.
+- Build PASS. Existing recommend/map checks: 7 passed initially; old assumption that 본오1동 always appears updated, focused rerun PASS.
+- Actual UI assertions at 1280/390px: exactly five picks, no direct-explore heading, correct hover caption font, no horizontal overflow.
+- Inspected map screenshots: .claude/state/evidence/map-readability/map-1280.png and map-390.png.
+- PC golden path PASS 5/5: .claude/state/evidence/2026-11-08T05-56-15/.
+- Mobile golden path PASS 5/5: .claude/state/evidence/2026-11-08T05-56-25-mobile/; no console errors/SLOW in either run.
+- Local URL http://127.0.0.1:3011/ serves current branch build; this change not merged/pushed/deployed.
+- Previous onboarding fix was pushed to main 6aa133a and verified publicly PC/mobile 5/5 plus eight first-entry tests.
+- Next 1: user inspects five recommendations and enlarged hover caption locally.
+- Next 2: only on request, integrate latest main and verify before merge/push.
+- Next 3: after deployment verify the public URL https://void-2122.vercel.app/.
 ## For captain
-- golden-path wording still contains historical visible-review/level claims; latest upstream UI/tests intentionally omit those labels.
+- No scoring policy, data or golden-path changes. Previous main UI cleanup retained.

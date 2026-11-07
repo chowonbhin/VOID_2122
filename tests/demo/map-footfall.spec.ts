@@ -27,7 +27,10 @@ test('real visit changes exact map score and shade; deletion and reload restore 
 test('a real visit keeps the main screen score-free and the 동네 page free of footfall internals', async ({ page }) => {
   // Footfall and score maths are covered by footfall.test.ts and score.test.ts; the UI shows none of it.
   await setup(page);
-  const card = page.getByRole('list', { name: '장소 추천' }).getByRole('button').filter({ hasText: '본오1동' }).first();
+  // The main screen now shows only five picks; 본오1동 may fall outside that shortlist.
+  const picks = page.getByRole('list', { name: '장소 추천' }).getByRole('button');
+  await expect(picks).toHaveCount(5);
+  const card = picks.first();
   await expect(card).toContainText('오늘의 추천');
   await expect(page.getByRole('list', { name: '지도 범례' })).toContainText('오늘의 추천');
   await openBono(page);
@@ -38,6 +41,7 @@ test('a real visit keeps the main screen score-free and the 동네 page free of 
   await expect(page.locator('.region-detail')).not.toContainText('감점');
   await closeVisit(page);
   await page.getByRole('link', { name: '안산에 스며들다' }).click();
+  await expect(picks).toHaveCount(5);
   await expect(card).toContainText('오늘의 추천');
 });
 
