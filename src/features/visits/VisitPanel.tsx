@@ -3,7 +3,6 @@ import { useId, useMemo, useState, type FormEvent } from 'react';
 import { useAppState } from '../../AppState';
 import { content } from '../../data/content';
 import { TIME_ZONE } from '../../domain/policy';
-import { isNonFranchisePlace } from '../../domain/placeEligibility';
 import { isDiscoverablePlace } from '../../domain/discovery';
 import type { Visit } from '../../domain/types';
 import {
@@ -103,7 +102,6 @@ export function VisitPanel({ placeId }: { placeId: string }) {
 
   return (
     <section className="visit-panel" aria-label={`${place.name} 방문 기록`} data-place={placeId}>
-      {!isNonFranchisePlace(place) && <p className="visit-hint">분류 검토 중인 실제 장소입니다. 자기 신고 기록은 추천 점수·Lv에 반영되며 현장 방문 인증은 아닙니다.</p>}
       <div className="visit-progress" aria-live="polite" aria-atomic="true">
         <span>지역 Lv.{progress.regionLevel}</span>
         <span>{progress.placeLevel === null ? '장소 Lv 검토 대기' : `장소 Lv.${progress.placeLevel}`}</span>

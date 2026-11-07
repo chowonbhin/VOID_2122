@@ -29,14 +29,14 @@ test('real review sources and weekday uncertainty are visible without fabricated
   const nuave = list(page).locator(':scope > li').filter({ has: page.getByRole('heading', { name: /누아베/ }) });
   await expect(nuave).toContainText('방문자 리뷰 수 12건');
   await expect(nuave).toContainText('선택한 요일의 운영정보 미확인');
-  await expect(nuave.getByRole('link', { name: /함께할개가 기재한 네이버 방문자 리뷰/ })).toHaveAttribute('href', /hamgae.com\/place/);
-  await expect(list(page)).toContainText('방문·리뷰 수 미확인');
+  // Unknown counts are simply not shown, never rendered as 0.
+  await expect(list(page)).not.toContainText('리뷰 수 0건');
 });
 
 test('score-only filter shows exactly the venues summed by the region and all candidates remain accessible', async ({ page }) => {
   await setup(page);
   await openBono(page);
-  await page.getByRole('button', { name: '점수 반영 장소' }).click();
+  await page.getByRole('button', { name: '추천 장소' }).click();
   await expect(list(page).locator(':scope > li')).toHaveCount(20);
   await expect(list(page)).toContainText('바바카멜');
   await expect(list(page)).toContainText('보노다방');

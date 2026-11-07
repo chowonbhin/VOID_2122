@@ -30,7 +30,7 @@ test('interest and distance filters constrain the same displayed/scored set; the
   await expect(list(page).getByText(/자연·산책 ·/)).toHaveCount(selectedCount);
   await page.getByRole('button', { name: '전체 후보' }).click();
   expect(await list(page).locator(':scope > li').count()).toBeGreaterThan(20);
-  await page.getByRole('button', { name: '점수 반영 장소' }).click();
+  await page.getByRole('button', { name: '추천 장소' }).click();
   await expect(list(page).locator(':scope > li')).toHaveCount(selectedCount);
   await setup(page, '2026-11-08T14:00', '0.1');
   await expect(page.getByRole('button', { name: /^지도 본오1동/ })).toHaveAccessibleName(/선택한 거리 밖/);
@@ -43,7 +43,7 @@ test('at night closed sources cannot be represented as open recommendations', as
   await page.getByRole('button', { name: '전체 후보' }).click();
   const baba = list(page).locator(':scope > li').filter({ has: page.getByRole('heading', { name: /바바카멜/ }) });
   await expect(baba).toContainText('휴무·이용 마감');
-  await expect(baba).toContainText('현재 추천 점수에서 제외');
+  await expect(baba).toContainText('지금 조건에서는 추천하지 않지만 둘러볼 수 있어요.');
 });
 
 test('without conditions the map asks for conditions and still opens 20 real venues', async ({ page }) => {

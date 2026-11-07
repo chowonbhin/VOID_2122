@@ -10,10 +10,10 @@ test('known and suspected chains stay outside cards, markers and scores; pending
   for (const place of data.filter(p => p.regionId === region && (p.discovery.excludedReason || p.franchise.status === 'franchise'))) {
     await expect(list(page).getByRole('heading', { name: new RegExp(`\\. ${place.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`) })).toHaveCount(0);
   }
-  await expect(list(page)).toContainText('프랜차이즈 여부 검토 중');
-  await page.getByRole('button', { name: '점수 반영 장소' }).click();
+  // Classification review status is internal and no longer shown; exclusion is what matters.
+  await page.getByRole('button', { name: '추천 장소' }).click();
   await expect(list(page).locator(':scope > li')).toHaveCount(20);
-  await expect(list(page)).toContainText('정보 검토 중인 잠정 점수');
+  await expect(list(page)).not.toContainText('점수');
 });
 
 test('pending real-place visits update score and Lv while missing evidence stays explicitly provisional', async ({ page }) => {
@@ -32,7 +32,6 @@ test('pending real-place visits update score and Lv while missing evidence stays
   await expect(list(page)).toContainText('지역 Lv.1');
   await expect(list(page)).toContainText('장소 Lv.2');
   await expect(list(page)).not.toContainText('장소 Lv 검토 대기');
-  await expect(list(page)).toContainText('분류 검토 중인 실제 장소입니다');
   await page.reload();
   await page.getByRole('button', { name: '가본 장소' }).click();
   await expect(list(page)).toContainText('2026-11-08');

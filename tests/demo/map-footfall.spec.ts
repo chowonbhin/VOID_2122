@@ -22,28 +22,20 @@ test('real visit changes exact map score and shade; deletion and reload restore 
   await expect(mapScore(page)).toHaveAttribute('fill', color!);
 });
 
-test('source-dong footfall is visible before and after a real visit; absent dongs remain unmeasured', async ({ page }) => {
+test('a real visit keeps the main screen score-free and the 동네 page free of footfall internals', async ({ page }) => {
+  // Footfall and score maths are covered by footfall.test.ts and score.test.ts; the UI shows none of it.
   await setup(page);
   const card = page.getByRole('list', { name: '장소 추천' }).getByRole('button').filter({ hasText: '본오1동' }).first();
-  // Main screen: place picks and familiarity only; footfall details live on the 동네 page.
   await expect(card).toContainText('오늘의 추천');
   await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toContainText('테라코타 테두리: 오늘의 추천');
   await openBono(page);
-  await page.getByText('유동인구 반영 내역', { exact: true }).click();
-  await expect(page.locator('details')).toContainText('Lv.0 감점 없음');
-  await expect(page.locator('details')).toContainText('11,360 / 466,765');
-  await expect(page.locator('details')).toContainText('안산신안우편취급국');
+  await expect(page.locator('.region-detail')).not.toContainText('유동인구');
   const panel = page.getByRole('region', { name: '바바카멜 방문 기록', exact: true });
   await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
   await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
-  await expect(page.locator('details')).toContainText('지역 Lv.1 · 유동인구 감점률 1.14% (최대 15%)');
-  await expect(page.locator('details')).toContainText('최대 동별 합계 150,039명');
+  await expect(page.locator('.region-detail')).not.toContainText('감점');
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
   await expect(card).toContainText('오늘의 추천');
-  await page.getByRole('button', { name: /^지도 와동/ }).click();
-  await page.getByText('유동인구 반영 내역', { exact: true }).click();
-  await expect(page.locator('details')).toContainText('유동인구 미반영');
-  await expect(page.locator('details')).toContainText('0명으로 측정된 동이라는 뜻은 아닙니다');
 });
 
 test('drawing and real-place exploration make no external map or API calls in browser, including offline', async ({ page, context }) => {

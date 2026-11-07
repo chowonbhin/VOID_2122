@@ -11,8 +11,8 @@ test('every one of 25 administrative dongs displays 20 unique actual search venu
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(region.name);
     const cards = list(page).locator(':scope > li');
     await expect(cards).toHaveCount(20);
-    await expect(page.getByText(/지역 점수 반영 20\/20개/)).toBeVisible();
-    await expect(list(page).getByText(/상위 20개 · 지역 점수에 포함/)).toHaveCount(20);
+    // Scoring internals are not shown on the 동네 page (score.test.ts covers the 20/20 selection).
+    await expect(page.locator('.region-detail')).not.toContainText('점수');
     expect(new Set(await cards.locator('h2').allTextContents()).size).toBe(20);
     await expect(list(page).getByRole('link', { name: '네이버에서 장소 보기', exact: true })).toHaveCount(20);
     await expect(list(page)).not.toContainText('시연용 가상');
