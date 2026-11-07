@@ -7,8 +7,6 @@ import { go } from '../../route';
 import { ExplorationMap, FAMILIARITY } from '../map/ExplorationMap';
 import './recommend.css';
 
-const PICKS_PER_DONG = 2;
-
 export function RecommendPage() {
   const { state } = useAppState();
   const { search } = state;
@@ -40,7 +38,7 @@ export function RecommendPage() {
   // 장소 추천: the top places (engine order) of each recommended 동네, in recommendation order.
   const picks = ranked.flatMap((item, index) => {
     const region = content.regions.find((candidate) => candidate.id === item.regionId)!;
-    return item.placeIds.slice(0, PICKS_PER_DONG).flatMap((id) => {
+    return item.placeIds.slice(0, 2).flatMap((id) => {
       const place = content.places.find((candidate) => candidate.id === id);
       return place ? [{ place, region, rank: index + 1, level: item.level }] : [];
     });
@@ -58,7 +56,7 @@ export function RecommendPage() {
         <button onClick={() => go({ name: 'setup' })}>조건 변경</button>
       </div>
 
-      <ExplorationMap regions={content.regions} recommendations={result.recommendations}
+      <ExplorationMap regions={content.regions} recommendations={result.recommendations} exclusions={result.excluded} searchConfigured
         levels={Object.fromEntries(content.regions.map((region) => [region.id, regionLevel(region.id, state.profile, state.visits, content.places)]))}
         homeDongCode={state.profile.homeDongCode}
         onRegionSelect={(regionId) => go({ name: 'region', regionId })} onDongSelect={(code) => go({ name: 'dong', code })} />
@@ -74,7 +72,7 @@ export function RecommendPage() {
               <button className="place-pick" aria-label={`${place.name} · ${region.name} 장소 보기`} onClick={() => go({ name: 'region', regionId: region.id })}>
                 <span className="place-pick-kicker">{CATEGORY_LABELS[place.category]} · {region.name}</span>
                 <strong>{place.name}</strong>
-                <span className="place-pick-meta">오늘의 추천 {rank}순위 동네 · {FAMILIARITY[level].label}{place.isVirtual ? ' · 시연용 장소' : ''}</span>
+                <span className="place-pick-meta">오늘의 추천 {rank}순위 동네 · {FAMILIARITY[level].label}</span>
               </button>
             </li>)}
           </ol>

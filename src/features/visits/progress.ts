@@ -1,9 +1,10 @@
 import { distinctVisitedPlaces, placeLevel, regionLevel } from '../../domain/score';
 import type { Level, Place, Profile, Visit } from '../../domain/types';
+import { isRecommendationCandidate } from '../../domain/placeEligibility';
 
 export interface VisitProgress {
   regionLevel: 0 | 1 | 2;
-  placeLevel: Level;
+  placeLevel: Level | null;
   distinctPlaceCount: number;
 }
 
@@ -20,7 +21,7 @@ export function getVisitProgress(
   const regionLv = regionLevel(place.regionId, profile, [...visits], [...places]);
   return {
     regionLevel: regionLv,
-    placeLevel: placeLevel(place.id, regionLv, [...visits]),
+    placeLevel: isRecommendationCandidate(place) ? placeLevel(place.id, regionLv, [...visits]) : null,
     distinctPlaceCount: distinctVisitedPlaces(place.regionId, [...visits], [...places]).length,
   };
 }

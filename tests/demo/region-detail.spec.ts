@@ -1,83 +1,46 @@
-import { test, expect, type Page } from './baseline';
-const base = process.env.BASE_URL ?? 'http://127.0.0.1:3000';
-const list = (page: Page) => page.getByRole('list', { name: '행정동 장소 추천' }).locator(':scope > li');
-const markers = (page: Page) => page.getByRole('region', { name: '안산 탐험 지도' }).getByRole('button', { name: /지도에서 선택$/ });
+import { test, expect } from './baseline';
+import { base, setup, openBono, list } from './real';
 
-test('drawn real-outline map sits above cards and shows recorded memories', async ({ page }) => {
-  await seed(page, false);
-  const map = page.getByRole('region', { name: '안산 탐험 지도' });
-  await map.getByRole('button', { name: '중앙동 골목 첫 저녁 추억 보기', exact: true }).click();
-  await expect(page.getByText(/반찬을 더 주셨다/)).toBeVisible();
-  const mapBox = await map.boundingBox();
-  const cardBox = await list(page).first().boundingBox();
-  expect(cardBox!.y).toBeGreaterThan(mapBox!.y + mapBox!.height);
-  await expect(markers(page)).toHaveCount(5);
+test('20 actual cards and three marker pages share selection on a 320px phone', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 844 });
+  await setup(page);
+  await openBono(page);
+  const cards = list(page).locator(':scope > li');
+  await expect(cards).toHaveCount(20);
+  await expect(page.getByRole('navigation', { name: '지도 장소 페이지' })).toContainText('1 / 3');
+  const last = cards.last();
+  const name = (await last.getByRole('heading').innerText()).replace(/^20\. /, '');
+  await last.getByRole('button', { name: `${name} 카드에서 선택` }).click();
+  await expect(page.getByRole('navigation', { name: '지도 장소 페이지' })).toContainText('3 / 3');
+  const pin = page.getByRole('button', { name: `${name} 지도에서 선택`, exact: true });
+  await expect(pin).toHaveAttribute('aria-pressed', 'true');
+  await pin.click();
+  await expect(last.getByRole('button', { name: `${name} 카드에서 선택` })).toHaveAttribute('aria-pressed', 'true');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  const pins = await page.locator('.dong-pin.kind-place').evaluateAll(nodes => nodes.map(node => {const r = node.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height};}));
+  expect(pins.every(p => p.w >= 44 && p.h >= 44)).toBe(true);
+  for (let i=0;i<pins.length;i++) for(let j=i+1;j<pins.length;j++) expect(Math.hypot(pins[i].x-pins[j].x,pins[i].y-pins[j].y)).toBeGreaterThanOrEqual(43);
 });
 
-test('동네 map needs no external requests and keeps list and selectable markers', async ({ page }) => {
-  const external: string[] = [];
-  page.on('request', request => { if (!request.url().startsWith(base)) external.push(request.url()); });
-  await seed(page, false);
-  expect(external).toEqual([]);
-  await expect(list(page)).toHaveCount(5);
-  await page.getByRole('button', { name: '시연 작은 전시관 지도에서 선택', exact: true }).click();
-  await expect(page.getByRole('button', { name: '시연 작은 전시관 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByRole('link', { name: 'CC BY 4.0' })).toBeVisible();
-});
-
-async function seed(page: Page, visited: boolean) {
-  await page.goto(base);
-  await page.evaluate((visited) => localStorage.setItem('ansan-explore/v1', JSON.stringify({
-    profile: { initialLevels: { 'dong-4127353200': 2 }, interests: [], experiencedEventIds: [] },
-    visits: visited ? [{ id: 'visit-a1', placeId: 'a1', date: '2026-11-07', method: 'self_report' }] : [], search: null,
-  })), visited);
+test('real review sources and weekday uncertainty are visible without fabricated zero counts', async ({ page }) => {
+  await setup(page);
   await page.goto(`${base}/#/region/dong-4127353200`);
-  await page.reload();
-}
-
-test('visited filter uses persisted records, shares marker selection, and fits mobile', async ({ page }) => {
-  await seed(page, true);
-  await page.getByRole('button', { name: '가본 장소', exact: true }).click();
-  await expect(list(page)).toHaveCount(1);
-  await expect(markers(page)).toHaveCount(1);
-  await page.getByRole('button', { name: '시연 산책 공간 카드에서 선택', exact: true }).click();
-  await expect(markers(page).first()).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('button', { name: '전체 장소', exact: true }).click();
-  await expect(list(page)).toHaveCount(5);
-  await expect(page.getByRole('button', { name: '추천 장소', exact: true })).toBeDisabled();
-  for (const width of [360, 390]) {
-    await page.setViewportSize({ width, height: 844 });
-    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.screenshot({ path: `.claude/state/evidence/region-integrated/mobile-${width}.png`, fullPage: true });
-  }
+  await page.getByRole('button', { name: '전체 후보' }).click();
+  const nuave = list(page).locator(':scope > li').filter({ has: page.getByRole('heading', { name: /누아베/ }) });
+  await expect(nuave).toContainText('방문자 리뷰 수 12건');
+  await expect(nuave).toContainText('선택한 요일의 운영정보 미확인');
+  await expect(nuave.getByRole('link', { name: /함께할개가 기재한 네이버 방문자 리뷰/ })).toHaveAttribute('href', /hamgae.com\/place/);
+  await expect(list(page)).toContainText('방문·리뷰 수 미확인');
 });
 
-test('initial familiarity does not invent visits and empty state recovers', async ({ page }) => {
-  await seed(page, false);
-  await page.getByRole('button', { name: '가본 장소', exact: true }).click();
-  await expect(page.getByText('아직 이 동네에 남긴 방문 기록이 없어요.')).toBeVisible();
-  await expect(markers(page)).toHaveCount(0);
-  await page.getByRole('button', { name: '전체 장소 보기', exact: true }).click();
-  await expect(list(page)).toHaveCount(5);
-});
-
-test('recommended filter consumes real shared scores and excludes closed/unknown places', async ({ page }) => {
-  await page.goto(`${base}/#/setup`);
-  await page.getByLabel('출발지 이름').fill('시연 출발지');
-  await page.getByLabel('위도', { exact: true }).fill('37.3219');
-  await page.getByLabel('경도', { exact: true }).fill('126.8309');
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
-  await page.getByLabel('최대 거리 (km)').fill('10');
-  await page.getByRole('button', { name: '추천 받기' }).click();
-  await page.getByRole('button', { name: /^지도 중앙동/ }).click();
-  await page.getByRole('button', { name: '추천 장소', exact: true }).click();
-  await expect(list(page)).toHaveCount(3);
-  await expect(markers(page)).toHaveCount(3);
-  await expect(page.getByRole('list', { name: '행정동 장소 추천' })).not.toContainText('운영정보 미확인');
-  await page.getByRole('button', { name: '시연 작은 전시관 지도에서 선택', exact: true }).focus();
-  await page.keyboard.press('Enter');
-  await expect(page.getByRole('button', { name: '시연 작은 전시관 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('button', { name: '전체 장소', exact: true }).click();
-  await expect(list(page)).toHaveCount(5);
-  await expect(page.getByRole('list', { name: '행정동 장소 추천' })).toContainText('운영정보 미확인');
+test('score-only filter shows exactly the venues summed by the region and all candidates remain accessible', async ({ page }) => {
+  await setup(page);
+  await openBono(page);
+  await page.getByRole('button', { name: '점수 반영 장소' }).click();
+  await expect(list(page).locator(':scope > li')).toHaveCount(20);
+  await expect(list(page)).toContainText('바바카멜');
+  await expect(list(page)).toContainText('보노다방');
+  await expect(list(page)).toContainText('문다방');
+  await page.getByRole('button', { name: '전체 후보' }).click();
+  expect(await list(page).locator(':scope > li').count()).toBeGreaterThan(20);
 });

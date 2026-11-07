@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { baseContent as content } from './content';
+import { baseContent as content } from './testContent';
 import geography from './geography/admin-dongs.json';
 import { containsPoint, projection, regionPath } from '../features/map/geometry';
 import { recommend, regionLevel, placeStatus } from '../domain/score';
@@ -45,7 +45,7 @@ describe('administrative-dong migration and geography', () => {
   });
   it('distinguishes unresearched dongs from zero score and closed or filtered venues', () => {
     const result = recommend(content, profile, [], ctx);
-    expect(result.recommendations).toHaveLength(3);
+    expect(result.recommendations).toHaveLength(6);
     expect(result.excluded.filter(r => r.reason === 'no_data')).toHaveLength(19);
     expect(recommend(content, profile, [], { ...ctx, when: '2026-11-08T23:00' }).excluded.filter(r => r.reason === 'no_eligible_places')).toHaveLength(6);
   });

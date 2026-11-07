@@ -18,9 +18,10 @@
 .ansan-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 18px; border: 1px solid #c9dbe0; overscroll-behavior-x: contain; }
 .ansan-slider::-webkit-scrollbar { display: none; }
 .ansan-slide { flex: 0 0 100%; scroll-snap-align: start; background-color: var(--sea); background-image: radial-gradient(#b5ccd3 1px, transparent 1.2px); background-size: 14px 14px; }
-.ansan-svg { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; }
+.ansan-svg { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; max-height: 640px; }
 .ansan-dong { stroke: var(--land-stroke); stroke-width: 2px; stroke-linejoin: round; }
 .ansan-region { cursor: pointer; outline: none; }
+.ansan-region-label { pointer-events: none; font-weight: 700; paint-order: stroke; stroke: #fffefa; stroke-width: 1.5px; stroke-linejoin: round; }
 .ansan-region-fill { stroke: var(--land-stroke); stroke-width: 2.5px; stroke-linejoin: round; transition: fill .25s, stroke-width .15s; }
 .ansan-region.recommended .ansan-region-fill { stroke: #b75d3e; stroke-width: 5px; }
 .ansan-region:hover .ansan-region-fill { stroke-width: 7px; }
@@ -45,6 +46,9 @@
 .region-back { margin-bottom: 16px; }
 @media (prefers-reduced-motion: reduce) { .ansan-region-fill, .ansan-overview rect { transition: none; } }
 @media (max-width: 720px) {
+  /* Tiny districts cannot carry readable text on a phone. Their accessible
+     labels, focus caption and 44px directory buttons retain names and scores. */
+  .ansan-region-label { display: none; }
   .ansan-map { padding: 16px 12px; border-radius: 20px; }
   .ansan-map-heading h2 { font-size: 20px; }
   .ansan-overview { width: 72px; }

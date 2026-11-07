@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { baseContent as content, type Content } from '../data/content';
+import { baseContent as content } from '../data/testContent';
+import { type Content } from '../data/content';
 import type { Place, Profile, SearchContext, Visit } from './types';
 import { recommend, regionLevel, scorePlaces } from './score';
 import { placePopularity } from './popularity';
@@ -19,14 +20,14 @@ const data: Content = { ...content, regions: [{ ...region, placeIds: places.map(
 const result = (visits: Visit[] = [], c = data, search = ctx) => recommend(c, profile, visits, search).recommendations[0];
 
 describe('top 20 reselection from the complete candidate pool', () => {
-  it('sums 20, not 21 or a mean, before applying original region multipliers', () => {
+  it('normalizes the selected 20 with a fixed denominator, not the search-result maximum', () => {
     const before = result();
     expect(before.placeIds).toHaveLength(20);
     expect(before.placeIds).toContain('p20');
     expect(before.placeIds).not.toContain('p21');
     expect(before.eligiblePlaceCount).toBe(21);
     expect(before.shortfallCount).toBe(0);
-    expect(before.score).toBeCloseTo((19 * 90 + 80) * 1.2);
+    expect(before.score).toBeCloseTo((19 * 90 + 80) * 1.2 / 26.4);
   });
   it('after visiting the 20th, the former 21st enters and region sum/penalty recompute; deletion restores', () => {
     const after = result([visit]);
@@ -34,7 +35,7 @@ describe('top 20 reselection from the complete candidate pool', () => {
     expect(after.placeIds).toContain('p21');
     expect(after.placeIds).toHaveLength(20);
     const ten = Math.log1p(10) / Math.log1p(1000), one = Math.log1p(1) / Math.log1p(1000);
-    expect(after.score).toBeCloseTo((19 * (90 - 10 * ten) + (79 - 10 * one) - 10 * 150039 / 466765) * 1.1);
+    expect(after.score).toBeCloseTo((19 * (90 - 10 * ten) + (79 - 10 * one)) * 0.85 * 1.1 / 26.4);
     expect(regionLevel(region.id, profile, [visit], data.places)).toBe(1); // dropped places still count as visited
     expect(scorePlaces(region, data, profile, [visit], ctx).find(p => p.placeId === 'p20')).toMatchObject({ eligible: true, selected: false, rank: 21 });
     expect(result([visit, { ...visit, id: 'repeat', date: '2026-11-09' }])).toEqual(after);
@@ -65,7 +66,8 @@ describe('top 20 reselection from the complete candidate pool', () => {
   });
   it('uses fewer than 20 as-is, reports shortfall, and excludes an empty candidate set', () => {
     const small = { ...data, places: [place('only', 70, 0)] };
-    expect(result([], small)).toMatchObject({ score: 84, placeIds: ['only'], placeLimit: 20, shortfallCount: 19 });
+    expect(result([], small)).toMatchObject({ placeIds: ['only'], placeLimit: 20, shortfallCount: 19 });
+    expect(result([], small).score).toBeCloseTo(70 / 2200 * 100);
     expect(recommend({ ...small, places: [] }, profile, [], ctx).recommendations).toEqual([]);
   });
 });

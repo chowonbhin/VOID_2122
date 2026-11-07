@@ -1,51 +1,24 @@
 import { useState } from 'react';
-import { useAppState } from '../../AppState';
-import { baseContent, demoEnabled } from '../../data/content';
-import { DEMO_MODE_KEY, demoSearch } from '../../data/demoPlaces';
-import { go } from '../../route';
+import { content, naverCandidateStatus } from '../../data/content';
 
-/**
- * Floating demo notice: a small chip over the UI. Hover (or keyboard focus) opens the panel;
- * tap/click pins it open for touch screens; Escape or a second tap closes it.
- */
-export function DemoNotice() {
-  const { state, update } = useAppState();
-  const [error, setError] = useState('');
+/** Retain the team's floating notice design, with factual content and no synthetic-mode switch. */
+export function DataNotice() {
   const [hovered, setHovered] = useState(false);
   const [pinned, setPinned] = useState(false);
-  const open = hovered || pinned || !!error;
-  function toggle() {
-    try {
-      localStorage.setItem(DEMO_MODE_KEY, demoEnabled ? 'off' : 'on');
-      window.location.reload();
-    } catch { setError('시연 설정을 저장하지 못했습니다. 브라우저 저장 공간을 확인해 주세요.'); }
-  }
-  function applyPreset() {
-    const saved = update(previous => ({ ...previous, search: demoSearch(baseContent.regions[0].start, state.search?.when) }));
-    if (!saved) { setError('시연 조건을 저장하지 못했습니다. 다시 시도해 주세요.'); return; }
-    setPinned(false);
-    go({ name: 'recommend' });
-  }
+  const open = hovered || pinned;
   return <div className="demo-float" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
     onFocus={() => setHovered(true)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setHovered(false); }}
     onKeyDown={event => { if (event.key === 'Escape') { setPinned(false); setHovered(false); } }}>
-    <aside id="demo-notice-panel" className="demo-notice" aria-label="시연 데이터 설정" hidden={!open}>
-      <strong>{demoEnabled ? '25개 동 · 상위 20개 추천 시연 중' : '추가 시연 장소 사용 안 함'}</strong>
-      <p>{demoEnabled
-        ? '동마다 가상 후보 25곳 · 실제 방문 대상이 아닙니다.'
-        : '기존 조사 자료와 이전 시연 장소만 표시합니다. 미확인 정보는 점수에서 제외합니다.'}</p>
-      {demoEnabled && <details><summary>시연 데이터와 조건 안내</summary>
-        <p>장소·위치·운영·인지도는 시연값입니다. 전체 활동에서 상위 20곳을 합산하고 방문 후 다시 선정합니다.</p>
-        <p>거리·관심 활동을 좁히면 일부 동이나 장소가 제외될 수 있어요. 조건 적용 버튼은 전체 활동·100 km로 바꾸며 방문 기록과 익숙함은 유지합니다.</p>
-      </details>}
-      <div className="demo-actions">
-        {demoEnabled && <button onClick={applyPreset}>25개 동 시연 조건 적용</button>}
-        <button onClick={toggle}>{demoEnabled ? '추가 시연 장소 끄기' : '추가 시연 장소 켜기'}</button>
-      </div>
-      {error && <p role="alert">{error}</p>}
+    <aside id="data-notice-panel" className="demo-notice" aria-label="데이터와 점수 안내" hidden={!open}>
+      <strong>실제 장소 20곳 · 100점 기준 추천</strong>
+      <p>네이버 실제 검색 후보 {naverCandidateStatus.rawCandidateCount.toLocaleString('ko-KR')}곳 · 조회 {naverCandidateStatus.checkedAt}. 가상 장소는 사용하지 않습니다.</p>
+      <p>추천에 표시한 20곳 모두를 점수에 넣습니다. 리뷰 수 {naverCandidateStatus.reviewCount}곳은 공개 2차 출처와 대조했으며, 미확인 수치를 만들지 않습니다.</p>
+      <p>운영·분류·리뷰 미확인은 잠정 계산입니다. 리뷰 미확인은 보수적 감점을 적용하고, 영업 여부는 방문 전에 확인해 주세요.</p>
+      <p>유동인구는 {content.regions.filter(region => region.footfallMarketIds?.length).length}/25개 동에 자료가 연결됐습니다. Lv.1 최대 15%, Lv.2 최대 30% 감점하며 Lv.0은 감점하지 않습니다.</p>
+      <p>관심 활동·휴무 조건으로 후보가 20곳보다 적으면 실제 반영한 N/20을 표시합니다.</p>
     </aside>
-    <button type="button" className="demo-chip" aria-expanded={open} aria-controls="demo-notice-panel" onClick={() => setPinned(value => !value)}>
-      <span aria-hidden="true" className="demo-chip-dot" />시연 안내
+    <button type="button" className="demo-chip" aria-expanded={open} aria-controls="data-notice-panel" onClick={() => setPinned(value => !value)}>
+      <span aria-hidden="true" className="demo-chip-dot" />데이터 안내
     </button>
   </div>;
 }

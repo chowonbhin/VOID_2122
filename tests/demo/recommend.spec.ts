@@ -1,100 +1,55 @@
-// Owner: chowonbhin. Real scoring with condition inputs; persisted visits are integration fixtures.
-import { test, expect, type Page } from './baseline';
-import fs from 'node:fs';
+import { test, expect } from './baseline';
+import { base, setup, mapScore, list } from './real';
+import { setupStep, submitSetup } from './setupSteps';
 
-const baseURL = process.env.BASE_URL ?? 'http://localhost:3000';
-const evidence = `.claude/state/evidence/recommend-${new Date().toISOString().replace(/[:.]/g, '-')}`;
-
-async function setup(page: Page) {
-  await page.goto(`${baseURL}/#/setup`);
-  await page.getByLabel('출발지 이름').fill('시연 출발지 (가상)');
-  await page.getByLabel('위도', { exact: true }).fill('37.3219');
-  await page.getByLabel('경도', { exact: true }).fill('126.8309');
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
-  await page.getByLabel('최대 거리 (km)').fill('10');
-}
-
-
-const dongOnMap = (page: Page, name: string) => page.getByRole('region', { name: '안산 탐험 지도' }).getByRole('button', { name: new RegExp(`^지도 ${name} ·`) });
-const recommendedDongs = (page: Page) => page.locator('.ansan-region.recommended');
-const placePicks = (page: Page) => page.getByRole('list', { name: '장소 추천' }).getByRole('button');
-
-test('신규 주민 순위와 점수 표시, 기존 주민 경험 변경으로 재계산', async ({ page }) => {
+test('normalized scores include all 20 actual venues and experience still changes the score', async ({ page }) => {
   await setup(page);
-  await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(dongOnMap(page, '중앙동')).toHaveAccessibleName(/오늘의 추천 1순위/);
-  await expect(dongOnMap(page, '원곡동')).toHaveAccessibleName(/오늘의 추천 2순위/);
-  await expect(placePicks(page).first()).toHaveAccessibleName(/중앙동 장소 보기/);
-  await expect(page.locator('.recommend')).not.toContainText('점수');
+  await expect(page.getByRole('button', { name: /^지도 본오1동/ })).toHaveAccessibleName(/오늘의 추천 \d+순위/);
+  await expect(page.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/오늘의 추천 \d+순위/);
+  const before = Number(await mapScore(page).getAttribute('data-score'));
   await page.getByRole('button', { name: '조건 변경' }).click();
-  await page.getByLabel('중앙동 익숙함').selectOption('2');
-  await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(dongOnMap(page, '중앙동')).toHaveAccessibleName(/내가 좋아하는 동네 · 오늘의 추천 1순위/);
+  await setupStep(page, '지역별 익숙함');
+  await page.getByLabel('본오1동 익숙함').selectOption('2');
+  await submitSetup(page);
+  expect(Number(await mapScore(page).getAttribute('data-score'))).toBeLessThan(before);
   await page.reload();
-  await expect(dongOnMap(page, '중앙동')).toHaveAccessibleName(/오늘의 추천 1순위/);
+  await expect(page.getByRole('button', { name: /^지도 본오1동/ })).toHaveAccessibleName(/내가 좋아하는 동네/);
 });
 
-test('관심 활동 필터와 직접 탐색, 최대 거리로 후보 없음 안내', async ({ page }) => {
+test('interest and distance filters constrain the same displayed/scored set; the complete pool stays reachable', async ({ page }) => {
   await setup(page);
+  await page.getByRole('button', { name: '조건 변경' }).click();
+  await setupStep(page, '관심 활동');
   await page.getByLabel('자연·산책', { exact: true }).check();
-  await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(recommendedDongs(page)).toHaveCount(1);
-  await expect(dongOnMap(page, '중앙동')).toHaveAccessibleName(/오늘의 추천 1순위/);
-  await expect(placePicks(page).first()).toHaveAccessibleName(/중앙동 장소 보기/);
-  const explore = page.getByRole('region', { name: '직접 탐색' });
-  await expect(explore).toContainText('지금 시각·관심 활동에 맞는 장소가 없어요');
-  await explore.getByRole('button', { name: /원곡동/ }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('원곡동');
-  await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
-  await page.getByRole('button', { name: '조건 변경' }).click();
-  await page.getByLabel('최대 거리 (km)').fill('0.1');
-  await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(page.getByRole('status')).toContainText('조건에 맞는 추천 행정동이 없어요');
-  await expect(recommendedDongs(page)).toHaveCount(0);
-  await expect(page.getByRole('list', { name: '장소 추천' })).toHaveCount(0);
-  await expect(explore.getByRole('button')).toHaveCount(25);
-  await expect(explore.getByRole('button').first()).toContainText('최대 거리 밖');
-  await page.getByRole('button', { name: '조건 변경' }).click();
-  await expect(page.getByLabel('최대 거리 (km)')).toHaveValue('0.1');
-  await expect(page.getByLabel('자연·산책', { exact: true })).toBeChecked();
+  await submitSetup(page);
+  await expect(mapScore(page)).not.toHaveAttribute('data-score', 'unavailable');
+  await page.goto(`${base}/#/region/dong-4127154000`);
+  const selectedCount = await list(page).locator(':scope > li').count();
+  expect(selectedCount).toBeGreaterThan(0);
+  expect(selectedCount).toBeLessThan(20);
+  await expect(list(page).getByText(/자연·산책 ·/)).toHaveCount(selectedCount);
+  await page.getByRole('button', { name: '전체 후보' }).click();
+  expect(await list(page).locator(':scope > li').count()).toBeGreaterThan(20);
+  await page.getByRole('button', { name: '점수 반영 장소' }).click();
+  await expect(list(page).locator(':scope > li')).toHaveCount(selectedCount);
+  await setup(page, '2026-11-08T14:00', '0.1');
+  await expect(page.getByRole('button', { name: /^지도 본오1동/ })).toHaveAccessibleName(/선택한 거리 밖/);
 });
 
-test('야간 운영 후보 없음과 모바일 화면', async ({ page }) => {
-  await setup(page);
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(recommendedDongs(page)).toHaveCount(3);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  fs.mkdirSync(evidence, { recursive: true });
-  await page.screenshot({ path: `${evidence}/recommend-mobile.png`, fullPage: true });
-  await page.getByRole('button', { name: '조건 변경' }).click();
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T23:30');
-  await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(page.getByRole('status')).toContainText('조건에 맞는 추천 행정동이 없어요');
-  await expect(page.getByRole('region', { name: '직접 탐색' }).getByRole('button')).toHaveCount(25);
-  await page.screenshot({ path: `${evidence}/empty-mobile.png`, fullPage: true });
-  console.log(`recommend evidence: ${evidence}`);
+test('at night closed sources cannot be represented as open recommendations', async ({ page }) => {
+  await setup(page, '2026-11-08T23:00');
+  await expect(mapScore(page)).not.toHaveAttribute('data-score', 'unavailable');
+  await page.goto(`${base}/#/region/dong-4127154000`);
+  await page.getByRole('button', { name: '전체 후보' }).click();
+  const baba = list(page).locator(':scope > li').filter({ has: page.getByRole('heading', { name: /바바카멜/ }) });
+  await expect(baba).toContainText('휴무·이용 마감');
+  await expect(baba).toContainText('현재 추천 점수에서 제외');
 });
 
-test('저장된 방문 기록을 추천 계산에 전달하고 새로고침해도 유지', async ({ page }) => {
-  await setup(page);
-  await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(dongOnMap(page, '중앙동')).toHaveAccessibleName(/오늘의 추천 1순위/);
-  // Only seed a visit as the input fixture: visit-entry UI belongs to step 4's owner.
-  await page.evaluate(() => {
-    const state = JSON.parse(localStorage.getItem('ansan-explore/v1')!);
-    state.visits = [{ id: 'fixture-visit', placeId: 'a1', date: '2026-11-08', method: 'self_report' }];
-    localStorage.setItem('ansan-explore/v1', JSON.stringify(state));
-  });
-  await page.reload();
-  await expect(dongOnMap(page, '중앙동')).toHaveAccessibleName(/정이 드는 동네 · 오늘의 추천 1순위/);
-  await page.reload();
-  await expect(dongOnMap(page, '중앙동')).toHaveAccessibleName(/오늘의 추천 1순위/);
-});
-
-test('저장된 조건 없이 추천 주소에 접근하면 설정으로 안내', async ({ page }) => {
-  await page.goto(`${baseURL}/#/recommend`);
-  await expect(page.getByText('먼저 탐험 조건을 입력해 주세요.')).toBeVisible();
-  await page.getByRole('button', { name: '조건 설정' }).click();
-  await expect(page.getByRole('heading', { name: '탐험 조건' })).toBeVisible();
+test('without conditions the map asks for conditions and still opens 20 real venues', async ({ page }) => {
+  await page.goto(`${base}/#/recommend`);
+  await expect(page.getByRole('button', { name: '조건 설정' })).toBeVisible();
+  await page.getByRole('button', { name: /^지도 중앙동/ }).focus();
+  await page.keyboard.press('Enter');
+  await expect(list(page).locator(':scope > li')).toHaveCount(20);
 });

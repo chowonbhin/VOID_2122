@@ -1,126 +1,72 @@
-import { test, expect, type Page } from './baseline';
-import fs from 'node:fs';
-const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:3001';
-const evidence = process.env.MAP_EVIDENCE_DIR ?? `.claude/state/evidence/map-footfall-${new Date().toISOString().replace(/[:.]/g, '-')}`;
-async function setup(page: Page) {
-  await page.goto(`${baseURL}/#/setup`);
-  await page.getByLabel('출발지 이름').fill('안산 시연 출발지');
-  await page.getByLabel('위도', { exact: true }).fill('37.3219');
-  await page.getByLabel('경도', { exact: true }).fill('126.8309');
-  await page.getByLabel('날짜·시각 (한국 시간)').fill('2026-11-08T14:00');
-  await page.getByLabel('최대 거리 (km)').fill('10');
-  await page.getByRole('button', { name: '추천 받기' }).click();
-}
-async function shot(page: Page, name: string) {
-  await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toBeVisible();
-  fs.mkdirSync(evidence, { recursive: true });
-  await page.screenshot({ path: `${evidence}/${name}.png`, fullPage: true });
-  await page.getByRole('region', { name: '안산 탐험 지도' }).screenshot({ path: `${evidence}/${name}-map.png` });
-  console.log(`map evidence: ${evidence}/${name}.png`);
-}
+import { test, expect } from './baseline';
+import { base, setup, openBono, mapScore } from './real';
 
-const dongOnMap = (page: Page, name: string) => page.getByRole('region', { name: '안산 탐험 지도' }).getByRole('button', { name: new RegExp(`^지도 ${name} ·`) });
-const recommendedDongs = (page: Page) => page.locator('.ansan-region.recommended');
-const placePicks = (page: Page) => page.getByRole('list', { name: '장소 추천' }).getByRole('button');
-
-test('Ansan schematic → places → visit changes score and shade, persistence and deletion restore', async ({ page }) => {
-  const errors: string[] = [];
-  page.on('pageerror', error => errors.push(error.message));
-  page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+test('real visit changes exact map score and shade; deletion and reload restore it', async ({ page }) => {
   await setup(page);
-  const map = page.getByRole('region', { name: '안산 탐험 지도' });
-  // The map speaks in familiarity and recommendation order; score and footfall values live in unit tests.
-  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/아직 낯선 동네 · 오늘의 추천 1순위/);
-  await expect(map.getByRole('button', { name: /^지도 원곡동/ })).toHaveAccessibleName(/아직 낯선 동네 · 오늘의 추천 2순위/);
-  await expect(map.getByText('테라코타 테두리: 오늘의 추천', { exact: true })).toBeVisible();
-  await shot(page, 'map-before-visit');
-  const aFill = await map.locator('[data-region-id="dong-4127353200"]').getAttribute('fill');
-  const bFill = await map.locator('[data-region-id="dong-4127354500"]').getAttribute('fill');
-  // A keyboard user can open every region without interacting with SVG paths.
-  await map.getByRole('button', { name: /^지도 중앙동/ }).focus();
-  await page.keyboard.press('Enter');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('중앙동');
-  const list = page.getByRole('list', { name: '행정동 장소 추천' });
-  await expect(list.locator(':scope > li')).toHaveCount(5);
-  await expect(list.locator(':scope > li').first()).toContainText('시연 산책 공간');
-  await expect(list).toContainText('운영정보 미확인');
-  await expect(list).not.toContainText('시연 골목 시장');
-  await map.getByRole('button', { name: '시연 작은 전시관 지도에서 선택', exact: true }).click();
-  await expect(list.getByRole('button', { name: '시연 작은 전시관 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await list.getByRole('button', { name: '시연 산책 공간 카드에서 선택', exact: true }).click();
-  await expect(map.getByRole('button', { name: '시연 산책 공간 지도에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await shot(page, 'map-region-selected');
-  const visit = page.getByRole('region', { name: '시연 산책 공간 방문 기록', exact: true });
-  await visit.getByLabel('방문일', { exact: true }).fill('2026-11-08');
-  await visit.getByRole('button', { name: '방문 기록', exact: true }).click();
+  const score = await mapScore(page).getAttribute('data-score');
+  const color = await mapScore(page).getAttribute('fill');
+  await openBono(page);
+  const panel = page.getByRole('region', { name: '바바카멜 방문 기록', exact: true });
+  await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
+  await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
-  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/정이 드는 동네/);
-  await expect(placePicks(page).first()).toHaveAccessibleName(/중앙동 장소 보기/);
-  await expect(map.getByRole('button', { name: /^지도 원곡동/ })).toHaveAccessibleName(/2순위/);
+  expect(Number(await mapScore(page).getAttribute('data-score'))).toBeLessThan(Number(score));
+  expect(await mapScore(page).getAttribute('fill')).not.toBe(color);
   await page.reload();
-  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/정이 드는 동네 · 오늘의 추천 1순위/);
-  await expect(map.locator('[data-region-id="dong-4127353200"]')).not.toHaveAttribute('fill', aFill!);
-  // Unchanged familiarity keeps exactly the same shade.
-  await expect(map.locator('[data-region-id="dong-4127354500"]')).toHaveAttribute('fill', bFill!);
-  await shot(page, 'map-after-visit');
-  await map.getByRole('button', { name: /^지도 중앙동/ }).click();
-  await visit.getByRole('button', { name: '2026-11-08 방문 기록 삭제', exact: true }).click();
+  await expect(mapScore(page)).not.toHaveAttribute('fill', color!);
+  await openBono(page);
+  await page.getByRole('button', { name: '가본 장소', exact: true }).click();
+  await panel.getByRole('button', { name: '2026-11-08 방문 기록 삭제' }).click();
   await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
-  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toHaveAccessibleName(/아직 낯선 동네 · 오늘의 추천 1순위/);
-  await expect(map.locator('[data-region-id="dong-4127353200"]')).toHaveAttribute('fill', aFill!);
-  expect(errors).toEqual([]);
+  await expect(mapScore(page)).toHaveAttribute('data-score', score!);
+  await expect(mapScore(page)).toHaveAttribute('fill', color!);
 });
 
-test('same familiarity penalizes the busier region more, with mobile map and detail', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
+test('source-dong footfall is visible before and after a real visit; absent dongs remain unmeasured', async ({ page }) => {
   await setup(page);
-  await page.getByRole('button', { name: '조건 변경' }).click();
-  await page.getByLabel('중앙동 익숙함').selectOption('2');
-  await page.getByLabel('원곡동 익숙함').selectOption('2');
-  await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(dongOnMap(page, '중앙동')).toHaveAccessibleName(/내가 좋아하는 동네/);
-  await expect(dongOnMap(page, '원곡동')).toHaveAccessibleName(/내가 좋아하는 동네/);
-  const map = page.getByRole('region', { name: '안산 탐험 지도' });
-  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toBeVisible();
-  await expect(map.getByRole('button', { name: /^지도 원곡동/ })).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await expect(map.getByText('테라코타 테두리: 오늘의 추천', { exact: true })).toBeVisible();
-  await shot(page, 'map-mobile');
-  await map.getByRole('button', { name: /^지도 원곡동/ }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('원곡동');
-  // Every marker must be clickable on a narrow phone, without obscuring a neighbour.
-  await page.setViewportSize({ width: 320, height: 844 });
-  const markerNames = await map.getByRole('button', { name: /지도에서 선택$/ }).evaluateAll(nodes => nodes.map(node => node.getAttribute('aria-label')!));
-  for (const name of markerNames) {
-    const marker = map.getByRole('button', { name, exact: true });
-    await marker.click();
-    await expect(marker).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.getByRole('button', { name: name.replace('지도에서', '카드에서'), exact: true })).toHaveAttribute('aria-pressed', 'true');
-  }
-  await page.setViewportSize({ width: 390, height: 844 });
-  await map.getByRole('button', { name: '시연 식당 지도에서 선택', exact: true }).click();
-  await expect(page.getByRole('button', { name: '시연 식당 카드에서 선택', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await shot(page, 'map-detail-mobile');
+  const card = page.getByRole('list', { name: '장소 추천' }).getByRole('button').filter({ hasText: '본오1동' }).first();
+  // Main screen: place picks and familiarity only; footfall details live on the 동네 page.
+  await expect(card).toContainText('오늘의 추천');
+  await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toContainText('테라코타 테두리: 오늘의 추천');
+  await openBono(page);
+  await page.getByText('유동인구 반영 내역', { exact: true }).click();
+  await expect(page.locator('details')).toContainText('Lv.0 감점 없음');
+  await expect(page.locator('details')).toContainText('11,360 / 466,765');
+  await expect(page.locator('details')).toContainText('안산신안우편취급국');
+  const panel = page.getByRole('region', { name: '바바카멜 방문 기록', exact: true });
+  await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
+  await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
+  await expect(page.locator('details')).toContainText('지역 Lv.1 · 유동인구 감점률 1.14% (최대 15%)');
+  await expect(page.locator('details')).toContainText('최대 동별 합계 150,039명');
+  await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
+  await expect(card).toContainText('오늘의 추천');
+  await page.getByRole('button', { name: /^지도 와동/ }).click();
+  await page.getByText('유동인구 반영 내역', { exact: true }).click();
+  await expect(page.locator('details')).toContainText('유동인구 미반영');
+  await expect(page.locator('details')).toContainText('0명으로 측정된 동이라는 뜻은 아닙니다');
 });
 
-test('schematic uses no external map requests and excluded regions remain explorable offline', async ({ page, context }) => {
+test('drawing and real-place exploration make no external map or API calls in browser, including offline', async ({ page, context }) => {
   const external: string[] = [];
-  page.on('request', request => { if (new URL(request.url()).origin !== new URL(baseURL).origin) external.push(request.url()); });
+  page.on('request', request => { if (!request.url().startsWith(base) && /^https?:/.test(request.url())) external.push(request.url()); });
   await setup(page);
   await context.setOffline(true);
-  await page.getByRole('button', { name: '조건 변경' }).click();
-  await page.getByLabel('최대 거리 (km)').fill('0.1');
-  await page.getByRole('button', { name: '추천 받기' }).click();
-  await expect(page.getByText('조건에 맞는 추천 행정동이 없어요', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: /^지도 중앙동/ }).focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('중앙동');
+  expect(external).toEqual([]);
+});
+
+test('the main map is familiarity-only with home hatching; the hidden score still drives order', async ({ page }) => {
+  await setup(page);
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
-  // Not recommended now, but familiarity is still shown.
-  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).not.toHaveAccessibleName(/오늘의 추천/);
-  await expect(map.locator('[data-region-id="dong-4127353200"]')).toHaveAttribute('fill', '#E1EBDD');
-  await expect(map.locator('[data-region-id="dong-4127353200"]')).toHaveAttribute('data-level', '0');
-  expect(external).toEqual([]);
-  // The coloured region body also opens its recommendations, beyond its text button.
-  await map.locator('[data-region-id="dong-4127353200"]').click();
-  await expect(page.getByRole('list', { name: '행정동 장소 추천' }).locator(':scope > li')).toHaveCount(5);
-  expect(external).toEqual([]);
+  await expect(map).toContainText('색이 짙을수록 내가 좋아하는 동네예요.');
+  await expect(map.getByRole('button', { name: '점수 보기', exact: true })).toHaveCount(0);
+  await expect(mapScore(page)).toHaveAttribute('fill', '#E1EBDD');
+  expect(Number(await mapScore(page).getAttribute('data-score'))).toBeGreaterThan(0);
+  await expect(map.locator('.ansan-home-hatch')).toHaveCount(1);
+  await expect(map.locator('text')).toHaveCount(0);
+  await expect(map.getByRole('button', { name: /^지도 본오1동/ })).toHaveAccessibleName(/오늘의 추천 \d+순위/);
+  await openBono(page);
+  await expect(page.locator('.dong-pin.kind-start')).toHaveCount(0);
 });

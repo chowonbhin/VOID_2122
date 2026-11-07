@@ -1,6 +1,7 @@
 import { useRef, useState, type KeyboardEvent } from 'react';
 import type { Region, RegionRecommendation } from '../../domain/types';
 import { dongByCode, dongs, dongsOfRegion, mapAreas, pathOfDong, wholeBox } from './ansanGeo';
+import type { RecommendResult } from '../../domain/score';
 import './map.css';
 
 interface Props {
@@ -8,20 +9,21 @@ interface Props {
   recommendations: RegionRecommendation[];
   levels: Record<string, 0 | 1 | 2>;
   homeDongCode?: string;
+  searchConfigured?: boolean;
+  exclusions?: RecommendResult['excluded'];
   onDongSelect?: (code: string) => void;
   onRegionSelect: (id: string) => void;
 }
 
-// Preserve the team's paper/green/terracotta design and urban/island slides.
-// Fill shows how close the user is to each 동네 (region Lv from the shared engine), never a score.
-// Recommendation is only a terracotta outline; 내 동네 is hatched.
+// The main map speaks familiarity only (user decision): fill = region Lv, terracotta outline =
+// today's recommendation, hatching = 내 동네. Scores stay off screen; data-score is a hidden test hook.
 export const FAMILIARITY = [
   { label: '아직 낯선 동네', fill: '#E1EBDD' },
   { label: '정이 드는 동네', fill: '#B6CFB5' },
   { label: '내가 좋아하는 동네', fill: '#82AE98' },
 ] as const;
 
-export function ExplorationMap({ regions, recommendations, levels, homeDongCode, onRegionSelect }: Props) {
+export function ExplorationMap({ regions, recommendations, levels, homeDongCode, onRegionSelect, searchConfigured, exclusions }: Props) {
   const slider = useRef<HTMLDivElement>(null);
   const home = homeDongCode ? dongByCode(homeDongCode) : undefined;
   const [active, setActive] = useState(home?.code === mapAreas[1].dongs[0]?.code ? 1 : 0);
@@ -41,12 +43,14 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
     if (!dong) return [];
     const item = recommendations.find(item => item.regionId === region.id);
     const rank = recommendations.findIndex(item => item.regionId === region.id) + 1;
-    const level = levels[region.id] ?? 0;
-    const recommended = !!item && item.score > 0;
-    const familiarity = FAMILIARITY[level].label;
-    const status = recommended ? `${familiarity} · 오늘의 추천 ${rank}순위` : region.placeIds.length ? familiarity : `${familiarity} · 장소 준비 중`;
-    // data-score is a hidden test hook for recomputation; the score is never shown.
-    return [{ region, dong, recommended, level, status, fill: FAMILIARITY[level].fill, score: item?.score ?? null,
+    const score = item?.score ?? null, level = levels[region.id] ?? 0;
+    const exclusion = exclusions?.find(excluded => excluded.regionId === region.id);
+    const recommended = !!item && score! > 0;
+    const note = recommended ? ` · 오늘의 추천 ${rank}순위`
+      : searchConfigured && exclusion?.reason === 'too_far' ? ' · 선택한 거리 밖'
+        : region.placeIds.length ? '' : ' · 장소 준비 중';
+    const status = `${FAMILIARITY[level].label}${note}`;
+    return [{ region, dong, recommended, score, level, status, fill: FAMILIARITY[level].fill,
       label: `지도 ${region.name} · ${status}${home?.code === dong.code ? ' · 내 동네' : ''} · 동네로 들어가기` }];
   });
   const onKey = (event: KeyboardEvent, id: string) => {
@@ -79,11 +83,9 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
       {mapAreas.map((area, index) => <div className="ansan-slide" role="group" aria-label={`${area.label} 지도 · ${index + 1} / ${mapAreas.length}`}
         aria-hidden={index !== active} inert={index !== active} key={area.id}>
         <svg viewBox={area.box.join(' ')} className="ansan-svg">
-          <defs>
-            <pattern id={`home-hatch-${area.id}`} width={area.box[2] / 70} height={area.box[2] / 70} patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-              <rect width={area.box[2] / 200} height={area.box[2] / 70} fill="#293e39" opacity=".55" />
-            </pattern>
-          </defs>
+          <defs><pattern id={`home-hatch-${area.id}`} width={area.box[2] / 70} height={area.box[2] / 70} patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width={area.box[2] / 200} height={area.box[2] / 70} fill="#293e39" opacity=".55" />
+          </pattern></defs>
           {shapes.filter(shape => area.dongs.some(d => d.code === shape.dong.code)).map(shape =>
             <g key={shape.region.id} role="button" tabIndex={0} aria-label={shape.label}
               className={`ansan-region${shape.recommended ? ' recommended' : ''}`}

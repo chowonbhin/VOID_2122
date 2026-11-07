@@ -35,7 +35,8 @@
       "url": "https://www.openstreetmap.org/node/5349743238",
       "checkedAt": "2026-11-07"
     },
-    "isVirtual": false
+    "isVirtual": false,
+    "footfallMappingBasis": "source_dong_label"
   },
   {
     "id": "dong-4127354500",
@@ -73,7 +74,8 @@
       "url": "https://www.openstreetmap.org/node/5911861706",
       "checkedAt": "2026-11-07"
     },
-    "isVirtual": false
+    "isVirtual": false,
+    "footfallMappingBasis": "source_dong_label"
   },
   {
     "id": "dong-4127351000",
@@ -149,7 +151,12 @@
       "label": "호수동 경계 내부 대표 지점"
     },
     "placeIds": [],
-    "footfallMarketIds": [],
+    "footfallMarketIds": [
+      "ansan-hosu-post",
+      "star-plaza-terminal",
+      "songho-school",
+      "gojan-station-exit-2"
+    ],
     "source": {
       "label": "안산시 행정구역 현황",
       "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
@@ -160,7 +167,8 @@
       "url": "https://github.com/vuski/admdongkor",
       "checkedAt": "2026-11-08"
     },
-    "isVirtual": false
+    "isVirtual": false,
+    "footfallMappingBasis": "source_dong_label"
   },
   {
     "id": "dong-4127355500",
@@ -240,7 +248,10 @@
     "placeIds": [
       "gyeonggi-museum"
     ],
-    "footfallMarketIds": [],
+    "footfallMarketIds": [
+      "ansan-choji-post",
+      "green-village-14-stop"
+    ],
     "source": {
       "label": "안산시 행정구역 현황",
       "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
@@ -251,7 +262,8 @@
       "url": "https://github.com/vuski/admdongkor",
       "checkedAt": "2026-11-08"
     },
-    "isVirtual": false
+    "isVirtual": false,
+    "footfallMappingBasis": "source_dong_label"
   },
   {
     "id": "dong-4127358000",
@@ -327,7 +339,9 @@
       "label": "선부3동 경계 내부 대표 지점"
     },
     "placeIds": [],
-    "footfallMarketIds": [],
+    "footfallMarketIds": [
+      "seonbu-station-exit-1"
+    ],
     "source": {
       "label": "안산시 행정구역 현황",
       "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
@@ -338,7 +352,8 @@
       "url": "https://github.com/vuski/admdongkor",
       "checkedAt": "2026-11-08"
     },
-    "isVirtual": false
+    "isVirtual": false,
+    "footfallMappingBasis": "source_dong_label"
   },
   {
     "id": "dong-4127361000",
@@ -416,7 +431,10 @@
       "label": "이동 경계 내부 대표 지점"
     },
     "placeIds": [],
-    "footfallMarketIds": [],
+    "footfallMarketIds": [
+      "rodeo-stop",
+      "ansan-wholesale-market"
+    ],
     "source": {
       "label": "안산시 행정구역 현황",
       "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
@@ -427,7 +445,8 @@
       "url": "https://github.com/vuski/admdongkor",
       "checkedAt": "2026-11-08"
     },
-    "isVirtual": false
+    "isVirtual": false,
+    "footfallMappingBasis": "source_dong_label"
   },
   {
     "id": "dong-4127152500",
@@ -445,7 +464,10 @@
       "label": "사동 경계 내부 대표 지점"
     },
     "placeIds": [],
-    "footfallMarketIds": [],
+    "footfallMarketIds": [
+      "idong-police",
+      "gamgol-library-stop"
+    ],
     "source": {
       "label": "안산시 행정구역 현황",
       "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
@@ -456,7 +478,8 @@
       "url": "https://github.com/vuski/admdongkor",
       "checkedAt": "2026-11-08"
     },
-    "isVirtual": false
+    "isVirtual": false,
+    "footfallMappingBasis": "source_dong_label"
   },
   {
     "id": "dong-4127153200",
@@ -503,7 +526,9 @@
       "label": "해양동 경계 내부 대표 지점"
     },
     "placeIds": [],
-    "footfallMarketIds": [],
+    "footfallMarketIds": [
+      "hanyang-stop"
+    ],
     "source": {
       "label": "안산시 행정구역 현황",
       "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
@@ -514,7 +539,8 @@
       "url": "https://github.com/vuski/admdongkor",
       "checkedAt": "2026-11-08"
     },
-    "isVirtual": false
+    "isVirtual": false,
+    "footfallMappingBasis": "source_dong_label"
   },
   {
     "id": "dong-4127154000",
@@ -532,7 +558,9 @@
       "label": "본오1동 경계 내부 대표 지점"
     },
     "placeIds": [],
-    "footfallMarketIds": [],
+    "footfallMarketIds": [
+      "ansan-sinan-post"
+    ],
     "source": {
       "label": "안산시 행정구역 현황",
       "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
@@ -543,7 +571,8 @@
       "url": "https://github.com/vuski/admdongkor",
       "checkedAt": "2026-11-08"
     },
-    "isVirtual": false
+    "isVirtual": false,
+    "footfallMappingBasis": "source_dong_label"
   },
   {
     "id": "dong-4127155000",
@@ -592,7 +621,9 @@
     "placeIds": [
       "choi-memorial"
     ],
-    "footfallMarketIds": [],
+    "footfallMarketIds": [
+      "sangnoksu-station-exit-3"
+    ],
     "source": {
       "label": "안산시 행정구역 현황",
       "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
@@ -603,7 +634,8 @@
       "url": "https://github.com/vuski/admdongkor",
       "checkedAt": "2026-11-08"
     },
-    "isVirtual": false
+    "isVirtual": false,
+    "footfallMappingBasis": "source_dong_label"
   },
   {
     "id": "dong-4127157000",
@@ -650,7 +682,9 @@
       "label": "월피동 경계 내부 대표 지점"
     },
     "placeIds": [],
-    "footfallMarketIds": [],
+    "footfallMarketIds": [
+      "seongpo-police"
+    ],
     "source": {
       "label": "안산시 행정구역 현황",
       "url": "https://www.ansan.go.kr/stat/common/cntnts/selectContents.do?cntnts_id=C0001013",
@@ -661,7 +695,8 @@
       "url": "https://github.com/vuski/admdongkor",
       "checkedAt": "2026-11-08"
     },
-    "isVirtual": false
+    "isVirtual": false,
+    "footfallMappingBasis": "source_dong_label"
   },
   {
     "id": "dong-4127159000",

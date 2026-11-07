@@ -1,16 +1,14 @@
 // Content loader. Owner: Byeunghee02. Edit the JSON files, not this module.
 import type { Event, FootfallDataset, Place, Region } from '../domain/types';
 import { validateFootfallDataset } from '../domain/footfall';
-import { hasClassificationSource, isNonFranchisePlace } from '../domain/placeEligibility';
+import { hasClassificationSource, isNonFranchisePlace, isRecommendationCandidate } from '../domain/placeEligibility';
 import regionsJson from './regions.json';
-import placesJson from './places.json';
-import eventsJson from './events.json';
 import footfallJson from './footfall.json';
 import geography from './geography/admin-dongs.json';
 import { validPopularityEvidence } from '../domain/popularity';
 import naverPlacesJson from './naver-places.json';
-import naverCollection from './naver-collection.json';
-import { readDemoMode, withDemoPlaces } from './demoPlaces';
+import realCollection from './real-collection.json';
+import realPlacesJson from './real-places.json';
 
 export interface Content {
   regions: Region[];
@@ -21,21 +19,22 @@ export interface Content {
 
 // Reviewed Naver records may reuse an existing place ID to preserve its visit history.
 const reviewedNaverPlaces = naverPlacesJson as Place[];
-const reviewedIds = new Set(reviewedNaverPlaces.map(place => place.id));
-const places = [...placesJson.filter(place => !reviewedIds.has(place.id)), ...reviewedNaverPlaces] as Place[];
-export const naverCandidateStatus = { ...naverCollection, importedCount: reviewedNaverPlaces.length };
+export const naverCandidateStatus = realCollection;
 
-export const baseContent: Content = {
-  regions: regionsJson.map(region => ({ ...region, placeIds: places.filter(place => place.regionId === region.id).map(place => place.id),
-    geometry: geography.dongs.find(dong => dong.id === region.id)?.geometry })) as Region[],
-  places,
-  events: eventsJson as Event[],
+const regions = regionsJson.map(region => ({ ...region,
+  geometry: geography.dongs.find(dong => dong.id === region.id)?.geometry })) as Region[];
+
+// Production imports only real venue records. Synthetic regression fixtures are separate.
+const realPlaces = realPlacesJson as Place[];
+const realIds = new Set(realPlaces.map(place => place.id));
+const productionPlaces = [...reviewedNaverPlaces.filter(place => !realIds.has(place.id)), ...realPlaces];
+export const content: Content = {
   footfall: footfallJson,
+  places: productionPlaces,
+  events: [],
+  regions: regions.map(region => ({ ...region,
+    placeIds: productionPlaces.filter(place => place.regionId === region.id).map(place => place.id) })),
 };
-
-export const demoEnabled = readDemoMode();
-export const demoContent = withDemoPlaces(baseContent);
-export const content = demoEnabled ? demoContent : baseContent;
 
 /** M01 checks: duplicate ids, dangling references, missing opening info. Returns problems found. */
 export function validateContent(c: Content): string[] {
@@ -48,6 +47,7 @@ export function validateContent(c: Content): string[] {
   }
   const regionIds = new Set(c.regions.map((r) => r.id));
   const placeIds = new Set(c.places.map((p) => p.id));
+  const mappedMarkets = new Set<string>();
   for (const p of c.places) {
     if (!regionIds.has(p.regionId)) problems.push(`place ${p.id}: unknown regionId ${p.regionId}`);
     if (!p.franchise || !['non_franchise', 'franchise', 'unknown'].includes(p.franchise.status)) {
@@ -64,7 +64,13 @@ export function validateContent(c: Content): string[] {
     const marketIds = r.footfallMarketIds ?? [];
     if (new Set(marketIds).size !== marketIds.length) problems.push(`region ${r.id}: duplicate footfall market`);
     for (const id of marketIds) {
-      if (!c.footfall?.markets.some((market) => market.id === id)) problems.push(`region ${r.id}: unknown footfall market ${id}`);
+      const market = c.footfall?.markets.find((market) => market.id === id);
+      if (!market) problems.push(`region ${r.id}: unknown footfall market ${id}`);
+      if (mappedMarkets.has(id)) problems.push(`region ${r.id}: footfall market mapped to multiple regions ${id}`);
+      mappedMarkets.add(id);
+      if (r.footfallMappingBasis === 'source_dong_label' && market?.sourceDong !== r.name) {
+        problems.push(`region ${r.id}: footfall source dong mismatch ${id}`);
+      }
     }
     for (const id of r.placeIds) {
       const p = c.places.find((x) => x.id === id);
@@ -81,7 +87,7 @@ export function validateContent(c: Content): string[] {
 export const regionById = (id: string) => content.regions.find((r) => r.id === id);
 /** Discovery content: exclusion also applies to direct exploration without search conditions. */
 export const placesOfRegion = (regionId: string, data: Content = content) =>
-  data.places.filter((p) => p.regionId === regionId && isNonFranchisePlace(p));
+  data.places.filter((p) => p.regionId === regionId && isRecommendationCandidate(p));
 export const eventsOfPlace = (placeId: string, data: Content = content) => {
   const place = data.places.find((p) => p.id === placeId);
   return place && isNonFranchisePlace(place) ? data.events.filter((e) => e.placeId === placeId) : [];

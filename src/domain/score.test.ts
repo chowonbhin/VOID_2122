@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { baseContent as content } from '../data/content';
+import { baseContent as content } from '../data/testContent';
 import type { Place, Profile, SearchContext, Visit } from './types';
 import { eventBonus, eventState, parseKst, placeLevel, placeStatus, recommend, regionLevel } from './score';
 
@@ -101,20 +101,21 @@ describe('events', () => {
 });
 
 describe('recommend — real-region starts and footfall', () => {
-  it('before any visit A (≈240.70) ranks above B (≈146.42)', () => {
-    expect(scoreOf('dong-4127353200', [])).toBeCloseTo(240.7024, 3);
-    expect(scoreOf('dong-4127354500', [])).toBeCloseTo(146.4235, 3);
-    expect(order([])).toEqual(['dong-4127353200', 'dong-4127354500', 'dong-4127356500']);
+  it('fixed 0–100 normalization preserves the original relative ordering before visits', () => {
+    expect(scoreOf('dong-4127353200', [])).toBeCloseTo(240.7024 / 26.4, 3);
+    expect(scoreOf('dong-4127354500', [])).toBeCloseTo(146.4235 / 26.4, 3);
+    expect(order([])).toEqual(['dong-4127353200', 'dong-4127354500', 'dong-4127151000', 'dong-4127156000', 'dong-4127357000', 'dong-4127356500']);
   });
 
   it('visiting a1 drops central score without forcing a rank swap', () => {
-    expect(scoreOf('dong-4127353200', [visit('a1')])).toBeCloseTo(188.8980, 3);
+    const withoutFootfall = recommend({ ...content, footfall: undefined }, fresh(), [visit('a1')], ctx()).recommendations.find(r => r.regionId === 'dong-4127353200')!.score;
+    expect(scoreOf('dong-4127353200', [visit('a1')])).toBeCloseTo(withoutFootfall * 0.85);
     expect(order([visit('a1')])).toEqual(order([]));
   });
 
   it('repeat visit to the same place changes nothing; deleting all restores', () => {
     expect(scoreOf('dong-4127353200', [visit('a1'), visit('a1', 2)])).toBe(scoreOf('dong-4127353200', [visit('a1')]));
-    expect(scoreOf('dong-4127353200', [])).toBeCloseTo(240.7024, 3);
+    expect(scoreOf('dong-4127353200', [])).toBeCloseTo(240.7024 / 26.4, 3);
   });
 
   it('unknown and closed places are listed but not scored', () => {

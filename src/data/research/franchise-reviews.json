@@ -1,0 +1,32 @@
+[
+  {
+    "id": "naver-f6c955863b3e69076ded",
+    "status": "non_franchise",
+    "source": {
+      "label": "운영자 공식 사이트의 단일 매장·사업자 소개 검토로 독립 매장 분류",
+      "url": "https://babacarmel.com/",
+      "checkedAt": "2026-11-08"
+    },
+    "basis": "공식 사이트의 ABOUT·사업자 정보와 안산 충장로 8 매장 일치. 앱의 수동 분류이며 법적 가맹 여부 인증은 아님."
+  },
+  {
+    "id": "naver-8366bc18e967ca8c508f",
+    "status": "non_franchise",
+    "source": {
+      "label": "공개 운영자·매장 소개 교차 검토 · 독립매장 수동 분류",
+      "url": "https://www.diningcode.com/profile.php?rid=EKDVGAasKUy5",
+      "checkedAt": "2026-11-08"
+    },
+    "basis": "동일 주소의 개인 카페 설명·운영자 메뉴 소개 및 네이버 검색의 운영자 계정 교차 검토. 수동 독립매장 분류이며 가맹 미등록을 보증하지 않는다."
+  },
+  {
+    "id": "naver-c443fde55baf89585bc2",
+    "status": "non_franchise",
+    "source": {
+      "label": "공개 운영자·매장 소개 교차 검토 · 독립매장 수동 분류",
+      "url": "https://www.daangn.com/kr/local-profile/%EB%B3%B4%EB%85%B8%EB%8B%A4%EB%B0%A9-%EC%B9%B4%ED%8E%98-z739x6ga1x6m/",
+      "checkedAt": "2026-11-08"
+    },
+    "basis": "운영자가 게시한 본오동 개업 공지·단일 매장 소개와 네이버 동일 주소 교차 검토. 수동 독립매장 분류이며 가맹 미등록을 보증하지 않는다."
+  }
+]
