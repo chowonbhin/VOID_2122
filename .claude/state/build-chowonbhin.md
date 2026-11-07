@@ -46,3 +46,15 @@ end to end. Work strictly in golden-path order.
 - Step 6: local evidence documentation checkpoint only; no main merge/push/deploy needed.
 - Step 7: captain scope review requested; M08/M09/M11 completion still requires owner evidence. No scope cuts made.
 - Step 8: user asked to select early fix or continued build because golden path passes before scheduled fix_start; phase remains build until response.
+
+## Result — 2026-11-08 00:47 KST
+- User selected continued build focused on captain-assigned remaining MVP work; the earlier phase question is resolved.
+- Integrated origin/main 46d902c onto chowonbhin/recommendation, preserving two local documentation commits. Tested source/spec: 4e038a867525e6e7e6fc953a00bf96c0de3430fe.
+- Steps 1–3: own step is already implemented; latest upstream adds franchise/unverified exclusions and region filters. No new assignment or application changes in this session.
+- Step 4: no new external API/LLM dependency; current schematic needs no map-network fallback.
+- Step 5: typecheck/build PASS; unit 91/91; deployed franchise and region-detail tests 6/6 PASS (last-run status passed).
+- Deployed golden path: desktop PASS 5/5 in 2026-11-08T00-44-26; mobile PASS 5/5 in 2026-11-08T00-44-34-mobile; zero SLOW/console errors.
+- Inspected desktop/mobile step-03 screenshots: exclusion notice, filters, five markers/cards and selected place visible without overlap.
+- Step 6: documentation checkpoint only; application changes already on origin/main, so no main merge, push or new deploy needed.
+- Step 7: captain scope review remains requested for the elapsed midnight checkpoint; no member scope cuts made.
+- Step 8: user chose captain-assigned remaining MVP work. Current handoff assigns M08/M09 to iwtkmn0219; M11 evidence remains captain-owned. Own step and delegated deployment checks pass.
