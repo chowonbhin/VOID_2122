@@ -1,18 +1,19 @@
 # Handoff — chowonbhin
-- User override: ignore schedule/deadline; do not force clock-based phase transitions.
-- Branch chowonbhin/updates at b6df754; local main 32ddbce; origin/main newly fetched to 84f688a, not merged.
-- Local preview http://127.0.0.1:3011/ serves b6df754; build PASS, units 154/154, desktop demo 5/5 at evidence/2026-11-08T05-29-25/.
-- Public URL: https://void-2122.vercel.app/; submission link not supplied.
-- Public desktop PASS 5/5: .claude/state/evidence/2026-11-08T05-32-31/.
-- Public mobile PASS 5/5: .claude/state/evidence/2026-11-08T05-32-40-mobile/; no console errors or SLOW steps in either run.
-- Public tests use upstream 84f688a in /private/tmp/void2122-verify-84f688a; deployed Git SHA not independently identified.
-- Old test failed at step 3 because new UI intentionally removed review counts; latest upstream test passes.
-- Inspected mobile onboarding and visit screenshots. Tests use isolated contexts; no personal browser data reset.
-- Recovery: new private browser window; network failure → running local preview or saved screenshots. No reset script/fallback flag exists.
-- Member narration/run notes: pitch-chowonbhin.md. No application edits, push or deployment this turn.
-- Next 1: integrate 84f688a when requested and verify resulting local build.
-- Next 2: captain reconciles golden-path wording with current visible UI.
-- Next 3: human walkthrough using notes; automatic browser tests are not a timed spoken rehearsal.
+- User override: ignore schedule/deadline; no clock-based phase transitions.
+- Branch chowonbhin/updates; user explicitly authorized shared App.tsx fix after first-entry diagnosis.
+- Fixed: no onboarding completedAt → show only onboarding for every route, regardless of old search/visits.
+- No record deletion or migration; completing onboarding preserves visits. Completed users retain direct links and 다시 설정하기.
+- Added 8 first-entry browser regressions (6 paths, legacy state with/without partial onboarding); original failure reproduced before fix.
+- Updated later-screen test fixtures to explicitly represent completed users; no golden-path assertions changed.
+- Build PASS. Browser suite: 50/51 initially; remaining old first-user assumption updated, focused rerun 1/1 PASS. No app edits after full suite.
+- Local PC demo PASS 5/5: .claude/state/evidence/2026-11-08T05-41-14/.
+- Local mobile demo PASS 5/5: .claude/state/evidence/2026-11-08T05-41-22-mobile/; no errors/SLOW.
+- Screenshot: .claude/state/evidence/onboarding-entry-investigation/fixed-fresh-recommend.png.
+- Local URL http://127.0.0.1:3011/ serves this fix; public https://void-2122.vercel.app/ does not include it yet.
+- Last public PC/mobile PASS used upstream 84f688a tests: evidence/2026-11-08T05-32-31/ and 05-32-40-mobile/.
+- Local main 32ddbce; fetched origin/main 84f688a not integrated. Own previous UI/data changes retained.
+- Next 1: user reviews first entry in a fresh private browser at local URL.
+- Next 2: coordinate latest upstream integration and verification before any main merge; human handles push.
+- Next 3: after deployment, verify public PC/mobile using matching tests. No push/deployment performed for fix.
 ## For captain
-- golden-path.md still promises visible review counts in step 3; 84f688a deliberately keeps them internal. Steps 4/5 also retain historical labels.
-- pitch/handoff helper skills absent; member notes prepared inline. Final PPT/script remains captain-owned.
+- App.tsx shared-file edit explicitly authorized by user. Review counts remain an unrelated golden-path/documentation mismatch on 84f688a.

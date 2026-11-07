@@ -1,5 +1,5 @@
 import { useAppState } from './AppState';
-import { useRoute } from './route';
+import { useRoute, type Route } from './route';
 import { Onboarding } from './features/onboarding/Onboarding';
 import { RecommendPage } from './features/recommend/RecommendPage';
 import { RegionPage } from './features/region/RegionPage';
@@ -10,11 +10,12 @@ import { AppMenu } from './features/navigation/AppMenu';
 import { NotebookPage } from './features/notebook/NotebookPage';
 
 export function App() {
-  const route = useRoute();
+  const requestedRoute = useRoute();
   const { state } = useAppState();
-  // First run (nothing saved yet) or 다시 설정하기. Everyone else opens straight onto the main map.
-  const onboarding = route.name === 'onboarding' ||
-    (route.name === 'landing' && !state.profile.onboarding && !state.search && state.visits.length === 0);
+  // Old search/visit records are not proof of onboarding completion. Gate every
+  // entry route without changing or deleting those records.
+  const route: Route = state.profile.onboarding?.completedAt ? requestedRoute : { name: 'onboarding' };
+  const onboarding = route.name === 'onboarding';
   const main = route.name === 'landing' && !onboarding;
   const discovering = main || route.name === 'recommend' || route.name === 'region' || route.name === 'dong';
   return (
