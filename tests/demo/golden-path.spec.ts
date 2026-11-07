@@ -106,18 +106,23 @@ test('golden path', async ({ page }) => {
       { pending: 'iwtkmn0219' },
     );
 
-    // TODO(zT4ek): on 호수 전망 데크 (a1) enter 방문일 DEMO.date, press 방문 기록,
-    // assert "자기 신고" record visible and region Lv.1 shown.
+    // zT4ek: record the visit through the real form and assert the persisted UI state.
     await demoStep(
       page,
       '4. Record a visit → 자기 신고 and Lv.0 → Lv.1',
       async () => {
-        await expect(page.getByText('방문일 기록').first()).toBeVisible();
+        const visits = page.getByRole('region', { name: '호수 전망 데크 방문 기록', exact: true });
+        await expect(visits.getByText('지역 Lv.0', { exact: true })).toBeVisible();
+        await visits.getByLabel('방문일', { exact: true }).fill(DEMO.date);
+        await visits.getByRole('button', { name: '방문 기록', exact: true }).click();
+        await expect(visits.getByText('자기 신고', { exact: true })).toBeVisible();
+        await expect(visits.locator('time')).toHaveText(DEMO.date);
+        await expect(visits.getByText('지역 Lv.1', { exact: true })).toBeVisible();
       },
-      { pending: 'zT4ek' },
     );
 
-    // TODO(zT4ek): after reload assert first card is B권역 and the visit is still recorded.
+    // zT4ek: persistence is real. B-first ranking remains pending until the shared
+    // score engine and recommendation screen are integrated; never fake their order.
     await demoStep(
       page,
       '5. Back to recommendations and reload → recomputed order kept',
@@ -125,8 +130,14 @@ test('golden path', async ({ page }) => {
         await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
         await page.reload();
         await expect(page.getByRole('heading', { name: '추천 권역' })).toBeVisible();
+        await page.getByRole('button', { name: /A권역/ }).click();
+        const visits = page.getByRole('region', { name: '호수 전망 데크 방문 기록', exact: true });
+        await expect(visits.locator('time')).toHaveText(DEMO.date);
+        await expect(visits.getByText('자기 신고', { exact: true })).toBeVisible();
+        await expect(visits.getByText('지역 Lv.1', { exact: true })).toBeVisible();
+        await page.getByRole('button', { name: '추천으로 돌아가기' }).click();
       },
-      { pending: 'zT4ek' },
+      { pending: 'zT4ek: 방문 기록 유지 검증됨, 추천 화면·공통 엔진 통합 후 B 우선 순위 검증 필요' },
     );
   } finally {
     fs.appendFileSync(
