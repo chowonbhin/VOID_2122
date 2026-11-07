@@ -20,9 +20,6 @@
 
 .recommend-empty { padding: 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
 .recommend-empty h2 { margin-top: 0; font-size: 22px; }
-.recommend-explore { margin-top: 32px; }
-.recommend-explore h2 { font-size: 21px; margin-bottom: 4px; }
-.recommend-explore .card { background: var(--card); border-color: var(--line); }
 .recommend button:focus-visible { outline: 3px solid var(--terracotta); outline-offset: 3px; }
 @media (max-width: 720px) {
   .recommend > .cards { grid-template-columns: minmax(0, 1fr); }
@@ -47,4 +44,3 @@
 .place-pick strong { font-size: 18px; }
 .place-pick-kicker { color: var(--accent); font-weight: 700; font-size: 13px; }
 .place-pick-meta { color: var(--muted); font-size: 13px; }
-.recommend-explore .cards { max-height: min(50vh, 420px); overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; }

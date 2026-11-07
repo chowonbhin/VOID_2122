@@ -30,18 +30,14 @@ export function RecommendPage() {
   // Recompute on every state change and reload; all scoring and ordering belong to the shared engine.
   const result = recommend(content, state.profile, state.visits, search);
   const ranked = result.allZero ? [] : result.recommendations;
-  const explore = result.allZero
-    ? content.regions
-    : content.regions.filter((region) => result.excluded.some((item) => item.regionId === region.id));
-
-  // 장소 추천: the top places (engine order) of each recommended 동네, in recommendation order.
-  const picks = ranked.flatMap((item, index) => {
+  // Show up to five places, preserving the engine's dong order and two picks per dong.
+  const picks = ranked.flatMap((item) => {
     const region = content.regions.find((candidate) => candidate.id === item.regionId)!;
     return item.placeIds.slice(0, 2).flatMap((id) => {
       const place = content.places.find((candidate) => candidate.id === id);
-      return place ? [{ place, region, rank: index + 1, level: item.level }] : [];
+      return place ? [{ place, region, level: item.level }] : [];
     });
-  });
+  }).slice(0, 5);
 
   return (
     <section className="recommend">
@@ -59,11 +55,11 @@ export function RecommendPage() {
             <h2 id="place-recommend-title">장소 추천</h2>
           </div>
           <ol className="place-recommend-list" aria-label="장소 추천">
-            {picks.map(({ place, region, rank, level }) => <li key={place.id}>
+            {picks.map(({ place, region, level }) => <li key={place.id}>
               <button className="place-pick" aria-label={`${place.name} · ${region.name} 장소 보기`} onClick={() => go({ name: 'region', regionId: region.id })}>
                 <span className="place-pick-kicker">{CATEGORY_LABELS[place.category]} · {region.name}</span>
                 <strong>{place.name}</strong>
-                <span className="place-pick-meta">오늘의 추천 {rank}순위 동네 · {FAMILIARITY[level].label}</span>
+                <span className="place-pick-meta">{FAMILIARITY[level].label}</span>
               </button>
             </li>)}
           </ol>
@@ -71,31 +67,9 @@ export function RecommendPage() {
       ) : (
         <div className="recommend-empty" role="status">
           <h2>{result.allZero ? '추천을 정하기 어려워요' : '조건에 맞는 추천 행정동이 없어요'}</h2>
-          <p>조건을 바꾸거나 동네를 직접 둘러보세요.</p>
+          <p>조건을 바꾸거나 위 지도에서 동네를 선택해 둘러보세요.</p>
         </div>
       )}
-
-
-      {explore.length > 0 && <section aria-label="직접 탐색" className="recommend-explore">
-        <h2>행정동 직접 탐색</h2>
-        <ul className="cards">
-          {explore.map((region) => {
-            const excluded = result.excluded.find((item) => item.regionId === region.id);
-            return <li key={region.id}>
-              <button className="card" onClick={() => go({ name: 'region', regionId: region.id })}>
-                <strong>{region.name}</strong>
-                <span>{excluded?.reason === 'no_data' ? '장소 준비 중'
-                  : excluded?.reason === 'too_far'
-                  ? `최대 거리 밖 · 출발지에서 ${excluded.distanceKm.toFixed(1)} km`
-                  : excluded?.reason === 'no_eligible_places'
-                    ? '추천 조건에 맞는 장소 없음'
-                    : ''}</span>
-                <span className="recommend-link">장소 살펴보기 →</span>
-              </button>
-            </li>;
-          })}
-        </ul>
-      </section>}
     </section>
   );
 }

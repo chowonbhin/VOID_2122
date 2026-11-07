@@ -1,6 +1,6 @@
-import { useRef, useState, type KeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import type { Region, RegionRecommendation } from '../../domain/types';
-import { dongByCode, dongs, dongsOfRegion, mapAreas, pathOfDong, wholeBox } from './ansanGeo';
+import { dongByCode, dongsOfRegion, mapAreas, pathOfDong, project } from './ansanGeo';
 import type { RecommendResult } from '../../domain/score';
 import './map.css';
 
@@ -30,12 +30,33 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
   const [initial] = useState(active);
   const positioned = useRef(false);
   const [hovered, setHovered] = useState<string>();
-  const show = (index: number) => {
+  const [query, setQuery] = useState('');
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [selected, setSelected] = useState<string>();
+  const [mapWidth, setMapWidth] = useState(320);
+  const regionElements = useRef(new Map<string, SVGGElement>());
+  const pendingFocus = useRef<string | null>(null);
+  useEffect(() => {
+    const element = slider.current;
+    if (!element) return;
+    const observer = new ResizeObserver(() => setMapWidth(element.clientWidth));
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    if (!pendingFocus.current) return;
+    const element = regionElements.current.get(pendingFocus.current);
+    if (element && !element.closest('[inert]')) {
+      element.focus({ preventScroll: true });
+      pendingFocus.current = null;
+    }
+  }, [selected, active]);
+  const show = (index: number, animate = true) => {
     const element = slider.current;
     if (!element) return;
     // onScroll owns the active slide. Switching it before a smooth scroll starts
     // briefly makes the focused target inert again on the first scroll frame.
-    const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const smooth = animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     element.scrollTo({ left: index * element.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
   };
   const shapes = regions.flatMap(region => {
@@ -46,39 +67,98 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
     const score = item?.score ?? null, level = levels[region.id] ?? 0;
     const exclusion = exclusions?.find(excluded => excluded.regionId === region.id);
     const recommended = !!item && score! > 0;
-    const note = recommended ? ` · 오늘의 추천 ${rank}순위`
-      : searchConfigured && exclusion?.reason === 'too_far' ? ' · 선택한 거리 밖'
+    const note = searchConfigured && exclusion?.reason === 'too_far' ? ' · 선택한 거리 밖'
         : region.placeIds.length ? '' : ' · 장소 준비 중';
     const status = `${FAMILIARITY[level].label}${note}`;
-    return [{ region, dong, recommended, score, level, status, fill: FAMILIARITY[level].fill,
-      label: `지도 ${region.name} · ${status}${home?.code === dong.code ? ' · 내 동네' : ''} · 동네로 들어가기` }];
+    return [{ region, dong, recommended, rank, score, level, status, fill: FAMILIARITY[level].fill,
+      label: `지도 ${region.name} · ${status}${recommended ? ` · 오늘의 추천 ${rank}순위` : ''}${home?.code === dong.code ? ' · 내 동네' : ''} · 동네로 들어가기` }];
   });
   const onKey = (event: KeyboardEvent, id: string) => {
     if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onRegionSelect(id); }
   };
   const focus = shapes.find(shape => shape.region.id === hovered);
+  const normalizedQuery = query.replace(/\s/g, '').toLocaleLowerCase('ko-KR');
+  const matches = normalizedQuery ? shapes.filter(shape =>
+    `${shape.dong.district}${shape.region.name}`.includes(normalizedQuery)
+    || (normalizedQuery === '대부도' && shape.region.name === '대부동'))
+    .sort((a, b) => a.region.name.localeCompare(b.region.name, 'ko')) : [];
+  const selectResult = (shape: typeof shapes[number]) => {
+    const index = mapAreas.findIndex(area => area.dongs.some(dong => dong.code === shape.dong.code));
+    pendingFocus.current = shape.region.id;
+    setSelected(shape.region.id);
+    setHovered(shape.region.id);
+    setQuery(shape.region.name);
+    setSearchOpen(false);
+    show(index, false);
+    setActive(index);
+    // Re-selecting the same result does not trigger the focus effect again.
+    if (index === active) {
+      regionElements.current.get(shape.region.id)?.focus({ preventScroll: true });
+      pendingFocus.current = null;
+    }
+  };
 
   return <section className="exploration-map ansan-map" aria-label="안산 탐험 지도">
     <div className="ansan-map-heading">
       <div>
         <h2>나의 안산 지도</h2>
       </div>
-      <svg className="ansan-overview" viewBox={wholeBox.join(' ')} aria-hidden="true">
-        {dongs.map(d => <path key={d.code} d={pathOfDong(d)} fillRule="evenodd" />)}
-        <rect x={mapAreas[active].box[0]} y={mapAreas[active].box[1]} width={mapAreas[active].box[2]} height={mapAreas[active].box[3]} rx="8" />
-      </svg>
+      <form className="map-search" role="search" aria-label="지도 지역 검색"
+        onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setSearchOpen(false); }}
+        onKeyDown={event => { if (event.key === 'Escape') setSearchOpen(false); }}
+        onSubmit={event => {
+          event.preventDefault();
+          const exact = matches.find(shape => shape.region.name === normalizedQuery);
+          if (exact || matches.length === 1) selectResult(exact ?? matches[0]);
+          else setSearchOpen(true);
+        }}>
+        <div className="map-search-field">
+          <input type="search" aria-label="지역 검색" placeholder="지역 검색" value={query}
+            aria-controls="map-search-results" autoComplete="off"
+            onFocus={() => setSearchOpen(true)} onChange={event => { setQuery(event.target.value); setSearchOpen(true); }} />
+          <button type="submit" aria-label="지역 찾기">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>
+          </button>
+        </div>
+        {searchOpen && normalizedQuery && <div className="map-search-dropdown">
+          {matches.length ? <ul id="map-search-results" aria-label="지역 검색 결과">
+            {matches.map(shape => <li key={shape.region.id}><button type="button" onClick={() => selectResult(shape)}>
+              <strong>{shape.region.name}</strong><span>{shape.dong.district}</span>
+            </button></li>)}
+          </ul> : <p role="status">일치하는 동네가 없어요.</p>}
+        </div>}
+      </form>
     </div>
-    <div className="ansan-area-tabs" role="group" aria-label="지도 지역 선택">
-      {mapAreas.map((area, index) => <button type="button" key={area.id} aria-pressed={active === index} onClick={() => show(index)}>
-        {area.label}{index === 1 ? ' →' : ''}
-      </button>)}
-    </div>
+    <div className="ansan-map-stage">
     <div className="ansan-slider" ref={element => {
       slider.current = element;
       if (element && initial && !positioned.current) { positioned.current = true; element.scrollLeft = initial * element.clientWidth; }
     }} aria-label="좌우로 넘기는 지역 지도"
       onScroll={event => setActive(Math.min(mapAreas.length - 1, Math.max(0, Math.round(event.currentTarget.scrollLeft / Math.max(1, event.currentTarget.clientWidth)))))}>
-      {mapAreas.map((area, index) => <div className="ansan-slide" role="group" aria-label={`${area.label} 지도 · ${index + 1} / ${mapAreas.length}`}
+      {mapAreas.map((area, index) => {
+        // Keep pins readable at any viewport, including SVG letterboxing on wide screens.
+        const unit = Math.max(area.box[2] / Math.max(1, mapWidth), area.box[3] / Math.min(Math.max(1, mapWidth) * .75, 640));
+        const pins = shapes.filter(shape => shape.recommended && shape.rank <= 3 && area.dongs.some(dong => dong.code === shape.dong.code))
+          .sort((a, b) => a.rank - b.rank)
+          .map(shape => { const [x, y] = project([shape.dong.labelPoint.lng, shape.dong.labelPoint.lat]); return { shape, x, y, anchorX: x, anchorY: y }; });
+        // Nudge nearby pins apart; leader lines retain the real dong positions.
+        for (let round = 0; round < 40; round++) {
+          for (let a = 0; a < pins.length; a++) for (let b = a + 1; b < pins.length; b++) {
+            const left = pins[a], right = pins[b];
+            const dx = right.x - left.x || .001, dy = right.y - left.y;
+            const distance = Math.hypot(dx, dy), gap = 64 * unit;
+            if (distance < gap) {
+              const push = (gap - distance) / 2;
+              left.x -= dx / distance * push; left.y -= dy / distance * push;
+              right.x += dx / distance * push; right.y += dy / distance * push;
+            }
+          }
+          for (const pin of pins) {
+            pin.x = Math.max(area.box[0] + 24 * unit, Math.min(area.box[0] + area.box[2] - 24 * unit, pin.x));
+            pin.y = Math.max(area.box[1] + 24 * unit, Math.min(area.box[1] + area.box[3] - 24 * unit, pin.y));
+          }
+        }
+        return <div className="ansan-slide" role="group" aria-label={`${area.label} 지도 · ${index + 1} / ${mapAreas.length}`}
         aria-hidden={index !== active} inert={index !== active} key={area.id}>
         <svg viewBox={area.box.join(' ')} className="ansan-svg">
           <defs><pattern id={`home-hatch-${area.id}`} width={area.box[2] / 70} height={area.box[2] / 70} patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -86,7 +166,8 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
           </pattern></defs>
           {shapes.filter(shape => area.dongs.some(d => d.code === shape.dong.code)).map(shape =>
             <g key={shape.region.id} role="button" tabIndex={0} aria-label={shape.label}
-              className={`ansan-region${shape.recommended ? ' recommended' : ''}`}
+              ref={element => { if (element) regionElements.current.set(shape.region.id, element); else regionElements.current.delete(shape.region.id); }}
+              className={`ansan-region${shape.recommended ? ' recommended' : ''}${shape.region.id === selected ? ' search-selected' : ''}`}
               onMouseEnter={() => setHovered(shape.region.id)} onFocus={() => setHovered(shape.region.id)}
               onClick={() => onRegionSelect(shape.region.id)} onKeyDown={event => onKey(event, shape.region.id)}>
               <title>{`${shape.region.name} · ${shape.status}`}</title>
@@ -95,8 +176,29 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
             </g>)}
           {home && area.dongs.some(d => d.code === home.code) && <path className="ansan-home-hatch" d={pathOfDong(home)} fillRule="evenodd"
             fill={`url(#home-hatch-${area.id})`} role="img" aria-label={`내 동네 · ${home.name}`} />}
+          {pins.map(pin => <g key={pin.shape.region.id} className="map-rank-marker">
+            <line x1={pin.anchorX} y1={pin.anchorY} x2={pin.x} y2={pin.y} className="map-rank-leader" />
+            <circle cx={pin.anchorX} cy={pin.anchorY} r={2.5 * unit} className="map-rank-anchor" />
+            <g role="button" tabIndex={0} className="map-rank-pin" aria-label={`추천 ${pin.shape.rank}위 ${pin.shape.region.name} 동네로 들어가기`}
+              transform={`translate(${pin.x} ${pin.y}) scale(${unit})`}
+              onMouseEnter={() => setHovered(pin.shape.region.id)} onFocus={() => setHovered(pin.shape.region.id)}
+              onClick={() => onRegionSelect(pin.shape.region.id)} onKeyDown={event => onKey(event, pin.shape.region.id)}>
+              <circle r="22" className="map-rank-hit" />
+              <circle r="21" className="map-rank-face" />
+              <text textAnchor="middle" dominantBaseline="central" aria-hidden="true">{pin.shape.rank}</text>
+            </g>
+          </g>)}
         </svg>
-      </div>)}
+      </div>; })}
+    </div>
+      <button type="button" className="map-area-arrow previous" aria-label="이전 지도" title="안산 도심"
+        disabled={active === 0} onClick={() => { setHovered(undefined); show(active - 1); }}>
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
+      </button>
+      <button type="button" className="map-area-arrow next" aria-label="다음 지도" title="대부도"
+        disabled={active === mapAreas.length - 1} onClick={() => { setHovered(undefined); show(active + 1); }}>
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+      </button>
     </div>
     <p className="map-hover" aria-live="polite">{focus ? `${focus.region.name} · ${focus.status}` : ''}</p>
     <ul className="ansan-legend" aria-label="지도 범례">
