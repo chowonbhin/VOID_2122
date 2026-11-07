@@ -44,3 +44,9 @@ URL as well as locally.
 - Added regression tests before fix (3 failures reproduced), then all 126 unit tests, typecheck and build passed. Source values/formula remain unchanged.
 - PC/mobile golden path each 3 runs PASS 5/5: 02-57-18 / 02-57-47-mobile, no console errors or SLOW. Screenshot hosu-lv1-map.png inspected.
 - Local preview updated; no main merge/push/deploy. No new API/LLM dependency. 03:00 captain scope checkpoint upcoming.
+
+## Main copy cleanup — 2026-11-08 03:52 KST
+- User observed added small print on main after pull; fa5378b added duplicate source/policy paragraphs outside the floating DataNotice.
+- Consolidated those paragraphs into the existing notice; preserved real data, scores, map modes and cards.
+- Typecheck/build, recommendation/data-notice 5 browser tests, local desktop golden path 5/5 passed. Mobile main screenshot inspected in main-copy-cleanup.
+- No remote write; preview at 3011 serves current cleanup. Previous 138-unit result remains applicable to unchanged logic.
