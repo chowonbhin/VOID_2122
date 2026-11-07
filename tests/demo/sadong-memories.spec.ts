@@ -15,7 +15,7 @@ test('Sadong alone shows two real memory examples; selection, fixed examples, hi
   const memories = page.getByRole('region', { name: '이 동네의 추억', exact: true });
   const examples = memories.getByRole('list').getByRole('button');
   await expect(examples).toHaveCount(2);
-  await expect(memories).toContainText('방문 기록에는 남지 않아요');
+  await expect(memories.getByText('추억 예시', { exact: true })).toHaveCount(2);
   await expect(page.getByRole('button', { name: /추억 예시 지도에서 선택$/ })).toHaveCount(2);
   const assertPinSpacing = async () => {
     const pins = await page.locator('.dong-pin').evaluateAll(nodes => nodes.map(node => {

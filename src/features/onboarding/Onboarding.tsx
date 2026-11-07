@@ -13,11 +13,11 @@ import { buildOnboardingPayload, isBeginner } from './onboardingScore';
 import { submitOnboarding } from './submit';
 import './onboarding.css';
 
-const RESIDENCE: { value: Residence; label: string; hint: string }[] = [
-  { value: 'visitor', label: '여행·방문 중이에요', hint: '안산에 살지 않아요' },
-  { value: 'under_6m', label: '6개월이 안 됐어요', hint: '새로 이사 왔어요' },
-  { value: '6m_2y', label: '6개월 ~ 2년', hint: '조금 익숙해졌어요' },
-  { value: 'over_2y', label: '2년 이상', hint: '오래 살았어요' },
+const RESIDENCE: { value: Residence; label: string }[] = [
+  { value: 'visitor', label: '여행·방문 중이에요' },
+  { value: 'under_6m', label: '6개월이 안 됐어요' },
+  { value: '6m_2y', label: '6개월 ~ 2년' },
+  { value: 'over_2y', label: '2년 이상' },
 ];
 
 const toggle = <T extends string>(list: T[], id: T) => list.includes(id) ? list.filter(item => item !== id) : [...list, id];
@@ -94,15 +94,14 @@ export function Onboarding() {
     {step === 1 && <>
       <p className="eyebrow">Q1 · 안산과 나</p>
       <h1>안산에 산 지 얼마나 됐나요?</h1>
-      <p className="lead">답에 맞춰 첫 지도를 준비할게요. 6개월이 안 됐거나 여행 중이면 바로 시작해요.</p>
       <div className="onboarding-options" role="radiogroup" aria-label="안산 거주 시기">
         {RESIDENCE.map(option => <button type="button" role="radio" key={option.value} aria-checked={residence === option.value}
           className="onboarding-option" onClick={() => setResidence(option.value)}>
-          <strong>{option.label}</strong><span>{option.hint}</span>
+          <strong>{option.label}</strong>
         </button>)}
       </div>
       {residence && residence !== 'visitor' && <label className="onboarding-home">
-        지금 사는 동네 <span>(선택 · 2026-10-01 행정동 기준)</span>
+        지금 사는 동네 <span>(선택)</span>
         <select value={home} onChange={event => setHome(event.target.value)}>
           <option value="">선택 안 함</option>
           {[...dongs].sort((a, b) => a.name.localeCompare(b.name, 'ko')).map(dong => <option key={dong.code} value={dong.code}>{dong.name}</option>)}
@@ -114,7 +113,6 @@ export function Onboarding() {
     {step === 2 && <>
       <p className="eyebrow">Q2 · 가본 동네</p>
       <h1>안산에서 가본 동네를 알려주세요</h1>
-      <p className="lead">가봤던 동네라면 "여기 가봤어요"를 눌러요. 처음 지도 색과 추천에 반영돼요.</p>
       <CardDeck label="가본 동네 카드" items={deckDongs} checked={visitedDongs} onToggle={id => setVisitedDongs(list => toggle(list, id))}
         render={dong => <>
           <svg className="deck-map" viewBox={(mapAreas.find(area => area.dongs.some(d => d.code === dong.code))?.box ?? wholeBox).join(' ')} aria-hidden="true">
@@ -131,7 +129,6 @@ export function Onboarding() {
     {step === 3 && <>
       <p className="eyebrow">Q3 · {ownArea && homeDong ? `${homeDong.name}의 장소` : `가까운 탐험 동네 · ${homeRegion?.name ?? ''}`}</p>
       <h1>{ownArea ? '지금 동네에서 가본 곳이 있나요?' : '이 동네에서 가본 곳이 있나요?'}</h1>
-      <p className="lead">{ownArea ? '' : '내 동네의 장소 데이터는 준비 중이라 장소 데이터가 있는 가장 가까운 동네로 물어볼게요. '}가본 곳을 체크하면 처음부터 덜 알려진 곳 위주로 추천해요.</p>
       {deckPlaces.length > 0 && <CardDeck label="가본 장소 카드" items={deckPlaces} checked={visitedPlaces} onToggle={id => setVisitedPlaces(list => toggle(list, id))}
         render={place => <>
           <p className="deck-kicker">{CATEGORY_LABELS[place.category]}{place.isVirtual ? ' · 시연용 장소' : ''}</p>
@@ -147,7 +144,7 @@ export function Onboarding() {
     {step === 4 && <>
       <p className="eyebrow">Q{steps.length} · 관심 활동</p>
       <h1>어떤 활동을 좋아하나요?</h1>
-      <p className="lead">고른 활동 위주로 추천해요. 선택하지 않으면 모든 활동을 포함해요.</p>
+      <p className="lead">복수 선택 · 미선택 시 전체</p>
       <div className="onboarding-interests" role="group" aria-label="관심 활동">
         {(Object.keys(CATEGORY_LABELS) as Category[]).map(category => <label key={category} className="onboarding-interest">
           <input type="checkbox" checked={interests.includes(category)} onChange={() => setInterests(list => toggle(list, category))} />

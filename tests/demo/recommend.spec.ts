@@ -21,7 +21,7 @@ test('interest and distance filters constrain the same displayed/scored set; the
   const selectedCount = await list(page).locator(':scope > li').count();
   expect(selectedCount).toBeGreaterThan(0);
   expect(selectedCount).toBeLessThan(20);
-  await expect(list(page).getByText(/자연·산책 ·/)).toHaveCount(selectedCount);
+  await expect(list(page).getByText(/^자연·산책(?: ·|$)/)).toHaveCount(selectedCount);
   await page.getByRole('button', { name: '전체 후보' }).click();
   expect(await list(page).locator(':scope > li').count()).toBeGreaterThan(20);
   await page.getByRole('button', { name: '추천 장소' }).click();

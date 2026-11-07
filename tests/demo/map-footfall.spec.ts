@@ -30,7 +30,7 @@ test('a real visit keeps the main screen score-free and the 동네 page free of 
   await setup(page);
   const card = page.getByRole('list', { name: '장소 추천' }).getByRole('button').filter({ hasText: '본오1동' }).first();
   await expect(card).toContainText('오늘의 추천');
-  await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toContainText('테라코타 테두리: 오늘의 추천');
+  await expect(page.getByRole('list', { name: '지도 범례' })).toContainText('오늘의 추천');
   await openBono(page);
   await expect(page.locator('.region-detail')).not.toContainText('유동인구');
   const panel = await openVisit(page, '바바카멜');
@@ -56,7 +56,7 @@ test('drawing and real-place exploration make no external map or API calls in br
 test('the main map is familiarity-only with home hatching; the hidden score still drives order', async ({ page }) => {
   await setup(page);
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
-  await expect(map).toContainText('색이 짙을수록 내가 좋아하는 동네예요.');
+  await expect(map.getByRole('list', { name: '지도 범례' })).toContainText('내가 좋아하는 동네');
   await expect(map.getByRole('button', { name: '점수 보기', exact: true })).toHaveCount(0);
   await expect(mapScore(page)).toHaveAttribute('fill', '#E1EBDD');
   expect(Number(await mapScore(page).getAttribute('data-score'))).toBeGreaterThan(0);

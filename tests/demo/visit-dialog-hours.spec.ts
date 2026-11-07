@@ -15,7 +15,19 @@ test('name-side visit button opens a focused date editor; cancel and Escape pres
   await expect(trigger).toHaveAttribute('aria-haspopup', 'dialog');
   await expect(card.getByRole('button', { name: '바바카멜 카드에서 선택' })).toBeVisible();
   fs.mkdirSync(out, { recursive: true });
-  await card.screenshot({ path: out + '/place-card-320.png' });
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    const visit = await trigger.boundingBox();
+    const map = await card.getByRole('button', { name: '바바카멜 카드에서 선택' }).boundingBox();
+    expect(visit).not.toBeNull(); expect(map).not.toBeNull();
+    // Photo slot sits right of the title block; the visit button sits under the name.
+    expect(map!.x).toBeGreaterThanOrEqual(visit!.x + visit!.width);
+    expect(visit!.height).toBeGreaterThanOrEqual(44);
+    expect(map!.height).toBeGreaterThanOrEqual(44);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await card.screenshot({ path: out + '/place-card-' + width + '.png' });
+  }
+  await page.setViewportSize({ width: 320, height: 844 });
   const before = await page.evaluate(() => localStorage.getItem('ansan-explore/v1'));
   const panel = await openVisit(page, '바바카멜');
   await expect(panel.getByLabel('방문일', { exact: true })).toHaveValue('2026-11-08');
@@ -56,7 +68,6 @@ test('today’s actual schedule ignores saved search date and updates across mid
   await expect(hours).toContainText('오늘 휴무');
   await expect(hours).not.toContainText('09:00');
   await page.clock.fastForward(6 * 24 * 60 * 60 * 1000);
-  // Expired hours: the box is hidden and the single conversational note explains it.
-  await expect(hours).toHaveCount(0);
-  await expect(card).toContainText('운영 정보가 오래됐어요');
+  // Expired hours: explained once, conversationally, inside the today-hours box.
+  await expect(hours).toContainText('운영 정보가 오래됐어요');
 });

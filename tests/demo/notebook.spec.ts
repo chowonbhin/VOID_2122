@@ -79,7 +79,7 @@ async function addPhoto(page: import('@playwright/test').Page, memo: string, dat
   await page.getByRole('button', { name: '사진 남기기', exact: true }).click();
   const editor = page.getByRole('dialog', { name: '한 장의 추억 남기기', exact: true });
   await editor.getByLabel('추억 사진 선택', { exact: true }).setInputFiles('public/memories/donis-storefront.jpg');
-  await editor.getByLabel('어디에서 남긴 추억인가요?').selectOption(DONIS);
+  await editor.getByLabel('장소', { exact: true }).selectOption(DONIS);
   await editor.getByLabel('기억할 날짜', { exact: true }).fill(date);
   await editor.getByLabel('짧은 메모').fill(memo);
   await editor.getByRole('button', { name: '추억 저장하기', exact: true }).click();

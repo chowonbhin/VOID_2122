@@ -107,7 +107,7 @@ export function VisitPanel({ placeId }: { placeId: string }) {
           type="date"
           value={date}
           required
-          aria-describedby={`${formId}-hint`}
+          aria-describedby={alreadyRecorded ? `${formId}-hint` : undefined}
           onChange={(event) => {
             setDate(event.target.value);
             setError('');
@@ -116,9 +116,7 @@ export function VisitPanel({ placeId }: { placeId: string }) {
         />
         <button type="submit" disabled={alreadyRecorded}>방문 기록</button>
       </form>
-      <p id={`${formId}-hint`} className="visit-hint">
-        {alreadyRecorded ? '이 날짜의 방문 기록이 있어요. 다른 방문일을 선택하면 재방문을 남길 수 있어요.' : '직접 방문한 날짜를 남겨주세요.'}
-      </p>
+      {alreadyRecorded && <p id={`${formId}-hint`} className="visit-hint">이미 기록한 날짜예요.</p>}
       {error && <p role="alert" className="visit-error">{error}</p>}
       {message && <p role="status" className="visit-message">{message}</p>}
 

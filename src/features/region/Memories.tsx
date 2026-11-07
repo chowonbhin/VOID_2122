@@ -19,7 +19,6 @@ export function Memories({ items, selectedId, onSelect, controls }: {
   return <section className="region-memories" aria-label="이 동네의 추억">
     <h2>이 동네의 추억 <span className="region-memory-count">{items.length}</span></h2>
     {controls}
-    {items.some(item => item.sample) && <p className="region-note memory-preview-note">사동의 도니스커피와 초지참숯불갈비를 담은 추억 예시예요. 방문 기록에는 남지 않아요.</p>}
     {items.length ? <>
       <ul>
         {items.map(item => <li key={item.id}>
@@ -33,6 +32,6 @@ export function Memories({ items, selectedId, onSelect, controls }: {
         <figcaption><strong>{selected.title}</strong> · {selected.sample ? '추억 예시' : koreanDate(selected.dates[0])}</figcaption>
         <p>{selected.memo}</p>
       </figure>}
-    </> : <p className="region-note">아직 이 동네에 남긴 추억이 없어요. 장소를 다녀온 뒤 방문을 기록하면 지도에 추억이 생겨요.</p>}
+    </> : <p className="region-note">아직 남긴 추억이 없어요.</p>}
   </section>;
 }
