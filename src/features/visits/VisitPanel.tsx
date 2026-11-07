@@ -9,7 +9,6 @@ import {
   addVisitRecord,
   changeVisitDate,
   deleteVisitRecord,
-  isVisitDate,
   VISIT_ERROR_MESSAGES,
   type VisitRecordError,
   type VisitRecordResult,
@@ -32,10 +31,7 @@ export function VisitPanel({ placeId }: { placeId: string }) {
   const { state, update } = useAppState();
   const formId = useId();
   const place = content.places.find((item) => item.id === placeId);
-  const [date, setDate] = useState(() => {
-    const selected = state.search?.when.slice(0, 10) ?? '';
-    return isVisitDate(selected) ? selected : todayInSeoul();
-  });
+  const [date, setDate] = useState(todayInSeoul);
   const [editing, setEditing] = useState<{ id: string; date: string } | null>(null);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');

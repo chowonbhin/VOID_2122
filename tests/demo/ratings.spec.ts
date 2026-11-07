@@ -1,5 +1,5 @@
 import { test, expect } from './baseline';
-import { base, setup, list } from './real';
+import { base, setup, list, openVisit, closeVisit } from './real';
 
 // External star ratings still feed scoring (covered by unit tests) but are no longer shown on the 동네 page.
 test('external star ratings are not shown; review counts stay and a visit still works', async ({ page }) => {
@@ -13,11 +13,12 @@ test('external star ratings are not shown; review counts stay and a visit still 
   await expect(rated).toContainText('방문자 리뷰 수 357건');
   await expect(places).not.toContainText('별점');
   await expect(places).not.toContainText('점수');
-  const panel = rated.getByRole('region', { name: '레드지 방문 기록', exact: true });
+  const panel = await openVisit(page, '레드지');
   await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
   await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
-  await page.getByRole('button', { name: '가본 장소', exact: true }).click();
   await expect(panel).toHaveAttribute('data-region-level', '1');
+  await closeVisit(page);
+  await page.getByRole('button', { name: '가본 장소', exact: true }).click();
   await expect(rated).not.toContainText('별점');
   await page.getByRole('button', { name: '발견할 20곳', exact: true }).click();
   await expect(places.locator(':scope > li')).toHaveCount(20);

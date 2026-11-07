@@ -12,6 +12,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import fs from 'node:fs';
 import path from 'node:path';
+import { openVisit, closeVisit } from './real';
 
 const BASE_URL = process.env.BASE_URL ?? 'http://localhost:3000';
 const EVIDENCE_DIR = process.env.EVIDENCE_DIR ?? '.claude/state/evidence/manual';
@@ -111,17 +112,17 @@ test('golden path', async ({ page }) => {
       await page.getByRole('region', { name: '안산 탐험 지도' }).scrollIntoViewIfNeeded();
     });
     await demoStep(page, '4. Record a real visit → score recomputation and Lv.1 with 20 places retained', async () => {
-      const panel = page.getByRole('region', { name: `${VISITED} 방문 기록`, exact: true });
+      const panel = await openVisit(page, VISITED);
       await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
       await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
       await expect(page.getByRole('list', { name: '행정동 장소 추천' }).locator(':scope > li')).toHaveCount(20);
-      await page.getByRole('button', { name: '가본 장소', exact: true }).click();
       // Lv is no longer printed; the panel keeps it as a hidden data hook.
       await expect(panel).toHaveAttribute('data-region-level', '1');
       await expect(panel.getByText('다녀왔어요', { exact: true })).toBeVisible();
       await expect(panel.locator('time')).toHaveText('2026-11-08');
     });
     await demoStep(page, '5. Return and reload → same real score, source counts and visit persist', async () => {
+      await closeVisit(page);
       await page.getByRole('link', { name: '안산에 스며들다' }).click();
       afterScore = Number(await mapScore().getAttribute('data-score'));
       expect(afterScore).toBeLessThan(beforeScore);
@@ -131,10 +132,11 @@ test('golden path', async ({ page }) => {
       await page.getByRole('button', { name: /^지도 본오1동/ }).focus();
       await page.keyboard.press('Enter');
       await page.getByRole('button', { name: '가본 장소', exact: true }).click();
-      const panel = page.getByRole('region', { name: `${VISITED} 방문 기록`, exact: true });
+      const panel = await openVisit(page, VISITED);
       await expect(panel.locator('time')).toHaveText('2026-11-08');
       // Lv is no longer printed; the panel keeps it as a hidden data hook.
       await expect(panel).toHaveAttribute('data-region-level', '1');
+      await closeVisit(page);
       await page.getByRole('link', { name: '안산에 스며들다' }).click();
       await expect(page.getByRole('heading', { name: '추천 행정동', exact: true })).toBeVisible();
       await page.getByRole('region', { name: '안산 탐험 지도' }).scrollIntoViewIfNeeded();

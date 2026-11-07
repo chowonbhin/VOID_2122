@@ -1,6 +1,6 @@
 import { test, expect } from './baseline';
 import fs from 'node:fs';
-import { base, setup } from './real';
+import { base, setup, openVisit, closeVisit } from './real';
 
 const out = '.claude/state/evidence/notebook-design';
 const currentState = (page: import('@playwright/test').Page) => page.evaluate(() => localStorage.getItem('ansan-explore/v1'));
@@ -42,6 +42,8 @@ test('fixed actual storefronts render on desktop and phones; canceling the photo
   await expect(gallery.getByRole('img')).toHaveCount(2);
   await expect(gallery).toContainText('도니스커피');
   await expect(gallery).toContainText('초지참숯불갈비');
+  await expect(page.locator('.notebook-end')).toHaveText('안산에서, 한 장씩.');
+  await expect(page.locator('.notebook-end')).not.toContainText('✳');
   fs.mkdirSync(out, { recursive: true });
   for (const width of [1280, 390, 320]) {
     await page.setViewportSize({ width, height: 844 });
@@ -92,10 +94,11 @@ test('saved photos and notes survive reload; multiple photos, sources and deleti
   await setup(page);
   await page.goto(base + '/#/region/dong-4127152500');
   await page.getByRole('region', { name: '이 동네의 추억', exact: true }).getByRole('button', { name: /도니스커피/ }).click();
-  const visits = page.getByRole('region', { name: '도니스커피 방문 기록', exact: true });
+  const visits = await openVisit(page, '도니스커피');
   await visits.getByLabel('방문일', { exact: true }).fill('2026-11-08');
   await visits.getByRole('button', { name: '방문 기록', exact: true }).click();
   await expect(visits.getByRole('status')).toHaveText('방문 기록을 저장했어요.');
+  await closeVisit(page);
   const before = await currentState(page);
   await page.goto(base + '/#/recommend');
   const scores = await page.locator('[data-region-id]').evaluateAll(nodes => nodes.map(n => n.getAttribute('data-score')));

@@ -40,7 +40,6 @@
 .notebook-next strong { font-size: 14px; color: var(--fg); font-weight: 550; margin-bottom: 8px; }
 .notebook-next button > span:last-child { font-size: 12px; }
 .notebook-end { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13px; color: #7c8878; margin-top: 46px; padding-top: 24px; border-top: 1px solid var(--line); }
-.notebook-end > span { font-size: 22px; color: var(--terracotta); }
 .notebook-empty { text-align: center; padding: 44px 16px; border: 1px dashed var(--line-strong); border-radius: 16px; }
 .notebook-empty > svg, .notebook-no-photo svg { width: 50px; height: 50px; color: #8d9e8c; }
 .notebook-empty h2 { font-size: 19px; margin: 14px 0 10px; }

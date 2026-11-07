@@ -235,7 +235,7 @@ export function NotebookPage() {
       </li>)}
       <li className="notebook-next"><button disabled={loading || !!loadError} onClick={() => openEditor()}><span className="notebook-next-symbol" aria-hidden="true">＋</span><strong>다음 추억은 어디일까요?</strong><span>내 사진으로 수첩을 채워보세요</span></button></li>
     </ul> : <div className="notebook-empty"><Camera /><h2>아직 남긴 발걸음이 없어요</h2><p>다녀온 장소에서 방문을 기록하면<br />이 수첩에 한 곳씩 모여요.</p><a href="#/recommend">동네 둘러보기 →</a></div>}
-    <div className="notebook-end"><span aria-hidden="true">✳</span> 안산에서, 한 장씩.</div>
+    <div className="notebook-end">안산에서, 한 장씩.</div>
     {selected && <AlbumDetail key={selected.place.id} album={selected} showSample={filter === 'sample'} canAdd={!loading && !loadError} onClose={() => setSelectedId(undefined)}
       onAdd={() => openEditor(selected.place.id)} onDeleted={id => { setPhotos(current => current.filter(photo => photo.id !== id)); setNotice('사진을 삭제했어요.'); }} />}
     {adding && <PhotoEditor albums={albums} initialPlaceId={addPlaceId} onClose={() => setAdding(false)} onSaved={photo => {

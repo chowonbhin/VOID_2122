@@ -1,6 +1,6 @@
 import { test, expect } from './baseline';
 import data from '../../src/data/research/real-places.json' with { type: 'json' };
-import { base, setup, list } from './real';
+import { base, setup, list, openVisit, closeVisit } from './real';
 
 test('known and suspected chains stay outside cards, markers and scores; pending classification is labelled', async ({ page }) => {
   await setup(page);
@@ -24,21 +24,26 @@ test('pending real-place visits update score and Lv while missing evidence stays
   const first = list(page).locator(':scope > li[data-rated="false"]').first();
   const heading = await first.getByRole('heading').innerText();
   const name = heading.replace(/^\d+\. /, '');
-  const panel = first.getByRole('region');
+  const panel = await openVisit(page, name);
   await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
   await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
   await expect(list(page).locator(':scope > li')).toHaveCount(20);
   await expect(list(page).getByRole('heading', { name: new RegExp(name) })).toHaveCount(0);
+  // The editor survives the place moving out of the top 20.
+  await expect(panel).toBeVisible();
+  await expect(panel).toHaveAttribute('data-region-level', '1');
+  await expect(panel).toHaveAttribute('data-place-level', '2');
+  await closeVisit(page);
   await page.getByRole('button', { name: '가본 장소' }).click();
   await expect(list(page)).toContainText(name);
-  await expect(list(page).locator('[data-region-level="1"]').first()).toBeAttached();
-  await expect(list(page).locator('[data-place-level="2"]').first()).toBeAttached();
   await expect(list(page)).not.toContainText('Lv.');
   await expect(list(page)).not.toContainText('장소 Lv 검토 대기');
   await page.reload();
   await page.getByRole('button', { name: '가본 장소' }).click();
-  await expect(list(page)).toContainText('2026-11-08');
-  await list(page).getByRole('button', { name: '2026-11-08 방문 기록 삭제' }).click();
+  await openVisit(page, name);
+  await expect(panel).toContainText('2026-11-08');
+  await panel.getByRole('button', { name: '2026-11-08 방문 기록 삭제' }).click();
+  await closeVisit(page);
   await page.getByRole('button', { name: '발견할 20곳', exact: true }).click();
   await expect(list(page)).toContainText(name);
 });

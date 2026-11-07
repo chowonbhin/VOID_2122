@@ -1,14 +1,15 @@
 import { test, expect } from './baseline';
-import { base, setup, openBono, mapScore } from './real';
+import { base, setup, openBono, mapScore, openVisit, closeVisit } from './real';
 
 test('real visit changes exact map score and shade; deletion and reload restore it', async ({ page }) => {
   await setup(page);
   const score = await mapScore(page).getAttribute('data-score');
   const color = await mapScore(page).getAttribute('fill');
   await openBono(page);
-  const panel = page.getByRole('region', { name: '바바카멜 방문 기록', exact: true });
+  const panel = await openVisit(page, '바바카멜');
   await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
   await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
+  await closeVisit(page);
   await page.getByRole('link', { name: '안산에 스며들다' }).click();
   expect(Number(await mapScore(page).getAttribute('data-score'))).toBeLessThan(Number(score));
   expect(await mapScore(page).getAttribute('fill')).not.toBe(color);
@@ -16,7 +17,9 @@ test('real visit changes exact map score and shade; deletion and reload restore 
   await expect(mapScore(page)).not.toHaveAttribute('fill', color!);
   await openBono(page);
   await page.getByRole('button', { name: '가본 장소', exact: true }).click();
+  await openVisit(page, '바바카멜');
   await panel.getByRole('button', { name: '2026-11-08 방문 기록 삭제' }).click();
+  await closeVisit(page);
   await page.getByRole('link', { name: '안산에 스며들다' }).click();
   await expect(mapScore(page)).toHaveAttribute('data-score', score!);
   await expect(mapScore(page)).toHaveAttribute('fill', color!);
@@ -30,10 +33,11 @@ test('a real visit keeps the main screen score-free and the 동네 page free of 
   await expect(page.getByRole('region', { name: '안산 탐험 지도' })).toContainText('테라코타 테두리: 오늘의 추천');
   await openBono(page);
   await expect(page.locator('.region-detail')).not.toContainText('유동인구');
-  const panel = page.getByRole('region', { name: '바바카멜 방문 기록', exact: true });
+  const panel = await openVisit(page, '바바카멜');
   await panel.getByLabel('방문일', { exact: true }).fill('2026-11-08');
   await panel.getByRole('button', { name: '방문 기록', exact: true }).click();
   await expect(page.locator('.region-detail')).not.toContainText('감점');
+  await closeVisit(page);
   await page.getByRole('link', { name: '안산에 스며들다' }).click();
   await expect(card).toContainText('오늘의 추천');
 });
