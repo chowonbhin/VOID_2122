@@ -3,3 +3,4 @@ time	phase	decision	reason
 2026-11-07T23:05+09:00	kickoff	dropped the [LLM] tag from template step 3; no LLM in MVP	plan has rule-based scoring only; an LLM role can be proposed later
 2026-11-07T23:05+09:00	kickoff	Node 22.12+ (installed 22.22.3) instead of 24 LTS	meets Vite and Playwright requirements and is already installed on the captain machine
 2026-11-07T23:25+09:00	build	keep Vite + React (no Next.js); make it a mobile web app (responsive + PWA manifest)	no SSR/API/SEO need; Next.js SSR conflicts with localStorage and Leaflet; switching later would touch all 4 screens
+2026-11-07T23:40+09:00	build	deploy delegated to chowonbhin (Vercel, auto-deploy from main); deleted empty Vercel project void-2122 under byeunghee02	Vercel could not access chowonbhin/VOID_2122 from the captain account; repo owner deploying avoids the permission problem

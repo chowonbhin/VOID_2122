@@ -1,14 +1,14 @@
 # Handoff: Byeunghee02
 
 phase: build
-branch: Byeunghee02/score-engine → merged to main locally (push pending at 23:16)
-last verify pass: .claude/state/evidence/2026-11-07T23-15-08 (PARTIAL 1/5, steps 2-5 pending)
+branch: Byeunghee02/deploy → merged to main locally
+last verify pass: PARTIAL 3/5 at 23:30 (steps 1, 2, 4 pass; 3 iwtkmn0219 and 5 zT4ek pending)
 in progress: none
-done: step 1 real; shared modules; scoring engine src/domain/score.ts with 23 vitest cases
+done: step 1; shared modules; scoring engine; mobile PWA + verify --mobile; deploy delegated
 next:
-1. Review each owner's step as it merges (verify + screenshots), keep types.ts/score.ts stable
-2. Deploy target (static: Vercel/Netlify) once steps 2-3 are real
-3. M11 persona test plan
+1. Get the Vercel URL from chowonbhin; verify --url and --mobile against it
+2. 00:00 scope check (build_start + 2h): steps 3 and 5 status
+3. M11 persona test plan; demo script draft
 
 ## For captain
 - deadline in clock.md is still unknown
