@@ -55,7 +55,6 @@ function RegionDetail({ regionId }: { regionId: string }) {
   const memoryItems: MemoryItem[] = [...visitMemories, ...samples.map((memory) => ({ id: memory.id, title: memory.title, dates: [memory.date], memo: memory.memo, sample: true }))];
   const home = regionDongs.find((dong) => dong.code === dongByCode(state.profile.homeDongCode ?? '')?.code);
   const markers: MapMarker[] = [
-    { id: 'start', kind: 'start', ...region.start, label: region.start.label, text: 'S' },
     ...(home ? [{ id: 'home', kind: 'home' as const, ...centreLatLng(home), label: `내 동네 · ${home.name}` }] : []),
     ...visiblePlaces.flatMap((place, index) => place.location ? [{ id: place.id, kind: 'place' as const, ...place.location, text: String(index + 1),
       label: `${place.name} 지도에서 선택`, pressed: place.id === selectedPlaceId, remembered: visitedIds.has(place.id) }] : []),
@@ -98,7 +97,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
     <div className="region-design-layout">
       <DongMap target={regionDongs} markers={markers}
         onSelect={(marker) => marker.kind === 'memory' ? setMemoryId(marker.id) : selectPlace(marker.id)} />
-      <p className="region-note">실제 좌표 기반 · 2026-10-01 행정동 경계 · S: 동 대표 지점 · 번호: 아래 장소 목록 순서 · 하트: 기록한 추억 · 점: 실제 위치</p>
+      <p className="region-note">실제 좌표 기반 · 2026-10-01 행정동 경계 · 번호: 아래 장소 목록 순서 · 하트: 기록한 추억 · 점: 실제 위치</p>
       <p className="region-note">경계: SGIS 공공누리 제1유형 · <a href="https://github.com/vuski/admdongkor" target="_blank" rel="noreferrer">vuski/admdongkor</a> 가공 · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a></p>
       {visiblePlaces.some(place => !place.location) && <p className="region-note">정밀 좌표 미확인 장소는 지도 마커 없이 목록에서 안내합니다.</p>}
       <Memories items={memoryItems} selectedId={memoryId} onSelect={selectMemory} />

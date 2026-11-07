@@ -4,7 +4,7 @@ import './map.css';
 
 export interface MapMarker {
   id: string;
-  kind: 'place' | 'memory' | 'start' | 'home';
+  kind: 'place' | 'memory' | 'home';
   lat: number;
   lng: number;
   /** Accessible name; place markers end with "지도에서 선택". */
@@ -84,7 +84,7 @@ export function DongMap({ target, markers, onSelect }: {
     {placed.map(({ marker, x, y }) => {
       const style = pct(x, y);
       const className = `dong-pin kind-${marker.kind}${marker.remembered ? ' remembered' : ''}${marker.pressed ? ' selected' : ''}`;
-      if (marker.kind === 'start' || marker.kind === 'home') return <span key={marker.id} role="img" aria-label={marker.label} className={className} style={style}>
+      if (marker.kind === 'home') return <span key={marker.id} role="img" aria-label={marker.label} className={className} style={style}>
         {marker.kind === 'home' ? <HomeIcon /> : marker.text}
       </span>;
       return <button type="button" key={marker.id} className={className} style={style} aria-label={marker.label}
