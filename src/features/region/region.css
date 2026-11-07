@@ -44,17 +44,8 @@
 .region-recommend .cards { margin: 0; }
 .region-nearby { background: #FFFEFA; border: 1.5px solid var(--line-strong); }
 .region-nearby-link { margin-top: 8px; color: var(--action-primary); font-weight: 800; }
-/* Photo space on each place card (replaces the '지도에서 강조' text button; tap = show on map). */
 .region-place-titles { flex: 1; min-width: 0; }
 .region-place-titles .region-category { margin: 0; }
-.region-detail .place-photo { flex: 0 0 84px; width: 84px; height: 84px; padding: 0; overflow: hidden; border-radius: 16px; border: 1.5px solid var(--line-strong); background: #EEE6D6; }
-.region-detail .place-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.region-detail .place-photo.empty { border-style: dashed; background: repeating-linear-gradient(45deg, #f3ecdd 0 6px, #efe6d4 6px 12px); }
-.place-photo-empty { display: grid; place-items: center; gap: 2px; height: 100%; color: #8a7a5c; font-size: 12px; font-weight: 700; }
-.region-detail .place-photo[aria-pressed="true"] { border: 3px solid var(--action-primary); }
-.region-detail .place-photo:focus-visible { outline: 3px solid #994B32; outline-offset: 3px; }
-.region-detail .place-photo { position: relative; }
-.photo-heart { position: absolute; top: 5px; right: 5px; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; background: #b75d3e; color: #fff; border: 1.5px solid #fffefa; box-shadow: 0 1px 3px #0003; }
 .region-place-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 .region-detail .region-visit-trigger { padding: 8px 10px; border-radius: 12px; font-size: 12px; white-space: nowrap; color: var(--accent); border-color: #bccdc2; background: var(--accent-soft); }
 .region-today-hours { padding: 12px 14px; margin: 12px 0; border-radius: 12px; background: #f4f3e9; font-size: 14px; }
@@ -69,3 +60,6 @@
   .region-detail .region-place-heading { gap: 8px; }
 }
 .region-place-titles .region-visit-trigger { margin-top: 8px; }
+
+.region-detail .region-map-focus { flex: 0 0 44px; width: 44px; height: 44px; min-height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; color: var(--action-primary); background: var(--surface-card); }
+.region-detail .region-map-focus[aria-pressed="true"] { background: var(--action-primary); border-color: var(--action-primary); color: #fff; }

@@ -13,7 +13,7 @@ import { DongMap, type MapMarker } from '../map/DongMap';
 import { Memories, type MemoryItem } from './Memories';
 import { loadSadongMemoryPreview, SADONG_ID, SADONG_MEMORY_KEY, type SadongMemoryPreview } from './sadongMemories';
 import { VisitDialog } from '../visits/VisitDialog';
-import { PlacePhoto, placeImage, usePlaceThumbnails } from './PlacePhoto';
+import { placeImage, usePlaceThumbnails } from './placeImages';
 import './region.css';
 
 const statusLabel = { open: '운영 중', closed: '휴무·이용 마감', unknown: '운영정보 미확인' };
@@ -132,7 +132,6 @@ function RegionDetail({ regionId }: { regionId: string }) {
     <div className="region-design-layout">
       <DongMap target={regionDongs} markers={markers}
         onSelect={(marker) => selectPlace(marker.id, marker.kind !== 'memory')} />
-      <p className="region-note">장소 사진을 누르면 지도에 표시돼요 · {examplePlaces.length > 0 ? '하트: 추억 예시' : '하트: 추억'}</p>
       {visiblePlaces.some(place => !place.location) && <p className="region-note">위치 미확인 장소는 목록에만 표시돼요.</p>}
       <Memories items={memoryItems} selectedId={memoryId} onSelect={selectMemory} controls={regionId === SADONG_ID && <>
         <div className="memory-preview-actions">
@@ -169,8 +168,12 @@ function RegionDetail({ regionId }: { regionId: string }) {
                 <button type="button" className="region-visit-trigger" aria-label={`${place.name} 방문 날짜 설정`} aria-haspopup="dialog"
                   onClick={() => setVisitPlaceId(place.id)}>방문 기록</button>
               </div>
-              <PlacePhoto placeId={place.id} name={place.name} personalUrl={thumbnails[place.id]} pressed={place.id === selectedPlaceId}
-                memory={visitedIds.has(place.id) || exampleIds.has(place.id)} onSelect={() => setSelectedId(place.id)} />
+              <button className="region-map-focus" aria-label={`${place.name} 카드에서 선택`} aria-pressed={place.id === selectedPlaceId}
+                onClick={() => setSelectedId(place.id)}>
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                  <path d="M12 2.5a7 7 0 0 0-7 7c0 5 7 12 7 12s7-7 7-12a7 7 0 0 0-7-7zm0 9.6a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2z" fill="currentColor" />
+                </svg>
+              </button>
             </div>
             <p>{CATEGORY_LABELS[place.category]}{status.status !== 'unknown' && <> · {statusLabel[status.status]}</>}</p>
             {/* One place explains unconfirmed hours: the today-hours box, in conversational wording. */}
