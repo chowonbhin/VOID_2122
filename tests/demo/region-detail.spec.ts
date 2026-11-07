@@ -7,12 +7,13 @@ test('20 actual cards and three marker pages share selection on a 320px phone', 
   await openBono(page);
   const cards = list(page).locator(':scope > li');
   await expect(cards).toHaveCount(20);
-  await expect(page.getByRole('navigation', { name: '지도 장소 페이지' })).toContainText('1 / 3');
+  // No map paging controls: the map shows 8 places, and choosing a card brings that place onto the map.
+  await expect(page.getByRole('navigation', { name: '지도 장소 페이지' })).toHaveCount(0);
   const last = cards.last();
   const name = (await last.getByRole('heading').innerText()).replace(/^20\. /, '');
-  await last.getByRole('button', { name: `${name} 카드에서 선택` }).click();
-  await expect(page.getByRole('navigation', { name: '지도 장소 페이지' })).toContainText('3 / 3');
   const pin = page.getByRole('button', { name: `${name} 지도에서 선택`, exact: true });
+  await expect(pin).toHaveCount(0);
+  await last.getByRole('button', { name: `${name} 카드에서 선택` }).click();
   await expect(pin).toHaveAttribute('aria-pressed', 'true');
   await pin.click();
   await expect(last.getByRole('button', { name: `${name} 카드에서 선택` })).toHaveAttribute('aria-pressed', 'true');

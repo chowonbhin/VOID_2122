@@ -109,11 +109,7 @@ function RegionDetail({ regionId }: { regionId: string }) {
     <div className="region-design-layout">
       <DongMap target={regionDongs} markers={markers}
         onSelect={(marker) => selectPlace(marker.id, marker.kind !== 'memory')} />
-      {mapPages > 1 && <nav className="region-filters" aria-label="지도 장소 페이지">
-        <button disabled={currentMapPage === 0} onClick={() => setMapPage(currentMapPage - 1)}>이전 지도 장소</button>
-        <span>{currentMapPage + 1} / {mapPages} · 지도에 {currentMapPage * 8 + 1}–{Math.min((currentMapPage + 1) * 8, locatedPlaces.length)}번 표시</span>
-        <button disabled={currentMapPage + 1 >= mapPages} onClick={() => setMapPage(currentMapPage + 1)}>다음 지도 장소</button>
-      </nav>}
+      {/* The map shows 8 places at a time; choosing a place card moves it to that place. */}
       <p className="region-note">번호: 아래 장소 목록 순서 · {examplePlaces.length > 0 ? '하트: 추억 예시 (방문 기록 아님)' : '하트: 기록한 추억'} · 점: 실제 위치</p>
       {visiblePlaces.some(place => !place.location) && <p className="region-note">정밀 좌표 미확인 장소는 지도 마커 없이 목록에서 안내합니다.</p>}
       <Memories items={memoryItems} selectedId={memoryId} onSelect={selectMemory} controls={regionId === SADONG_ID && <>
