@@ -26,8 +26,14 @@ test('urban/island slides, keyboard selection and legacy dong links remain avail
   await setup(page);
   const map = page.getByRole('region', { name: '안산 탐험 지도' });
   await expect(map.getByRole('button', { name: /^지도 대부동/ })).toHaveCount(0);
-  await map.getByRole('button', { name: '대부도 →', exact: true }).click();
+  await expect(map.getByRole('button', { name: '이전 지도', exact: true })).toBeDisabled();
+  await map.getByRole('button', { name: '다음 지도', exact: true }).click();
   await expect(map.getByRole('button', { name: /^지도 대부동/ })).toBeVisible();
+  await expect(map.getByRole('button', { name: '다음 지도', exact: true })).toBeDisabled();
+  await map.getByRole('button', { name: '이전 지도', exact: true }).click();
+  await expect(map.getByRole('button', { name: /^지도 중앙동/ })).toBeVisible();
+  await map.getByRole('button', { name: '다음 지도', exact: true }).focus();
+  await page.keyboard.press('Enter');
   await map.getByRole('button', { name: /^지도 대부동/ }).focus();
   await page.keyboard.press('Enter');
   await expect(list(page).locator(':scope > li')).toHaveCount(20);

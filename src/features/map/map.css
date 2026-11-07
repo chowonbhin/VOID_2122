@@ -20,9 +20,13 @@
 .map-search-dropdown span { color: var(--muted); font-size: 12px; }
 .map-search-dropdown p { margin: 0; padding: 16px; font-size: 14px; }
 
-.ansan-area-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 12px; }
-.ansan-area-tabs button { border-radius: 14px; color: var(--muted); }
-.ansan-area-tabs button[aria-pressed="true"] { border: 1.5px solid var(--accent); color: var(--accent); font-weight: 800; background: var(--accent-soft); }
+.ansan-map-stage { position: relative; margin-top: 16px; }
+.map-area-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; display: grid; place-items: center; width: 44px; min-height: 56px; padding: 0; border: 1px solid #ffffffb3; border-radius: 14px; background: #fffefab3; backdrop-filter: blur(4px); color: var(--accent); box-shadow: 0 2px 8px #0002; }
+.map-area-arrow.previous { left: 8px; }
+.map-area-arrow.next { right: 8px; }
+.map-area-arrow:hover:not(:disabled) { background: #fffefae6; }
+.map-area-arrow:disabled { opacity: .25; cursor: default; box-shadow: none; }
+.map-area-arrow svg { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
 .ansan-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 18px; border: 1px solid #c9dbe0; overscroll-behavior-x: contain; }
 .ansan-slider::-webkit-scrollbar { display: none; }
@@ -36,14 +40,15 @@
 .ansan-region:hover .ansan-region-fill { stroke-width: 7px; }
 .ansan-region:focus-visible .ansan-region-fill { stroke: #994b32; stroke-width: 8px; stroke-dasharray: 10 6; }
 .ansan-region.search-selected .ansan-region-fill { stroke: var(--accent); stroke-width: 8px; stroke-dasharray: 10 6; }
-.map-rank-leader { stroke: #994b32; stroke-width: 1.5px; vector-effect: non-scaling-stroke; pointer-events: none; }
-.map-rank-anchor { fill: #994b32; pointer-events: none; }
-.map-rank-pin { cursor: pointer; outline: none; }
+.map-rank-leader { stroke: var(--accent); stroke-width: 1.5px; vector-effect: non-scaling-stroke; pointer-events: none; }
+.map-rank-anchor { fill: var(--accent); pointer-events: none; }
+.map-rank-pin { cursor: pointer; outline: none; filter: drop-shadow(0 2px 3px #0003); }
 .map-rank-hit { fill: transparent; }
-.map-rank-tip, .map-rank-face { fill: #994b32; }
-.map-rank-face { stroke: #fffefa; stroke-width: 2px; }
-.map-rank-pin text { fill: #fffefa; font-size: 16px; font-weight: 800; pointer-events: none; }
-.map-rank-pin:hover .map-rank-face, .map-rank-pin:focus-visible .map-rank-face { fill: var(--accent); stroke-width: 3px; }
+.map-rank-face { fill: var(--card); stroke: var(--accent); stroke-width: 2px; }
+.map-rank-pin text { fill: var(--accent); font-size: 16px; font-weight: 800; pointer-events: none; }
+.map-rank-pin:hover .map-rank-face, .map-rank-pin:focus-visible .map-rank-face { fill: var(--accent); }
+.map-rank-pin:hover text, .map-rank-pin:focus-visible text { fill: #fff; }
+.map-rank-pin:focus-visible .map-rank-face { stroke: #994b32; stroke-width: 3px; }
 
 .ansan-legend { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--fg); }
 .ansan-legend li { display: flex; align-items: center; gap: 6px; }

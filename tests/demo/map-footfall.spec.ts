@@ -31,7 +31,8 @@ test('a real visit keeps the main screen score-free and the 동네 page free of 
   const picks = page.getByRole('list', { name: '장소 추천' }).getByRole('button');
   await expect(picks).toHaveCount(5);
   const card = picks.first();
-  await expect(card).toContainText('오늘의 추천');
+  await expect(card).toContainText('동네');
+  await expect(page.getByRole('list', { name: '장소 추천' })).not.toContainText('오늘의 추천');
   await expect(page.getByRole('list', { name: '지도 범례' })).toContainText('오늘의 추천');
   await openBono(page);
   await expect(page.locator('.region-detail')).not.toContainText('유동인구');
@@ -42,7 +43,8 @@ test('a real visit keeps the main screen score-free and the 동네 page free of 
   await closeVisit(page);
   await page.getByRole('link', { name: '안산에 스며들다' }).click();
   await expect(picks).toHaveCount(5);
-  await expect(card).toContainText('오늘의 추천');
+  await expect(card).toContainText('동네');
+  await expect(page.getByRole('list', { name: '장소 추천' })).not.toContainText('오늘의 추천');
 });
 
 test('drawing and real-place exploration make no external map or API calls in browser, including offline', async ({ page, context }) => {

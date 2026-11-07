@@ -25,10 +25,14 @@ test('search finds partial dong/district names and selects a dong without leavin
 test('mobile search switches island/urban maps, supports Enter and handles no matches', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 });
   await setup(page);
+  await page.getByRole('button', { name: '다음 지도', exact: true }).click();
+  await expect(page.getByRole('button', { name: /^지도 대부동/ })).toBeVisible();
+  await page.getByRole('button', { name: '이전 지도', exact: true }).click();
+  await expect(page.getByRole('button', { name: /^지도 중앙동/ })).toBeVisible();
   const input = page.getByRole('searchbox', { name: '지역 검색', exact: true });
   await input.fill('대부도');
   await input.press('Enter');
-  await expect(page.getByRole('button', { name: '대부도 →', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: '다음 지도', exact: true })).toBeDisabled();
   await expect(page.getByRole('button', { name: /^지도 대부동/ })).toBeFocused();
   await expect(page.locator('.map-hover')).toContainText('대부동');
   await input.fill('없는동네');
@@ -37,7 +41,7 @@ test('mobile search switches island/urban maps, supports Enter and handles no ma
   await expect(page.getByRole('status')).toHaveCount(0);
   await input.fill('본오2동');
   await input.press('Enter');
-  await expect(page.getByRole('button', { name: '안산 도심', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: '이전 지도', exact: true })).toBeDisabled();
   await expect(page.getByRole('button', { name: /^지도 본오2동/ })).toBeFocused();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

@@ -31,11 +31,11 @@ export function RecommendPage() {
   const result = recommend(content, state.profile, state.visits, search);
   const ranked = result.allZero ? [] : result.recommendations;
   // Show up to five places, preserving the engine's dong order and two picks per dong.
-  const picks = ranked.flatMap((item, index) => {
+  const picks = ranked.flatMap((item) => {
     const region = content.regions.find((candidate) => candidate.id === item.regionId)!;
     return item.placeIds.slice(0, 2).flatMap((id) => {
       const place = content.places.find((candidate) => candidate.id === id);
-      return place ? [{ place, region, rank: index + 1, level: item.level }] : [];
+      return place ? [{ place, region, level: item.level }] : [];
     });
   }).slice(0, 5);
 
@@ -55,11 +55,11 @@ export function RecommendPage() {
             <h2 id="place-recommend-title">장소 추천</h2>
           </div>
           <ol className="place-recommend-list" aria-label="장소 추천">
-            {picks.map(({ place, region, rank, level }) => <li key={place.id}>
+            {picks.map(({ place, region, level }) => <li key={place.id}>
               <button className="place-pick" aria-label={`${place.name} · ${region.name} 장소 보기`} onClick={() => go({ name: 'region', regionId: region.id })}>
                 <span className="place-pick-kicker">{CATEGORY_LABELS[place.category]} · {region.name}</span>
                 <strong>{place.name}</strong>
-                <span className="place-pick-meta">오늘의 추천 {rank}순위 동네 · {FAMILIARITY[level].label}</span>
+                <span className="place-pick-meta">{FAMILIARITY[level].label}</span>
               </button>
             </li>)}
           </ol>

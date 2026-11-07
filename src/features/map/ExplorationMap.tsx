@@ -129,11 +129,7 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
         </div>}
       </form>
     </div>
-    <div className="ansan-area-tabs" role="group" aria-label="지도 지역 선택">
-      {mapAreas.map((area, index) => <button type="button" key={area.id} aria-pressed={active === index} onClick={() => show(index)}>
-        {area.label}{index === 1 ? ' →' : ''}
-      </button>)}
-    </div>
+    <div className="ansan-map-stage">
     <div className="ansan-slider" ref={element => {
       slider.current = element;
       if (element && initial && !positioned.current) { positioned.current = true; element.scrollLeft = initial * element.clientWidth; }
@@ -188,13 +184,21 @@ export function ExplorationMap({ regions, recommendations, levels, homeDongCode,
               onMouseEnter={() => setHovered(pin.shape.region.id)} onFocus={() => setHovered(pin.shape.region.id)}
               onClick={() => onRegionSelect(pin.shape.region.id)} onKeyDown={event => onKey(event, pin.shape.region.id)}>
               <circle r="22" className="map-rank-hit" />
-              <path d="M0 22 9 10H-9Z" className="map-rank-tip" />
-              <circle r="17" className="map-rank-face" />
+              <circle r="21" className="map-rank-face" />
               <text textAnchor="middle" dominantBaseline="central" aria-hidden="true">{pin.shape.rank}</text>
             </g>
           </g>)}
         </svg>
       </div>; })}
+    </div>
+      <button type="button" className="map-area-arrow previous" aria-label="이전 지도" title="안산 도심"
+        disabled={active === 0} onClick={() => { setHovered(undefined); show(active - 1); }}>
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
+      </button>
+      <button type="button" className="map-area-arrow next" aria-label="다음 지도" title="대부도"
+        disabled={active === mapAreas.length - 1} onClick={() => { setHovered(undefined); show(active + 1); }}>
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+      </button>
     </div>
     <p className="map-hover" aria-live="polite">{focus ? `${focus.region.name} · ${focus.status}` : ''}</p>
     <ul className="ansan-legend" aria-label="지도 범례">
